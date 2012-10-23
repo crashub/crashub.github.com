@@ -1,0 +1,2012 @@
+
+<!DOCTYPE html
+  SYSTEM "">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>CRaSH</title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.0.2.min.js"></script><script src="js/bootstrap/docbook.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container" title="CRaSH"><div class="titlepage"><div><div><h1 class="title"><a name="UTF-8"></a>CRaSH</h1></div><div><h2 class="subtitle">CRaSH guide</h2></div><div><div class="authorgroup">
+    <div class="author"><h3 class="author"><span class="firstname">Julien</span> <span class="surname">Viet</span></h3><div class="affiliation">
+        <span class="shortaffil">eXo Platform<br></span>
+      </div></div>
+  </div></div><div><p class="copyright">Copyright &copy; 2011 eXo Platform SAS</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e23">Preface</a></span></dt><dt><span class="chapter"><a href="#d5e26">1. Running CRaSH</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e30">Standalone</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e32">Standalone mode</a></span></dt><dt><span class="section"><a href="#d5e57">Attach mode</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e63">Embedded mode</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e65">Embedding as a web archive</a></span></dt><dt><span class="section"><a href="#d5e92">Embedding with Spring</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#d5e105">2. Interacting with the shell</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e107">Shell usage</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e109">Connection</a></span></dt><dt><span class="section"><a href="#d5e129">Features</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e143">Command usage</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e145">Getting basic help</a></span></dt><dt><span class="section"><a href="#d5e150">Command line usage</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e217">Base commands</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e219">
+          <span class="italic">sleep</span> command</a></span></dt><dt><span class="section"><a href="#d5e223">
+          <span class="italic">man</span> command</a></span></dt><dt><span class="section"><a href="#d5e227">
+          <span class="italic">log</span> command</a></span></dt><dt><span class="section"><a href="#d5e236">
+          <span class="italic">thread</span> command</a></span></dt><dt><span class="section"><a href="#d5e244">
+          <span class="italic">system</span> command</a></span></dt><dt><span class="section"><a href="#d5e255">
+          <span class="italic">jdbc</span> command</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#d5e264">3. JCR extension</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e267">JCR implementations</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e269">eXo JCR</a></span></dt><dt><span class="section"><a href="#d5e272">Apache Jackrabbit</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e275">JCR commands</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e277">
+          <span class="italic">repo</span> command</a></span></dt><dt><span class="section"><a href="#d5e284">
+          <span class="italic">ws</span> command</a></span></dt><dt><span class="section"><a href="#d5e290">
+          <span class="italic">cd</span> command</a></span></dt><dt><span class="section"><a href="#d5e294">
+          <span class="italic">pwd</span> command</a></span></dt><dt><span class="section"><a href="#d5e298">
+          <span class="italic">ls</span> command</a></span></dt><dt><span class="section"><a href="#d5e302">
+          <span class="italic">cp</span> command</a></span></dt><dt><span class="section"><a href="#d5e306">
+          <span class="italic">mv</span> command</a></span></dt><dt><span class="section"><a href="#d5e310">
+          <span class="italic">rm</span> command</a></span></dt><dt><span class="section"><a href="#d5e314">
+          <span class="italic">node</span> command</a></span></dt><dt><span class="section"><a href="#d5e322">
+          <span class="italic">mixin</span> command</a></span></dt><dt><span class="section"><a href="#d5e328">
+          <span class="italic">select</span> command</a></span></dt><dt><span class="section"><a href="#d5e332">
+          <span class="italic">xpath</span> command</a></span></dt><dt><span class="section"><a href="#d5e336">
+          <span class="italic">commit</span> command</a></span></dt><dt><span class="section"><a href="#d5e340">
+          <span class="italic">rollback</span> command</a></span></dt><dt><span class="section"><a href="#d5e344">
+          <span class="italic">version</span> command</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e350">SCP usage</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e353">Export a JCR node</a></span></dt><dt><span class="section"><a href="#d5e363">Import a JCR node</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#d5e370">4. Configuration</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e372">Configuration properties</a></span></dt><dt><span class="section"><a href="#d5e379">Change the SSH server key</a></span></dt><dt><span class="section"><a href="#d5e388">Change the ports of the telnet or SSH server</a></span></dt><dt><span class="section"><a href="#d5e400">Remove the telnet or SSH access</a></span></dt><dt><span class="section"><a href="#d5e409">Configure the shell default message</a></span></dt><dt><span class="section"><a href="#d5e421">Configuration the authentication</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e431">Simple authentication</a></span></dt><dt><span class="section"><a href="#d5e439">Jaas authentation</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#d5e446">5. Extending CRaSH</a></span></dt><dd><dl><dt><span class="section"><a href="#pluggable_auth">Pluggable authentication </a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e512">6. Developers</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e514">Developping commands</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e537">Commands as a script</a></span></dt><dt><span class="section"><a href="#d5e548">Commands as a class</a></span></dt><dt><span class="section"><a href="#d5e579">Multi commands</a></span></dt></dl></dd><dt><span class="section"><a href="#command_context">Command context </a></span></dt><dt><span class="section"><a href="#d5e674">Adding style</a></span></dt><dt><span class="section"><a href="#d5e766">Inter command API</a></span></dt></dl></dd><dt><span class="chapter"><a href="#d5e800">7. Hey, I want to contribute!</a></span></dt></dl></div><div class="list-of-examples"><p><b>List of Examples</b></p><dl><dt>1.1. <a href="#d5e87">Embedding CRaSH in a web application</a></dt><dt>1.2. <a href="#d5e96">Embedding CRaSH in SPring with the Telnet plugin</a></dt><dt>2.1. <a href="#d5e194">Remove all nt:unstructed nodes</a></dt><dt>2.2. <a href="#d5e202">Update the security of all nt:unstructed nodes</a></dt><dt>2.3. <a href="#d5e210">Add the mixin mix:referenceable to any node of type nt:file or nt:folder</a></dt><dt>6.1. <a href="#d5e597">The command context</a></dt><dt>6.2. <a href="#d5e606">Using shell session</a></dt><dt>6.3. <a href="#d5e631">Obtaining a Spring bean</a></dt><dt>6.4. <a href="#d5e640">The invocation context</a></dt><dt>6.5. <a href="#d5e649">Printing on the shell</a></dt><dt>6.6. <a href="#d5e665">Reading on the console</a></dt><dt>6.7. <a href="#d5e698">Decorating and coloring text</a></dt><dt>6.8. <a href="#d5e717">Printing styled text</a></dt><dt>6.9. <a href="#d5e739">Styling with the leftshift operator</a></dt><dt>6.10. <a href="#d5e770">dbscript.groovy</a></dt></dl></div>
+  
+  <div class="preface" title="Preface"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e23"></a>Preface</h1></div></div></div></div>
+    
+    <p>The Common Reusable SHell (CRaSH) deploys in a Java runtime and provides interactions with the JVM. Commands are written in Groovy and can be developped at runtime making the extension of the shell very easy with fast development cycle.</p>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;1.&nbsp;Running CRaSH"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e26"></a>Chapter&nbsp;1.&nbsp;Running CRaSH</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e30">Standalone</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e32">Standalone mode</a></span></dt><dt><span class="section"><a href="#d5e57">Attach mode</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e63">Embedded mode</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e65">Embedding as a web archive</a></span></dt><dt><span class="section"><a href="#d5e92">Embedding with Spring</a></span></dt></dl></dd></dl></div>
+    
+    <p>There are several ways to run CRaSH.</p>
+    <p>CRaSH provides has various ways to be started, it can also be easily embedded.</p>
+    <div class="section" title="Standalone"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e30"></a>Standalone</h2></div></div></div>
+      
+      <div class="section" title="Standalone mode"><div class="titlepage"><div><div><h3 class="title"><a name="d5e32"></a>Standalone mode</h3></div></div></div>
+        
+        <p>The standalone mode allows you to run CRaSH from the command line directly. It provides the same functionality as the war deployment but does not require a web container as it runs its own virtual machine. The directory <span class="underline">crash</span> directory in the application contains the standalone distribution.</p>
+        <p>The bin directory <span class="italic">/crash/bin</span> can be added to the system path, it contains the <span class="italic">crash.sh</span> script that will start the standalone mode, for instance you can set it up this way:</p>
+        <pre class="screen">&gt; export PATH=/.../crash/bin:$PATH
+&gt; crash.sh
+   ______
+ .~      ~. |`````````,       .'.                   ..'''' |         |
+|           |'''|'''''      .''```.              .''       |_________|
+|           |    `.       .'       `.         ..'          |         |
+ `.______.' |      `.   .'           `. ....''             |         | 1.0.0-cr2-SNAPSHOT
+
+Follow and support the project on http://vietj.github.com/crash
+Welcome to jerry + !
+It is Thu Apr 12 21:19:35 CEST 2012 now</pre>
+        <p>Let's review quickly what you can find in standalone crash:</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>The <span class="italic">bin</span> directory contains the <span class="italic">crash.sh</span> script and the standalone crash jar file</p>
+          </li><li class="listitem">
+            <p>The <span class="italic">conf</span> directory contains the configuration proerties <span class="italic">crash.properties</span> and JVM logging configuration <span class="italic">logging.properties</span>
+            </p>
+          </li><li class="listitem">
+            <p>The <span class="italic">cmd</span> directory contains the commands that will be available in crash by default it contains a few example commands</p>
+          </li><li class="listitem">
+            <p>The <span class="italic">lib</span> directory contains the various libraries used by crash, you should place additional jar files there</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="Attach mode"><div class="titlepage"><div><div><h3 class="title"><a name="d5e57"></a>Attach mode</h3></div></div></div>
+        
+        <p>The attach mode allows you to attach CRaSH to a JVM located on the same host with the attach API provided by the Hotspot JVM. It works thanks to the standalone mode, the main difference is when you run the command line you can specify a process id of a JVM and CRaSH will hook into the targetted JVM, let's see quickly an example of how to use it</p>
+        <pre class="screen">&gt; jps
+3165 RemoteMavenServer
+20650 Test
+20651 Jps
+
+&gt; crash.sh 20650
+   ______
+ .~      ~. |`````````,       .'.                   ..'''' |         |
+|           |'''|'''''      .''```.              .''       |_________|
+|           |    `.       .'       `.         ..'          |         |
+ `.______.' |      `.   .'           `. ....''             |         | 1.0.0-cr2-SNAPSHOT
+
+Follow and support the project on http://vietj.github.com/crash
+Welcome to jerry + !
+It is Thu Apr 12 22:09:23 CEST 2012 now
+%</pre>
+        <p>In this example we will attach crash to the Test JVM. We obtained the Test JVM PID thanks to the <span class="italic">jps</span> command that belongs to the Java Platform. During this mode the commands are executed in the target JVM.</p>
+      </div>
+    </div>
+    <div class="section" title="Embedded mode"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e63"></a>Embedded mode</h2></div></div></div>
+      
+      <div class="section" title="Embedding as a web archive"><div class="titlepage"><div><div><h3 class="title"><a name="d5e65"></a>Embedding as a web archive</h3></div></div></div>
+        
+        <p>CRaSH can use a standard web archive to be deployed in a web container. The war file is used for its packaging capabilities and triggering the CRaSH life cycle start/stop. In this mode CRaSH has two packaging available:</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>A <span class="underline">core</span> war file found under <span class="italic">deploy/core/crash.war</span> provides the base CRaSH functionnalities.</p>
+          </li><li class="listitem">
+            <p>A <span class="underline">gatein</span> war file found under <span class="italic">deploy/gatein/crash.war</span> provides additional Java Content Repository (JCR)  features but deploys only in a GateIn server (Tomcat or JBoss). It extends the core packaging and adds</p>
+            <div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+                <p>JCR browsing and interactions</p>
+              </li><li class="listitem">
+                <p>SCP support for JCR import and export</p>
+              </li></ul></div>
+          </li></ul></div>
+        <p>You have to copy the <span class="italic">crash.war</span> in the appropriate server, regardless of the packaging used.</p>
+        <p>If you want you can embed CRaSH in your own <span class="italic">web.xml</span> configuration:</p>
+        <p>
+          </p><div class="example"><a name="d5e87"></a><p class="title"><b>Example&nbsp;1.1.&nbsp;Embedding CRaSH in a web application</b></p><div class="example-contents">
+            
+            <div class="programlistingco"><pre class="prettyprint language-xml">&lt;web-app&gt;
+  &lt;listener&gt;
+    &lt;listener-class&gt;org.crsh.plugin.WebPluginLifeCycle&lt;/listener-class&gt;
+  &lt;/listener&gt;
+&lt;/web-app&gt;</pre></div>
+          </div></div><p><br class="example-break">
+        </p>
+      </div>
+      <div class="section" title="Embedding with Spring"><div class="titlepage"><div><div><h3 class="title"><a name="d5e92"></a>Embedding with Spring</h3></div></div></div>
+        
+        <p>CRaSH can be easily embedded and configured in a Spring configuration, here is an example of embedding crash:</p>
+        <p>
+          </p><div class="example"><a name="d5e96"></a><p class="title"><b>Example&nbsp;1.2.&nbsp;Embedding CRaSH in SPring with the Telnet plugin</b></p><div class="example-contents">
+            
+            <div class="programlistingco"><pre class="prettyprint language-xml">
+&lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"&gt;
+
+	&lt;bean class="org.crsh.spring.SpringBootstrap"&gt;
+    &lt;property name="config"&gt;
+      &lt;props&gt;
+        &lt;prop key="crash.telnet.port"&gt;4000&lt;/prop&gt;
+      &lt;/props&gt;
+    &lt;/property&gt;
+	&lt;/bean&gt;
+
+  &lt;bean class="org.crsh.telnet.TelnetPlugin"&gt;
+  &lt;/bean&gt;
+
+&lt;/beans&gt;</pre></div>
+          </div></div><p><br class="example-break">
+        </p>
+        <p>In this mode, the plugins are not discovered using the classpath, instead each plugin must be declared as a Spring bean.</p>
+        <p>The configuration properties can be also set as properties with the <span class="italic">config</span> property of the <code class="code">SpringBootstrap</code> bean.</p>
+      </div>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;2.&nbsp;Interacting with the shell"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e105"></a>Chapter&nbsp;2.&nbsp;Interacting with the shell</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e107">Shell usage</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e109">Connection</a></span></dt><dt><span class="section"><a href="#d5e129">Features</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e143">Command usage</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e145">Getting basic help</a></span></dt><dt><span class="section"><a href="#d5e150">Command line usage</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e217">Base commands</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e219">
+          <span class="italic">sleep</span> command</a></span></dt><dt><span class="section"><a href="#d5e223">
+          <span class="italic">man</span> command</a></span></dt><dt><span class="section"><a href="#d5e227">
+          <span class="italic">log</span> command</a></span></dt><dt><span class="section"><a href="#d5e236">
+          <span class="italic">thread</span> command</a></span></dt><dt><span class="section"><a href="#d5e244">
+          <span class="italic">system</span> command</a></span></dt><dt><span class="section"><a href="#d5e255">
+          <span class="italic">jdbc</span> command</a></span></dt></dl></dd></dl></div>
+    
+    <div class="section" title="Shell usage"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e107"></a>Shell usage</h2></div></div></div>
+      
+      <div class="section" title="Connection"><div class="titlepage"><div><div><h3 class="title"><a name="d5e109"></a>Connection</h3></div></div></div>
+        
+        <p>You need to connect using telnet, SSH to use the shell, there is a third special mode using the JVM input and output.</p>
+        <div class="section" title="Telnet access"><div class="titlepage"><div><div><h4 class="title"><a name="d5e112"></a>Telnet access</h4></div></div></div>
+          
+          <p>Telnet connection is done on port 5000:</p>
+          <pre class="screen">(! 520)-&gt; telnet localhost 5000
+Trying ::1...
+Connected to localhost.
+Escape character is '^]'.
+   ______
+ .~      ~. |`````````,       .'.                   ..'''' |         |
+|           |'''|'''''      .''```.              .''       |_________|
+|           |    `.       .'       `.         ..'          |         |
+ `.______.' |      `.   .'           `. ....''             |         | 1.1.0-cr1
+
+Follow and support the project on http://vietj.github.com/crash
+Welcome to julien.local + !
+It is Fri Dec 03 16:20:40 CET 2010 now</pre>
+          <p>The <code class="code">bye</code> command disconnect from the shell.</p>
+        </div>
+        <div class="section" title="SSH access"><div class="titlepage"><div><div><h4 class="title"><a name="d5e118"></a>SSH access</h4></div></div></div>
+          
+          <p>SSH connection is done on port 2000 with the password <span class="bold"><strong>
+              <span class="italic">crash</span>
+            </strong></span>:</p>
+          <pre class="screen">juliens-macbook-pro:~ julien$ ssh -p 2000 -l root localhost
+root@localhost's password:
+CRaSH 1.1.0-cr1 (http://vietj.github.com/crash)
+Welcome to juliens-macbook-pro.local!
+It is Fri Jan 08 21:12:53 CET 2010 now.
+%</pre>
+          <p>The <code class="code">bye</code> command disconnect from the shell.</p>
+        </div>
+        <div class="section" title="Native access"><div class="titlepage"><div><div><h4 class="title"><a name="d5e126"></a>Native access</h4></div></div></div>
+          
+          <p>A third mode is available for standalone CRaSH usage because it uses the JVM native input and output. When you are using it, CRaSh will be available just after the JVM is launched.</p>
+        </div>
+      </div>
+      <div class="section" title="Features"><div class="titlepage"><div><div><h3 class="title"><a name="d5e129"></a>Features</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Line edition: the current line can be edited via left and right arrow keys</p>
+          </li><li class="listitem">
+            <p>History: the key up and key down enable history browsing</p>
+          </li><li class="listitem">
+            <p>Quoting: simple quotes or double quotes allow to insert blanks in command options and arguments, for instance <span class="italic">"old boy"</span> or <span class="italic">'old boy'</span>. One quote style can quote another, like <span class="italic">"ol' boy"</span>.</p>
+          </li><li class="listitem">
+            <p>Completion: an advanced completion system is available</p>
+          </li></ul></div>
+      </div>
+    </div>
+    <div class="section" title="Command usage"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e143"></a>Command usage</h2></div></div></div>
+      
+      <div class="section" title="Getting basic help"><div class="titlepage"><div><div><h3 class="title"><a name="d5e145"></a>Getting basic help</h3></div></div></div>
+        
+        <p>The <code class="code">help</code> command will display the list of known commands by the shell.</p>
+        <pre class="screen">[/]% help
+% help
+Try one of these commands with the -h or --help switch:
+
+  cd               changes the current node
+  commit           saves changes
+  consume          collects a set of nodes
+  cp               copy a node to another
+  env              display the term env
+  exportworkspace  Export a workspace on the file system (experimental)
+  fail             Fails
+  help             provides basic help
+  importworkspace  Import a workspace from the file system (experimental)
+  invoke           Invoke a static method
+  log              logging commands
+  ls               list the content of a node
+  man              format and display the on-line manual pages
+  mixin            mixin commands
+  mv               move a node
+  node             node commands
+  produce          produce a set of nodes
+  pwd              print the current node path
+  rm               remove one or several node or a property
+  rollback         rollback changes
+  select           execute a JCR sql query
+  setperm          modify the security permissions of a JCR node
+  sleep            sleep for some time
+  thread           vm thread commands
+  version          versioning commands
+  wait             Invoke a static method
+  ws               workspace commands
+  xpath            execute a JCR xpath query</pre>
+      </div>
+      <div class="section" title="Command line usage"><div class="titlepage"><div><div><h3 class="title"><a name="d5e150"></a>Command line usage</h3></div></div></div>
+        
+        <p>The basic CRaSH usage is like any shell, you just type a command with its options and arguments. However it is possible  to compose commands and create powerful combinations.</p>
+        <div class="section" title="Basic command usage"><div class="titlepage"><div><div><h4 class="title"><a name="d5e153"></a>Basic command usage</h4></div></div></div>
+          
+          <p>Typing the command followed by options and arguments will do the job</p>
+          <pre class="screen">% ls /
+...</pre>
+        </div>
+        <div class="section" title="Command help display"><div class="titlepage"><div><div><h4 class="title"><a name="d5e157"></a>Command help display</h4></div></div></div>
+          
+          <p>Any command help can be displayed by using the -h argument:</p>
+          <pre class="screen">% ls -h
+usage: ls [-h | --help] [-h | --help] [-d | --depth] path
+
+   [-h | --help]  command usage
+   [-h | --help]  command usage
+   [-d | --depth] Print depth
+   path           the path of the node content to list</pre>
+          <p>In addition of that, commands can have a complete manual that can be displayed thanks to the <code class="code">man</code> command:</p>
+          <pre class="screen">% man ls
+NAME
+       ls - list the content of a node
+
+SYNOPSIS
+       ls [-h | --help] [-h | --help] [-d | --depth] [-d | --depth] path
+
+DESCRIPTION
+       The ls command displays the content of a node. By default it lists the content of the current node, however it also
+       accepts a path argument that can be absolute or relative.
+
+       [/]% ls
+       /
+       +-properties
+       | +-jcr:primaryType: nt:unstructured
+       | +-jcr:mixinTypes: [exo:owneable,exo:privilegeable]
+       | +-exo:owner: '__system'
+       | +-exo:permissions: [any read,*:/platform/administrators read,*:/platform/administrators add_node,*:/platform/administrators set_property,*:/platform/administrators remove]
+       +-children
+       | +-/workspace
+       | +-/contents
+       | +-/Users
+       | +-/gadgets
+       | +-/folder
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-h | --help]
+           Provides command usage
+
+       [-d | --depth]
+           Print depth
+
+       path
+           the path of the node content to list</pre>
+        </div>
+        <div class="section" title="Advanced command usage"><div class="titlepage"><div><div><h4 class="title"><a name="d5e164"></a>Advanced command usage</h4></div></div></div>
+          
+          <p>A CRaSH command is able to consume and produce a stream of object, allowing complex interactions between commands where they can exchange stream of compatible objets. Most of the time, JCR nodes are the objects exchanged by the commands but any command is free to produce or consume any type.</p>
+          <p>By default a command that does not support this feature does not consumer or produce anything. Such commands usually inherits from the <code class="code">org.crsh.command.ClassCommand</code> class that does not care about it. If you look at this class you will see it extends the the <code class="code">org.crsh.command.BaseCommand</code>.</p>
+          <p>More advanced commands inherits from <code class="code">org.crsh.command.BaseCommand</code> class that specifies two generic types <code class="code">&lt;C&gt;</code> and <code class="code">&lt;P&gt;</code>:</p>
+          <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+              <p>
+                <code class="code">&lt;C&gt;</code> is the type of the object that the command consumes</p>
+            </li><li class="listitem">
+              <p>
+                <code class="code">&lt;P&gt;</code> is the type of the object that the command produces</p>
+            </li></ul></div>
+          <p>The command composition provides two operators:</p>
+          <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+              <p>The pipe operator <span class="bold"><strong>|</strong></span> allows to stream a command output stream to a command input stream</p>
+            </li><li class="listitem">
+              <p>The distribution operator <span class="bold"><strong>+</strong></span> allows to distribute an input stream to several commands and to combine the output stream of several commands into a single stream.</p>
+            </li></ul></div>
+        </div>
+        <div class="section" title="Connecting a <Void,Node&gt; command to a <Node,Void&gt; command through a pipe"><div class="titlepage"><div><div><h4 class="title"><a name="d5e189"></a>Connecting a <code class="code">&lt;Void,Node&gt;</code> command to a <code class="code">&lt;Node,Void&gt;</code> command through a pipe</h4></div></div></div>
+          
+          <p>
+            </p><div class="example"><a name="d5e194"></a><p class="title"><b>Example&nbsp;2.1.&nbsp;Remove all nt:unstructed nodes</b></p><div class="example-contents">
+              
+              <pre class="screen">% select * from nt:unstructed | rm</pre>
+            </div></div><p><br class="example-break">
+          </p>
+        </div>
+        <div class="section" title="Connecting a <Void,Node&gt; command to two <Node,Void&gt; commands through a pipe"><div class="titlepage"><div><div><h4 class="title"><a name="d5e197"></a>Connecting a <code class="code">&lt;Void,Node&gt;</code> command to two <code class="code">&lt;Node,Void&gt;</code> commands through a pipe</h4></div></div></div>
+          
+          <p>
+            </p><div class="example"><a name="d5e202"></a><p class="title"><b>Example&nbsp;2.2.&nbsp;Update the security of all nt:unstructed nodes</b></p><div class="example-contents">
+              
+              <pre class="screen">% select * from nt:unstructured | setperm -i any -a read + setperm -i any -a write</pre>
+            </div></div><p><br class="example-break">
+          </p>
+        </div>
+        <div class="section" title="Connecting two <Void,Node&gt; command to a <Node,Void&gt; commands through a pipe"><div class="titlepage"><div><div><h4 class="title"><a name="d5e205"></a>Connecting two <code class="code">&lt;Void,Node&gt;</code> command to a <code class="code">&lt;Node,Void&gt;</code> commands through a pipe</h4></div></div></div>
+          
+          <p>
+            </p><div class="example"><a name="d5e210"></a><p class="title"><b>Example&nbsp;2.3.&nbsp;Add the mixin mix:referenceable to any node of type nt:file or nt:folder</b></p><div class="example-contents">
+              
+              <pre class="screen">% select * from nt:file + select * from nt:folder | addmixin mix:referenceable</pre>
+            </div></div><p><br class="example-break">
+          </p>
+        </div>
+        <div class="section" title="Mixed cases"><div class="titlepage"><div><div><h4 class="title"><a name="d5e213"></a>Mixed cases</h4></div></div></div>
+          
+          <p>When a command does not consume a stream but is involved in a distribution it will not receive any stream but will be nevertheless invoked.</p>
+          <p>Likewise when a command does not produce a stream but is involved in a distribution, it will not produce anything but will be nevertheless invoked.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section" title="Base commands"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e217"></a>Base commands</h2></div></div></div>
+      
+      <div class="section" title="sleep command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e219"></a>
+          <span class="italic">sleep</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       sleep - sleep for some time
+
+SYNOPSIS
+       sleep [-h | --help] time
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       time
+           sleep time in seconds
+</pre>
+      </div>
+      <div class="section" title="man command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e223"></a>
+          <span class="italic">man</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       man - format and display the on-line manual pages
+
+SYNOPSIS
+       man [-h | --help] command
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       command
+           the command
+</pre>
+      </div>
+      <div class="section" title="log command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e227"></a>
+          <span class="italic">log</span> command</h3></div></div></div>
+        
+        <p>
+          </p><pre class="screen">NAME
+       log add - create one or several loggers
+
+SYNOPSIS
+       log [-h | --help] add ... name
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       ... name
+           The name of the logger</pre><p>
+          </p><pre class="screen">NAME
+       log set - configures the level of one of several loggers
+
+SYNOPSIS
+       log [-h | --help] set [-l | --level] [-p | --plugin] ... name
+
+DESCRIPTION
+       The set command sets the level of a logger. One or several logger names can be specified as arguments
+       and the -l option specify the level among the trace, debug, info, warn and error levels. When no level is
+       specified, the level is cleared and the level will be inherited from its ancestors.
+
+       % logset -l trace foo
+       % logset foo
+
+       The logger name can be omitted and instead stream of logger can be consumed as it is a &lt;Logger,Void&gt; command.
+       The following set the level warn on all the available loggers:
+
+       % log ls | log set -l warn
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-l | --level]
+           The logger level to assign among {trace, debug, info, warn, error}
+
+       [-p | --plugin]
+           Force the plugin implementation to use
+
+       ... name
+           The name of the logger</pre><p>
+          </p><pre class="screen">NAME
+       log send - send a message to a logger
+
+SYNOPSIS
+       log [-h | --help] send [-m | --message] [-l | --level] name
+
+DESCRIPTION
+       The send command log one or several loggers with a specified message. For instance the following impersonates
+       the javax.management.mbeanserver class and send a message on its own logger.
+
+       #% log send -m hello javax.management.mbeanserver
+
+       Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
+
+       % log ls | log send -m hello -l warn
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-m | --message]
+           The message to log
+
+       [-l | --level]
+           The logger level to assign among {trace, debug, info, warn, error}
+
+       name
+           The name of the logger</pre><p>
+          </p><pre class="screen">NAME
+       log info - display info about a logger
+
+SYNOPSIS
+       log [-h | --help] info ... name
+
+DESCRIPTION
+       The loginfo command displays information about one or several loggers.
+
+       % loginfo javax.management.modelmbean
+       javax.management.modelmbean&lt;INFO&gt;
+
+       The loginfo command is a &lt;Logger,Void&gt; command and it can consumed logger produced by the logls command:
+
+       % logls -f javax.* | loginfo
+       javax.management.mbeanserver&lt;INFO&gt;
+       javax.management.modelmbean&lt;INFO&gt;
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       ... name
+           The name of the logger</pre><p>
+          </p><pre class="screen">NAME
+       log ls - list the available loggers
+
+SYNOPSIS
+       log [-h | --help] ls [-f | --filter]
+
+DESCRIPTION
+       The logls command list all the available loggers., for instance:
+
+       % logls
+       org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/].[default]
+       org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/eXoGadgetServer].[concat]
+       org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/dashboard].[jsp]
+       ...
+
+       The -f switch provides filtering with a Java regular expression
+
+       % logls -f javax.*
+       javax.management.mbeanserver
+       javax.management.modelmbean
+
+       The logls command is a &lt;Void,Logger&gt; command, therefore any logger produced can be consumed.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-f | --filter]
+           A regular expressions used to filter the loggers</pre><p>
+        </p>
+      </div>
+      <div class="section" title="thread command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e236"></a>
+          <span class="italic">thread</span> command</h3></div></div></div>
+        
+        <p>
+          </p><pre class="screen">NAME
+       thread stop - stop vm threads
+
+SYNOPSIS
+       thread [-h | --help] stop ... ids
+
+DESCRIPTION
+       Stop VM threads.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       ... ids
+           the thread ids to stop</pre><p>
+          </p><pre class="screen">NAME
+       thread interrupt - interrupt vm threads
+
+SYNOPSIS
+       thread [-h | --help] interrupt ... ids
+
+DESCRIPTION
+       Interrup VM threads.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       ... ids
+           the thread ids to interrupt</pre><p>
+          </p><pre class="screen">NAME
+       thread ls - list the vm threads
+
+SYNOPSIS
+       thread [-h | --help] ls [-n | --name] [-f | --filter] [-s | --state]
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-n | --name]
+           Retain the thread with the specified name
+
+       [-f | --filter]
+           Filter the threads with a regular expression on their name
+
+       [-s | --state]
+           Filter the threads by their status (new,runnable,blocked,waiting,timed_waiting,terminated)</pre><p>
+          </p><pre class="screen">NAME
+       thread dump - dump vm threads
+
+SYNOPSIS
+       thread [-h | --help] dump ... ids
+
+DESCRIPTION
+       Dump VM threads.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       ... ids
+           the thread ids to dump</pre><p>
+        </p>
+      </div>
+      <div class="section" title="system command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e244"></a>
+          <span class="italic">system</span> command</h3></div></div></div>
+        
+        <p>
+          </p><pre class="screen">NAME
+       system gc - call garbage collector
+
+SYNOPSIS
+       system [-h | --help] gc
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage</pre><p>
+          </p><pre class="screen">NAME
+       system propls - list the vm system properties
+
+SYNOPSIS
+       system [-h | --help] propls [-f | --filter]
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-f | --filter]
+           filter the property with a regular expression on their name</pre><p>
+          </p><pre class="screen">NAME
+       system propset - set a system property
+
+SYNOPSIS
+       system [-h | --help] propset name value
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       name
+           The name of the property
+
+       value
+           The value of the property</pre><p>
+          </p><pre class="screen">NAME
+       system propget - get a system property
+
+SYNOPSIS
+       system [-h | --help] propget name
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       name
+           The name of the property</pre><p>
+          </p><pre class="screen">NAME
+       system proprm - remove a system property
+
+SYNOPSIS
+       system [-h | --help] proprm name
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       name
+           The name of the property</pre><p>
+          </p><pre class="screen">NAME
+       system freemem - show free memory
+
+SYNOPSIS
+       system [-h | --help] freemem [-u | --unit] [-d | --decimal]
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-u | --unit]
+           The unit of the memory space size {(B)yte, (O)ctet, (M)egaOctet, (G)igaOctet}
+
+       [-d | --decimal]
+           The number of decimal (default 0)</pre><p>
+          </p><pre class="screen">NAME
+       system totalmem - show total memory
+
+SYNOPSIS
+       system [-h | --help] totalmem [-u | --unit] [-d | --decimal]
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-u | --unit]
+           The unit of the memory space size {(B)yte, (O)ctet, (M)egaOctet, (G)igaOctet}
+
+       [-d | --decimal]
+           The number of decimal (default 0)</pre><p>
+        </p>
+      </div>
+      <div class="section" title="jdbc command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e255"></a>
+          <span class="italic">jdbc</span> command</h3></div></div></div>
+        
+        <p>
+          </p><pre class="screen">NAME
+       jdbc close - close the current connection
+
+SYNOPSIS
+       jdbc [-h | --help] close
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage</pre><p>
+          </p><pre class="screen">NAME
+       jdbc open - open a connection from JNDI bound datasource
+
+SYNOPSIS
+       jdbc [-h | --help] open globalName
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       globalName
+           The datasource JNDI name</pre><p>
+          </p><pre class="screen">NAME
+       jdbc connect - connect to database with a JDBC connection string
+
+SYNOPSIS
+       jdbc [-h | --help] connect [-u | --username] [-p | --password] [--properties] connectionString
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-u | --username]
+           The username
+
+       [-p | --password]
+           The password
+
+       [--properties]
+           The extra properties
+
+       connectionString
+           The connection string</pre><p>
+          </p><pre class="screen">NAME
+       jdbc info - describe the database
+
+SYNOPSIS
+       jdbc [-h | --help] info ... tableNames
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       ... tableNames
+           the table names</pre><p>
+          </p><pre class="screen">NAME
+       jdbc execute - execute SQL statement
+
+SYNOPSIS
+       jdbc [-h | --help] execute ... statement
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       ... statement
+           The statement</pre><p>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;3.&nbsp;JCR extension"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e264"></a>Chapter&nbsp;3.&nbsp;JCR extension</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e267">JCR implementations</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e269">eXo JCR</a></span></dt><dt><span class="section"><a href="#d5e272">Apache Jackrabbit</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e275">JCR commands</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e277">
+          <span class="italic">repo</span> command</a></span></dt><dt><span class="section"><a href="#d5e284">
+          <span class="italic">ws</span> command</a></span></dt><dt><span class="section"><a href="#d5e290">
+          <span class="italic">cd</span> command</a></span></dt><dt><span class="section"><a href="#d5e294">
+          <span class="italic">pwd</span> command</a></span></dt><dt><span class="section"><a href="#d5e298">
+          <span class="italic">ls</span> command</a></span></dt><dt><span class="section"><a href="#d5e302">
+          <span class="italic">cp</span> command</a></span></dt><dt><span class="section"><a href="#d5e306">
+          <span class="italic">mv</span> command</a></span></dt><dt><span class="section"><a href="#d5e310">
+          <span class="italic">rm</span> command</a></span></dt><dt><span class="section"><a href="#d5e314">
+          <span class="italic">node</span> command</a></span></dt><dt><span class="section"><a href="#d5e322">
+          <span class="italic">mixin</span> command</a></span></dt><dt><span class="section"><a href="#d5e328">
+          <span class="italic">select</span> command</a></span></dt><dt><span class="section"><a href="#d5e332">
+          <span class="italic">xpath</span> command</a></span></dt><dt><span class="section"><a href="#d5e336">
+          <span class="italic">commit</span> command</a></span></dt><dt><span class="section"><a href="#d5e340">
+          <span class="italic">rollback</span> command</a></span></dt><dt><span class="section"><a href="#d5e344">
+          <span class="italic">version</span> command</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e350">SCP usage</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e353">Export a JCR node</a></span></dt><dt><span class="section"><a href="#d5e363">Import a JCR node</a></span></dt></dl></dd></dl></div>
+    
+    <p>The CRaSH JCR extension allow to connect and interract with Java Content Repository implementations.</p>
+    <div class="section" title="JCR implementations"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e267"></a>JCR implementations</h2></div></div></div>
+      
+      <div class="section" title="eXo JCR"><div class="titlepage"><div><div><h3 class="title"><a name="d5e269"></a>eXo JCR</h3></div></div></div>
+        
+        <p>todo</p>
+      </div>
+      <div class="section" title="Apache Jackrabbit"><div class="titlepage"><div><div><h3 class="title"><a name="d5e272"></a>Apache Jackrabbit</h3></div></div></div>
+        
+        <p>CRaSH has been tested with Jackrabbit in the following mode : deploiement as a resource accessible via JNDI on JBoss 6.1.0.</p>
+      </div>
+    </div>
+    <div class="section" title="JCR commands"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e275"></a>JCR commands</h2></div></div></div>
+      
+      <div class="section" title="repo command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e277"></a>
+          <span class="italic">repo</span> command</h3></div></div></div>
+        
+        <p>
+          </p><pre class="screen">NAME
+       repo info - show info about the current repository
+
+SYNOPSIS
+       repo [-h | --help] info
+
+DESCRIPTION
+       The info command print the descriptor of the current repository.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage</pre><p>
+          </p><pre class="screen">NAME
+       repo ls - list the available repository plugins
+
+SYNOPSIS
+       repo [-h | --help] ls
+
+DESCRIPTION
+       The ls command print the available repository plugins.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage</pre><p>
+          </p><pre class="screen">NAME
+       repo use - changes the current repository
+
+SYNOPSIS
+       repo [-h | --help] use parameters
+
+DESCRIPTION
+       The use command changes the current repository used by for JCR commands. The command accepts a set of properties
+       as main command argument that will be used to select a repository:
+
+       % repo use parameterName=parameterValue;nextParameterName=nextParameterValue
+
+       The parameters is specific to JCR plugin implementations, more details can be found thanks to the ls command.
+
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       parameters
+           The parameters used to instantiate the repository to be used in this session</pre><p>
+        </p>
+      </div>
+      <div class="section" title="ws command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e284"></a>
+          <span class="italic">ws</span> command</h3></div></div></div>
+        
+        <p>
+          </p><pre class="screen">NAME
+       ws login - login to a workspace
+
+SYNOPSIS
+       ws [-h | --help] login [-u | --username] [-p | --password] [-c | --container] workspaceName
+
+DESCRIPTION
+
+       This command login to a JCR workspace and establish a session with the repository.
+       When you are connected the shell maintain a JCR session and allows you to interact with the session in a shell
+       oriented fashion. The repository name must be specified and optionally you can specify a user name and password to
+       have more privileges.
+
+       Before performing a login operation, a repository must be first selected with the repo command, for instance:
+
+       % repo use container=portal
+
+       Once a repository is obtained the login operation can be done:
+
+       % ws login portal-system
+       Connected to workspace portal-system
+
+       % ws login -u root -p gtn portal-system
+       Connected to workspace portal-system
+
+
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-u | --username]
+           The user name
+
+       [-p | --password]
+           The user password
+
+       [-c | --container]
+           The portal container name (eXo JCR specific)
+
+       workspaceName
+           The name of the workspace to connect to</pre><p>
+          </p><pre class="screen">NAME
+       ws logout - logout from a workspace
+
+SYNOPSIS
+       ws [-h | --help] logout
+
+DESCRIPTION
+       This command logout from the currently connected JCR workspace
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage</pre><p>
+        </p>
+      </div>
+      <div class="section" title="cd command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e290"></a>
+          <span class="italic">cd</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       cd - changes the current node
+
+SYNOPSIS
+       cd [-h | --help] path
+
+DESCRIPTION
+       The cd command changes the current node path. The command used with no argument changes to the root
+       node. A relative or absolute path argument can be provided to specify a new current node path.
+
+       [/]% cd /gadgets
+       [/gadgets]% cd /gadgets
+       [/gadgets]% cd
+       [/]%
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       path
+           The new path that will change the current node navigation
+</pre>
+      </div>
+      <div class="section" title="pwd command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e294"></a>
+          <span class="italic">pwd</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       pwd - print the current node path
+
+SYNOPSIS
+       pwd [-h | --help]
+
+DESCRIPTION
+       The pwd command prints the current node path, the current node is produced by this command.
+
+       [/gadgets]% pwd
+       /gadgets
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+</pre>
+      </div>
+      <div class="section" title="ls command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e298"></a>
+          <span class="italic">ls</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       ls - list the content of a node
+
+SYNOPSIS
+       ls [-h | --help] [-d | --depth] path
+
+DESCRIPTION
+       The ls command displays the content of a node. By default it lists the content of the current node, however it also
+       accepts a path argument that can be absolute or relative.
+
+       [/]% ls
+       /
+       +-properties
+       | +-jcr:primaryType: nt:unstructured
+       | +-jcr:mixinTypes: [exo:owneable,exo:privilegeable]
+       | +-exo:owner: '__system'
+       | +-exo:permissions: [any read,*:/platform/administrators read,*:/platform/administrators add_node,*:/platform/administrators set_property,*:/platform/administrators remove]
+       +-children
+       | +-/workspace
+       | +-/contents
+       | +-/Users
+       | +-/gadgets
+       | +-/folder
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-d | --depth]
+           The depth of the printed tree
+
+       path
+           The path of the node content to list
+</pre>
+      </div>
+      <div class="section" title="cp command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e302"></a>
+          <span class="italic">cp</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       cp - copy a node to another
+
+SYNOPSIS
+       cp [-h | --help] source target
+
+DESCRIPTION
+       The cp command copies a node to a target location in the JCR tree.
+
+       [/registry]% cp foo bar
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       source
+           The path of the source node to copy
+
+       target
+           The path of the target node to be copied
+</pre>
+      </div>
+      <div class="section" title="mv command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e306"></a>
+          <span class="italic">mv</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       mv - move a node
+
+SYNOPSIS
+       mv [-h | --help] source target
+
+DESCRIPTION
+       The mv command can move a node to a target location in the JCR tree. It can be used also to rename a node. The mv
+       command is a &lt;Node,Node&gt; command consuming a stream of node to move them and producing nodes that were moved.
+
+       [/registry]% mv Registry Registry2
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       source
+           The path of the source node to move, absolute or relative
+
+       target
+           The destination path absolute or relative
+</pre>
+      </div>
+      <div class="section" title="rm command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e310"></a>
+          <span class="italic">rm</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       rm - remove one or several node or a property
+
+SYNOPSIS
+       rm [-h | --help] ... paths
+
+DESCRIPTION
+       The rm command removes a node or property specified by its path either absolute or relative. This operation
+       is executed against the JCR session, meaning that it will not be effective until it is commited to the JCR server.
+
+       [/]% rm foo
+       Node /foo removed
+
+       It is possible to specify several nodes.
+
+       [/]% rm foo bar
+       Node /foo /bar removed
+
+       rm is a &lt;Node,Void&gt; command removing all the consumed nodes.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       ... paths
+           The paths of the node to remove
+</pre>
+      </div>
+      <div class="section" title="node command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e314"></a>
+          <span class="italic">node</span> command</h3></div></div></div>
+        
+        <p>
+          </p><pre class="screen">NAME
+       node add - creates one or several nodes
+
+SYNOPSIS
+       node [-h | --help] add [-t | --type] ... paths
+
+DESCRIPTION
+       The addnode command creates one or several nodes. The command takes at least one node as argument, but it can
+       take more. Each path can be either absolute or relative, relative path creates nodes relative to the current node.
+       By default the node type is the default repository node type, but the option -t can be used to specify another one.
+
+       [/registry]% addnode foo
+       Node /foo created
+
+       [/registry]% addnode -t nt:file bar juu
+       Node /bar /juu created
+
+       The addnode command is a &lt;Void,Node&gt; command that produces all the nodes that were created.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-t | --type]
+           The name of the primary node type to create.
+
+       ... paths
+           The paths of the new node to be created, the paths can either be absolute or relative.</pre><p>
+          </p><pre class="screen">NAME
+       node set - set a property on the current node
+
+SYNOPSIS
+       node [-h | --help] set [-t | --type] propertyName propertyValue
+
+DESCRIPTION
+       The set command updates the property of a node.
+
+       Create or destroy property foo with the value bar on the root node:
+
+       [/]% set foo bar
+       Property created
+
+       Update the existing foo property:
+
+       [/]% set foo juu
+
+       When a property is created and does not have a property descriptor that constraint its type, you can specify it
+       with the -t option
+
+       [/]% set -t LONG long_property 3
+
+       Remove a property
+
+       [/]% set foo
+
+       set is a &lt;Node,Void&gt; command updating the property of the consumed node stream.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-t | --type]
+           The property type to use when it cannot be inferred
+
+       propertyName
+           The name of the property to alter
+
+       propertyValue
+           The new value of the property</pre><p>
+          </p><pre class="screen">NAME
+       node import - imports a node from an nt file
+
+SYNOPSIS
+       node [-h | --help] import source target
+
+DESCRIPTION
+       Imports a node from an nt:file node located in the workspace:
+
+       [/]% importnode /gadgets.xml /
+       Node imported
+
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       source
+           The path of the imported nt:file node
+
+       target
+           The path of the parent imported node</pre><p>
+          </p><pre class="screen">NAME
+       node export - export a node to an nt file
+
+SYNOPSIS
+       node [-h | --help] export source target
+
+DESCRIPTION
+       Exports a node as an nt file in the same workspace:
+
+       [/]% node export gadgets /gadgets.xml
+       The node has been exported
+
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       source
+           The path of the exported node
+
+       target
+           The path of the exported nt:file node</pre><p>
+        </p>
+      </div>
+      <div class="section" title="mixin command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e322"></a>
+          <span class="italic">mixin</span> command</h3></div></div></div>
+        
+        <p>
+          </p><pre class="screen">NAME
+       mixin add - add a mixin to one or several nodes
+
+SYNOPSIS
+       mixin [-h | --help] add mixin ... paths
+
+DESCRIPTION
+       The add command addds a mixin to one or several nodes, this command is a &lt;Node,Void&gt; command, and can
+       add a mixin from an incoming node stream, for instance:
+
+       [/]% select * from mynode | mixin add mix:versionable
+
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       mixin
+           the mixin name to add
+
+       ... paths
+           the paths of the node receiving the mixin</pre><p>
+          </p><pre class="screen">NAME
+       mixin remove - removes a mixin from one or several nodes
+
+SYNOPSIS
+       mixin [-h | --help] remove mixin ... paths
+
+DESCRIPTION
+       The remove command removes a mixin from one or several nodes, this command is a &lt;Node,Void&gt; command, and can
+       remove a mixin from an incoming node stream, for instance:
+
+       [/]% select * from mynode | mixin remove mix:versionable
+
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       mixin
+           the mixin name to remove
+
+       ... paths
+           the paths of the node receiving the mixin</pre><p>
+        </p>
+      </div>
+      <div class="section" title="select command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e328"></a>
+          <span class="italic">select</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       select - execute a JCR sql query
+
+SYNOPSIS
+       select [-h | --help] [-o | --offset] [-l | --limit] [-a | --all] ... query
+
+DESCRIPTION
+       Queries in SQL format are possible via the ##select## command. You can write a query with the same syntax defined
+       by the specification and add options to control the number of results returned. By default the number of nodes is limited
+       to 5 results:
+
+       [/]% select * from nt:base
+       The query matched 1114 nodes
+       +-/
+       | +-properties
+       | | +-jcr:primaryType: nt:unstructured
+       | | +-jcr:mixinTypes: [exo:owneable,exo:privilegeable]
+       | | +-exo:owner: '__system'
+       | | +-exo:permissions: [any read,*:/platform/administrators read,*:/platform/administrators add_node,*:/platform/administratorsset_property,*:/platform/administrators remove]
+       +-/workspace
+       | +-properties
+       | | +-jcr:primaryType: mop:workspace
+       | | +-jcr:uuid: 'a69f226ec0a80002007ca83e5845cdac'
+       ...
+
+       Display 20 nodes from the offset 10:
+
+       [/]% select * from nt:base -o 10 -l 20
+       The query matched 1114 nodes
+       ...
+
+       It is possible also to remove the limit of displayed nodes with the -a option (you should use this option with care) :
+
+       [/]% select * from nt:base -a
+       The query matched 1114 nodes
+       ...
+
+       select is a &lt;Void,Node&gt; command producing all the matched nodes.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-o | --offset]
+           The offset of the first node to display
+
+       [-l | --limit]
+           The number of nodes displayed, by default this value is equals to 5
+
+       [-a | --all]
+           Display all the results by ignoring the limit argument, this should be used with care for large result set
+
+       ... query
+           The query, as is
+</pre>
+      </div>
+      <div class="section" title="xpath command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e332"></a>
+          <span class="italic">xpath</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       xpath - execute a JCR xpath query
+
+SYNOPSIS
+       xpath [-h | --help] [-o | --offset] [-l | --limit] [-a | --all] query
+
+DESCRIPTION
+       Executes a JCR query with the xpath dialect, by default results are limited to 5.All results matched by the query are produced by this command.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       [-o | --offset]
+           The offset of the first node to display
+
+       [-l | --limit]
+           The number of nodes displayed, by default this value is equals to 5
+
+       [-a | --all]
+           Display all the results by ignoring the limit argument, this should be used with care for large result set
+
+       query
+           The query
+</pre>
+      </div>
+      <div class="section" title="commit command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e336"></a>
+          <span class="italic">commit</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       commit - saves changes
+
+SYNOPSIS
+       commit [-h | --help] path
+
+DESCRIPTION
+       Saves the changes done to the current session. A node can be provided to save the state of the
+       this nodes and its descendants only.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       path
+           The path of the node to commit
+</pre>
+      </div>
+      <div class="section" title="rollback command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e340"></a>
+          <span class="italic">rollback</span> command</h3></div></div></div>
+        
+        <pre class="screen">NAME
+       rollback - rollback changes
+
+SYNOPSIS
+       rollback [-h | --help] path
+
+DESCRIPTION
+       Rollbacks the changes of the current session. A node can be provided to rollback the state of the
+       this nodes and its descendants only.
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       path
+           the path to rollback
+</pre>
+      </div>
+      <div class="section" title="version command"><div class="titlepage"><div><div><h3 class="title"><a name="d5e344"></a>
+          <span class="italic">version</span> command</h3></div></div></div>
+        
+        <p>
+          </p><pre class="screen">NAME
+       version checkin - checkin a node
+
+SYNOPSIS
+       version [-h | --help] checkin path
+
+DESCRIPTION
+       Perform a node checkin
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       path
+           The node path to checkin</pre><p>
+          </p><pre class="screen">NAME
+       version checkout - checkout a node
+
+SYNOPSIS
+       version [-h | --help] checkout path
+
+DESCRIPTION
+       Perform a node checkout
+
+
+PARAMETERS
+       [-h | --help]
+           Provides command usage
+
+       path
+           The node path to checkout</pre><p>
+        </p>
+      </div>
+    </div>
+    <div class="section" title="SCP usage"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e350"></a>SCP usage</h2></div></div></div>
+      
+      <p>Secure copy can be used to import or export content. The username/password prompted by the SSH server will be used for authentication against the repository when the import or the export is performed.</p>
+      <div class="section" title="Export a JCR node"><div class="titlepage"><div><div><h3 class="title"><a name="d5e353"></a>Export a JCR node</h3></div></div></div>
+        
+        <p>The following command will export the node <span class="italic">/gadgets</span> in the repository <span class="italic">portal-system</span> of the portal container <span class="italic">portal</span>:</p>
+        <pre class="screen">scp -P 2000 root@localhost:portal:portal-system:/production/app:gadgets gadgets.xml</pre>
+        <p>The node will be exported as <span class="italic">app_gadgets.xml</span>.</p>
+        <p>Note that the portal container name is used for GateIn. If you do omit it, then the root container will be used.</p>
+      </div>
+      <div class="section" title="Import a JCR node"><div class="titlepage"><div><div><h3 class="title"><a name="d5e363"></a>Import a JCR node</h3></div></div></div>
+        
+        <p>The following command will reimport the node:</p>
+        <pre class="screen">scp -P 2000 gadgets.xml root@localhost:portal:portal-system:/production/</pre>
+        <p>The exported file format use the JCR system view. You can get more information about that in the JCR specification.</p>
+        <div class="alert alert-error alert-block" title="Caution" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Caution</h3>
+          <p>The SCP feature is experimental</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;4.&nbsp;Configuration"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e370"></a>Chapter&nbsp;4.&nbsp;Configuration</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e372">Configuration properties</a></span></dt><dt><span class="section"><a href="#d5e379">Change the SSH server key</a></span></dt><dt><span class="section"><a href="#d5e388">Change the ports of the telnet or SSH server</a></span></dt><dt><span class="section"><a href="#d5e400">Remove the telnet or SSH access</a></span></dt><dt><span class="section"><a href="#d5e409">Configure the shell default message</a></span></dt><dt><span class="section"><a href="#d5e421">Configuration the authentication</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e431">Simple authentication</a></span></dt><dt><span class="section"><a href="#d5e439">Jaas authentation</a></span></dt></dl></dd></dl></div>
+    
+    <div class="section" title="Configuration properties"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e372"></a>Configuration properties</h2></div></div></div>
+      
+      <p>CRaSH is configured by a set of properties, these properties are defined in a configuration file. In the war file packaging, the configuration file can be found under <span class="italic">/WEB-INF/crash/crash.properties</span> file of the archive. Configuration can be overriden by Java Virtual Machine system properties by using the same property name.</p>
+      <div class="alert alert-success alert-block" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+        <p>CRaSH properties are always prefixed by the <span class="italic">crash.</span> value</p>
+      </div>
+    </div>
+    <div class="section" title="Change the SSH server key"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e379"></a>Change the SSH server key</h2></div></div></div>
+      
+      <p>The key can be changed by replacing the file <span class="italic">WEB-INF/sshd/hostkey.pem</span>. Alternatively you can configure the server to use an external file by using the <span class="italic">crash.ssh.keypath</span> parameter in the <span class="italic">crash.properties</span>. Uncomment the corresponding property and change the path to the key file.</p>
+      <div class="programlistingco"><pre class="prettyprint">#crash.ssh.keypath=/path/to/the/key/file</pre></div>
+    </div>
+    <div class="section" title="Change the ports of the telnet or SSH server"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e388"></a>Change the ports of the telnet or SSH server</h2></div></div></div>
+      
+      <p>The ports of the server are parameterized by the <span class="italic">crash.ssh.port</span> and <span class="italic">crash.telnet.port</span> parameters in the <span class="italic">crash.properties</span> file</p>
+      <div class="programlistingco"><pre class="prettyprint"># SSH configuration
+crash.ssh.port=2000</pre></div>
+      <div class="programlistingco"><pre class="prettyprint"># Telnet configuration
+crash.telnet.port=5000</pre></div>
+    </div>
+    <div class="section" title="Remove the telnet or SSH access"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e400"></a>Remove the telnet or SSH access</h2></div></div></div>
+      
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>to remove the telnet access, remove the jar file in the <span class="italic">WEB-INF/lib/crsh.shell.telnet-1.1.0-cr1.jar</span> .</p>
+        </li><li class="listitem">
+          <p>to remove the SSH access, remove the jar file in the <span class="italic">WEB-INF/lib/crsh.shell.ssh-1.1.0-cr1.jar</span> .</p>
+        </li></ul></div>
+    </div>
+    <div class="section" title="Configure the shell default message"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e409"></a>Configure the shell default message</h2></div></div></div>
+      
+      <p>The <span class="italic">/WEB-INF/crash/commands/base/login.groovy</span> file contains two closures that are evaluated each time a message is required</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>The <code class="code">prompt</code> closure returns the prompt message</p>
+        </li><li class="listitem">
+          <p>The <code class="code">welcome</code> closure returns the welcome message</p>
+        </li></ul></div>
+      <p>Those closure can be customized to return different messages.</p>
+    </div>
+    <div class="section" title="Configuration the authentication"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e421"></a>Configuration the authentication</h2></div></div></div>
+      
+      <p>Authentication is used by the SSH server when a user authenticates. Authentication interface is pluggable and has default implementations. The <a class="xref" href="#pluggable_auth" title="Pluggable authentication">the section called &#8220;Pluggable authentication &#8221;</a> explains how to write a custom authentication plugin, in this section we cover the configuation of the authentication.</p>
+      <p>The configuration of the authentication plugin is done via property, this is necessary because several plugins can be detected by CRaSH, and the plugin is selected via the property <span class="italic">crash.auth</span> that must match the authentication plugin name:</p>
+      <div class="programlistingco"><pre class="prettyprint">crash.auth=simple</pre></div>
+      <p>CRaSH comes out of the box with two authentication plugins.</p>
+      <div class="section" title="Simple authentication"><div class="titlepage"><div><div><h3 class="title"><a name="d5e431"></a>Simple authentication</h3></div></div></div>
+        
+        <p>Simple authentication provides a simple username/password authentication configured with the <span class="italic">crash.auth.simple.username</span> and <span class="italic">crash.auth.simple.password</span> properties:</p>
+        <div class="programlistingco"><pre class="prettyprint"># Authentication configuration
+crash.auth=simple
+crash.auth.simple.username=admin
+crash.auth.simple.password=admin</pre></div>
+      </div>
+      <div class="section" title="Jaas authentation"><div class="titlepage"><div><div><h3 class="title"><a name="d5e439"></a>Jaas authentation</h3></div></div></div>
+        
+        <p>Jaas authentication uses jaas to perform authentication configured with the <span class="italic">crash.auth.jaas.domain</span> property to define the jaas domain to use when performing authentication:</p>
+        <div class="programlistingco"><pre class="prettyprint"># Authentication configuration
+crash.auth=jaas
+crash.auth.jaas.domain=gatein-domain</pre></div>
+      </div>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;5.&nbsp;Extending CRaSH"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e446"></a>Chapter&nbsp;5.&nbsp;Extending CRaSH</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#pluggable_auth">Pluggable authentication </a></span></dt></dl></div>
+    
+    <div class="section" title="Pluggable authentication"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="pluggable_auth"></a>Pluggable authentication </h2></div></div></div>
+      
+      <p>Creating a custom is done by implementing a CRaSH plugin that provides an implementation of the <code class="code">AuthenticationPlugin</code> interface, let's study the <span class="italic">simple</span> authentication plugin implementation.</p>
+      <p>The <code class="code">AuthenticationPlugin</code> is the interface to implement to integrate CRaSH with an authentication mechanism:</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">public interface AuthenticationPlugin {
+
+  /**
+   * Returns the authentication plugin name.
+   *
+   * @return the plugin name
+   */
+  String getName();
+
+  /**
+   * Returns true if the user is authentified by its username and password.
+   *
+   * @param username the username
+   * @param password the password
+   * @return true if authentication succeeded
+   * @throws Exception any exception that would prevent authentication to happen
+   */
+  boolean authenticate(String username, String password) throws Exception;
+}</pre></div>
+      <p>The integration as a CRaSH plugin mandates to extend the class <code class="code">CRaSHPlugin</code> with the generic type <code class="code">AuthenticationPlugin</code>:</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">public class SimpleAuthenticationPlugin extends
+    CRaSHPlugin&lt;AuthenticationPlugin&gt; implements
+    AuthenticationPlugin {
+
+  public String getName() {
+    return "simple";
+  }
+
+  @Override
+  public AuthenticationPlugin getImplementation() {
+    return this;
+  }
+
+  ...
+
+}</pre></div>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>The <code class="code">getName()</code> method returns the <span class="italic">simple</span> value that matchs the <span class="italic">crash.auth</span> configuration property</p>
+        </li><li class="listitem">
+          <p>The <code class="code">getImplementation()</code> method returns the object that implements the <code class="code">AuthenticationPlugin</code> class, this method is implemented from the <code class="code">CRaSHPlugin</code> abstract class, in our case it simply returns <code class="code">this</code> as the plugin and the implementation of <code class="code">AuthentionPlugin</code> are the same class</p>
+        </li></ul></div>
+      <p>Now let's study how the plugin retrieves the configuration properties <code class="code">crash.auth.simple.username</code> and <code class="code">crash.auth.simple.password</code>:</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">public class SimpleAuthenticationPlugin extends
+    CRaSHPlugin&lt;AuthenticationPlugin&gt; implements
+    AuthenticationPlugin {
+
+  public static final PropertyDescriptor&lt;String&gt; SIMPLE_USERNAME =
+    PropertyDescriptor.create(
+      "auth.simple.username",
+      "admin",
+      "The username");
+
+  public static final PropertyDescriptor&lt;String&gt; SIMPLE_PASSWORD =
+    PropertyDescriptor.create(
+      "auth.simple.password",
+      "admin",
+      "The password");
+
+  @Override
+  protected Iterable&lt;PropertyDescriptor&lt;?&gt;&gt; createConfigurationCapabilities() {
+    return Arrays.&lt;PropertyDescriptor&lt;?&gt;&gt;asList(
+      SIMPLE_USERNAME,
+      SIMPLE_PASSWORD);
+  }
+
+  private String username;
+
+  private String password;
+
+  @Override
+  public void init() {
+    PluginContext context = getContext();
+    this.username = context.getProperty(SIMPLE_USERNAME);
+    this.password = context.getProperty(SIMPLE_PASSWORD);
+  }
+
+  ...
+
+}</pre></div>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>The <code class="code">createConfigurationCapabilities()</code> method returns the constants <code class="code">SIMPLE_USERNAME</code> and <code class="code">SIMPLE_PASSWORD</code> that defines the configuration properties that the plugin uses</p>
+        </li><li class="listitem">
+          <p>The <code class="code">init()</code> method is invoked by CRaSH before the plugin will be used, at this moment, the configuration properties are retrieved from the plugin context with the method <code class="code">getContext()</code> available in the <code class="code">CRaSHPlugin</code> base class</p>
+        </li></ul></div>
+      <p>Finally the plugin needs to provide the <code class="code">authenticate()</code> method that implement the authentication logic:</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">  public boolean authenticate(String username, String password)
+    throws Exception {
+    return this.username != null &amp;&amp;
+      this.password != null &amp;&amp;
+      this.username.equals(username) &amp;&amp;
+      this.password.equals(password);
+  }</pre></div>
+      <p>The logic is straightforward with an equality check of the username and password.</p>
+      <p>Last but not least we must declare our plugin to make it recognized by CRaSH, this is achieved thanks to the <code class="code">java.util.ServiceLoader</code> class. CRaSH uses the <code class="code">ServiceLoader</code> for loading plugins and the loader needs a file to be present in the jar file containing the class under the name <code class="code">META-INF/services/org.crsh.plugin.CRaSHPlugin</code> containing the class name of the plugin:</p>
+      <div class="programlistingco"><pre class="prettyprint">org.crsh.auth.SimpleAuthenticationPlugin</pre></div>
+      <p>When all of this is done, the plugin and its service loader descriptor must be package in a jar file and available on the classpath of CRaSH.</p>
+      <div class="alert alert-success alert-block" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+        <p>You can learn more about the <code class="code">java.util.ServiceLoader</code> by looking at the online <a class="ulink" href="http://docs.oracle.com/javase/6/docs/api/java/util/ServiceLoader.html" target="_top">javadoc</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;6.&nbsp;Developers"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e512"></a>Chapter&nbsp;6.&nbsp;Developers</h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e514">Developping commands</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e537">Commands as a script</a></span></dt><dt><span class="section"><a href="#d5e548">Commands as a class</a></span></dt><dt><span class="section"><a href="#d5e579">Multi commands</a></span></dt></dl></dd><dt><span class="section"><a href="#command_context">Command context </a></span></dt><dt><span class="section"><a href="#d5e674">Adding style</a></span></dt><dt><span class="section"><a href="#d5e766">Inter command API</a></span></dt></dl></div>
+    
+    <div class="section" title="Developping commands"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e514"></a>Developping commands</h2></div></div></div>
+      
+      <p>A CRaSH command is written in the <a class="ulink" href="http://groovy.codehaus.org/" target="_top">Groovy</a> language. The Groovy language provides several signifiant advantages:</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>Commands can be bare scripts or can be a class</p>
+        </li><li class="listitem">
+          <p>Java developers can write Groovy commands without learning it</p>
+        </li><li class="listitem">
+          <p>Groovy is dynamic and expressive</p>
+        </li></ul></div>
+      <p>Each command has a corresponding Groovy file that contains a command class that will be invoked by the shell. The files are located in</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>In the standalone distribution the <span class="italic">cmd</span> directory</p>
+        </li><li class="listitem">
+          <p>In a web archive deployment the <span class="italic">/WEB-INF/crash/commands</span> directory</p>
+        </li></ul></div>
+      <p>New commands can directly be placed in the commands directory however they can also be placed in a sub directory of the command directory, which is useful to group commands of the same kind.</p>
+      <p>In addition of that there are two special files called <span class="italic">login.groovy</span> and <span class="italic">logout.groovy</span> that are executed upon login and logout of a user. They are useful to setup and cleanup things related to the current user session.</p>
+      <div class="section" title="Commands as a script"><div class="titlepage"><div><div><h3 class="title"><a name="d5e537"></a>Commands as a script</h3></div></div></div>
+        
+        <p>The simplest command can be a simple script that returns a string</p>
+        <div class="programlistingco"><pre class="prettyprint">return "Hello World";</pre></div>
+        <p>It is possible to use also the <code class="code">out</code> implicit variable to send a message to the console:</p>
+        <div class="programlistingco"><pre class="prettyprint">out.println("Hello World");</pre></div>
+      </div>
+      <div class="section" title="Commands as a class"><div class="titlepage"><div><div><h3 class="title"><a name="d5e548"></a>Commands as a class</h3></div></div></div>
+        
+        <p>Class can also be used to defined a command, it provides significant advantages over scripts:</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Commands can declare options and arguments for the command</p>
+          </li><li class="listitem">
+            <p>Commands can use annotations to describe the command behavior and parameters</p>
+          </li></ul></div>
+        <p>When the user types a command in the sell, the command line is parsed by the <span class="italic">cmdline</span> framework and injected in the command class. Previously the <span class="italic">args4j</span> framework was used but this framework does not support natively code completion and could not be extended to support it. The support of command line completion is the main motivation of the development of such a framework.</p>
+        <p>Let's study a simple class command example:</p>
+        <div class="programlistingco"><pre class="prettyprint">class date extends CRaSHCommand {
+  @Usage("show the current time")
+  @Command
+  Object main(@Usage("the time format") @Option(names=["f","format"]) String format) {
+    if (format == null)
+      format = "EEE MMM d HH:mm:ss z yyyy";
+    def date = new Date();
+    return date.format(format);
+  }
+}</pre></div>
+        <p>The command is pretty straightforward to undertand:</p>
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>The <code class="code">@Command</code> annotation declares the <code class="code">main</code> method as a command</p>
+          </li><li class="listitem">
+            <p>The command takes one optional <code class="code">format</code> option</p>
+          </li><li class="listitem">
+            <p>The <code class="code">@Usage</code> annotation describes the usage of the command and its parameters</p>
+          </li></ul></div>
+        <pre class="screen">% date
+Thu Apr 19 15:44:05 CEST 2012</pre>
+        <p>The <code class="code">@Usage</code> annotation is important because it will give a decent humand description of the command</p>
+        <pre class="screen">% date -h
+usage: date [-h | --help] [-f | --format]
+
+   [-h | --help]   command usage
+   [-f | --format] the time format</pre>
+      </div>
+      <div class="section" title="Multi commands"><div class="titlepage"><div><div><h3 class="title"><a name="d5e579"></a>Multi commands</h3></div></div></div>
+        
+        <p>A class can hold several commands allowing a single file to group several commands, let's study the JDBC command structure:</p>
+        <div class="programlistingco"><pre class="prettyprint">@Usage("JDBC connection")
+class jdbc extends CRaSHCommand {
+
+  @Usage("connect to database with a JDBC connection string")
+  @Command
+  public String connect(
+          @Usage("The username") @Option(names=["u","username"]) String user,
+          @Usage("The password") @Option(names=["p","password"]) String password,
+          @Usage("The extra properties") @Option(names=["properties"]) Value.Properties properties,
+          @Usage("The connection string") @Argument String connectionString) {
+     ...
+  }
+
+  @Usage("close the current connection")
+  @Command
+  public String close() {
+     ...
+  }
+}</pre></div>
+        <p>We can see that the class declares two commands <code class="code">connect</code> and <code class="code">close</code>, they are invoked this way:</p>
+        <pre class="screen">% jdbc connect jdbc:derby:memory:EmbeddedDB;create=true
+Connected to data base : jdbc:derby:memory:EmbeddedDB;create=true
+% jdbc close
+Connection closed</pre>
+      </div>
+    </div>
+    <div class="section" title="Command context"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="command_context"></a>Command context </h2></div></div></div>
+      
+      <p>During the execution of a command, CRaSH provides a <span class="italic">context</span> for interacting with the context of execution  of the current command: the property <span class="italic">context</span> is resolve to an instance of <code class="code">org.crsh.command.InvocationContext</code>, the invocation context class extends the <code class="code">org.crsh.command.CommandContext</code>, let's have a look at those types:</p>
+      <p>
+        </p><div class="example"><a name="d5e597"></a><p class="title"><b>Example&nbsp;6.1.&nbsp;The command context</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">/**
+ * The context of a command.
+ *
+ * @author &lt;a href="mailto:julien.viet@exoplatform.com"&gt;Julien Viet&lt;/a&gt;
+ * @version $Revision$
+ */
+public interface CommandContext {
+
+
+  /**
+   * Returns the current shell session.
+   *
+   * @return the session map
+   */
+  Map&lt;String, Object&gt; getSession();
+
+  /**
+   * Returns the current shell attributes.
+   *
+   * @return the attributes map
+   */
+  Map&lt;String, Object&gt; getAttributes();
+
+}</pre></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>The <code class="code">CommandContext</code> provides access to the shell session as a <code class="code">Map&lt;String, Object&gt;</code>. Session attributes can be accessed using this map, but they are also accessible as Groovy script properties. It means that writing such code will be equivalent:</p>
+      <p>
+        </p><div class="example"><a name="d5e606"></a><p class="title"><b>Example&nbsp;6.2.&nbsp;Using shell session</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">context.session["foo"] = "bar"; <span class="co" id="1851822101953903450-co"><img src="images/callouts/1.png" alt="(1)"></span> 
+out.println(bar); <span class="co" id="2976748662470277431-co"><img src="images/callouts/2.png" alt="(2)"></span> </pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0"></p></td><td valign="top" align="left">
+                <p>Bind the session attribute foo with the value bar</p>
+              </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/2.png" alt="2" border="0"></p></td><td valign="top" align="left">
+                <p>The bar is resolved as an session attribute by Groovy</p>
+              </td></tr></table></div></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>The <code class="code">CommandContext</code> provides also access to the shell attributes as a <code class="code">Map&lt;String, Object&gt;</code>. Context attributes are useful to interact with object shared globally by the CRaSH environment:</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>When embedded in a web application: context attributes resolves to servlet context attributes.</p>
+        </li><li class="listitem">
+          <p>When embedded in Spring: attributes resolve to Spring beans.</p>
+        </li><li class="listitem">
+          <p>When attached to a virtual machine, the context attributes has only a single <code class="code">instrumentation</code> entry  that is the <code class="code">java.lang.instrument.Instrumentation</code> instance obtained when attaching to a virtual machine.</p>
+        </li></ul></div>
+      <p>
+        </p><div class="example"><a name="d5e631"></a><p class="title"><b>Example&nbsp;6.3.&nbsp;Obtaining a Spring bean</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">def bean = context.attributes["TheBean"];</pre></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>Now let's examine the <code class="code">InvocationContext</code> that extends the <code class="code">CommandContext</code>:</p>
+      <p>
+        </p><div class="example"><a name="d5e640"></a><p class="title"><b>Example&nbsp;6.4.&nbsp;The invocation context</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">/**
+ * The invocation context provided to a command during the invocation phase.
+ * It provides the various interactions that a command can perform with
+ * its context during its invocation.
+ *
+ * @author &lt;a href="mailto:julien.viet@exoplatform.com"&gt;Julien Viet&lt;/a&gt;
+ * @version $Revision$
+ */
+public interface InvocationContext&lt;C, P&gt; extends CommandContext {
+
+  /**
+   * Returns the term width in chars. When the value is not positive it means
+   * the value could not be determined.
+   *
+   * @return the term width
+   */
+  int getWidth();
+
+  /**
+   * Returns a generic property, usually this property is resolved by the
+   * shell client.
+   *
+   * @param propertyName the property name
+   * @return the property value
+   */
+  String getProperty(String propertyName);
+
+  /**
+   * Display a message and read a line on the console. If no line can be read
+   * then null is returned.
+   *
+   * @param msg the message to display before reading a line
+   * @param echo wether or not the line read should be echoed when typing
+   * @return the line read
+   */
+  String readLine(String msg, boolean echo);
+
+  /**
+   * Returns the writer for the output.
+   *
+   * @return the writer
+   */
+  ShellPrintWriter getWriter();
+
+  /**
+   * Returns true if the command is involved in a pipe operation and receives
+   * a stream.
+   *
+   * @return true if the command is involved in a pipe
+   */
+  boolean isPiped();
+
+  /**
+   * Returns an iterator over the stream of consumed items.
+   *
+   * @return the consumed items
+   * @throws IllegalStateException if the command is not involved in a
+   *                               pipe operation
+   */
+  Iterable&lt;C&gt; consume() throws IllegalStateException;
+
+  /**
+   * Produce an item.
+   *
+   * @param product the item product
+   */
+  void produce(P product);
+
+}</pre></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>The <code class="code">PrintWriter</code> object is the command output, it can be used also via the <span class="italic">out</span> property in Groovy scripts:</p>
+      <p>
+        </p><div class="example"><a name="d5e649"></a><p class="title"><b>Example&nbsp;6.5.&nbsp;Printing on the shell</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">context.writer.print("Hello"); <span class="co" id="1264506166795375814-co"><img src="images/callouts/1.png" alt="(1)"></span> 
+out.print("hello"); <span class="co" id="4608612485083173229-co"><img src="images/callouts/2.png" alt="(2)"></span> </pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0"></p></td><td valign="top" align="left">
+                <p>Printing using the context writer</p>
+              </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/2.png" alt="2" border="0"></p></td><td valign="top" align="left">
+                <p>Printing using the <span class="italic">out</span>
+                </p>
+              </td></tr></table></div></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>The <code class="code">readLine</code> method can be used to get interactive information from the user during the execution of a command.</p>
+      <p>
+        </p><div class="example"><a name="d5e665"></a><p class="title"><b>Example&nbsp;6.6.&nbsp;Reading on the console</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">def age = context.readLine("How old are you?", false);</pre></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>Finally the <code class="code">isPiped</code>, <code class="code">consume</code> and <code class="code">produce</code> methods are used when writing commands that exchange objects via the pipe mechanism.</p>
+    </div>
+    <div class="section" title="Adding style"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e674"></a>Adding style</h2></div></div></div>
+      
+      <p>CRaSH adds since version 1.1 the support for colored text and text decoration. Each portion of text printed  has three style attributes:</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>
+            <span class="italic">Decoration</span> : bold, underline or blink, as the <code class="code">org.crsh.text.Decoration</code> enum.</p>
+        </li><li class="listitem">
+          <p>
+            <span class="italic">Foreground</span> color.</p>
+        </li><li class="listitem">
+          <p>
+            <span class="italic">Background</span> color.</p>
+        </li></ul></div>
+      <p>Available colors are grouped as the <code class="code">org.crsh.text.Color</code> enum: black, red, green, yellow, blue, magenta, cyan, white.</p>
+      <p>Decoration and colors can be applied with overloaded <code class="code">print</code> and <code class="code">println</code> methods provided by the <code class="code">ShellPrinterWriter</code>. This printer is available as the implicit <span class="italic">out</span> attribute or thanks to the <code class="code">
+          <a class="link" href="#command_context" title="Command context">context</a>.getWriter()</code> method.</p>
+      <p>
+        </p><div class="example"><a name="d5e698"></a><p class="title"><b>Example&nbsp;6.7.&nbsp;Decorating and coloring text</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">out.println("hello", red); <span class="co" id="4689624318086415281-co"><img src="images/callouts/1.png" alt="(1)"></span> 
+out.println("hello", red, blue); <span class="co" id="3019374565911001468-co"><img src="images/callouts/2.png" alt="(2)"></span> 
+out.println("hello", underline, red, blue); <span class="co" id="6412522016408531723-co"><img src="images/callouts/3.png" alt="(3)"></span> </pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0"></p></td><td valign="top" align="left">
+                <p>Print hello in red color</p>
+              </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/2.png" alt="2" border="0"></p></td><td valign="top" align="left">
+                <p>Print hello in red with a red blue</p>
+              </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/3.png" alt="3" border="0"></p></td><td valign="top" align="left">
+                <p>Print hello in red underlined with a red blue</p>
+              </td></tr></table></div></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>The combination of the decoration, background and foreground colors is a <span class="italic">style</span> represented by the <code class="code">org.crsh.text.Style</code> object. Styles can be used like decoration and colors:</p>
+      <p>
+        </p><div class="example"><a name="d5e717"></a><p class="title"><b>Example&nbsp;6.8.&nbsp;Printing styled text</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">out.println("hello", style(red)); <span class="co" id="5246344948798717748-co"><img src="images/callouts/1.png" alt="(1)"></span> 
+out.println("hello", style(red, blue)); <span class="co" id="3953267664605922939-co"><img src="images/callouts/2.png" alt="(2)"></span> 
+out.println("hello", style(underline, red, blue)); <span class="co" id="8563645233166203900-co"><img src="images/callouts/3.png" alt="(3)"></span> </pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0"></p></td><td valign="top" align="left">
+                <p>Print hello in red color</p>
+              </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/2.png" alt="2" border="0"></p></td><td valign="top" align="left">
+                <p>Print hello in red with a red blue</p>
+              </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/3.png" alt="3" border="0"></p></td><td valign="top" align="left">
+                <p>Print hello in red underlined with a red blue</p>
+              </td></tr></table></div></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>When using the print methods, the style will be used for the currently printed object. It is possible to change the style permanently (until it is reset) using Groovy <span class="italic">leftshift</span> operator : <code class="code">&lt;&lt;</code>
+      </p>
+      <p>By default the <code class="code">&lt;&lt;</code> operator prints output on the console. The <code class="code">ShellPrintWriter</code> overrides the operator to work with color, decoration and styles:</p>
+      <p>
+        </p><div class="example"><a name="d5e739"></a><p class="title"><b>Example&nbsp;6.9.&nbsp;Styling with the leftshift operator</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint language-java">out &lt;&lt; red <span class="co" id="910666014503730988-co"><img src="images/callouts/1.png" alt="(1)"></span> 
+out &lt;&lt; underline <span class="co" id="4922927823221852767-co"><img src="images/callouts/2.png" alt="(2)"></span> 
+out &lt;&lt; "hello" <span class="co" id="6903532812330156651-co"><img src="images/callouts/3.png" alt="(3)"></span> 
+out &lt;&lt; reset; <span class="co" id="5712271558516651140-co"><img src="images/callouts/4.png" alt="(4)"></span> </pre><div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0"></p></td><td valign="top" align="left">
+                <p>Set red foreground color</p>
+              </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/2.png" alt="2" border="0"></p></td><td valign="top" align="left">
+                <p>Set underline</p>
+              </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/3.png" alt="3" border="0"></p></td><td valign="top" align="left">
+                <p>Print hello in underlined red</p>
+              </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/4.png" alt="4" border="0"></p></td><td valign="top" align="left">
+                <p>Reset style</p>
+              </td></tr></table></div></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>Operators can also be combined on the same line providing a more compact syntax:</p>
+      <div class="programlistingco"><pre class="prettyprint language-java">out &lt;&lt; red &lt;&lt; underline &lt;&lt; "hello" &lt;&lt; reset</pre></div>
+      <div class="programlistingco"><pre class="prettyprint language-java">out &lt;&lt; style(underline, red, blue) &lt;&lt; "hello" &lt;&lt; reset</pre></div>
+      <div class="alert alert-success alert-block" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+        <p>Throughout the examples we have used decoration, color and styles. CRaSH automatically imports those classes so they can be used out of the box in any CRaSH command without requiring prior import.</p>
+      </div>
+    </div>
+    <div class="section" title="Inter command API"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e766"></a>Inter command API</h2></div></div></div>
+      
+      <p>In this section we study how a command can reuse existing commands, here is an example</p>
+      <p>
+        </p><div class="example"><a name="d5e770"></a><p class="title"><b>Example&nbsp;6.10.&nbsp;dbscript.groovy</b></p><div class="example-contents">
+          
+          <div class="programlistingco"><pre class="prettyprint">jdbc.connect username:root, password:crash, "jdbc:derby:memory:EmbeddedDB;create=true"
+jdbc.execute "create table derbyDB(num int, addr varchar(40))"
+jdbc.execute "insert into derbyDB values (1956,'Webster St.')"
+jdbc.execute "insert into derbyDB values (1910,'Union St.')"
+jdbc.execute "select * from derbyDb"
+jdbc.close</pre></div>
+        </div></div><p><br class="example-break">
+      </p>
+      <p>This script is written in Groovy and use Groovy DSL capabilities, let's study the first statement:</p>
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>the <code class="code">jdbc.connect</code> statement can be decomposed into two steps</p>
+          <div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem">
+              <p>the <code class="code">jdbc</code> is resolved as the command itself</p>
+            </li><li class="listitem">
+              <p>the <code class="code">connect</code> invokes the connect command</p>
+            </li></ul></div>
+        </li><li class="listitem">
+          <p>the <code class="code">username</code> and <code class="code">password</code> are considered as command options</p>
+        </li><li class="listitem">
+          <p>the SQL statement <code class="code">"jdbc:derby:memory:EmbeddedDB;create=true"</code> is the main argument of the command</p>
+        </li></ul></div>
+      <p>It is equivalent to the shell command:</p>
+      <div class="programlistingco"><pre class="prettyprint">% jdbc connect --username root --password crash jdbc:derby:memory:EmbeddedDB;create=true</pre></div>
+      <p>The rest of the script is fairly easy to understand, here is the output of the script execution:</p>
+      <pre class="screen">% dbscript
+Connected to data base : jdbc:derby:memory:EmbeddedDB;create=true
+Query executed successfully
+Query executed successfully
+Query executed successfully
+NUM                  ADDR
+1956                 Webster St.
+1910                 Union St.
+Connection closed</pre>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;7.&nbsp;Hey, I want to contribute!"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e800"></a>Chapter&nbsp;7.&nbsp;Hey, I want to contribute!</h1></div></div></div></div>
+    
+    <p>Drop me an email (see my @ on www.julienviet.com), any kind of help is welcome.</p>
+  </div>
+</div></body></html>
