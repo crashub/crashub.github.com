@@ -2,7 +2,7 @@
 <BODY BGCOLOR="white">
 <PRE>
 <FONT color="green">001</FONT>    /*<a name="line.1"></a>
-<FONT color="green">002</FONT>     * Copyright (C) 2010 eXo Platform SAS.<a name="line.2"></a>
+<FONT color="green">002</FONT>     * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
 <FONT color="green">003</FONT>     *<a name="line.3"></a>
 <FONT color="green">004</FONT>     * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
 <FONT color="green">005</FONT>     * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
@@ -27,24 +27,18 @@
 <FONT color="green">024</FONT>    import java.lang.annotation.RetentionPolicy;<a name="line.24"></a>
 <FONT color="green">025</FONT>    import java.lang.annotation.Target;<a name="line.25"></a>
 <FONT color="green">026</FONT>    <a name="line.26"></a>
-<FONT color="green">027</FONT>    /**<a name="line.27"></a>
-<FONT color="green">028</FONT>     * Annotate something that can be a command or be involved in a command.<a name="line.28"></a>
-<FONT color="green">029</FONT>     *<a name="line.29"></a>
-<FONT color="green">030</FONT>     * @author &lt;a href="mailto:julien.viet@exoplatform.com"&gt;Julien Viet&lt;/a&gt;<a name="line.30"></a>
-<FONT color="green">031</FONT>     * @version $Revision$<a name="line.31"></a>
-<FONT color="green">032</FONT>     */<a name="line.32"></a>
-<FONT color="green">033</FONT>    @Target({ElementType.TYPE, ElementType.METHOD})<a name="line.33"></a>
-<FONT color="green">034</FONT>    @Retention(RetentionPolicy.RUNTIME)<a name="line.34"></a>
-<FONT color="green">035</FONT>    public @interface Command {<a name="line.35"></a>
-<FONT color="green">036</FONT>    <a name="line.36"></a>
-<FONT color="green">037</FONT>      /**<a name="line.37"></a>
-<FONT color="green">038</FONT>       * The name of the main subordinate.<a name="line.38"></a>
-<FONT color="green">039</FONT>       *<a name="line.39"></a>
-<FONT color="green">040</FONT>       * @return the main method name<a name="line.40"></a>
-<FONT color="green">041</FONT>       */<a name="line.41"></a>
-<FONT color="green">042</FONT>      String main() default "";<a name="line.42"></a>
-<FONT color="green">043</FONT>    <a name="line.43"></a>
-<FONT color="green">044</FONT>    }<a name="line.44"></a>
+<FONT color="green">027</FONT>    @Target({ElementType.TYPE, ElementType.METHOD})<a name="line.27"></a>
+<FONT color="green">028</FONT>    @Retention(RetentionPolicy.RUNTIME)<a name="line.28"></a>
+<FONT color="green">029</FONT>    public @interface Command {<a name="line.29"></a>
+<FONT color="green">030</FONT>    <a name="line.30"></a>
+<FONT color="green">031</FONT>      /**<a name="line.31"></a>
+<FONT color="green">032</FONT>       * The name of the main subordinate.<a name="line.32"></a>
+<FONT color="green">033</FONT>       *<a name="line.33"></a>
+<FONT color="green">034</FONT>       * @return the main method name<a name="line.34"></a>
+<FONT color="green">035</FONT>       */<a name="line.35"></a>
+<FONT color="green">036</FONT>      String main() default "";<a name="line.36"></a>
+<FONT color="green">037</FONT>    <a name="line.37"></a>
+<FONT color="green">038</FONT>    }<a name="line.38"></a>
 
 
 
