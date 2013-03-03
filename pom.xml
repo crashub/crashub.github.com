@@ -7,19 +7,23 @@
   <artifactId>crsh.site</artifactId>
   <version>1.0-SNAPSHOT</version>
 
+  <properties>
+    <crash.version>1.2.0-cr6</crash.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.crsh</groupId>
       <artifactId>crsh.doc</artifactId>
       <classifier>html</classifier>
       <type>zip</type>
-      <version>1.2.0-cr5</version>
+      <version>${crash.version}</version>
     </dependency>
     <dependency>
       <groupId>org.crsh</groupId>
       <artifactId>crsh.doc</artifactId>
       <classifier>javadoc</classifier>
-      <version>1.2.0-cr5</version>
+      <version>${crash.version}</version>
     </dependency>
   </dependencies>
 
@@ -33,6 +37,19 @@
       </activation>
 
       <build>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>false</filtering>
+          </resource>
+          <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+            <includes>
+              <include>**/*.html</include>
+            </includes>
+          </resource>
+        </resources>
         <plugins>
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
@@ -50,12 +67,13 @@
                     <copy file="${doc}/index.html" tofile="${site}/doc.html" />
                     <copy todir="${site}/css">
                       <fileset dir="${doc}/css">
+                        <include name="bootstrap/bootstrap.css" />
                         <include name="wikbook.css" />
                         <include name="bootstrap/prettify.css" />
                       </fileset>
                     </copy>
                     <copy todir="${site}/js">
-                      <fileset dir="${doc}/js/bootstrap" includes="google-code-prettify/**" />
+                      <fileset dir="${doc}/js" />
                     </copy>
                     <copy todir="${site}/images">
                       <fileset dir="${doc}/images" />

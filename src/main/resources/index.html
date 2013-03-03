@@ -30,11 +30,6 @@
     <script src="js/jquery.address-1.4.min.js"></script>
     <script src="js/bootstrap-dropdown.js"></script>
 
-    <!--
-    Does not work at the moment for some reason
-    <script src="js/google-code-prettify/prettify.js"></script>
-    -->
-
     <script>
       $(document).ready(function() {
 
@@ -80,7 +75,7 @@
         <div class="container">
           <ul id="tabs" class="nav">
             <li><a href="#home">Home</a></li>
-            <li><a href="#doc">Documentation</a></li>
+            <li><a href="doc.html">Documentation</a></li>
             <li><a href="javadoc/index.html" target="_blank">Javadoc</a></li>
             <li><a href="http://crash.vietj.cloudbees.net">Demo</a></li>
             <li><a href="#visualvm">VisualVM</a></li>
@@ -95,12 +90,11 @@
       <div class="page">
         <a name="home"></a>
         <div class="hero-unit center">
-          <div class="logo"><strong>
-   ______&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- .~      ~. |`````````,       .'.                   ..'''' |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-|           |'''|'''''      .''```.              .''       |_________|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-|           |    `.       .'       `.         ..'          |         |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- `.______.' |      `.   .'           `. ....''             |         | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></div>
+          <div class="logo">
+ .~      ~. |`````````,       .'.                   ..'''' |         |
+|           |'''|'''''      .''```.              .''       |_________|
+|           |    `.       .'       `.         ..'          |         |
+ `.______.' |      `.   .'           `. ....''             |         |</div>
           <p>The shell for the Java Platform</p>
           <p>Open source and open minded</p>
         </div>
@@ -118,13 +112,13 @@
           </div>
           <div class="span4">
             <h3>Download</h3>
-              <strong>1.2-cr5:</strong>
-              <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-1.2.0-cr5.tar.gz">standalone</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-1.2.0-cr5-docs.tar.gz">docs</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-1.2.0-cr5-war.tar.gz">web</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-1.2.0-cr5-spring.tar.gz">spring</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-1.2.0-cr5-mule-app.tar.gz">mule</a>
-              or <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-1.2.0-cr5-gatein.tar.gz">gatein</a><br/>
+              <strong>${crash.version}:</strong>
+              <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${crash.version}.tar.gz">standalone</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${crash.version}-docs.tar.gz">docs</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${crash.version}-war.tar.gz">web</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${crash.version}-spring.tar.gz">spring</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${crash.version}-mule-app.tar.gz">mule</a>
+              or <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${crash.version}-gatein.tar.gz">gatein</a><br/>
               <strong>1.1 all:</strong> <a href="https://code.google.com/p/crsh/downloads/detail?name=crsh-all-1.1.0.tar.gz">bundle</a>
               or <a href="https://code.google.com/p/crsh/downloads/detail?name=crsh.distrib-1.1.0-installer.jar">installer</a><br/>
               <strong>1.1 bundles:</strong>
@@ -149,19 +143,6 @@
         </div>
       </div>
         
-      <div class="page">
-        <a name="doc"></a>
-        <script type="text/javascript">
-          $(function() {
-            $("<div></div>").load("doc.html", function() {
-              $(this).find(".book").children().appendTo("#doc");
-              /* prettyPrint(); */
-            });
-          })
-        </script>
-        <div id="doc"></div>
-      </div>
-      
       <div class="page">
         <a name="visualvm"></a>
         <div id="visualvm">
