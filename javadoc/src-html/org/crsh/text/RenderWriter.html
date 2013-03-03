@@ -22,7 +22,7 @@
 <FONT color="green">019</FONT>    <a name="line.19"></a>
 <FONT color="green">020</FONT>    package org.crsh.text;<a name="line.20"></a>
 <FONT color="green">021</FONT>    <a name="line.21"></a>
-<FONT color="green">022</FONT>    import org.crsh.io.ScreenContext;<a name="line.22"></a>
+<FONT color="green">022</FONT>    import org.crsh.shell.ScreenContext;<a name="line.22"></a>
 <FONT color="green">023</FONT>    <a name="line.23"></a>
 <FONT color="green">024</FONT>    import java.io.Closeable;<a name="line.24"></a>
 <FONT color="green">025</FONT>    import java.io.IOException;<a name="line.25"></a>
@@ -69,44 +69,48 @@
 <FONT color="green">066</FONT>        return out.getHeight();<a name="line.66"></a>
 <FONT color="green">067</FONT>      }<a name="line.67"></a>
 <FONT color="green">068</FONT>    <a name="line.68"></a>
-<FONT color="green">069</FONT>      public void provide(Chunk element) throws IOException {<a name="line.69"></a>
-<FONT color="green">070</FONT>        if (element instanceof Text) {<a name="line.70"></a>
-<FONT color="green">071</FONT>          Text text = (Text)element;<a name="line.71"></a>
-<FONT color="green">072</FONT>          empty &amp;= text.getText().length() == 0;<a name="line.72"></a>
-<FONT color="green">073</FONT>        }<a name="line.73"></a>
-<FONT color="green">074</FONT>        out.provide(element);<a name="line.74"></a>
-<FONT color="green">075</FONT>      }<a name="line.75"></a>
-<FONT color="green">076</FONT>    <a name="line.76"></a>
-<FONT color="green">077</FONT>      @Override<a name="line.77"></a>
-<FONT color="green">078</FONT>      public void write(char[] cbuf, int off, int len) throws IOException {<a name="line.78"></a>
-<FONT color="green">079</FONT>        if (closed) {<a name="line.79"></a>
-<FONT color="green">080</FONT>          throw new IOException("Already closed");<a name="line.80"></a>
-<FONT color="green">081</FONT>        }<a name="line.81"></a>
-<FONT color="green">082</FONT>        if (len &gt; 0) {<a name="line.82"></a>
-<FONT color="green">083</FONT>          Text text = new Text();<a name="line.83"></a>
-<FONT color="green">084</FONT>          text.buffer.append(cbuf, off, len);<a name="line.84"></a>
-<FONT color="green">085</FONT>          provide(text);<a name="line.85"></a>
-<FONT color="green">086</FONT>        }<a name="line.86"></a>
-<FONT color="green">087</FONT>      }<a name="line.87"></a>
-<FONT color="green">088</FONT>    <a name="line.88"></a>
-<FONT color="green">089</FONT>      @Override<a name="line.89"></a>
-<FONT color="green">090</FONT>      public void flush() throws IOException {<a name="line.90"></a>
-<FONT color="green">091</FONT>        if (closed) {<a name="line.91"></a>
-<FONT color="green">092</FONT>          throw new IOException("Already closed");<a name="line.92"></a>
-<FONT color="green">093</FONT>        }<a name="line.93"></a>
-<FONT color="green">094</FONT>        out.flush();<a name="line.94"></a>
-<FONT color="green">095</FONT>      }<a name="line.95"></a>
-<FONT color="green">096</FONT>    <a name="line.96"></a>
-<FONT color="green">097</FONT>      @Override<a name="line.97"></a>
-<FONT color="green">098</FONT>      public void close() throws IOException {<a name="line.98"></a>
-<FONT color="green">099</FONT>        if (!closed) {<a name="line.99"></a>
-<FONT color="green">100</FONT>          closed = true;<a name="line.100"></a>
-<FONT color="green">101</FONT>          if (closeable != null) {<a name="line.101"></a>
-<FONT color="green">102</FONT>            closeable.close();<a name="line.102"></a>
-<FONT color="green">103</FONT>          }<a name="line.103"></a>
-<FONT color="green">104</FONT>        }<a name="line.104"></a>
-<FONT color="green">105</FONT>      }<a name="line.105"></a>
-<FONT color="green">106</FONT>    }<a name="line.106"></a>
+<FONT color="green">069</FONT>      public Class&lt;Chunk&gt; getConsumedType() {<a name="line.69"></a>
+<FONT color="green">070</FONT>        return Chunk.class;<a name="line.70"></a>
+<FONT color="green">071</FONT>      }<a name="line.71"></a>
+<FONT color="green">072</FONT>    <a name="line.72"></a>
+<FONT color="green">073</FONT>      public void provide(Chunk element) throws IOException {<a name="line.73"></a>
+<FONT color="green">074</FONT>        if (element instanceof Text) {<a name="line.74"></a>
+<FONT color="green">075</FONT>          Text text = (Text)element;<a name="line.75"></a>
+<FONT color="green">076</FONT>          empty &amp;= text.getText().length() == 0;<a name="line.76"></a>
+<FONT color="green">077</FONT>        }<a name="line.77"></a>
+<FONT color="green">078</FONT>        out.provide(element);<a name="line.78"></a>
+<FONT color="green">079</FONT>      }<a name="line.79"></a>
+<FONT color="green">080</FONT>    <a name="line.80"></a>
+<FONT color="green">081</FONT>      @Override<a name="line.81"></a>
+<FONT color="green">082</FONT>      public void write(char[] cbuf, int off, int len) throws IOException {<a name="line.82"></a>
+<FONT color="green">083</FONT>        if (closed) {<a name="line.83"></a>
+<FONT color="green">084</FONT>          throw new IOException("Already closed");<a name="line.84"></a>
+<FONT color="green">085</FONT>        }<a name="line.85"></a>
+<FONT color="green">086</FONT>        if (len &gt; 0) {<a name="line.86"></a>
+<FONT color="green">087</FONT>          Text text = new Text();<a name="line.87"></a>
+<FONT color="green">088</FONT>          text.buffer.append(cbuf, off, len);<a name="line.88"></a>
+<FONT color="green">089</FONT>          provide(text);<a name="line.89"></a>
+<FONT color="green">090</FONT>        }<a name="line.90"></a>
+<FONT color="green">091</FONT>      }<a name="line.91"></a>
+<FONT color="green">092</FONT>    <a name="line.92"></a>
+<FONT color="green">093</FONT>      @Override<a name="line.93"></a>
+<FONT color="green">094</FONT>      public void flush() throws IOException {<a name="line.94"></a>
+<FONT color="green">095</FONT>        if (closed) {<a name="line.95"></a>
+<FONT color="green">096</FONT>          throw new IOException("Already closed");<a name="line.96"></a>
+<FONT color="green">097</FONT>        }<a name="line.97"></a>
+<FONT color="green">098</FONT>        out.flush();<a name="line.98"></a>
+<FONT color="green">099</FONT>      }<a name="line.99"></a>
+<FONT color="green">100</FONT>    <a name="line.100"></a>
+<FONT color="green">101</FONT>      @Override<a name="line.101"></a>
+<FONT color="green">102</FONT>      public void close() throws IOException {<a name="line.102"></a>
+<FONT color="green">103</FONT>        if (!closed) {<a name="line.103"></a>
+<FONT color="green">104</FONT>          closed = true;<a name="line.104"></a>
+<FONT color="green">105</FONT>          if (closeable != null) {<a name="line.105"></a>
+<FONT color="green">106</FONT>            closeable.close();<a name="line.106"></a>
+<FONT color="green">107</FONT>          }<a name="line.107"></a>
+<FONT color="green">108</FONT>        }<a name="line.108"></a>
+<FONT color="green">109</FONT>      }<a name="line.109"></a>
+<FONT color="green">110</FONT>    }<a name="line.110"></a>
 
 
 

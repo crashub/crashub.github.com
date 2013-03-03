@@ -111,40 +111,44 @@
 <FONT color="green">108</FONT>        }<a name="line.108"></a>
 <FONT color="green">109</FONT>      }<a name="line.109"></a>
 <FONT color="green">110</FONT>    <a name="line.110"></a>
-<FONT color="green">111</FONT>      public void provide(Chunk element) throws IOException {<a name="line.111"></a>
-<FONT color="green">112</FONT>        if (element instanceof Text) {<a name="line.112"></a>
-<FONT color="green">113</FONT>          Text textChunk = (Text)element;<a name="line.113"></a>
-<FONT color="green">114</FONT>          processor.writer.append(textChunk.getText());<a name="line.114"></a>
-<FONT color="green">115</FONT>        } else if (element instanceof Style) {<a name="line.115"></a>
-<FONT color="green">116</FONT>          try {<a name="line.116"></a>
-<FONT color="green">117</FONT>            ((Style)element).writeAnsiTo(processor.writer);<a name="line.117"></a>
-<FONT color="green">118</FONT>          }<a name="line.118"></a>
-<FONT color="green">119</FONT>          catch (IOException ignore) {<a name="line.119"></a>
-<FONT color="green">120</FONT>          }<a name="line.120"></a>
-<FONT color="green">121</FONT>        } else {<a name="line.121"></a>
-<FONT color="green">122</FONT>    <a name="line.122"></a>
-<FONT color="green">123</FONT>    <a name="line.123"></a>
-<FONT color="green">124</FONT>          // Clear screen<a name="line.124"></a>
-<FONT color="green">125</FONT>          processor.writer.print("\033[2J");<a name="line.125"></a>
-<FONT color="green">126</FONT>          processor.writer.print("\033[1;1H");<a name="line.126"></a>
-<FONT color="green">127</FONT>        }<a name="line.127"></a>
-<FONT color="green">128</FONT>      }<a name="line.128"></a>
-<FONT color="green">129</FONT>    <a name="line.129"></a>
-<FONT color="green">130</FONT>      public void flush() {<a name="line.130"></a>
-<FONT color="green">131</FONT>        processor.writer.flush();<a name="line.131"></a>
+<FONT color="green">111</FONT>      public Class&lt;Chunk&gt; getConsumedType() {<a name="line.111"></a>
+<FONT color="green">112</FONT>        return Chunk.class;<a name="line.112"></a>
+<FONT color="green">113</FONT>      }<a name="line.113"></a>
+<FONT color="green">114</FONT>    <a name="line.114"></a>
+<FONT color="green">115</FONT>      public void provide(Chunk element) throws IOException {<a name="line.115"></a>
+<FONT color="green">116</FONT>        if (element instanceof Text) {<a name="line.116"></a>
+<FONT color="green">117</FONT>          Text textChunk = (Text)element;<a name="line.117"></a>
+<FONT color="green">118</FONT>          processor.writer.append(textChunk.getText());<a name="line.118"></a>
+<FONT color="green">119</FONT>        } else if (element instanceof Style) {<a name="line.119"></a>
+<FONT color="green">120</FONT>          try {<a name="line.120"></a>
+<FONT color="green">121</FONT>            ((Style)element).writeAnsiTo(processor.writer);<a name="line.121"></a>
+<FONT color="green">122</FONT>          }<a name="line.122"></a>
+<FONT color="green">123</FONT>          catch (IOException ignore) {<a name="line.123"></a>
+<FONT color="green">124</FONT>          }<a name="line.124"></a>
+<FONT color="green">125</FONT>        } else {<a name="line.125"></a>
+<FONT color="green">126</FONT>    <a name="line.126"></a>
+<FONT color="green">127</FONT>    <a name="line.127"></a>
+<FONT color="green">128</FONT>          // Clear screen<a name="line.128"></a>
+<FONT color="green">129</FONT>          processor.writer.print("\033[2J");<a name="line.129"></a>
+<FONT color="green">130</FONT>          processor.writer.print("\033[1;1H");<a name="line.130"></a>
+<FONT color="green">131</FONT>        }<a name="line.131"></a>
 <FONT color="green">132</FONT>      }<a name="line.132"></a>
 <FONT color="green">133</FONT>    <a name="line.133"></a>
-<FONT color="green">134</FONT>      public void end(ShellResponse response) {<a name="line.134"></a>
-<FONT color="green">135</FONT>        try {<a name="line.135"></a>
-<FONT color="green">136</FONT>          resp.set(response);<a name="line.136"></a>
-<FONT color="green">137</FONT>          latch.countDown();<a name="line.137"></a>
-<FONT color="green">138</FONT>        }<a name="line.138"></a>
-<FONT color="green">139</FONT>        finally {<a name="line.139"></a>
-<FONT color="green">140</FONT>          // Release screen if it wasn't done<a name="line.140"></a>
-<FONT color="green">141</FONT>          releaseAlternateBuffer();<a name="line.141"></a>
+<FONT color="green">134</FONT>      public void flush() {<a name="line.134"></a>
+<FONT color="green">135</FONT>        processor.writer.flush();<a name="line.135"></a>
+<FONT color="green">136</FONT>      }<a name="line.136"></a>
+<FONT color="green">137</FONT>    <a name="line.137"></a>
+<FONT color="green">138</FONT>      public void end(ShellResponse response) {<a name="line.138"></a>
+<FONT color="green">139</FONT>        try {<a name="line.139"></a>
+<FONT color="green">140</FONT>          resp.set(response);<a name="line.140"></a>
+<FONT color="green">141</FONT>          latch.countDown();<a name="line.141"></a>
 <FONT color="green">142</FONT>        }<a name="line.142"></a>
-<FONT color="green">143</FONT>      }<a name="line.143"></a>
-<FONT color="green">144</FONT>    }<a name="line.144"></a>
+<FONT color="green">143</FONT>        finally {<a name="line.143"></a>
+<FONT color="green">144</FONT>          // Release screen if it wasn't done<a name="line.144"></a>
+<FONT color="green">145</FONT>          releaseAlternateBuffer();<a name="line.145"></a>
+<FONT color="green">146</FONT>        }<a name="line.146"></a>
+<FONT color="green">147</FONT>      }<a name="line.147"></a>
+<FONT color="green">148</FONT>    }<a name="line.148"></a>
 
 
 

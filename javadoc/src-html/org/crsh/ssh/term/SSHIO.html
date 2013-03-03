@@ -81,171 +81,191 @@
 <FONT color="green">078</FONT>      /** . */<a name="line.78"></a>
 <FONT color="green">079</FONT>      final AtomicBoolean closed;<a name="line.79"></a>
 <FONT color="green">080</FONT>    <a name="line.80"></a>
-<FONT color="green">081</FONT>      public SSHIO(CRaSHCommand command) {<a name="line.81"></a>
-<FONT color="green">082</FONT>        this.command = command;<a name="line.82"></a>
-<FONT color="green">083</FONT>        this.writer = new OutputStreamWriter(command.out);<a name="line.83"></a>
-<FONT color="green">084</FONT>        this.reader = new InputStreamReader(command.in);<a name="line.84"></a>
-<FONT color="green">085</FONT>        this.status = STATUS_NORMAL;<a name="line.85"></a>
-<FONT color="green">086</FONT>        this.closed = new AtomicBoolean(false);<a name="line.86"></a>
-<FONT color="green">087</FONT>      }<a name="line.87"></a>
-<FONT color="green">088</FONT>    <a name="line.88"></a>
-<FONT color="green">089</FONT>      public int read() throws IOException {<a name="line.89"></a>
-<FONT color="green">090</FONT>        while (true) {<a name="line.90"></a>
-<FONT color="green">091</FONT>          if (closed.get()) {<a name="line.91"></a>
-<FONT color="green">092</FONT>            return HANDLED;<a name="line.92"></a>
-<FONT color="green">093</FONT>          } else {<a name="line.93"></a>
-<FONT color="green">094</FONT>            int r;<a name="line.94"></a>
-<FONT color="green">095</FONT>            try {<a name="line.95"></a>
-<FONT color="green">096</FONT>              r = reader.read();<a name="line.96"></a>
-<FONT color="green">097</FONT>            } catch (IOException e) {<a name="line.97"></a>
-<FONT color="green">098</FONT>              // This would likely happen when the client close the connection<a name="line.98"></a>
-<FONT color="green">099</FONT>              // when we are blocked on a read operation by the<a name="line.99"></a>
-<FONT color="green">100</FONT>              // CRaShCommand#destroy() method<a name="line.100"></a>
-<FONT color="green">101</FONT>              close();<a name="line.101"></a>
-<FONT color="green">102</FONT>              return HANDLED;<a name="line.102"></a>
-<FONT color="green">103</FONT>            }<a name="line.103"></a>
-<FONT color="green">104</FONT>            if (r == -1) {<a name="line.104"></a>
-<FONT color="green">105</FONT>              return HANDLED;<a name="line.105"></a>
-<FONT color="green">106</FONT>            } else {<a name="line.106"></a>
-<FONT color="green">107</FONT>              switch (status) {<a name="line.107"></a>
-<FONT color="green">108</FONT>                case STATUS_NORMAL:<a name="line.108"></a>
-<FONT color="green">109</FONT>                  if (r == 27) {<a name="line.109"></a>
-<FONT color="green">110</FONT>                    status = STATUS_READ_ESC_1;<a name="line.110"></a>
-<FONT color="green">111</FONT>                  } else {<a name="line.111"></a>
-<FONT color="green">112</FONT>                    return r;<a name="line.112"></a>
-<FONT color="green">113</FONT>                  }<a name="line.113"></a>
-<FONT color="green">114</FONT>                  break;<a name="line.114"></a>
-<FONT color="green">115</FONT>                case STATUS_READ_ESC_1:<a name="line.115"></a>
-<FONT color="green">116</FONT>                  if (r == 91) {<a name="line.116"></a>
-<FONT color="green">117</FONT>                    status = STATUS_READ_ESC_2;<a name="line.117"></a>
-<FONT color="green">118</FONT>                  } else if (r == 98) {<a name="line.118"></a>
-<FONT color="green">119</FONT>                    status = STATUS_NORMAL;<a name="line.119"></a>
-<FONT color="green">120</FONT>                    return BACKWARD_WORD;<a name="line.120"></a>
-<FONT color="green">121</FONT>                  } else if (r == 102) {<a name="line.121"></a>
-<FONT color="green">122</FONT>                    status = STATUS_NORMAL;<a name="line.122"></a>
-<FONT color="green">123</FONT>                    return FORWARD_WORD;<a name="line.123"></a>
-<FONT color="green">124</FONT>                  } else {<a name="line.124"></a>
-<FONT color="green">125</FONT>                    status = STATUS_NORMAL;<a name="line.125"></a>
-<FONT color="green">126</FONT>                    log.log(Level.SEVERE, "Unrecognized stream data " + r + " after reading ESC code");<a name="line.126"></a>
-<FONT color="green">127</FONT>                  }<a name="line.127"></a>
-<FONT color="green">128</FONT>                  break;<a name="line.128"></a>
-<FONT color="green">129</FONT>                case STATUS_READ_ESC_2:<a name="line.129"></a>
-<FONT color="green">130</FONT>                  status = STATUS_NORMAL;<a name="line.130"></a>
-<FONT color="green">131</FONT>                  switch (r) {<a name="line.131"></a>
-<FONT color="green">132</FONT>                    case 65:<a name="line.132"></a>
-<FONT color="green">133</FONT>                      return UP;<a name="line.133"></a>
-<FONT color="green">134</FONT>                    case 66:<a name="line.134"></a>
-<FONT color="green">135</FONT>                      return DOWN;<a name="line.135"></a>
-<FONT color="green">136</FONT>                    case 67:<a name="line.136"></a>
-<FONT color="green">137</FONT>                      return RIGHT;<a name="line.137"></a>
-<FONT color="green">138</FONT>                    case 68:<a name="line.138"></a>
-<FONT color="green">139</FONT>                      return LEFT;<a name="line.139"></a>
-<FONT color="green">140</FONT>                    default:<a name="line.140"></a>
-<FONT color="green">141</FONT>                      log.log(Level.SEVERE, "Unrecognized stream data " + r + " after reading ESC+91 code");<a name="line.141"></a>
-<FONT color="green">142</FONT>                      break;<a name="line.142"></a>
-<FONT color="green">143</FONT>                  }<a name="line.143"></a>
-<FONT color="green">144</FONT>              }<a name="line.144"></a>
-<FONT color="green">145</FONT>            }<a name="line.145"></a>
-<FONT color="green">146</FONT>          }<a name="line.146"></a>
-<FONT color="green">147</FONT>        }<a name="line.147"></a>
-<FONT color="green">148</FONT>      }<a name="line.148"></a>
-<FONT color="green">149</FONT>    <a name="line.149"></a>
-<FONT color="green">150</FONT>      public int getWidth() {<a name="line.150"></a>
-<FONT color="green">151</FONT>        return command.getContext().getWidth();<a name="line.151"></a>
+<FONT color="green">081</FONT>      /** . */<a name="line.81"></a>
+<FONT color="green">082</FONT>      private boolean useAlternate;<a name="line.82"></a>
+<FONT color="green">083</FONT>    <a name="line.83"></a>
+<FONT color="green">084</FONT>      public SSHIO(CRaSHCommand command) {<a name="line.84"></a>
+<FONT color="green">085</FONT>        this.command = command;<a name="line.85"></a>
+<FONT color="green">086</FONT>        this.writer = new OutputStreamWriter(command.out);<a name="line.86"></a>
+<FONT color="green">087</FONT>        this.reader = new InputStreamReader(command.in);<a name="line.87"></a>
+<FONT color="green">088</FONT>        this.status = STATUS_NORMAL;<a name="line.88"></a>
+<FONT color="green">089</FONT>        this.closed = new AtomicBoolean(false);<a name="line.89"></a>
+<FONT color="green">090</FONT>        this.useAlternate = false;<a name="line.90"></a>
+<FONT color="green">091</FONT>      }<a name="line.91"></a>
+<FONT color="green">092</FONT>    <a name="line.92"></a>
+<FONT color="green">093</FONT>      public int read() throws IOException {<a name="line.93"></a>
+<FONT color="green">094</FONT>        while (true) {<a name="line.94"></a>
+<FONT color="green">095</FONT>          if (closed.get()) {<a name="line.95"></a>
+<FONT color="green">096</FONT>            return HANDLED;<a name="line.96"></a>
+<FONT color="green">097</FONT>          } else {<a name="line.97"></a>
+<FONT color="green">098</FONT>            int r;<a name="line.98"></a>
+<FONT color="green">099</FONT>            try {<a name="line.99"></a>
+<FONT color="green">100</FONT>              r = reader.read();<a name="line.100"></a>
+<FONT color="green">101</FONT>            } catch (IOException e) {<a name="line.101"></a>
+<FONT color="green">102</FONT>              // This would likely happen when the client close the connection<a name="line.102"></a>
+<FONT color="green">103</FONT>              // when we are blocked on a read operation by the<a name="line.103"></a>
+<FONT color="green">104</FONT>              // CRaShCommand#destroy() method<a name="line.104"></a>
+<FONT color="green">105</FONT>              close();<a name="line.105"></a>
+<FONT color="green">106</FONT>              return HANDLED;<a name="line.106"></a>
+<FONT color="green">107</FONT>            }<a name="line.107"></a>
+<FONT color="green">108</FONT>            if (r == -1) {<a name="line.108"></a>
+<FONT color="green">109</FONT>              return HANDLED;<a name="line.109"></a>
+<FONT color="green">110</FONT>            } else {<a name="line.110"></a>
+<FONT color="green">111</FONT>              switch (status) {<a name="line.111"></a>
+<FONT color="green">112</FONT>                case STATUS_NORMAL:<a name="line.112"></a>
+<FONT color="green">113</FONT>                  if (r == 27) {<a name="line.113"></a>
+<FONT color="green">114</FONT>                    status = STATUS_READ_ESC_1;<a name="line.114"></a>
+<FONT color="green">115</FONT>                  } else {<a name="line.115"></a>
+<FONT color="green">116</FONT>                    return r;<a name="line.116"></a>
+<FONT color="green">117</FONT>                  }<a name="line.117"></a>
+<FONT color="green">118</FONT>                  break;<a name="line.118"></a>
+<FONT color="green">119</FONT>                case STATUS_READ_ESC_1:<a name="line.119"></a>
+<FONT color="green">120</FONT>                  if (r == 91) {<a name="line.120"></a>
+<FONT color="green">121</FONT>                    status = STATUS_READ_ESC_2;<a name="line.121"></a>
+<FONT color="green">122</FONT>                  } else if (r == 98) {<a name="line.122"></a>
+<FONT color="green">123</FONT>                    status = STATUS_NORMAL;<a name="line.123"></a>
+<FONT color="green">124</FONT>                    return BACKWARD_WORD;<a name="line.124"></a>
+<FONT color="green">125</FONT>                  } else if (r == 102) {<a name="line.125"></a>
+<FONT color="green">126</FONT>                    status = STATUS_NORMAL;<a name="line.126"></a>
+<FONT color="green">127</FONT>                    return FORWARD_WORD;<a name="line.127"></a>
+<FONT color="green">128</FONT>                  } else {<a name="line.128"></a>
+<FONT color="green">129</FONT>                    status = STATUS_NORMAL;<a name="line.129"></a>
+<FONT color="green">130</FONT>                    log.log(Level.SEVERE, "Unrecognized stream data " + r + " after reading ESC code");<a name="line.130"></a>
+<FONT color="green">131</FONT>                  }<a name="line.131"></a>
+<FONT color="green">132</FONT>                  break;<a name="line.132"></a>
+<FONT color="green">133</FONT>                case STATUS_READ_ESC_2:<a name="line.133"></a>
+<FONT color="green">134</FONT>                  status = STATUS_NORMAL;<a name="line.134"></a>
+<FONT color="green">135</FONT>                  switch (r) {<a name="line.135"></a>
+<FONT color="green">136</FONT>                    case 65:<a name="line.136"></a>
+<FONT color="green">137</FONT>                      return UP;<a name="line.137"></a>
+<FONT color="green">138</FONT>                    case 66:<a name="line.138"></a>
+<FONT color="green">139</FONT>                      return DOWN;<a name="line.139"></a>
+<FONT color="green">140</FONT>                    case 67:<a name="line.140"></a>
+<FONT color="green">141</FONT>                      return RIGHT;<a name="line.141"></a>
+<FONT color="green">142</FONT>                    case 68:<a name="line.142"></a>
+<FONT color="green">143</FONT>                      return LEFT;<a name="line.143"></a>
+<FONT color="green">144</FONT>                    default:<a name="line.144"></a>
+<FONT color="green">145</FONT>                      log.log(Level.SEVERE, "Unrecognized stream data " + r + " after reading ESC+91 code");<a name="line.145"></a>
+<FONT color="green">146</FONT>                      break;<a name="line.146"></a>
+<FONT color="green">147</FONT>                  }<a name="line.147"></a>
+<FONT color="green">148</FONT>              }<a name="line.148"></a>
+<FONT color="green">149</FONT>            }<a name="line.149"></a>
+<FONT color="green">150</FONT>          }<a name="line.150"></a>
+<FONT color="green">151</FONT>        }<a name="line.151"></a>
 <FONT color="green">152</FONT>      }<a name="line.152"></a>
 <FONT color="green">153</FONT>    <a name="line.153"></a>
-<FONT color="green">154</FONT>      public int getHeight() {<a name="line.154"></a>
-<FONT color="green">155</FONT>        return command.getContext().getHeight();<a name="line.155"></a>
+<FONT color="green">154</FONT>      public int getWidth() {<a name="line.154"></a>
+<FONT color="green">155</FONT>        return command.getContext().getWidth();<a name="line.155"></a>
 <FONT color="green">156</FONT>      }<a name="line.156"></a>
 <FONT color="green">157</FONT>    <a name="line.157"></a>
-<FONT color="green">158</FONT>      public String getProperty(String name) {<a name="line.158"></a>
-<FONT color="green">159</FONT>        return command.getContext().getProperty(name);<a name="line.159"></a>
+<FONT color="green">158</FONT>      public int getHeight() {<a name="line.158"></a>
+<FONT color="green">159</FONT>        return command.getContext().getHeight();<a name="line.159"></a>
 <FONT color="green">160</FONT>      }<a name="line.160"></a>
 <FONT color="green">161</FONT>    <a name="line.161"></a>
-<FONT color="green">162</FONT>      public CodeType decode(int code) {<a name="line.162"></a>
-<FONT color="green">163</FONT>        if (code == command.getContext().verase) {<a name="line.163"></a>
-<FONT color="green">164</FONT>          return CodeType.BACKSPACE;<a name="line.164"></a>
-<FONT color="green">165</FONT>        } else {<a name="line.165"></a>
-<FONT color="green">166</FONT>          switch (code) {<a name="line.166"></a>
-<FONT color="green">167</FONT>            case HANDLED:<a name="line.167"></a>
-<FONT color="green">168</FONT>              return CodeType.CLOSE;<a name="line.168"></a>
-<FONT color="green">169</FONT>            case 1:<a name="line.169"></a>
-<FONT color="green">170</FONT>              return CodeType.BEGINNING_OF_LINE;<a name="line.170"></a>
-<FONT color="green">171</FONT>            case 5:<a name="line.171"></a>
-<FONT color="green">172</FONT>              return CodeType.END_OF_LINE;<a name="line.172"></a>
-<FONT color="green">173</FONT>            case 3:<a name="line.173"></a>
-<FONT color="green">174</FONT>              return CodeType.BREAK;<a name="line.174"></a>
-<FONT color="green">175</FONT>            case 9:<a name="line.175"></a>
-<FONT color="green">176</FONT>              return CodeType.TAB;<a name="line.176"></a>
-<FONT color="green">177</FONT>            case UP:<a name="line.177"></a>
-<FONT color="green">178</FONT>              return CodeType.UP;<a name="line.178"></a>
-<FONT color="green">179</FONT>            case DOWN:<a name="line.179"></a>
-<FONT color="green">180</FONT>              return CodeType.DOWN;<a name="line.180"></a>
-<FONT color="green">181</FONT>            case LEFT:<a name="line.181"></a>
-<FONT color="green">182</FONT>              return CodeType.LEFT;<a name="line.182"></a>
-<FONT color="green">183</FONT>            case RIGHT:<a name="line.183"></a>
-<FONT color="green">184</FONT>              return CodeType.RIGHT;<a name="line.184"></a>
-<FONT color="green">185</FONT>            case BACKWARD_WORD:<a name="line.185"></a>
-<FONT color="green">186</FONT>              return CodeType.BACKWARD_WORD;<a name="line.186"></a>
-<FONT color="green">187</FONT>            case FORWARD_WORD:<a name="line.187"></a>
-<FONT color="green">188</FONT>              return CodeType.FORWARD_WORD;<a name="line.188"></a>
-<FONT color="green">189</FONT>            default:<a name="line.189"></a>
-<FONT color="green">190</FONT>              return CodeType.CHAR;<a name="line.190"></a>
-<FONT color="green">191</FONT>          }<a name="line.191"></a>
-<FONT color="green">192</FONT>        }<a name="line.192"></a>
-<FONT color="green">193</FONT>      }<a name="line.193"></a>
-<FONT color="green">194</FONT>    <a name="line.194"></a>
-<FONT color="green">195</FONT>      public void close() {<a name="line.195"></a>
-<FONT color="green">196</FONT>        if (closed.get()) {<a name="line.196"></a>
-<FONT color="green">197</FONT>          log.log(Level.FINE, "Attempt to closed again");<a name="line.197"></a>
-<FONT color="green">198</FONT>        } else {<a name="line.198"></a>
-<FONT color="green">199</FONT>          log.log(Level.FINE, "Closing SSHIO");<a name="line.199"></a>
-<FONT color="green">200</FONT>          command.session.close(false);<a name="line.200"></a>
-<FONT color="green">201</FONT>        }<a name="line.201"></a>
-<FONT color="green">202</FONT>      }<a name="line.202"></a>
-<FONT color="green">203</FONT>    <a name="line.203"></a>
-<FONT color="green">204</FONT>      public void flush() throws IOException {<a name="line.204"></a>
-<FONT color="green">205</FONT>        writer.flush();<a name="line.205"></a>
-<FONT color="green">206</FONT>      }<a name="line.206"></a>
-<FONT color="green">207</FONT>    <a name="line.207"></a>
-<FONT color="green">208</FONT>      public void write(CharSequence s) throws IOException {<a name="line.208"></a>
-<FONT color="green">209</FONT>        writer.write(s.toString());<a name="line.209"></a>
-<FONT color="green">210</FONT>      }<a name="line.210"></a>
-<FONT color="green">211</FONT>    <a name="line.211"></a>
-<FONT color="green">212</FONT>      public void write(char c) throws IOException {<a name="line.212"></a>
-<FONT color="green">213</FONT>        writer.write(c);<a name="line.213"></a>
-<FONT color="green">214</FONT>      }<a name="line.214"></a>
-<FONT color="green">215</FONT>    <a name="line.215"></a>
-<FONT color="green">216</FONT>      public void write(Style d) throws IOException {<a name="line.216"></a>
-<FONT color="green">217</FONT>        d.writeAnsiTo(writer);<a name="line.217"></a>
-<FONT color="green">218</FONT>      }<a name="line.218"></a>
-<FONT color="green">219</FONT>    <a name="line.219"></a>
-<FONT color="green">220</FONT>      public void writeDel() throws IOException {<a name="line.220"></a>
-<FONT color="green">221</FONT>        writer.write("\033[D \033[D");<a name="line.221"></a>
+<FONT color="green">162</FONT>      public String getProperty(String name) {<a name="line.162"></a>
+<FONT color="green">163</FONT>        return command.getContext().getProperty(name);<a name="line.163"></a>
+<FONT color="green">164</FONT>      }<a name="line.164"></a>
+<FONT color="green">165</FONT>    <a name="line.165"></a>
+<FONT color="green">166</FONT>      public boolean takeAlternateBuffer() throws IOException {<a name="line.166"></a>
+<FONT color="green">167</FONT>        if (!useAlternate) {<a name="line.167"></a>
+<FONT color="green">168</FONT>          useAlternate = true;<a name="line.168"></a>
+<FONT color="green">169</FONT>          writer.write("\033[?47h");<a name="line.169"></a>
+<FONT color="green">170</FONT>        }<a name="line.170"></a>
+<FONT color="green">171</FONT>        return true;<a name="line.171"></a>
+<FONT color="green">172</FONT>      }<a name="line.172"></a>
+<FONT color="green">173</FONT>    <a name="line.173"></a>
+<FONT color="green">174</FONT>      public boolean releaseAlternateBuffer() throws IOException {<a name="line.174"></a>
+<FONT color="green">175</FONT>        if (useAlternate) {<a name="line.175"></a>
+<FONT color="green">176</FONT>          useAlternate = false;<a name="line.176"></a>
+<FONT color="green">177</FONT>          writer.write("\033[?47l"); // Switches back to the normal screen<a name="line.177"></a>
+<FONT color="green">178</FONT>        }<a name="line.178"></a>
+<FONT color="green">179</FONT>        return true;<a name="line.179"></a>
+<FONT color="green">180</FONT>      }<a name="line.180"></a>
+<FONT color="green">181</FONT>    <a name="line.181"></a>
+<FONT color="green">182</FONT>      public CodeType decode(int code) {<a name="line.182"></a>
+<FONT color="green">183</FONT>        if (code == command.getContext().verase) {<a name="line.183"></a>
+<FONT color="green">184</FONT>          return CodeType.BACKSPACE;<a name="line.184"></a>
+<FONT color="green">185</FONT>        } else {<a name="line.185"></a>
+<FONT color="green">186</FONT>          switch (code) {<a name="line.186"></a>
+<FONT color="green">187</FONT>            case HANDLED:<a name="line.187"></a>
+<FONT color="green">188</FONT>              return CodeType.CLOSE;<a name="line.188"></a>
+<FONT color="green">189</FONT>            case 1:<a name="line.189"></a>
+<FONT color="green">190</FONT>              return CodeType.BEGINNING_OF_LINE;<a name="line.190"></a>
+<FONT color="green">191</FONT>            case 5:<a name="line.191"></a>
+<FONT color="green">192</FONT>              return CodeType.END_OF_LINE;<a name="line.192"></a>
+<FONT color="green">193</FONT>            case 3:<a name="line.193"></a>
+<FONT color="green">194</FONT>              return CodeType.BREAK;<a name="line.194"></a>
+<FONT color="green">195</FONT>            case 9:<a name="line.195"></a>
+<FONT color="green">196</FONT>              return CodeType.TAB;<a name="line.196"></a>
+<FONT color="green">197</FONT>            case UP:<a name="line.197"></a>
+<FONT color="green">198</FONT>              return CodeType.UP;<a name="line.198"></a>
+<FONT color="green">199</FONT>            case DOWN:<a name="line.199"></a>
+<FONT color="green">200</FONT>              return CodeType.DOWN;<a name="line.200"></a>
+<FONT color="green">201</FONT>            case LEFT:<a name="line.201"></a>
+<FONT color="green">202</FONT>              return CodeType.LEFT;<a name="line.202"></a>
+<FONT color="green">203</FONT>            case RIGHT:<a name="line.203"></a>
+<FONT color="green">204</FONT>              return CodeType.RIGHT;<a name="line.204"></a>
+<FONT color="green">205</FONT>            case BACKWARD_WORD:<a name="line.205"></a>
+<FONT color="green">206</FONT>              return CodeType.BACKWARD_WORD;<a name="line.206"></a>
+<FONT color="green">207</FONT>            case FORWARD_WORD:<a name="line.207"></a>
+<FONT color="green">208</FONT>              return CodeType.FORWARD_WORD;<a name="line.208"></a>
+<FONT color="green">209</FONT>            default:<a name="line.209"></a>
+<FONT color="green">210</FONT>              return CodeType.CHAR;<a name="line.210"></a>
+<FONT color="green">211</FONT>          }<a name="line.211"></a>
+<FONT color="green">212</FONT>        }<a name="line.212"></a>
+<FONT color="green">213</FONT>      }<a name="line.213"></a>
+<FONT color="green">214</FONT>    <a name="line.214"></a>
+<FONT color="green">215</FONT>      public void close() {<a name="line.215"></a>
+<FONT color="green">216</FONT>        if (closed.get()) {<a name="line.216"></a>
+<FONT color="green">217</FONT>          log.log(Level.FINE, "Attempt to closed again");<a name="line.217"></a>
+<FONT color="green">218</FONT>        } else {<a name="line.218"></a>
+<FONT color="green">219</FONT>          log.log(Level.FINE, "Closing SSHIO");<a name="line.219"></a>
+<FONT color="green">220</FONT>          command.session.close(false);<a name="line.220"></a>
+<FONT color="green">221</FONT>        }<a name="line.221"></a>
 <FONT color="green">222</FONT>      }<a name="line.222"></a>
 <FONT color="green">223</FONT>    <a name="line.223"></a>
-<FONT color="green">224</FONT>      public void writeCRLF() throws IOException {<a name="line.224"></a>
-<FONT color="green">225</FONT>        writer.write("\r\n");<a name="line.225"></a>
+<FONT color="green">224</FONT>      public void flush() throws IOException {<a name="line.224"></a>
+<FONT color="green">225</FONT>        writer.flush();<a name="line.225"></a>
 <FONT color="green">226</FONT>      }<a name="line.226"></a>
 <FONT color="green">227</FONT>    <a name="line.227"></a>
-<FONT color="green">228</FONT>      public boolean moveRight(char c) throws IOException {<a name="line.228"></a>
-<FONT color="green">229</FONT>        writer.write(c);<a name="line.229"></a>
-<FONT color="green">230</FONT>        return true;<a name="line.230"></a>
-<FONT color="green">231</FONT>      }<a name="line.231"></a>
-<FONT color="green">232</FONT>    <a name="line.232"></a>
-<FONT color="green">233</FONT>      public boolean moveLeft() throws IOException {<a name="line.233"></a>
-<FONT color="green">234</FONT>        writer.write("\033[");<a name="line.234"></a>
-<FONT color="green">235</FONT>        writer.write("1D");<a name="line.235"></a>
-<FONT color="green">236</FONT>        return true;<a name="line.236"></a>
-<FONT color="green">237</FONT>      }<a name="line.237"></a>
-<FONT color="green">238</FONT>    <a name="line.238"></a>
-<FONT color="green">239</FONT>      public void cls() throws IOException {<a name="line.239"></a>
-<FONT color="green">240</FONT>        writer.write("\033[");<a name="line.240"></a>
-<FONT color="green">241</FONT>        writer.write("2J");<a name="line.241"></a>
-<FONT color="green">242</FONT>        writer.write("\033[");<a name="line.242"></a>
-<FONT color="green">243</FONT>        writer.write("1;1H");<a name="line.243"></a>
-<FONT color="green">244</FONT>      }<a name="line.244"></a>
-<FONT color="green">245</FONT>    }<a name="line.245"></a>
+<FONT color="green">228</FONT>      public void write(CharSequence s) throws IOException {<a name="line.228"></a>
+<FONT color="green">229</FONT>        writer.write(s.toString());<a name="line.229"></a>
+<FONT color="green">230</FONT>      }<a name="line.230"></a>
+<FONT color="green">231</FONT>    <a name="line.231"></a>
+<FONT color="green">232</FONT>      public void write(char c) throws IOException {<a name="line.232"></a>
+<FONT color="green">233</FONT>        writer.write(c);<a name="line.233"></a>
+<FONT color="green">234</FONT>      }<a name="line.234"></a>
+<FONT color="green">235</FONT>    <a name="line.235"></a>
+<FONT color="green">236</FONT>      public void write(Style d) throws IOException {<a name="line.236"></a>
+<FONT color="green">237</FONT>        d.writeAnsiTo(writer);<a name="line.237"></a>
+<FONT color="green">238</FONT>      }<a name="line.238"></a>
+<FONT color="green">239</FONT>    <a name="line.239"></a>
+<FONT color="green">240</FONT>      public void writeDel() throws IOException {<a name="line.240"></a>
+<FONT color="green">241</FONT>        writer.write("\033[D \033[D");<a name="line.241"></a>
+<FONT color="green">242</FONT>      }<a name="line.242"></a>
+<FONT color="green">243</FONT>    <a name="line.243"></a>
+<FONT color="green">244</FONT>      public void writeCRLF() throws IOException {<a name="line.244"></a>
+<FONT color="green">245</FONT>        writer.write("\r\n");<a name="line.245"></a>
+<FONT color="green">246</FONT>      }<a name="line.246"></a>
+<FONT color="green">247</FONT>    <a name="line.247"></a>
+<FONT color="green">248</FONT>      public boolean moveRight(char c) throws IOException {<a name="line.248"></a>
+<FONT color="green">249</FONT>        writer.write(c);<a name="line.249"></a>
+<FONT color="green">250</FONT>        return true;<a name="line.250"></a>
+<FONT color="green">251</FONT>      }<a name="line.251"></a>
+<FONT color="green">252</FONT>    <a name="line.252"></a>
+<FONT color="green">253</FONT>      public boolean moveLeft() throws IOException {<a name="line.253"></a>
+<FONT color="green">254</FONT>        writer.write("\033[");<a name="line.254"></a>
+<FONT color="green">255</FONT>        writer.write("1D");<a name="line.255"></a>
+<FONT color="green">256</FONT>        return true;<a name="line.256"></a>
+<FONT color="green">257</FONT>      }<a name="line.257"></a>
+<FONT color="green">258</FONT>    <a name="line.258"></a>
+<FONT color="green">259</FONT>      public void cls() throws IOException {<a name="line.259"></a>
+<FONT color="green">260</FONT>        writer.write("\033[");<a name="line.260"></a>
+<FONT color="green">261</FONT>        writer.write("2J");<a name="line.261"></a>
+<FONT color="green">262</FONT>        writer.write("\033[");<a name="line.262"></a>
+<FONT color="green">263</FONT>        writer.write("1;1H");<a name="line.263"></a>
+<FONT color="green">264</FONT>      }<a name="line.264"></a>
+<FONT color="green">265</FONT>    }<a name="line.265"></a>
 
 
 

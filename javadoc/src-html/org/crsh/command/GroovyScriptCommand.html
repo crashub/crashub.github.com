@@ -30,7 +30,7 @@
 <FONT color="green">027</FONT>    import org.crsh.cmdline.CommandCompletion;<a name="line.27"></a>
 <FONT color="green">028</FONT>    import org.crsh.cmdline.Delimiter;<a name="line.28"></a>
 <FONT color="green">029</FONT>    import org.crsh.cmdline.spi.Completion;<a name="line.29"></a>
-<FONT color="green">030</FONT>    import org.crsh.io.ProducerContext;<a name="line.30"></a>
+<FONT color="green">030</FONT>    import org.crsh.shell.InteractionContext;<a name="line.30"></a>
 <FONT color="green">031</FONT>    import org.crsh.shell.impl.command.CRaSH;<a name="line.31"></a>
 <FONT color="green">032</FONT>    import org.crsh.text.RenderPrintWriter;<a name="line.32"></a>
 <FONT color="green">033</FONT>    import org.crsh.util.Strings;<a name="line.33"></a>
@@ -197,7 +197,7 @@
 <FONT color="green">194</FONT>        this.session = session;<a name="line.194"></a>
 <FONT color="green">195</FONT>      }<a name="line.195"></a>
 <FONT color="green">196</FONT>    <a name="line.196"></a>
-<FONT color="green">197</FONT>      public final void open(ProducerContext&lt;Object&gt; context) {<a name="line.197"></a>
+<FONT color="green">197</FONT>      public final void open(InteractionContext&lt;Object&gt; consumer) {<a name="line.197"></a>
 <FONT color="green">198</FONT>    <a name="line.198"></a>
 <FONT color="green">199</FONT>        // Set up current binding<a name="line.199"></a>
 <FONT color="green">200</FONT>        Binding binding = new Binding(session.getSession());<a name="line.200"></a>
@@ -209,7 +209,7 @@
 <FONT color="green">206</FONT>        setBinding(binding);<a name="line.206"></a>
 <FONT color="green">207</FONT>    <a name="line.207"></a>
 <FONT color="green">208</FONT>        //<a name="line.208"></a>
-<FONT color="green">209</FONT>        pushContext(new InvocationContextImpl&lt;Object&gt;(context, session));<a name="line.209"></a>
+<FONT color="green">209</FONT>        pushContext(new InvocationContextImpl&lt;Object&gt;(consumer, session));<a name="line.209"></a>
 <FONT color="green">210</FONT>    <a name="line.210"></a>
 <FONT color="green">211</FONT>        //<a name="line.211"></a>
 <FONT color="green">212</FONT>        try {<a name="line.212"></a>

@@ -61,82 +61,100 @@
 <FONT color="green">058</FONT>      String getProperty(String name);<a name="line.58"></a>
 <FONT color="green">059</FONT>    <a name="line.59"></a>
 <FONT color="green">060</FONT>      /**<a name="line.60"></a>
-<FONT color="green">061</FONT>       * Decode the intput value.<a name="line.61"></a>
-<FONT color="green">062</FONT>       *<a name="line.62"></a>
-<FONT color="green">063</FONT>       * @param code the code<a name="line.63"></a>
-<FONT color="green">064</FONT>       * @return the input value type<a name="line.64"></a>
-<FONT color="green">065</FONT>       */<a name="line.65"></a>
-<FONT color="green">066</FONT>      CodeType decode(int code);<a name="line.66"></a>
-<FONT color="green">067</FONT>    <a name="line.67"></a>
-<FONT color="green">068</FONT>      /**<a name="line.68"></a>
-<FONT color="green">069</FONT>       * Flush output.<a name="line.69"></a>
-<FONT color="green">070</FONT>       *<a name="line.70"></a>
-<FONT color="green">071</FONT>       * @throws IOException any io exception<a name="line.71"></a>
-<FONT color="green">072</FONT>       */<a name="line.72"></a>
-<FONT color="green">073</FONT>      void flush() throws IOException;<a name="line.73"></a>
-<FONT color="green">074</FONT>    <a name="line.74"></a>
-<FONT color="green">075</FONT>      /**<a name="line.75"></a>
-<FONT color="green">076</FONT>       * Write a string.<a name="line.76"></a>
-<FONT color="green">077</FONT>       *<a name="line.77"></a>
-<FONT color="green">078</FONT>       * @param s the string to write<a name="line.78"></a>
-<FONT color="green">079</FONT>       * @throws IOException any io exception<a name="line.79"></a>
-<FONT color="green">080</FONT>       */<a name="line.80"></a>
-<FONT color="green">081</FONT>      void write(CharSequence s) throws IOException;<a name="line.81"></a>
-<FONT color="green">082</FONT>    <a name="line.82"></a>
-<FONT color="green">083</FONT>      /**<a name="line.83"></a>
-<FONT color="green">084</FONT>       * Write a char.<a name="line.84"></a>
-<FONT color="green">085</FONT>       *<a name="line.85"></a>
-<FONT color="green">086</FONT>       * @param c the char to write<a name="line.86"></a>
-<FONT color="green">087</FONT>       * @throws IOException any io exception<a name="line.87"></a>
-<FONT color="green">088</FONT>       */<a name="line.88"></a>
-<FONT color="green">089</FONT>      void write(char c) throws IOException;<a name="line.89"></a>
-<FONT color="green">090</FONT>    <a name="line.90"></a>
-<FONT color="green">091</FONT>      /**<a name="line.91"></a>
-<FONT color="green">092</FONT>       * Write a style.<a name="line.92"></a>
-<FONT color="green">093</FONT>       *<a name="line.93"></a>
-<FONT color="green">094</FONT>       * @param d the data to write<a name="line.94"></a>
-<FONT color="green">095</FONT>       * @throws IOException any io exception<a name="line.95"></a>
-<FONT color="green">096</FONT>       */<a name="line.96"></a>
-<FONT color="green">097</FONT>      void write(Style d) throws IOException;<a name="line.97"></a>
-<FONT color="green">098</FONT>    <a name="line.98"></a>
-<FONT color="green">099</FONT>      /**<a name="line.99"></a>
-<FONT color="green">100</FONT>       * Delete the char under the cursor.<a name="line.100"></a>
-<FONT color="green">101</FONT>       *<a name="line.101"></a>
-<FONT color="green">102</FONT>       * @throws IOException any io exception<a name="line.102"></a>
-<FONT color="green">103</FONT>       */<a name="line.103"></a>
-<FONT color="green">104</FONT>      void writeDel() throws IOException;<a name="line.104"></a>
-<FONT color="green">105</FONT>    <a name="line.105"></a>
-<FONT color="green">106</FONT>      /**<a name="line.106"></a>
-<FONT color="green">107</FONT>       * Write a CRLF.<a name="line.107"></a>
-<FONT color="green">108</FONT>       *<a name="line.108"></a>
-<FONT color="green">109</FONT>       * @throws IOException any io exception<a name="line.109"></a>
-<FONT color="green">110</FONT>       */<a name="line.110"></a>
-<FONT color="green">111</FONT>      void writeCRLF() throws IOException;<a name="line.111"></a>
-<FONT color="green">112</FONT>    <a name="line.112"></a>
-<FONT color="green">113</FONT>      /**<a name="line.113"></a>
-<FONT color="green">114</FONT>       * Clear screen.<a name="line.114"></a>
-<FONT color="green">115</FONT>       *<a name="line.115"></a>
-<FONT color="green">116</FONT>       * @throws IOException any io exception<a name="line.116"></a>
-<FONT color="green">117</FONT>       */<a name="line.117"></a>
-<FONT color="green">118</FONT>      void cls() throws IOException;<a name="line.118"></a>
-<FONT color="green">119</FONT>    <a name="line.119"></a>
-<FONT color="green">120</FONT>      /**<a name="line.120"></a>
-<FONT color="green">121</FONT>       * Move the cursor right.<a name="line.121"></a>
-<FONT color="green">122</FONT>       *<a name="line.122"></a>
-<FONT color="green">123</FONT>       * @param c the char skipped over<a name="line.123"></a>
-<FONT color="green">124</FONT>       * @return true if the cursor moved.<a name="line.124"></a>
-<FONT color="green">125</FONT>       * @throws IOException any io exception<a name="line.125"></a>
-<FONT color="green">126</FONT>       */<a name="line.126"></a>
-<FONT color="green">127</FONT>      boolean moveRight(char c) throws IOException;<a name="line.127"></a>
-<FONT color="green">128</FONT>    <a name="line.128"></a>
-<FONT color="green">129</FONT>      /**<a name="line.129"></a>
-<FONT color="green">130</FONT>       * Move the cursor left.<a name="line.130"></a>
-<FONT color="green">131</FONT>       *<a name="line.131"></a>
-<FONT color="green">132</FONT>       * @return true if the cursor moved<a name="line.132"></a>
-<FONT color="green">133</FONT>       * @throws IOException any io exception<a name="line.133"></a>
-<FONT color="green">134</FONT>       */<a name="line.134"></a>
-<FONT color="green">135</FONT>      boolean moveLeft() throws IOException;<a name="line.135"></a>
-<FONT color="green">136</FONT>    }<a name="line.136"></a>
+<FONT color="green">061</FONT>       * Take control of the alternate buffer. When the alternate buffer is already used<a name="line.61"></a>
+<FONT color="green">062</FONT>       * nothing happens. The buffer switch should occur when then {@link #flush()} method<a name="line.62"></a>
+<FONT color="green">063</FONT>       * is invoked.<a name="line.63"></a>
+<FONT color="green">064</FONT>       *<a name="line.64"></a>
+<FONT color="green">065</FONT>       * @return true if the alternate buffer is shown<a name="line.65"></a>
+<FONT color="green">066</FONT>       */<a name="line.66"></a>
+<FONT color="green">067</FONT>      boolean takeAlternateBuffer() throws IOException;<a name="line.67"></a>
+<FONT color="green">068</FONT>    <a name="line.68"></a>
+<FONT color="green">069</FONT>      /**<a name="line.69"></a>
+<FONT color="green">070</FONT>       * Release control of the alternate buffer. When the normal buffer is already used<a name="line.70"></a>
+<FONT color="green">071</FONT>       * nothing happens. The buffer switch should occur when then {@link #flush()} method<a name="line.71"></a>
+<FONT color="green">072</FONT>       * is invoked.<a name="line.72"></a>
+<FONT color="green">073</FONT>       *<a name="line.73"></a>
+<FONT color="green">074</FONT>       * @return true if the usual buffer is shown<a name="line.74"></a>
+<FONT color="green">075</FONT>       */<a name="line.75"></a>
+<FONT color="green">076</FONT>      boolean releaseAlternateBuffer() throws IOException;<a name="line.76"></a>
+<FONT color="green">077</FONT>    <a name="line.77"></a>
+<FONT color="green">078</FONT>      /**<a name="line.78"></a>
+<FONT color="green">079</FONT>       * Decode the intput value.<a name="line.79"></a>
+<FONT color="green">080</FONT>       *<a name="line.80"></a>
+<FONT color="green">081</FONT>       * @param code the code<a name="line.81"></a>
+<FONT color="green">082</FONT>       * @return the input value type<a name="line.82"></a>
+<FONT color="green">083</FONT>       */<a name="line.83"></a>
+<FONT color="green">084</FONT>      CodeType decode(int code);<a name="line.84"></a>
+<FONT color="green">085</FONT>    <a name="line.85"></a>
+<FONT color="green">086</FONT>      /**<a name="line.86"></a>
+<FONT color="green">087</FONT>       * Flush output.<a name="line.87"></a>
+<FONT color="green">088</FONT>       *<a name="line.88"></a>
+<FONT color="green">089</FONT>       * @throws IOException any io exception<a name="line.89"></a>
+<FONT color="green">090</FONT>       */<a name="line.90"></a>
+<FONT color="green">091</FONT>      void flush() throws IOException;<a name="line.91"></a>
+<FONT color="green">092</FONT>    <a name="line.92"></a>
+<FONT color="green">093</FONT>      /**<a name="line.93"></a>
+<FONT color="green">094</FONT>       * Write a string.<a name="line.94"></a>
+<FONT color="green">095</FONT>       *<a name="line.95"></a>
+<FONT color="green">096</FONT>       * @param s the string to write<a name="line.96"></a>
+<FONT color="green">097</FONT>       * @throws IOException any io exception<a name="line.97"></a>
+<FONT color="green">098</FONT>       */<a name="line.98"></a>
+<FONT color="green">099</FONT>      void write(CharSequence s) throws IOException;<a name="line.99"></a>
+<FONT color="green">100</FONT>    <a name="line.100"></a>
+<FONT color="green">101</FONT>      /**<a name="line.101"></a>
+<FONT color="green">102</FONT>       * Write a char.<a name="line.102"></a>
+<FONT color="green">103</FONT>       *<a name="line.103"></a>
+<FONT color="green">104</FONT>       * @param c the char to write<a name="line.104"></a>
+<FONT color="green">105</FONT>       * @throws IOException any io exception<a name="line.105"></a>
+<FONT color="green">106</FONT>       */<a name="line.106"></a>
+<FONT color="green">107</FONT>      void write(char c) throws IOException;<a name="line.107"></a>
+<FONT color="green">108</FONT>    <a name="line.108"></a>
+<FONT color="green">109</FONT>      /**<a name="line.109"></a>
+<FONT color="green">110</FONT>       * Write a style.<a name="line.110"></a>
+<FONT color="green">111</FONT>       *<a name="line.111"></a>
+<FONT color="green">112</FONT>       * @param d the data to write<a name="line.112"></a>
+<FONT color="green">113</FONT>       * @throws IOException any io exception<a name="line.113"></a>
+<FONT color="green">114</FONT>       */<a name="line.114"></a>
+<FONT color="green">115</FONT>      void write(Style d) throws IOException;<a name="line.115"></a>
+<FONT color="green">116</FONT>    <a name="line.116"></a>
+<FONT color="green">117</FONT>      /**<a name="line.117"></a>
+<FONT color="green">118</FONT>       * Delete the char under the cursor.<a name="line.118"></a>
+<FONT color="green">119</FONT>       *<a name="line.119"></a>
+<FONT color="green">120</FONT>       * @throws IOException any io exception<a name="line.120"></a>
+<FONT color="green">121</FONT>       */<a name="line.121"></a>
+<FONT color="green">122</FONT>      void writeDel() throws IOException;<a name="line.122"></a>
+<FONT color="green">123</FONT>    <a name="line.123"></a>
+<FONT color="green">124</FONT>      /**<a name="line.124"></a>
+<FONT color="green">125</FONT>       * Write a CRLF.<a name="line.125"></a>
+<FONT color="green">126</FONT>       *<a name="line.126"></a>
+<FONT color="green">127</FONT>       * @throws IOException any io exception<a name="line.127"></a>
+<FONT color="green">128</FONT>       */<a name="line.128"></a>
+<FONT color="green">129</FONT>      void writeCRLF() throws IOException;<a name="line.129"></a>
+<FONT color="green">130</FONT>    <a name="line.130"></a>
+<FONT color="green">131</FONT>      /**<a name="line.131"></a>
+<FONT color="green">132</FONT>       * Clear screen.<a name="line.132"></a>
+<FONT color="green">133</FONT>       *<a name="line.133"></a>
+<FONT color="green">134</FONT>       * @throws IOException any io exception<a name="line.134"></a>
+<FONT color="green">135</FONT>       */<a name="line.135"></a>
+<FONT color="green">136</FONT>      void cls() throws IOException;<a name="line.136"></a>
+<FONT color="green">137</FONT>    <a name="line.137"></a>
+<FONT color="green">138</FONT>      /**<a name="line.138"></a>
+<FONT color="green">139</FONT>       * Move the cursor right.<a name="line.139"></a>
+<FONT color="green">140</FONT>       *<a name="line.140"></a>
+<FONT color="green">141</FONT>       * @param c the char skipped over<a name="line.141"></a>
+<FONT color="green">142</FONT>       * @return true if the cursor moved.<a name="line.142"></a>
+<FONT color="green">143</FONT>       * @throws IOException any io exception<a name="line.143"></a>
+<FONT color="green">144</FONT>       */<a name="line.144"></a>
+<FONT color="green">145</FONT>      boolean moveRight(char c) throws IOException;<a name="line.145"></a>
+<FONT color="green">146</FONT>    <a name="line.146"></a>
+<FONT color="green">147</FONT>      /**<a name="line.147"></a>
+<FONT color="green">148</FONT>       * Move the cursor left.<a name="line.148"></a>
+<FONT color="green">149</FONT>       *<a name="line.149"></a>
+<FONT color="green">150</FONT>       * @return true if the cursor moved<a name="line.150"></a>
+<FONT color="green">151</FONT>       * @throws IOException any io exception<a name="line.151"></a>
+<FONT color="green">152</FONT>       */<a name="line.152"></a>
+<FONT color="green">153</FONT>      boolean moveLeft() throws IOException;<a name="line.153"></a>
+<FONT color="green">154</FONT>    }<a name="line.154"></a>
 
 
 

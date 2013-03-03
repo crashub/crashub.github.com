@@ -22,23 +22,23 @@
 <FONT color="green">019</FONT>    <a name="line.19"></a>
 <FONT color="green">020</FONT>    package org.crsh.command;<a name="line.20"></a>
 <FONT color="green">021</FONT>    <a name="line.21"></a>
-<FONT color="green">022</FONT>    import org.crsh.io.Pipe;<a name="line.22"></a>
-<FONT color="green">023</FONT>    import org.crsh.io.ProducerContext;<a name="line.23"></a>
+<FONT color="green">022</FONT>    import org.crsh.shell.InteractionContext;<a name="line.22"></a>
+<FONT color="green">023</FONT>    import org.crsh.io.Consumer;<a name="line.23"></a>
 <FONT color="green">024</FONT>    <a name="line.24"></a>
 <FONT color="green">025</FONT>    import java.io.IOException;<a name="line.25"></a>
 <FONT color="green">026</FONT>    <a name="line.26"></a>
 <FONT color="green">027</FONT>    class PipeCommandProxy&lt;C, P&gt; implements CommandInvoker&lt;C, P&gt; {<a name="line.27"></a>
 <FONT color="green">028</FONT>    <a name="line.28"></a>
 <FONT color="green">029</FONT>      /** . */<a name="line.29"></a>
-<FONT color="green">030</FONT>      private final ProducerContext&lt;P&gt; innerContext;<a name="line.30"></a>
+<FONT color="green">030</FONT>      private final InteractionContext&lt;P&gt; innerContext;<a name="line.30"></a>
 <FONT color="green">031</FONT>    <a name="line.31"></a>
 <FONT color="green">032</FONT>      /** . */<a name="line.32"></a>
 <FONT color="green">033</FONT>      private final CommandInvoker&lt;C, P&gt; delegate;<a name="line.33"></a>
 <FONT color="green">034</FONT>    <a name="line.34"></a>
 <FONT color="green">035</FONT>      /** . */<a name="line.35"></a>
-<FONT color="green">036</FONT>      private final Pipe&lt;C&gt; next;<a name="line.36"></a>
+<FONT color="green">036</FONT>      private final Consumer&lt;C&gt; next;<a name="line.36"></a>
 <FONT color="green">037</FONT>    <a name="line.37"></a>
-<FONT color="green">038</FONT>      PipeCommandProxy(ProducerContext&lt;P&gt; innerContext, CommandInvoker&lt;C, P&gt; delegate, Pipe&lt;C&gt; next) {<a name="line.38"></a>
+<FONT color="green">038</FONT>      PipeCommandProxy(InteractionContext&lt;P&gt; innerContext, CommandInvoker&lt;C, P&gt; delegate, Consumer&lt;C&gt; next) {<a name="line.38"></a>
 <FONT color="green">039</FONT>        this.innerContext = innerContext;<a name="line.39"></a>
 <FONT color="green">040</FONT>        this.delegate = delegate;<a name="line.40"></a>
 <FONT color="green">041</FONT>        this.next = next;<a name="line.41"></a>
@@ -64,11 +64,11 @@
 <FONT color="green">061</FONT>        delegate.setPiped(piped);<a name="line.61"></a>
 <FONT color="green">062</FONT>      }<a name="line.62"></a>
 <FONT color="green">063</FONT>    <a name="line.63"></a>
-<FONT color="green">064</FONT>      public void open(ProducerContext&lt;P&gt; context) {<a name="line.64"></a>
+<FONT color="green">064</FONT>      public void open(InteractionContext&lt;P&gt; consumer) {<a name="line.64"></a>
 <FONT color="green">065</FONT>        if (next != null &amp;&amp; next instanceof PipeCommandProxy) {<a name="line.65"></a>
 <FONT color="green">066</FONT>          ((PipeCommandProxy)next).fire();<a name="line.66"></a>
 <FONT color="green">067</FONT>        }<a name="line.67"></a>
-<FONT color="green">068</FONT>        delegate.open(context);<a name="line.68"></a>
+<FONT color="green">068</FONT>        delegate.open(consumer);<a name="line.68"></a>
 <FONT color="green">069</FONT>      }<a name="line.69"></a>
 <FONT color="green">070</FONT>    <a name="line.70"></a>
 <FONT color="green">071</FONT>      public void provide(C element) throws ScriptException, IOException {<a name="line.71"></a>

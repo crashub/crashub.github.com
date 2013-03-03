@@ -1,0 +1,13 @@
+@import "bootstrap-2.2.2.min.css";
+@import "bootstrap-responsive-2.2.2.css";
+@import "prettify.css";
+@import "../wikbook.css";
+
+.modal-overflow {
+    height:512px;
+    overflow:auto
+}
+
+div.chapter {
+    padding-top: 60px;
+}

@@ -23,7 +23,7 @@
 <FONT color="green">020</FONT>    package org.crsh.processor.term;<a name="line.20"></a>
 <FONT color="green">021</FONT>    <a name="line.21"></a>
 <FONT color="green">022</FONT>    import org.crsh.cmdline.spi.Completion;<a name="line.22"></a>
-<FONT color="green">023</FONT>    import org.crsh.io.Pipe;<a name="line.23"></a>
+<FONT color="green">023</FONT>    import org.crsh.io.Consumer;<a name="line.23"></a>
 <FONT color="green">024</FONT>    import org.crsh.cmdline.CommandCompletion;<a name="line.24"></a>
 <FONT color="green">025</FONT>    import org.crsh.cmdline.Delimiter;<a name="line.25"></a>
 <FONT color="green">026</FONT>    import org.crsh.shell.Shell;<a name="line.26"></a>
@@ -43,7 +43,7 @@
 <FONT color="green">040</FONT>    import java.util.logging.Level;<a name="line.40"></a>
 <FONT color="green">041</FONT>    import java.util.logging.Logger;<a name="line.41"></a>
 <FONT color="green">042</FONT>    <a name="line.42"></a>
-<FONT color="green">043</FONT>    public final class Processor implements Runnable, Pipe&lt;Chunk&gt; {<a name="line.43"></a>
+<FONT color="green">043</FONT>    public final class Processor implements Runnable, Consumer&lt;Chunk&gt; {<a name="line.43"></a>
 <FONT color="green">044</FONT>    <a name="line.44"></a>
 <FONT color="green">045</FONT>      /** . */<a name="line.45"></a>
 <FONT color="green">046</FONT>      static final Runnable NOOP = new Runnable() {<a name="line.46"></a>
