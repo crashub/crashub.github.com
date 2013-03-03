@@ -93,10 +93,10 @@
           <plugin>
             <groupId>com.github.github</groupId>
             <artifactId>site-maven-plugin</artifactId>
-            <version>0.3</version>
+            <version>0.7</version>
             <configuration>
               <message>Deploy documentation for ${project.version}</message>
-			  <branch>refs/heads/master</branch>
+			        <branch>refs/heads/master</branch>
               <repositoryOwner>crashub</repositoryOwner>
               <repositoryName>crashub.github.com</repositoryName>
               <outputDirectory>${project.build.directory}/classes</outputDirectory>
