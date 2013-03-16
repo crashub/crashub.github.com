@@ -22,7 +22,7 @@
 <FONT color="green">019</FONT>    <a name="line.19"></a>
 <FONT color="green">020</FONT>    package org.crsh.shell.impl.remoting;<a name="line.20"></a>
 <FONT color="green">021</FONT>    <a name="line.21"></a>
-<FONT color="green">022</FONT>    import org.crsh.cmdline.CommandCompletion;<a name="line.22"></a>
+<FONT color="green">022</FONT>    import org.crsh.cli.impl.completion.CompletionMatch;<a name="line.22"></a>
 <FONT color="green">023</FONT>    import org.crsh.shell.Shell;<a name="line.23"></a>
 <FONT color="green">024</FONT>    import org.crsh.shell.ShellProcess;<a name="line.24"></a>
 <FONT color="green">025</FONT>    import org.crsh.shell.ShellProcessContext;<a name="line.25"></a>
@@ -102,7 +102,7 @@
 <FONT color="green">099</FONT>        return new ServerProcess(this, request);<a name="line.99"></a>
 <FONT color="green">100</FONT>      }<a name="line.100"></a>
 <FONT color="green">101</FONT>    <a name="line.101"></a>
-<FONT color="green">102</FONT>      public CommandCompletion complete(String prefix) {<a name="line.102"></a>
+<FONT color="green">102</FONT>      public CompletionMatch complete(String prefix) {<a name="line.102"></a>
 <FONT color="green">103</FONT>        try {<a name="line.103"></a>
 <FONT color="green">104</FONT>          out.writeObject(new ClientMessage.GetCompletion(prefix));<a name="line.104"></a>
 <FONT color="green">105</FONT>          out.flush();<a name="line.105"></a>

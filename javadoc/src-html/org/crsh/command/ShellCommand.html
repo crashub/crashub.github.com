@@ -22,7 +22,7 @@
 <FONT color="green">019</FONT>    <a name="line.19"></a>
 <FONT color="green">020</FONT>    package org.crsh.command;<a name="line.20"></a>
 <FONT color="green">021</FONT>    <a name="line.21"></a>
-<FONT color="green">022</FONT>    import org.crsh.cmdline.CommandCompletion;<a name="line.22"></a>
+<FONT color="green">022</FONT>    import org.crsh.cli.impl.completion.CompletionMatch;<a name="line.22"></a>
 <FONT color="green">023</FONT>    <a name="line.23"></a>
 <FONT color="green">024</FONT>    import java.util.List;<a name="line.24"></a>
 <FONT color="green">025</FONT>    import java.util.Map;<a name="line.25"></a>
@@ -39,7 +39,7 @@
 <FONT color="green">036</FONT>       * @param line the original command line arguments<a name="line.36"></a>
 <FONT color="green">037</FONT>       * @return the completions<a name="line.37"></a>
 <FONT color="green">038</FONT>       */<a name="line.38"></a>
-<FONT color="green">039</FONT>      CommandCompletion complete(CommandContext context, String line);<a name="line.39"></a>
+<FONT color="green">039</FONT>      CompletionMatch complete(CommandContext context, String line);<a name="line.39"></a>
 <FONT color="green">040</FONT>    <a name="line.40"></a>
 <FONT color="green">041</FONT>      /**<a name="line.41"></a>
 <FONT color="green">042</FONT>       * Returns a description of the command or null if none can be found.<a name="line.42"></a>

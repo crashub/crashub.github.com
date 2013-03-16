@@ -145,7 +145,7 @@
 <FONT color="green">142</FONT>          for (int i = 0;i &lt; row.getCols().size();i++) {<a name="line.142"></a>
 <FONT color="green">143</FONT>            Renderer renderable = row.getCols().get(i);<a name="line.143"></a>
 <FONT color="green">144</FONT>            eltWidths[i] = Math.max(eltWidths[i], renderable.getActualWidth() + row.row.leftCellPadding + row.row.rightCellPadding);<a name="line.144"></a>
-<FONT color="green">145</FONT>            eltMinWidths[i] = Math.max(eltMinWidths[i], renderable.getMinWidth()) + row.row.leftCellPadding + row.row.rightCellPadding;<a name="line.145"></a>
+<FONT color="green">145</FONT>            eltMinWidths[i] = Math.max(eltMinWidths[i], renderable.getMinWidth() + row.row.leftCellPadding + row.row.rightCellPadding);<a name="line.145"></a>
 <FONT color="green">146</FONT>          }<a name="line.146"></a>
 <FONT color="green">147</FONT>        }<a name="line.147"></a>
 <FONT color="green">148</FONT>    <a name="line.148"></a>

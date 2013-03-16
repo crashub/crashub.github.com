@@ -24,9 +24,9 @@
 <FONT color="green">021</FONT>    <a name="line.21"></a>
 <FONT color="green">022</FONT>    import jline.console.ConsoleReader;<a name="line.22"></a>
 <FONT color="green">023</FONT>    import jline.console.completer.Completer;<a name="line.23"></a>
-<FONT color="green">024</FONT>    import org.crsh.cmdline.CommandCompletion;<a name="line.24"></a>
-<FONT color="green">025</FONT>    import org.crsh.cmdline.Delimiter;<a name="line.25"></a>
-<FONT color="green">026</FONT>    import org.crsh.cmdline.spi.Completion;<a name="line.26"></a>
+<FONT color="green">024</FONT>    import org.crsh.cli.impl.completion.CompletionMatch;<a name="line.24"></a>
+<FONT color="green">025</FONT>    import org.crsh.cli.impl.Delimiter;<a name="line.25"></a>
+<FONT color="green">026</FONT>    import org.crsh.cli.spi.Completion;<a name="line.26"></a>
 <FONT color="green">027</FONT>    import org.crsh.shell.Shell;<a name="line.27"></a>
 <FONT color="green">028</FONT>    import org.crsh.shell.ShellProcess;<a name="line.28"></a>
 <FONT color="green">029</FONT>    import org.crsh.shell.ShellResponse;<a name="line.29"></a>
@@ -129,7 +129,7 @@
 <FONT color="green">126</FONT>    <a name="line.126"></a>
 <FONT color="green">127</FONT>      public int complete(String buffer, int cursor, List&lt;CharSequence&gt; candidates) {<a name="line.127"></a>
 <FONT color="green">128</FONT>        String prefix = buffer.substring(0, cursor);<a name="line.128"></a>
-<FONT color="green">129</FONT>        CommandCompletion completion = shell.complete(prefix);<a name="line.129"></a>
+<FONT color="green">129</FONT>        CompletionMatch completion = shell.complete(prefix);<a name="line.129"></a>
 <FONT color="green">130</FONT>        Completion vc = completion.getValue();<a name="line.130"></a>
 <FONT color="green">131</FONT>        if (vc.isEmpty()) {<a name="line.131"></a>
 <FONT color="green">132</FONT>          return -1;<a name="line.132"></a>

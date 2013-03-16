@@ -45,7 +45,7 @@
 <FONT color="green">042</FONT>      @Override<a name="line.42"></a>
 <FONT color="green">043</FONT>      protected void execute(Session session, String path) throws Exception {<a name="line.43"></a>
 <FONT color="green">044</FONT>        FileSystem fs = new FileSystem() {<a name="line.44"></a>
-<FONT color="green">045</FONT>          public void startDirectory(String directoryName) throws IOException {<a name="line.45"></a>
+<FONT color="green">045</FONT>          public void beginDirectory(String directoryName) throws IOException {<a name="line.45"></a>
 <FONT color="green">046</FONT>            out.write("D0755 0 ".getBytes());<a name="line.46"></a>
 <FONT color="green">047</FONT>            out.write(directoryName.getBytes());<a name="line.47"></a>
 <FONT color="green">048</FONT>            out.write("\n".getBytes());<a name="line.48"></a>

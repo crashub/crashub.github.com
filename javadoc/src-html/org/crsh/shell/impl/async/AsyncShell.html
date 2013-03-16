@@ -22,7 +22,7 @@
 <FONT color="green">019</FONT>    <a name="line.19"></a>
 <FONT color="green">020</FONT>    package org.crsh.shell.impl.async;<a name="line.20"></a>
 <FONT color="green">021</FONT>    <a name="line.21"></a>
-<FONT color="green">022</FONT>    import org.crsh.cmdline.CommandCompletion;<a name="line.22"></a>
+<FONT color="green">022</FONT>    import org.crsh.cli.impl.completion.CompletionMatch;<a name="line.22"></a>
 <FONT color="green">023</FONT>    import org.crsh.shell.Shell;<a name="line.23"></a>
 <FONT color="green">024</FONT>    <a name="line.24"></a>
 <FONT color="green">025</FONT>    import java.io.Closeable;<a name="line.25"></a>
@@ -91,7 +91,7 @@
 <FONT color="green">088</FONT>        return shell.getPrompt();<a name="line.88"></a>
 <FONT color="green">089</FONT>      }<a name="line.89"></a>
 <FONT color="green">090</FONT>    <a name="line.90"></a>
-<FONT color="green">091</FONT>      public CommandCompletion complete(String prefix) {<a name="line.91"></a>
+<FONT color="green">091</FONT>      public CompletionMatch complete(String prefix) {<a name="line.91"></a>
 <FONT color="green">092</FONT>        return shell.complete(prefix);<a name="line.92"></a>
 <FONT color="green">093</FONT>      }<a name="line.93"></a>
 <FONT color="green">094</FONT>    <a name="line.94"></a>

@@ -44,7 +44,7 @@
 <FONT color="green">041</FONT>      private static void read(final SCPCommand cmd, FileSystemAction action, FileSystem fs) throws IOException {<a name="line.41"></a>
 <FONT color="green">042</FONT>        if (action instanceof StartDirectory) {<a name="line.42"></a>
 <FONT color="green">043</FONT>          String directoryName = ((StartDirectory)action).name;<a name="line.43"></a>
-<FONT color="green">044</FONT>          fs.startDirectory(directoryName);<a name="line.44"></a>
+<FONT color="green">044</FONT>          fs.beginDirectory(directoryName);<a name="line.44"></a>
 <FONT color="green">045</FONT>    <a name="line.45"></a>
 <FONT color="green">046</FONT>          //<a name="line.46"></a>
 <FONT color="green">047</FONT>          cmd.ack();<a name="line.47"></a>

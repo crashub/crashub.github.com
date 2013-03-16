@@ -22,10 +22,10 @@
 <FONT color="green">019</FONT>    <a name="line.19"></a>
 <FONT color="green">020</FONT>    package org.crsh.processor.term;<a name="line.20"></a>
 <FONT color="green">021</FONT>    <a name="line.21"></a>
-<FONT color="green">022</FONT>    import org.crsh.cmdline.spi.Completion;<a name="line.22"></a>
-<FONT color="green">023</FONT>    import org.crsh.io.Consumer;<a name="line.23"></a>
-<FONT color="green">024</FONT>    import org.crsh.cmdline.CommandCompletion;<a name="line.24"></a>
-<FONT color="green">025</FONT>    import org.crsh.cmdline.Delimiter;<a name="line.25"></a>
+<FONT color="green">022</FONT>    import org.crsh.cli.impl.completion.CompletionMatch;<a name="line.22"></a>
+<FONT color="green">023</FONT>    import org.crsh.cli.spi.Completion;<a name="line.23"></a>
+<FONT color="green">024</FONT>    import org.crsh.io.Consumer;<a name="line.24"></a>
+<FONT color="green">025</FONT>    import org.crsh.cli.impl.Delimiter;<a name="line.25"></a>
 <FONT color="green">026</FONT>    import org.crsh.shell.Shell;<a name="line.26"></a>
 <FONT color="green">027</FONT>    import org.crsh.shell.ShellProcess;<a name="line.27"></a>
 <FONT color="green">028</FONT>    import org.crsh.text.Chunk;<a name="line.28"></a>
@@ -327,7 +327,7 @@
 <FONT color="green">324</FONT>    <a name="line.324"></a>
 <FONT color="green">325</FONT>      private void complete(CharSequence prefix) {<a name="line.325"></a>
 <FONT color="green">326</FONT>        log.log(Level.FINE, "About to get completions for " + prefix);<a name="line.326"></a>
-<FONT color="green">327</FONT>        CommandCompletion completion = shell.complete(prefix.toString());<a name="line.327"></a>
+<FONT color="green">327</FONT>        CompletionMatch completion = shell.complete(prefix.toString());<a name="line.327"></a>
 <FONT color="green">328</FONT>        Completion completions = completion.getValue();<a name="line.328"></a>
 <FONT color="green">329</FONT>        log.log(Level.FINE, "Completions for " + prefix + " are " + completions);<a name="line.329"></a>
 <FONT color="green">330</FONT>    <a name="line.330"></a>
