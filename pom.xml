@@ -8,20 +8,20 @@
   <version>1.0-SNAPSHOT</version>
 
   <properties>
-    <crash.version>1.2.0-cr7</crash.version>
+    <crash.version>1.2.0-cr8</crash.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.crsh</groupId>
-      <artifactId>crsh.doc</artifactId>
+      <artifactId>crsh.doc.reference</artifactId>
       <classifier>html</classifier>
       <type>zip</type>
       <version>${crash.version}</version>
     </dependency>
     <dependency>
       <groupId>org.crsh</groupId>
-      <artifactId>crsh.doc</artifactId>
+      <artifactId>crsh.doc.reference</artifactId>
       <classifier>javadoc</classifier>
       <version>${crash.version}</version>
     </dependency>
@@ -63,7 +63,7 @@
                     <property name="site" value="${project.build.directory}/classes/" />
 
                     <!-- Reference guide -->
-                    <unzip src="${org.crsh:crsh.doc:zip:html}" dest="${doc}" />
+                    <unzip src="${org.crsh:crsh.doc.reference:zip:html}" dest="${doc}" />
                     <copy file="${doc}/index.html" tofile="${site}/doc.html" />
                     <copy todir="${site}/css">
                       <fileset dir="${doc}/css">
@@ -80,7 +80,7 @@
                     </copy>
 
                     <!-- Javadoc -->
-                    <unzip src="${org.crsh:crsh.doc:jar:javadoc}" dest="${site}/javadoc" />
+                    <unzip src="${org.crsh:crsh.doc.reference:jar:javadoc}" dest="${site}/javadoc" />
 
                   </target>
                 </configuration>
