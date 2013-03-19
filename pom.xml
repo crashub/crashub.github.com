@@ -8,7 +8,7 @@
   <version>1.0-SNAPSHOT</version>
 
   <properties>
-    <crash.version>1.2.0-cr8</crash.version>
+    <crash.version>1.2.0-cr9</crash.version>
   </properties>
 
   <dependencies>
@@ -23,6 +23,13 @@
       <groupId>org.crsh</groupId>
       <artifactId>crsh.doc.reference</artifactId>
       <classifier>javadoc</classifier>
+      <version>${crash.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.crsh</groupId>
+      <artifactId>crsh.doc.cookbook</artifactId>
+      <classifier>html</classifier>
+      <type>zip</type>
       <version>${crash.version}</version>
     </dependency>
   </dependencies>
@@ -59,24 +66,34 @@
                 <phase>generate-resources</phase>
                 <configuration>
                   <target>
-                    <property name="doc" value="${project.build.directory}/doc/" />
+                    <property name="reference" value="${project.build.directory}/reference/" />
+                    <property name="cookbook" value="${project.build.directory}/cookbook/" />
                     <property name="site" value="${project.build.directory}/classes/" />
 
                     <!-- Reference guide -->
-                    <unzip src="${org.crsh:crsh.doc.reference:zip:html}" dest="${doc}" />
-                    <copy file="${doc}/index.html" tofile="${site}/doc.html" />
+                    <unzip src="${org.crsh:crsh.doc.reference:zip:html}" dest="${reference}" />
+                    <copy file="${reference}/index.html" tofile="${site}/reference.html" />
+                    <copy todir="${site}/images">
+                      <fileset dir="${reference}/images" />
+                    </copy>
+
+                    <!-- Cookbook -->
+                    <unzip src="${org.crsh:crsh.doc.cookbook:zip:html}" dest="${cookbook}" />
+                    <copy file="${cookbook}/index.html" tofile="${site}/cookbook.html" />
+                    <copy todir="${site}/images">
+                      <fileset dir="${reference}/images" />
+                    </copy>
+
+                    <!-- Resources -->
                     <copy todir="${site}/css">
-                      <fileset dir="${doc}/css">
+                      <fileset dir="${reference}/css">
                         <include name="bootstrap/bootstrap.css" />
                         <include name="wikbook.css" />
                         <include name="bootstrap/prettify.css" />
                       </fileset>
                     </copy>
                     <copy todir="${site}/js">
-                      <fileset dir="${doc}/js" />
-                    </copy>
-                    <copy todir="${site}/images">
-                      <fileset dir="${doc}/images" />
+                      <fileset dir="${reference}/js" />
                     </copy>
 
                     <!-- Javadoc -->
