@@ -11,6 +11,12 @@
     <crash.version>1.2.0-cr9</crash.version>
   </properties>
 
+  <scm>
+    <connection>scm:git:git://github.com/crashub/crashub.github.com.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/crashub/crashub.github.com.git</developerConnection>
+    <url>https://github.com/crashub/crashub.github.com</url>
+  </scm>
+
   <dependencies>
     <dependency>
       <groupId>org.crsh</groupId>
@@ -114,8 +120,10 @@
             <configuration>
               <message>Deploy documentation for ${project.version}</message>
 			        <branch>refs/heads/master</branch>
+              <!--
               <repositoryOwner>crashub</repositoryOwner>
               <repositoryName>crashub.github.com</repositoryName>
+            -->
               <outputDirectory>${project.build.directory}/classes</outputDirectory>
             </configuration>
             <executions>
