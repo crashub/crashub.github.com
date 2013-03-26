@@ -22,7 +22,7 @@
 <FONT color="green">019</FONT>    <a name="line.19"></a>
 <FONT color="green">020</FONT>    package org.crsh.shell.impl.command;<a name="line.20"></a>
 <FONT color="green">021</FONT>    <a name="line.21"></a>
-<FONT color="green">022</FONT>    import org.crsh.shell.InteractionContext;<a name="line.22"></a>
+<FONT color="green">022</FONT>    import org.crsh.command.CommandContext;<a name="line.22"></a>
 <FONT color="green">023</FONT>    import org.crsh.shell.ScreenContext;<a name="line.23"></a>
 <FONT color="green">024</FONT>    import org.crsh.shell.ShellProcessContext;<a name="line.24"></a>
 <FONT color="green">025</FONT>    import org.crsh.text.Chunk;<a name="line.25"></a>
@@ -33,7 +33,7 @@
 <FONT color="green">030</FONT>    import java.io.IOException;<a name="line.30"></a>
 <FONT color="green">031</FONT>    import java.util.Map;<a name="line.31"></a>
 <FONT color="green">032</FONT>    <a name="line.32"></a>
-<FONT color="green">033</FONT>    class CRaSHProcessContext implements InteractionContext&lt;Chunk&gt;, Closeable {<a name="line.33"></a>
+<FONT color="green">033</FONT>    class CRaSHProcessContext implements CommandContext&lt;Chunk&gt;, Closeable {<a name="line.33"></a>
 <FONT color="green">034</FONT>    <a name="line.34"></a>
 <FONT color="green">035</FONT>      /** . */<a name="line.35"></a>
 <FONT color="green">036</FONT>      private final CRaSHSession session;<a name="line.36"></a>

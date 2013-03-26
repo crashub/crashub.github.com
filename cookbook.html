@@ -1,0 +1,336 @@
+
+<!DOCTYPE html
+  SYSTEM "">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>CRaSH</title><link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="js/bootstrap/jquery-1.7.1.min.js"></script><script src="js/bootstrap/bootstrap-2.2.2.min.js"></script><script src="js/bootstrap/docbook-sidebar.js"></script><script src="js/bootstrap/google-code-prettify/prettify.js"></script></head><body onload="if (prettyPrint) { prettyPrint() }"><div class="book container" title="CRaSH"><div class="titlepage"><div><div><h1 class="title"><a name="UTF-8"></a>CRaSH</h1></div><div><h2 class="subtitle">CRaSH cookbook</h2></div><div><div class="authorgroup">
+    <div class="author"><h3 class="author"><span class="firstname">Julien</span> <span class="surname">Viet</span></h3><div class="affiliation">
+        <span class="shortaffil">eXo Platform<br></span>
+      </div></div>
+  </div></div><div><p class="copyright">Copyright &copy; 2011 eXo Platform SAS</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="preface"><a href="#d5e23">Preface</a></span></dt><dt><span class="chapter"><a href="#faq">1. FAQ </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e28">General</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e30">What is CRaSH ?</a></span></dt><dt><span class="section"><a href="#d5e33">What can I do with CRaSH ?</a></span></dt><dt><span class="section"><a href="#d5e42">What is the differences between CRaSH and JMX ? Is the same ?</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e45">Running CRaSH</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e47">How can I run CRaSH ?</a></span></dt><dt><span class="section"><a href="#d5e51">How can I connect Crash to a JVM ?</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e55">Basic</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e57">What is the best way to create a command ?</a></span></dt><dt><span class="section"><a href="#d5e61">What is the best way to start with CRaSH ?</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e70">Commons problems</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e72">"Command not found"</a></span></dt><dt><span class="section"><a href="#d5e75">Can't find crash.properties file</a></span></dt><dt><span class="section"><a href="#d5e79">"Remoting issue"</a></span></dt><dt><span class="section"><a href="#d5e83">Where are base commands ?</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#firstCmd">2. Create your first command </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e92">Run CRaSH</a></span></dt><dt><span class="section"><a href="#d5e97">Add new command</a></span></dt><dt><span class="section"><a href="#d5e105">refresh console</a></span></dt></dl></dd><dt><span class="chapter"><a href="#printArr">3. How to print an array </a></span></dt><dd><dl><dt><span class="section"><a href="#d5e112">Exemple</a></span></dt><dt><span class="section"><a href="#d5e118">Table Elements</a></span></dt><dt><span class="section"><a href="#d5e122">table</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e127">label</a></span></dt><dt><span class="section"><a href="#d5e132">columns</a></span></dt><dt><span class="section"><a href="#d5e139">rows</a></span></dt><dt><span class="section"><a href="#d5e146">header</a></span></dt><dt><span class="section"><a href="#d5e153">eval</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e159">attributes</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e162">border</a></span></dt><dt><span class="section"><a href="#d5e169">row</a></span></dt><dt><span class="section"><a href="#d5e171">separator</a></span></dt><dt><span class="section"><a href="#d5e178">overflow</a></span></dt><dt><span class="section"><a href="#d5e183">leftCellPadding</a></span></dt><dt><span class="section"><a href="#d5e188">rightCellPadding</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e195">styles</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e199">bold</a></span></dt><dt><span class="section"><a href="#d5e206">underline</a></span></dt><dt><span class="section"><a href="#d5e211">blink</a></span></dt><dt><span class="section"><a href="#d5e216">fg, foreground</a></span></dt><dt><span class="section"><a href="#d5e223">bg, background</a></span></dt></dl></dd></dl></dd></dl></div>
+  
+  <div class="preface" title="Preface"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="d5e23"></a>Preface</h1></div></div></div></div>
+    
+    <p>Cookbook.</p>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;1.&nbsp;FAQ"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="faq"></a>Chapter&nbsp;1.&nbsp;FAQ </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e28">General</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e30">What is CRaSH ?</a></span></dt><dt><span class="section"><a href="#d5e33">What can I do with CRaSH ?</a></span></dt><dt><span class="section"><a href="#d5e42">What is the differences between CRaSH and JMX ? Is the same ?</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e45">Running CRaSH</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e47">How can I run CRaSH ?</a></span></dt><dt><span class="section"><a href="#d5e51">How can I connect Crash to a JVM ?</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e55">Basic</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e57">What is the best way to create a command ?</a></span></dt><dt><span class="section"><a href="#d5e61">What is the best way to start with CRaSH ?</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e70">Commons problems</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e72">"Command not found"</a></span></dt><dt><span class="section"><a href="#d5e75">Can't find crash.properties file</a></span></dt><dt><span class="section"><a href="#d5e79">"Remoting issue"</a></span></dt><dt><span class="section"><a href="#d5e83">Where are base commands ?</a></span></dt></dl></dd></dl></div>
+    
+    <div class="section" title="General"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e28"></a>General</h2></div></div></div>
+      
+      <div class="section" title="What is CRaSH ?"><div class="titlepage"><div><div><h3 class="title"><a name="d5e30"></a>What is CRaSH ?</h3></div></div></div>
+        
+        <p>CRaSH is a shell that extends JVM. With CRaSH, you will connect with a shell directly on a JVM. Moreover, you could add your command (Java/Groovy) and that's why CRaSH is really interesting.</p>
+      </div>
+      <div class="section" title="What can I do with CRaSH ?"><div class="titlepage"><div><div><h3 class="title"><a name="d5e33"></a>What can I do with CRaSH ?</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Monitoring JVM and make your own dashboard command.</p>
+          </li><li class="listitem">
+            <p>Make command for your application (add data in a cache, add user, monitor jobs ).</p>
+          </li><li class="listitem">
+            <p>Make your JMX command.</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="What is the differences between CRaSH and JMX ? Is the same ?"><div class="titlepage"><div><div><h3 class="title"><a name="d5e42"></a>What is the differences between CRaSH and JMX ? Is the same ?</h3></div></div></div>
+        
+        <p>JMX provides only bean and methods.That's all. CRaSH permit to access to JMX and to make command with it. CRaSH also permit to make script with thread, jdbc, entity ...</p>
+      </div>
+    </div>
+    <div class="section" title="Running CRaSH"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e45"></a>Running CRaSH</h2></div></div></div>
+      
+      <div class="section" title="How can I run CRaSH ?"><div class="titlepage"><div><div><h3 class="title"><a name="d5e47"></a>How can I run CRaSH ?</h3></div></div></div>
+        
+        <p>See documentation : <a class="ulink" href="http://www.crashub.org/doc.html#running" target="_top">http://www.crashub.org/doc.html#running</a>
+        </p>
+      </div>
+      <div class="section" title="How can I connect Crash to a JVM ?"><div class="titlepage"><div><div><h3 class="title"><a name="d5e51"></a>How can I connect Crash to a JVM ?</h3></div></div></div>
+        
+        <p>See documentation Connection in Shell Usage chapter  <a class="ulink" href="http://www.crashub.org/doc.html#d5e219" target="_top">http://www.crashub.org/doc.html#d5e219</a>
+        </p>
+      </div>
+    </div>
+    <div class="section" title="Basic"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e55"></a>Basic</h2></div></div></div>
+      
+      <div class="section" title="What is the best way to create a command ?"><div class="titlepage"><div><div><h3 class="title"><a name="d5e57"></a>What is the best way to create a command ?</h3></div></div></div>
+        
+        <p>The best way to create a command is to use CRaSH utilities. See command as a class : <a class="ulink" href="http://www.crashub.org/doc.html#d5e531" target="_top">http://www.crashub.org/doc.html#d5e531</a>
+        </p>
+      </div>
+      <div class="section" title="What is the best way to start with CRaSH ?"><div class="titlepage"><div><div><h3 class="title"><a name="d5e61"></a>What is the best way to start with CRaSH ?</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Launch CRaSH and play with commands</p>
+          </li><li class="listitem">
+            <p>Create commands (script command and class command)</p>
+          </li><li class="listitem">
+            <p>See cookbook and documentation.</p>
+          </li></ul></div>
+      </div>
+    </div>
+    <div class="section" title="Commons problems"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e70"></a>Commons problems</h2></div></div></div>
+      
+      <div class="section" title="&#34;Command not found&#34;"><div class="titlepage"><div><div><h3 class="title"><a name="d5e72"></a>"Command not found"</h3></div></div></div>
+        
+        <p>In most cases, when you created a command, it's a syntax error in a command. Check your import and syntax with your ide.</p>
+      </div>
+      <div class="section" title="Can't find crash.properties file"><div class="titlepage"><div><div><h3 class="title"><a name="d5e75"></a>Can't find crash.properties file</h3></div></div></div>
+        
+        <p>You have to launch CRaSH in standalone mode once. Then, it will appears in <code class="code">$CRASH_HOME/conf/</code>
+        </p>
+      </div>
+      <div class="section" title="&#34;Remoting issue&#34;"><div class="titlepage"><div><div><h3 class="title"><a name="d5e79"></a>"Remoting issue"</h3></div></div></div>
+        
+        <p>It could happen when you have an error in your command. For example :</p>
+        <pre class="screen">% jdbc select se
+Remoting issue</pre>
+      </div>
+      <div class="section" title="Where are base commands ?"><div class="titlepage"><div><div><h3 class="title"><a name="d5e83"></a>Where are base commands ?</h3></div></div></div>
+        
+        <p>They will be in <code class="code">$CRASH_HOME/cmd/base</code> directory. You have to launch CRaSH once in standalone mode.</p>
+      </div>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;2.&nbsp;Create your first command"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="firstCmd"></a>Chapter&nbsp;2.&nbsp;Create your first command </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e92">Run CRaSH</a></span></dt><dt><span class="section"><a href="#d5e97">Add new command</a></span></dt><dt><span class="section"><a href="#d5e105">refresh console</a></span></dt></dl></div>
+    
+    <p>In this cookbook, you will learn how to create a simple script command. You will see that you can create it dynamically without restarting CRaSH.</p>
+    <div class="alert alert-success alert-block" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+      <p>A better solution to create a command is to use CRaSH class.It provides tools to simply command creation.</p>
+    </div>
+    <div class="section" title="Run CRaSH"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e92"></a>Run CRaSH</h2></div></div></div>
+      
+      <pre class="screen">cd $CRASH_HOME/bin
+./crash.sh
+Type help at prompt</pre>
+      <p>You will see something like :</p>
+      <pre class="screen"> Try one of these commands with the -h or --help switch:
+
+NAME      DESCRIPTION
+clock
+dashboard
+date      show the current time
+env       display the term env
+filter
+hello
+help      provides basic help
+java      various java language commands
+jdbc      JDBC connection
+jmx       Java Management Extensions
+jndi      Java Naming and Directory Interface
+jpa       Java persistance API
+jvm       JVM informations
+log       logging commands
+man       format and display the on-line manual pages
+shell     shell related command
+sleep     sleep for some time
+sort      Sort a map
+system    vm system properties commands
+thread    JVM thread commands</pre>
+    </div>
+    <div class="section" title="Add new command"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e97"></a>Add new command</h2></div></div></div>
+      
+      <p>To add a command to CRaSH. You have to add a groovy file in the cmd directory :</p>
+      <pre class="screen">cd $CRASH_HOME/cmd
+vi test.groovy</pre>
+      <p>Put the following in test.groovy :</p>
+      <pre class="screen">for (int i = 0;i &lt; 10;i++) {
+  System.out.println("CRaSH is cool !");
+}</pre>
+      <div class="alert alert-success alert-block" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+        <p>In this example, we create a command by using Java syntax. It's because Groovy understand Java Syntax. So you could begin to develop your command in Java and when you want try cool Groovy stuff.</p>
+      </div>
+    </div>
+    <div class="section" title="refresh console"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e105"></a>refresh console</h2></div></div></div>
+      
+      <p>Type help again at prompt and you will see <code class="code">test</code> command.</p>
+      <pre class="screen">  % help
+Try one of these commands with the -h or --help switch:
+
+NAME      DESCRIPTION
+clock
+dashboard
+date      show the current time
+env       display the term env
+filter
+hello
+help      provides basic help
+java      various java language commands
+jdbc      JDBC connection
+jmx       Java Management Extensions
+jndi      Java Naming and Directory Interface
+jpa       Java persistance API
+jvm       JVM informations
+log       logging commands
+man       format and display the on-line manual pages
+shell     shell related command
+sleep     sleep for some time
+sort      Sort a map
+system    vm system properties commands
+test
+thread    JVM thread commands</pre>
+    </div>
+  </div>
+  <div class="chapter" title="Chapter&nbsp;3.&nbsp;How to print an array"><div class="titlepage"><div><div><div xmlns:d="http://docbook.org/ns/docbook" class="page-header"><h1><a name="printArr"></a>Chapter&nbsp;3.&nbsp;How to print an array </h1></div></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d5e112">Exemple</a></span></dt><dt><span class="section"><a href="#d5e118">Table Elements</a></span></dt><dt><span class="section"><a href="#d5e122">table</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e127">label</a></span></dt><dt><span class="section"><a href="#d5e132">columns</a></span></dt><dt><span class="section"><a href="#d5e139">rows</a></span></dt><dt><span class="section"><a href="#d5e146">header</a></span></dt><dt><span class="section"><a href="#d5e153">eval</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e159">attributes</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e162">border</a></span></dt><dt><span class="section"><a href="#d5e169">row</a></span></dt><dt><span class="section"><a href="#d5e171">separator</a></span></dt><dt><span class="section"><a href="#d5e178">overflow</a></span></dt><dt><span class="section"><a href="#d5e183">leftCellPadding</a></span></dt><dt><span class="section"><a href="#d5e188">rightCellPadding</a></span></dt></dl></dd><dt><span class="section"><a href="#d5e195">styles</a></span></dt><dd><dl><dt><span class="section"><a href="#d5e199">bold</a></span></dt><dt><span class="section"><a href="#d5e206">underline</a></span></dt><dt><span class="section"><a href="#d5e211">blink</a></span></dt><dt><span class="section"><a href="#d5e216">fg, foreground</a></span></dt><dt><span class="section"><a href="#d5e223">bg, background</a></span></dt></dl></dd></dl></div>
+    
+    <div class="section" title="Exemple"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e112"></a>Exemple</h2></div></div></div>
+      
+      <p>Here is an example for printing an array :</p>
+      <div class="programlistingco"><pre class="prettyprint">
+import org.crsh.text.ui.UIBuilder
+
+UIBuilder ui = new UIBuilder();
+
+ui.table(separator: dashed) {
+    header(decoration: bold, foreground: black, background: white) {
+        label("ATTRIBUTE NAME"); label("ACCESS"); label("TYPE"); label("DESCRIPTION"); label("ATTRIBUTE VALUE")
+    }
+
+    for(Attr tmpAttr : lst) {
+        if (null != tmpAttr) {
+            row() {
+                label(tmpAttr.name, foreground: red);
+                label(tmpAttr.access);
+                label(tmpAttr.type);
+                label(tmpAttr.desc);
+                label(tmpAttr.attrs.toString());
+            }
+        }
+    }
+}
+out &lt;&lt; ui;
+</pre></div>
+    </div>
+    <div class="section" title="Table Elements"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e118"></a>Table Elements</h2></div></div></div>
+      
+      <p>To define an array, you will use elements like header, label ... If you want to see an example, edit dashboard.groovy in <code class="code">$CRASH_HOME/cmd/base/</code>
+      </p>
+    </div>
+    <div class="section" title="table"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e122"></a>table</h2></div></div></div>
+      
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>Define table.</p>
+        </li></ul></div>
+      <div class="section" title="label"><div class="titlepage"><div><div><h3 class="title"><a name="d5e127"></a>label</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Print a label.</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="columns"><div class="titlepage"><div><div><h3 class="title"><a name="d5e132"></a>columns</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Define columns.</p>
+          </li><li class="listitem">
+            <p>e.g : columns: [1]</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="rows"><div class="titlepage"><div><div><h3 class="title"><a name="d5e139"></a>rows</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Define rows.</p>
+          </li><li class="listitem">
+            <p>rows: [1,1]</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="header"><div class="titlepage"><div><div><h3 class="title"><a name="d5e146"></a>header</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Define header.</p>
+          </li><li class="listitem">
+            <p>header element</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="eval"><div class="titlepage"><div><div><h3 class="title"><a name="d5e153"></a>eval</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Execute an other CRaSH command.</p>
+          </li></ul></div>
+        <pre class="screen">eval {
+  execute("jvm heap")
+}</pre>
+      </div>
+    </div>
+    <div class="section" title="attributes"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e159"></a>attributes</h2></div></div></div>
+      
+      <p>Attribute can be add to table element.</p>
+      <div class="section" title="border"><div class="titlepage"><div><div><h3 class="title"><a name="d5e162"></a>border</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Define a border.</p>
+          </li><li class="listitem">
+            <p>e.g: border: dashed</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="row"><div class="titlepage"><div><div><h3 class="title"><a name="d5e169"></a>row</h3></div></div></div>
+        
+      </div>
+      <div class="section" title="separator"><div class="titlepage"><div><div><h3 class="title"><a name="d5e171"></a>separator</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Define separator style.</p>
+          </li><li class="listitem">
+            <p>e.g : dashed,star</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="overflow"><div class="titlepage"><div><div><h3 class="title"><a name="d5e178"></a>overflow</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>overflow          ?</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="leftCellPadding"><div class="titlepage"><div><div><h3 class="title"><a name="d5e183"></a>leftCellPadding</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Left align in cell.</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="rightCellPadding"><div class="titlepage"><div><div><h3 class="title"><a name="d5e188"></a>rightCellPadding</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Right align in cell</p>
+          </li><li class="listitem">
+            <p>e.g : rightCellPadding: 1</p>
+          </li></ul></div>
+      </div>
+    </div>
+    <div class="section" title="styles"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e195"></a>styles</h2></div></div></div>
+      
+      <p>Class <code class="code">org.crsh.text.Style</code> contains style that we will use when making elements (e.g : header)</p>
+      <div class="section" title="bold"><div class="titlepage"><div><div><h3 class="title"><a name="d5e199"></a>bold</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Type : boolean</p>
+          </li><li class="listitem">
+            <p>e.g : bold: true</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="underline"><div class="titlepage"><div><div><h3 class="title"><a name="d5e206"></a>underline</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Type : boolean</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="blink"><div class="titlepage"><div><div><h3 class="title"><a name="d5e211"></a>blink</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Type : boolean</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="fg, foreground"><div class="titlepage"><div><div><h3 class="title"><a name="d5e216"></a>fg, foreground</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Type : Color</p>
+          </li><li class="listitem">
+            <p>fg: black</p>
+          </li></ul></div>
+      </div>
+      <div class="section" title="bg, background"><div class="titlepage"><div><div><h3 class="title"><a name="d5e223"></a>bg, background</h3></div></div></div>
+        
+        <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+            <p>Type : Color</p>
+          </li><li class="listitem">
+            <p>bg: white</p>
+          </li></ul></div>
+      </div>
+    </div>
+  </div>
+</div></body></html>
