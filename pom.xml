@@ -120,10 +120,8 @@
             <configuration>
               <message>Deploy documentation for ${project.version}</message>
 			        <branch>refs/heads/master</branch>
-              <!--
               <repositoryOwner>crashub</repositoryOwner>
               <repositoryName>crashub.github.com</repositoryName>
-            -->
               <outputDirectory>${project.build.directory}/classes</outputDirectory>
             </configuration>
             <executions>
