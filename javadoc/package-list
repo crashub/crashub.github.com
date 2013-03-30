@@ -29,6 +29,7 @@ org.crsh.shell.impl.remoting
 org.crsh.spring
 org.crsh.ssh
 org.crsh.ssh.term
+org.crsh.ssh.term.inline
 org.crsh.ssh.term.scp
 org.crsh.standalone
 org.crsh.telnet
