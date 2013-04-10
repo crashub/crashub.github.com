@@ -8,7 +8,7 @@
   <version>1.0-SNAPSHOT</version>
 
   <properties>
-    <crash.version>1.2.0</crash.version>
+    <crash.version>1.2.1</crash.version>
   </properties>
 
   <scm>
