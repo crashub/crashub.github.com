@@ -164,56 +164,48 @@
 <FONT color="green">161</FONT>            }<a name="line.161"></a>
 <FONT color="green">162</FONT>            Color fg = composite.getForeground();<a name="line.162"></a>
 <FONT color="green">163</FONT>            if (fg != null) {<a name="line.163"></a>
-<FONT color="green">164</FONT>              if (fg == Color.def) {<a name="line.164"></a>
-<FONT color="green">165</FONT>                termIO.setForegroundColor(BasicTerminalIO.COLORINIT);<a name="line.165"></a>
-<FONT color="green">166</FONT>              } else {<a name="line.166"></a>
-<FONT color="green">167</FONT>                termIO.setForegroundColor(30 + fg.code);<a name="line.167"></a>
-<FONT color="green">168</FONT>              }<a name="line.168"></a>
+<FONT color="green">164</FONT>              termIO.setForegroundColor(30 + fg.code);<a name="line.164"></a>
+<FONT color="green">165</FONT>            }<a name="line.165"></a>
+<FONT color="green">166</FONT>            Color bg = composite.getBackground();<a name="line.166"></a>
+<FONT color="green">167</FONT>            if (bg != null) {<a name="line.167"></a>
+<FONT color="green">168</FONT>              termIO.setBackgroundColor(30 + bg.code);<a name="line.168"></a>
 <FONT color="green">169</FONT>            }<a name="line.169"></a>
-<FONT color="green">170</FONT>            Color bg = composite.getBackground();<a name="line.170"></a>
-<FONT color="green">171</FONT>            if (bg != null) {<a name="line.171"></a>
-<FONT color="green">172</FONT>              if (bg == Color.def) {<a name="line.172"></a>
-<FONT color="green">173</FONT>                termIO.setBackgroundColor(BasicTerminalIO.COLORINIT);<a name="line.173"></a>
-<FONT color="green">174</FONT>              } else {<a name="line.174"></a>
-<FONT color="green">175</FONT>                termIO.setBackgroundColor(30 + bg.code);<a name="line.175"></a>
-<FONT color="green">176</FONT>              }<a name="line.176"></a>
-<FONT color="green">177</FONT>            }<a name="line.177"></a>
-<FONT color="green">178</FONT>          } else {<a name="line.178"></a>
-<FONT color="green">179</FONT>            termIO.resetAttributes();<a name="line.179"></a>
-<FONT color="green">180</FONT>          }<a name="line.180"></a>
-<FONT color="green">181</FONT>        }<a name="line.181"></a>
-<FONT color="green">182</FONT>      }<a name="line.182"></a>
-<FONT color="green">183</FONT>    <a name="line.183"></a>
-<FONT color="green">184</FONT>      public void write(char c) throws IOException {<a name="line.184"></a>
-<FONT color="green">185</FONT>        termIO.write(c);<a name="line.185"></a>
-<FONT color="green">186</FONT>      }<a name="line.186"></a>
-<FONT color="green">187</FONT>    <a name="line.187"></a>
-<FONT color="green">188</FONT>      public void writeDel() throws IOException {<a name="line.188"></a>
-<FONT color="green">189</FONT>        termIO.moveLeft(1);<a name="line.189"></a>
-<FONT color="green">190</FONT>        termIO.write(' ');<a name="line.190"></a>
-<FONT color="green">191</FONT>        termIO.moveLeft(1);<a name="line.191"></a>
-<FONT color="green">192</FONT>        termIO.flush();<a name="line.192"></a>
-<FONT color="green">193</FONT>      }<a name="line.193"></a>
-<FONT color="green">194</FONT>    <a name="line.194"></a>
-<FONT color="green">195</FONT>      public void writeCRLF() throws IOException {<a name="line.195"></a>
-<FONT color="green">196</FONT>        termIO.write("\r\n");<a name="line.196"></a>
-<FONT color="green">197</FONT>      }<a name="line.197"></a>
-<FONT color="green">198</FONT>    <a name="line.198"></a>
-<FONT color="green">199</FONT>      public boolean moveRight(char c) throws IOException {<a name="line.199"></a>
-<FONT color="green">200</FONT>        termIO.moveRight(1);<a name="line.200"></a>
-<FONT color="green">201</FONT>        return true;<a name="line.201"></a>
-<FONT color="green">202</FONT>      }<a name="line.202"></a>
-<FONT color="green">203</FONT>    <a name="line.203"></a>
-<FONT color="green">204</FONT>      public boolean moveLeft() throws IOException {<a name="line.204"></a>
-<FONT color="green">205</FONT>        termIO.moveLeft(1);<a name="line.205"></a>
-<FONT color="green">206</FONT>        return true;<a name="line.206"></a>
-<FONT color="green">207</FONT>      }<a name="line.207"></a>
-<FONT color="green">208</FONT>    <a name="line.208"></a>
-<FONT color="green">209</FONT>      public void cls() throws IOException {<a name="line.209"></a>
-<FONT color="green">210</FONT>        termIO.eraseScreen();<a name="line.210"></a>
-<FONT color="green">211</FONT>        termIO.setCursor(0, 0);<a name="line.211"></a>
-<FONT color="green">212</FONT>      }<a name="line.212"></a>
-<FONT color="green">213</FONT>    }<a name="line.213"></a>
+<FONT color="green">170</FONT>          } else {<a name="line.170"></a>
+<FONT color="green">171</FONT>            termIO.resetAttributes();<a name="line.171"></a>
+<FONT color="green">172</FONT>          }<a name="line.172"></a>
+<FONT color="green">173</FONT>        }<a name="line.173"></a>
+<FONT color="green">174</FONT>      }<a name="line.174"></a>
+<FONT color="green">175</FONT>    <a name="line.175"></a>
+<FONT color="green">176</FONT>      public void write(char c) throws IOException {<a name="line.176"></a>
+<FONT color="green">177</FONT>        termIO.write(c);<a name="line.177"></a>
+<FONT color="green">178</FONT>      }<a name="line.178"></a>
+<FONT color="green">179</FONT>    <a name="line.179"></a>
+<FONT color="green">180</FONT>      public void writeDel() throws IOException {<a name="line.180"></a>
+<FONT color="green">181</FONT>        termIO.moveLeft(1);<a name="line.181"></a>
+<FONT color="green">182</FONT>        termIO.write(' ');<a name="line.182"></a>
+<FONT color="green">183</FONT>        termIO.moveLeft(1);<a name="line.183"></a>
+<FONT color="green">184</FONT>        termIO.flush();<a name="line.184"></a>
+<FONT color="green">185</FONT>      }<a name="line.185"></a>
+<FONT color="green">186</FONT>    <a name="line.186"></a>
+<FONT color="green">187</FONT>      public void writeCRLF() throws IOException {<a name="line.187"></a>
+<FONT color="green">188</FONT>        termIO.write("\r\n");<a name="line.188"></a>
+<FONT color="green">189</FONT>      }<a name="line.189"></a>
+<FONT color="green">190</FONT>    <a name="line.190"></a>
+<FONT color="green">191</FONT>      public boolean moveRight(char c) throws IOException {<a name="line.191"></a>
+<FONT color="green">192</FONT>        termIO.moveRight(1);<a name="line.192"></a>
+<FONT color="green">193</FONT>        return true;<a name="line.193"></a>
+<FONT color="green">194</FONT>      }<a name="line.194"></a>
+<FONT color="green">195</FONT>    <a name="line.195"></a>
+<FONT color="green">196</FONT>      public boolean moveLeft() throws IOException {<a name="line.196"></a>
+<FONT color="green">197</FONT>        termIO.moveLeft(1);<a name="line.197"></a>
+<FONT color="green">198</FONT>        return true;<a name="line.198"></a>
+<FONT color="green">199</FONT>      }<a name="line.199"></a>
+<FONT color="green">200</FONT>    <a name="line.200"></a>
+<FONT color="green">201</FONT>      public void cls() throws IOException {<a name="line.201"></a>
+<FONT color="green">202</FONT>        termIO.eraseScreen();<a name="line.202"></a>
+<FONT color="green">203</FONT>        termIO.setCursor(0, 0);<a name="line.203"></a>
+<FONT color="green">204</FONT>      }<a name="line.204"></a>
+<FONT color="green">205</FONT>    }<a name="line.205"></a>
 
 
 

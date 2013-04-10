@@ -37,13 +37,13 @@
 <FONT color="green">034</FONT>    import java.util.Collection;<a name="line.34"></a>
 <FONT color="green">035</FONT>    import java.util.List;<a name="line.35"></a>
 <FONT color="green">036</FONT>    <a name="line.36"></a>
-<FONT color="green">037</FONT>    public abstract class JCRCommand extends CRaSHCommand implements Completer {<a name="line.37"></a>
+<FONT color="green">037</FONT>    public abstract class JCRCommand extends CRaSHCommand implements PathCompleter {<a name="line.37"></a>
 <FONT color="green">038</FONT>    <a name="line.38"></a>
 <FONT color="green">039</FONT>      protected JCRCommand() throws IntrospectionException {<a name="line.39"></a>
 <FONT color="green">040</FONT>      }<a name="line.40"></a>
 <FONT color="green">041</FONT>    <a name="line.41"></a>
 <FONT color="green">042</FONT>      public Completion complete(ParameterDescriptor parameter, String prefix) throws Exception {<a name="line.42"></a>
-<FONT color="green">043</FONT>        if (parameter.getDeclaredType() == Path.class) {<a name="line.43"></a>
+<FONT color="green">043</FONT>        if (parameter.getCompleterType() == PathCompleter.class) {<a name="line.43"></a>
 <FONT color="green">044</FONT>    <a name="line.44"></a>
 <FONT color="green">045</FONT>          final Path path = (Path)getProperty("currentPath");<a name="line.45"></a>
 <FONT color="green">046</FONT>          final Session session = (Session)getProperty("session");<a name="line.46"></a>
