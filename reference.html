@@ -1,4 +1,3 @@
-
 <!DOCTYPE html
   SYSTEM "">
 <html><head>
@@ -1282,7 +1281,7 @@ crash.auth.jaas.domain=gatein-domain</pre></div>
           
           <p>The <span class="italic">crash.ssh.authorized.keypath</span> property can be used to configure the SSH server to use a public key for performing authentication. The property should point to a valid <span class="italic">.pem</span> file. Obviously only a public key is required to be in the file, although it can also contain a private key (that will not be used).</p>
           <div class="programlistingco"><pre class="prettyprint"># Authentication configuration
-crash.auth.authorized.keypath=/Users/julien/.ssh/id_dsa.pem</pre></div>
+crash.ssh.authorized.keypath=/Users/julien/.ssh/id_dsa.pem</pre></div>
           <div class="alert alert-success alert-block" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
             <p>In case you are using an authorized SSH key for authentication, you can disable password based authentication by clearing  the <span class="italic">crash.auth</span> property.</p>
           </div>
