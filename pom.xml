@@ -9,6 +9,7 @@
 
   <properties>
     <crash.version>1.2.7</crash.version>
+    <crash-next.version>1.3.0-beta3</crash-next.version>
   </properties>
 
   <scm>
@@ -37,6 +38,26 @@
       <classifier>html</classifier>
       <type>zip</type>
       <version>${crash.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.crashub</groupId>
+      <artifactId>crash.doc.reference</artifactId>
+      <classifier>html</classifier>
+      <type>zip</type>
+      <version>${crash-next.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.crashub</groupId>
+      <artifactId>crash.doc.reference</artifactId>
+      <classifier>javadoc</classifier>
+      <version>${crash-next.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.crashub</groupId>
+      <artifactId>crash.doc.cookbook</artifactId>
+      <classifier>html</classifier>
+      <type>zip</type>
+      <version>${crash-next.version}</version>
     </dependency>
   </dependencies>
 
@@ -72,25 +93,22 @@
                 <phase>generate-resources</phase>
                 <configuration>
                   <target>
+
                     <property name="reference" value="${project.build.directory}/reference/" />
                     <property name="cookbook" value="${project.build.directory}/cookbook/" />
                     <property name="site" value="${project.build.directory}/classes/" />
 
-                    <!-- Reference guide -->
+                    <!-- 1.2 -->
                     <unzip src="${org.crsh:crsh.doc.reference:zip:html}" dest="${reference}" />
                     <copy file="${reference}/index.html" tofile="${site}/reference.html" />
                     <copy todir="${site}/images">
                       <fileset dir="${reference}/images" />
                     </copy>
-
-                    <!-- Cookbook -->
                     <unzip src="${org.crsh:crsh.doc.cookbook:zip:html}" dest="${cookbook}" />
                     <copy file="${cookbook}/index.html" tofile="${site}/cookbook.html" />
                     <copy todir="${site}/images">
                       <fileset dir="${reference}/images" />
                     </copy>
-
-                    <!-- Resources -->
                     <copy todir="${site}/css">
                       <fileset dir="${reference}/css">
                         <include name="bootstrap/bootstrap.css" />
@@ -101,9 +119,24 @@
                     <copy todir="${site}/js">
                       <fileset dir="${reference}/js" />
                     </copy>
-
-                    <!-- Javadoc -->
                     <unzip src="${org.crsh:crsh.doc.reference:jar:javadoc}" dest="${site}/javadoc" />
+
+                    <!-- Cleanup temp dirs -->
+                    <delete dir="${reference}"/>
+                    <delete dir="${cookbook}"/>
+
+                    <!-- 1.3 -->
+                    <unzip src="${org.crashub:crash.doc.reference:zip:html}" dest="${reference}" />
+                    <copy file="${reference}/book.html" tofile="${site}/beta/reference.html" />
+                    <unzip src="${org.crashub:crash.doc.cookbook:zip:html}" dest="${cookbook}" />
+                    <copy file="${cookbook}/book.html" tofile="${site}/beta/cookbook.html" />
+                    <copy todir="${site}/beta">
+                      <fileset dir="${reference}">
+                        <include name="foundation.css" />
+                        <include name="foundation-lime.css" />
+                      </fileset>
+                    </copy>
+                    <unzip src="${org.crashub:crash.doc.reference:jar:javadoc}" dest="${site}/beta/javadoc" />
 
                   </target>
                 </configuration>
