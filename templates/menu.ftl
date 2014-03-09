@@ -3,8 +3,8 @@
       <div class="navbar-inner">
         <div class="container">
           <ul id="tabs" class="nav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#video">Video</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/video.html">Video</a></li>
             <li><a href="reference.html">Documentation</a></li>
             <li><a href="cookbook.html">Cookbook</a></li>
             <li><a href="javadoc/index.html" target="_blank">Javadoc</a></li>

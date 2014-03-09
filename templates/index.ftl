@@ -177,18 +177,6 @@
       </div>
 
       <div class="page">
-        <a name="video"></a>
-        <div id="video" class="row">
-          <div class="offset4 span4">
-          <iframe src="//player.vimeo.com/video/74553180" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-          <p>
-            <a href="http://vimeo.com/74553180">CRaSH : the shell for the Java Platform</a> from <a href="http://vimeo.com/javazone">JavaZone</a> on <a href="https://vimeo.com">Vimeo</a>.
-          </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="page">
         <a name="visualvm"></a>
         <div id="visualvm">
           <h3>Purpose</h3>
