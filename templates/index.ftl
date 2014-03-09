@@ -57,7 +57,7 @@
               ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash.version}"}-mule-app.tar.gz">mule</a>
               or <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash.version}"}-gatein.tar.gz">gatein</a><br/>
             <strong>Snapshots:</strong> <a href="http://repository.exoplatform.org/service/local/artifact/maven/content?g=org.crsh&a=crsh.distrib&v=LATEST&e=tar.gz&r=crsh-snapshots">zip</a><br/>
-            <strong>Embedded</strong> <a href="#visualvm">VisualVM</a> plugin<br/>
+            <strong>Embedded</strong> <a href="/visualvm.html">VisualVM</a> plugin<br/>
             <strong>Embedded</strong> <a href="https://github.com/crashub/mod-shell">Vert.x</a> module<br/>
             <h4>${r"${crash-next.version"}}</h4>
             <strong>Distributions:</strong>
@@ -88,25 +88,6 @@
         </div>
       </div>
         
-      <div class="page">
-        <a name="visualvm"></a>
-        <div id="visualvm">
-          <h3>Purpose</h3>
-          <blockquote>
-          	<p>We simply provide a way to attach crash to a running VM using visual vm. The plugin support all crash feature and can be used instead of bash.<br/><img src="images/crash-visualvm.jpg"/></p>
-          </blockquote>
-          <h3>How to install</h3>
-          <blockquote>
-          	<p>A plugin repository is available at <a href="http://www.crashub.org/visualvm/plugin/updates.xml.gz">http://www.crashub.org/visualvm/plugin/updates.xml.gz</a><br/>
-          	To install the plugin, reach Tools/Plugins, select Settings tab, and add the crash repository. You should see the plugin appear in available plugin now.</p>
-          </blockquote>
-          <h3>How to use it</h3>
-          <blockquote>
-          	<p>Once the plugin installed, a new tab named "Crash" will appear, click on "Connect" to deploy the agent, and let's use crash.</p>
-          </blockquote>
-        </div>
-      </div>
-
       <hr>
       <footer>
         <p>Sponsored by <a href="http://www.exoplatform.com">eXo Platform</a></p>
