@@ -38,8 +38,6 @@
     <meta charset="utf-8" />
     <title>CRaSH the shell for the Java Platform</title>
     <link rel="stylesheet" href="css/site.css">
-    <script src="js/jquery-1.7.1.min.js"></script>
-    <script src="js/bootstrap-dropdown.js"></script>
 </head>
 <body>
 
