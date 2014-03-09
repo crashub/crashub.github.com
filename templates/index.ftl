@@ -1,6 +1,5 @@
 <#include "header.ftl">
 <#--
-	<#include "menu.ftl">
 
 	<div class="page-header">
 		<h1>Blog</h1>
@@ -18,23 +17,7 @@
 	<p>Older posts are available in the <a href="/${config.archive_file}">archive</a>.</p>
 
 -->
-
-    <div class="navbar navbar-fixed-top">
-  <a href="https://github.com/crashub"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
-      <div class="navbar-inner">
-        <div class="container">
-          <ul id="tabs" class="nav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#video">Video</a></li>
-            <li><a href="reference.html">Documentation</a></li>
-            <li><a href="cookbook.html">Cookbook</a></li>
-            <li><a href="javadoc/index.html" target="_blank">Javadoc</a></li>
-            <li><a href="#contributors">Contributors</a></li>
-            <li><a href="#links">Links</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <#include "menu.ftl">
 
     <div class="container">
 

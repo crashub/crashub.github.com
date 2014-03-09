@@ -1,4 +1,21 @@
-	<!-- Fixed navbar -->
+    <div class="navbar navbar-fixed-top">
+  <a href="https://github.com/crashub"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+      <div class="navbar-inner">
+        <div class="container">
+          <ul id="tabs" class="nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#video">Video</a></li>
+            <li><a href="reference.html">Documentation</a></li>
+            <li><a href="cookbook.html">Cookbook</a></li>
+            <li><a href="javadoc/index.html" target="_blank">Javadoc</a></li>
+            <li><a href="#contributors">Contributors</a></li>
+            <li><a href="#links">Links</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<#--
+	<!-- Fixed navbar &ndash;&gt;
       <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container">
@@ -26,8 +43,8 @@
                   </ul>
                 </li>
               </ul>
-            </div><!--/.nav-collapse -->
+            </div><!--/.nav-collapse &ndash;&gt;
           </div>
         </div>
       </div>
-      <div class="container">
+      <div class="container">-->
