@@ -88,10 +88,5 @@
         </div>
       </div>
         
-      <hr>
-      <footer>
-        <p>Sponsored by <a href="http://www.exoplatform.com">eXo Platform</a></p>
-      </footer>
-
     </div>
 <#include "footer.ftl">
