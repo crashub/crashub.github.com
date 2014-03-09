@@ -9,7 +9,7 @@
             <li><a href="cookbook.html">Cookbook</a></li>
             <li><a href="javadoc/index.html" target="_blank">Javadoc</a></li>
             <li><a href="/contributors.html">Contributors</a></li>
-            <li><a href="#links">Links</a></li>
+            <li><a href="/links.html">Links</a></li>
           </ul>
         </div>
       </div>
