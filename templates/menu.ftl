@@ -8,7 +8,7 @@
             <li><a href="reference.html">Documentation</a></li>
             <li><a href="cookbook.html">Cookbook</a></li>
             <li><a href="javadoc/index.html" target="_blank">Javadoc</a></li>
-            <li><a href="#contributors">Contributors</a></li>
+            <li><a href="/contributors.html">Contributors</a></li>
             <li><a href="#links">Links</a></li>
           </ul>
         </div>
