@@ -25,6 +25,6 @@ div.chapter {
     white-space: pre-wrap;
     word-wrap: break-word;
     font-family:Menlo,Monaco,'Courier New',monospace;
-    font-size:12px
+    font-size:12px;
     line-height: 1;
 }
