@@ -94,9 +94,9 @@
                 <configuration>
                   <target>
 
-                    <property name="reference" value="${project.build.directory}/reference/" />
-                    <property name="cookbook" value="${project.build.directory}/cookbook/" />
-                    <property name="site" value="${project.build.directory}/classes/" />
+                    <property name="site" value="${project.build.directory}/output/"/>
+                    <property name="reference" value="${site}/reference/" />
+                    <property name="cookbook" value="${site}/cookbook/" />
 
                     <!-- 1.2 -->
                     <unzip src="${org.crsh:crsh.doc.reference:zip:html}" dest="${reference}" />
@@ -147,15 +147,30 @@
             </executions>
           </plugin>
           <plugin>
+            <groupId>br.com.ingenieux</groupId>
+            <artifactId>jbake-maven-plugin</artifactId>
+            <version>0.0.6</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <phase>process-resources</phase>
+                <configuration>
+                  <inputDirectory>${project.basedir}</inputDirectory>
+                  <outputDirectory>${project.build.directory}/output</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <groupId>com.github.github</groupId>
             <artifactId>site-maven-plugin</artifactId>
-            <version>0.8</version>
+            <version>0.9</version>
             <configuration>
               <message>Deploy documentation for ${project.version}</message>
-			        <branch>refs/heads/master</branch>
-              <repositoryOwner>crashub</repositoryOwner>
-              <repositoryName>crashub.github.com</repositoryName>
-              <outputDirectory>${project.build.directory}/classes</outputDirectory>
+              <outputDirectory>${project.build.directory}/output</outputDirectory>
+              <branch>refs/heads/master</branch>
             </configuration>
             <executions>
               <execution>
