@@ -48,25 +48,25 @@
           </div>
           <div class="span4">
             <h3>Download</h3>
-            <h4>${r"${crash.version}"}</h4>
+            <h4>${config.crash_version}</h4>
             <strong>Distributions:</strong>
-            <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash.version}"}.tar.gz">standalone</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash.version}"}-docs.tar.gz">docs</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash.version}"}-war.tar.gz">web</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash.version}"}-spring.tar.gz">spring</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash.version}"}-mule-app.tar.gz">mule</a>
-              or <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash.version}"}-gatein.tar.gz">gatein</a><br/>
+            <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}.tar.gz">standalone</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}-docs.tar.gz">docs</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}-war.tar.gz">web</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}-spring.tar.gz">spring</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}-mule-app.tar.gz">mule</a>
+              or <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}-gatein.tar.gz">gatein</a><br/>
             <strong>Snapshots:</strong> <a href="http://repository.exoplatform.org/service/local/artifact/maven/content?g=org.crsh&a=crsh.distrib&v=LATEST&e=tar.gz&r=crsh-snapshots">zip</a><br/>
             <strong>Embedded</strong> <a href="/visualvm.html">VisualVM</a> plugin<br/>
             <strong>Embedded</strong> <a href="https://github.com/crashub/mod-shell">Vert.x</a> module<br/>
-            <h4>${r"${crash-next.version"}}</h4>
+            <h4>${config.crash_next_version}</h4>
             <strong>Distributions:</strong>
-            <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash-next.version"}}.tar.gz">standalone</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash-next.version"}}-docs.tar.gz">docs</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash-next.version"}}-war.tar.gz">web</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash-next.version"}}-spring.tar.gz">spring</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash-next.version"}}-mule-app.tar.gz">mule</a>
-              or <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${r"${crash-next.version"}}-gatein.tar.gz">gatein</a><br/>
+            <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}.tar.gz">standalone</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}-docs.tar.gz">docs</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}-war.tar.gz">web</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}-spring.tar.gz">spring</a>
+              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}-mule-app.tar.gz">mule</a>
+              or <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}-gatein.tar.gz">gatein</a><br/>
             <strong>Doc:</strong>
             <a href="beta/reference.html" target="_blank">Documentation</a>,
             <a href="beta/cookbook.html" target="_blank">Cookbook</a>
@@ -88,5 +88,6 @@
         </div>
       </div>
         
+
     </div>
 <#include "footer.ftl">
