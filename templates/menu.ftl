@@ -4,10 +4,11 @@
         <div class="container">
           <ul id="tabs" class="nav">
             <li><a href="/">Home</a></li>
-            <li><a href="/video.html">Video</a></li>
             <li><a href="reference.html">Documentation</a></li>
             <li><a href="cookbook.html">Cookbook</a></li>
             <li><a href="javadoc/index.html" target="_blank">Javadoc</a></li>
+            <li><a href="/video.html">Video</a></li>
+            <li><a href="/embedded.html">Embedded</a></li>
             <li><a href="/contributors.html">Contributors</a></li>
             <li><a href="/links.html">Links</a></li>
           </ul>
