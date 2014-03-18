@@ -61,12 +61,12 @@
             <strong>Embedded</strong> <a href="https://github.com/crashub/mod-shell">Vert.x</a> module<br/>
             <h4>${config.crash_next_version}</h4>
             <strong>Distributions:</strong>
-            <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}.tar.gz">standalone</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}-docs.tar.gz">docs</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}-war.tar.gz">web</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}-spring.tar.gz">spring</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}-mule-app.tar.gz">mule</a>
-              or <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_next_version}-gatein.tar.gz">gatein</a><br/>
+            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}.tar.gz">standalone</a>
+           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-docs.tar.gz">docs</a>
+           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-war.tar.gz">web</a>
+           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-spring.tar.gz">spring</a>
+           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-mule-app.tar.gz">mule</a>
+         or <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-gatein.tar.gz">gatein</a><br/>
             <strong>Doc:</strong>
             <a href="beta/reference.html" target="_blank">Documentation</a>,
             <a href="beta/cookbook.html" target="_blank">Cookbook</a>
