@@ -50,12 +50,12 @@
             <h3>Download</h3>
             <h4>${config.crash_version}</h4>
             <strong>Distributions:</strong>
-            <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}.tar.gz">standalone</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}-docs.tar.gz">docs</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}-war.tar.gz">web</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}-spring.tar.gz">spring</a>
-              ,<a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}-mule-app.tar.gz">mule</a>
-              or <a href="https://code.google.com/p/crsh/downloads/detail?name=crash-${config.crash_version}-gatein.tar.gz">gatein</a><br/>
+            <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}.tar.gz">standalone</a>
+              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-docs.tar.gz">docs</a>
+              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-war.tar.gz">web</a>
+              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-spring.tar.gz">spring</a>
+              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-mule-app.tar.gz">mule</a>
+              or <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-gatein.tar.gz">gatein</a><br/>
             <strong>Snapshots:</strong> <a href="http://repository.exoplatform.org/service/local/artifact/maven/content?g=org.crsh&a=crsh.distrib&v=LATEST&e=tar.gz&r=crsh-snapshots">zip</a><br/>
             <strong>Embedded</strong> <a href="/visualvm.html">VisualVM</a> plugin<br/>
             <strong>Embedded</strong> <a href="https://github.com/crashub/mod-shell">Vert.x</a> module<br/>
