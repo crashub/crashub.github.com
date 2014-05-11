@@ -18,6 +18,13 @@
     <url>https://github.com/crashub/crashub.github.com</url>
   </scm>
 
+  <distributionManagement>
+    <site>
+      <id>site_id</id>
+      <url>scm:git:git@github.com:crashub/crashub.github.com.git</url>
+    </site>
+  </distributionManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.crsh</groupId>
@@ -86,11 +93,19 @@
         </resources>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>3.3</version>
+            <configuration>
+              <skip>true</skip>
+              <skipDeploy>true</skipDeploy>
+            </configuration>
+          </plugin>
+          <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
             <version>1.7</version>
             <executions>
               <execution>
-                <phase>generate-resources</phase>
                 <configuration>
                   <target>
 
@@ -143,6 +158,7 @@
                 <goals>
                   <goal>run</goal>
                 </goals>
+                <phase>site</phase>
               </execution>
             </executions>
           </plugin>
@@ -155,7 +171,7 @@
                 <goals>
                   <goal>generate</goal>
                 </goals>
-                <phase>process-resources</phase>
+                <phase>site</phase>
                 <configuration>
                   <inputDirectory>${project.basedir}</inputDirectory>
                   <outputDirectory>${project.build.directory}/output</outputDirectory>
@@ -163,6 +179,30 @@
               </execution>
             </executions>
           </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-scm-publish-plugin</artifactId>
+            <version>1.0</version>
+            <configuration>
+              <pubScmUrl>scm:git:https://github.com/crashub/crashub.github.com</pubScmUrl>
+              <scmBranch>master</scmBranch>
+              <username>${github.global.userName}</username>
+              <password>${github.global.password}</password>
+              <content>${project.build.directory}/output</content>
+              <tryUpdate>true</tryUpdate>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>site-deploy</phase>
+                <goals>
+                  <goal>publish-scm</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+<!--
           <plugin>
             <groupId>com.github.github</groupId>
             <artifactId>site-maven-plugin</artifactId>
@@ -181,6 +221,7 @@
               </execution>
             </executions>
           </plugin>
+-->
         </plugins>
       </build>
     </profile>
