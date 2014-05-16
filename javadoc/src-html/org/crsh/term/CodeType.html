@@ -2,7 +2,7 @@
 <BODY BGCOLOR="white">
 <PRE>
 <FONT color="green">001</FONT>    /*<a name="line.1"></a>
-<FONT color="green">002</FONT>     * Copyright (C) 2010 eXo Platform SAS.<a name="line.2"></a>
+<FONT color="green">002</FONT>     * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
 <FONT color="green">003</FONT>     *<a name="line.3"></a>
 <FONT color="green">004</FONT>     * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
 <FONT color="green">005</FONT>     * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
@@ -22,41 +22,45 @@
 <FONT color="green">019</FONT>    <a name="line.19"></a>
 <FONT color="green">020</FONT>    package org.crsh.term;<a name="line.20"></a>
 <FONT color="green">021</FONT>    <a name="line.21"></a>
-<FONT color="green">022</FONT>    /**<a name="line.22"></a>
-<FONT color="green">023</FONT>     * @author &lt;a href="mailto:julien.viet@exoplatform.com"&gt;Julien Viet&lt;/a&gt;<a name="line.23"></a>
-<FONT color="green">024</FONT>     * @version $Revision$<a name="line.24"></a>
-<FONT color="green">025</FONT>     */<a name="line.25"></a>
-<FONT color="green">026</FONT>    public enum CodeType {<a name="line.26"></a>
+<FONT color="green">022</FONT>    public enum CodeType {<a name="line.22"></a>
+<FONT color="green">023</FONT>    <a name="line.23"></a>
+<FONT color="green">024</FONT>      CLOSE,<a name="line.24"></a>
+<FONT color="green">025</FONT>    <a name="line.25"></a>
+<FONT color="green">026</FONT>      BACKSPACE,<a name="line.26"></a>
 <FONT color="green">027</FONT>    <a name="line.27"></a>
-<FONT color="green">028</FONT>      CLOSE,<a name="line.28"></a>
+<FONT color="green">028</FONT>      UP,<a name="line.28"></a>
 <FONT color="green">029</FONT>    <a name="line.29"></a>
-<FONT color="green">030</FONT>      BACKSPACE,<a name="line.30"></a>
+<FONT color="green">030</FONT>      DOWN,<a name="line.30"></a>
 <FONT color="green">031</FONT>    <a name="line.31"></a>
-<FONT color="green">032</FONT>      UP,<a name="line.32"></a>
+<FONT color="green">032</FONT>      CHAR,<a name="line.32"></a>
 <FONT color="green">033</FONT>    <a name="line.33"></a>
-<FONT color="green">034</FONT>      DOWN,<a name="line.34"></a>
+<FONT color="green">034</FONT>      RIGHT,<a name="line.34"></a>
 <FONT color="green">035</FONT>    <a name="line.35"></a>
-<FONT color="green">036</FONT>      CHAR,<a name="line.36"></a>
+<FONT color="green">036</FONT>      LEFT,<a name="line.36"></a>
 <FONT color="green">037</FONT>    <a name="line.37"></a>
-<FONT color="green">038</FONT>      RIGHT,<a name="line.38"></a>
+<FONT color="green">038</FONT>      TAB,<a name="line.38"></a>
 <FONT color="green">039</FONT>    <a name="line.39"></a>
-<FONT color="green">040</FONT>      LEFT,<a name="line.40"></a>
+<FONT color="green">040</FONT>      BREAK,<a name="line.40"></a>
 <FONT color="green">041</FONT>    <a name="line.41"></a>
-<FONT color="green">042</FONT>      TAB,<a name="line.42"></a>
+<FONT color="green">042</FONT>      BACKWARD_WORD,<a name="line.42"></a>
 <FONT color="green">043</FONT>    <a name="line.43"></a>
-<FONT color="green">044</FONT>      BREAK;<a name="line.44"></a>
+<FONT color="green">044</FONT>      FORWARD_WORD,<a name="line.44"></a>
 <FONT color="green">045</FONT>    <a name="line.45"></a>
-<FONT color="green">046</FONT>      /** . */<a name="line.46"></a>
-<FONT color="green">047</FONT>      private static final CodeType[] ALL = values();<a name="line.47"></a>
-<FONT color="green">048</FONT>    <a name="line.48"></a>
-<FONT color="green">049</FONT>      public static CodeType valueOf(int ordinal) {<a name="line.49"></a>
-<FONT color="green">050</FONT>        if (ordinal &gt;= 0 &amp;&amp; ordinal &lt; ALL.length) {<a name="line.50"></a>
-<FONT color="green">051</FONT>          return ALL[ordinal];<a name="line.51"></a>
-<FONT color="green">052</FONT>        } else {<a name="line.52"></a>
-<FONT color="green">053</FONT>          return null;<a name="line.53"></a>
-<FONT color="green">054</FONT>        }<a name="line.54"></a>
-<FONT color="green">055</FONT>      }<a name="line.55"></a>
-<FONT color="green">056</FONT>    }<a name="line.56"></a>
+<FONT color="green">046</FONT>      BEGINNING_OF_LINE,<a name="line.46"></a>
+<FONT color="green">047</FONT>    <a name="line.47"></a>
+<FONT color="green">048</FONT>      END_OF_LINE;<a name="line.48"></a>
+<FONT color="green">049</FONT>    <a name="line.49"></a>
+<FONT color="green">050</FONT>      /** . */<a name="line.50"></a>
+<FONT color="green">051</FONT>      private static final CodeType[] ALL = values();<a name="line.51"></a>
+<FONT color="green">052</FONT>    <a name="line.52"></a>
+<FONT color="green">053</FONT>      public static CodeType valueOf(int ordinal) {<a name="line.53"></a>
+<FONT color="green">054</FONT>        if (ordinal &gt;= 0 &amp;&amp; ordinal &lt; ALL.length) {<a name="line.54"></a>
+<FONT color="green">055</FONT>          return ALL[ordinal];<a name="line.55"></a>
+<FONT color="green">056</FONT>        } else {<a name="line.56"></a>
+<FONT color="green">057</FONT>          return null;<a name="line.57"></a>
+<FONT color="green">058</FONT>        }<a name="line.58"></a>
+<FONT color="green">059</FONT>      }<a name="line.59"></a>
+<FONT color="green">060</FONT>    }<a name="line.60"></a>
 
 
 

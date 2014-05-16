@@ -2,7 +2,7 @@
 <BODY BGCOLOR="white">
 <PRE>
 <FONT color="green">001</FONT>    /*<a name="line.1"></a>
-<FONT color="green">002</FONT>     * Copyright (C) 2003-2009 eXo Platform SAS.<a name="line.2"></a>
+<FONT color="green">002</FONT>     * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
 <FONT color="green">003</FONT>     *<a name="line.3"></a>
 <FONT color="green">004</FONT>     * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
 <FONT color="green">005</FONT>     * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
@@ -27,35 +27,36 @@
 <FONT color="green">024</FONT>    import net.wimpi.telnetd.shell.Shell;<a name="line.24"></a>
 <FONT color="green">025</FONT>    import org.crsh.term.spi.TermIOHandler;<a name="line.25"></a>
 <FONT color="green">026</FONT>    <a name="line.26"></a>
-<FONT color="green">027</FONT>    /**<a name="line.27"></a>
-<FONT color="green">028</FONT>     * @author &lt;a href="mailto:julien.viet@exoplatform.com"&gt;Julien Viet&lt;/a&gt;<a name="line.28"></a>
-<FONT color="green">029</FONT>     * @version $Revision$<a name="line.29"></a>
-<FONT color="green">030</FONT>     */<a name="line.30"></a>
-<FONT color="green">031</FONT>    public class TelnetHandler implements Shell {<a name="line.31"></a>
-<FONT color="green">032</FONT>    <a name="line.32"></a>
-<FONT color="green">033</FONT>      public void run(Connection conn) {<a name="line.33"></a>
-<FONT color="green">034</FONT>        TelnetIO io = new TelnetIO(conn);<a name="line.34"></a>
-<FONT color="green">035</FONT>        TelnetLifeCycle lifeCycle = TelnetLifeCycle.getLifeCycle(conn);<a name="line.35"></a>
-<FONT color="green">036</FONT>        TermIOHandler handler = lifeCycle.getHandler();<a name="line.36"></a>
-<FONT color="green">037</FONT>        handler.handle(io, null);<a name="line.37"></a>
-<FONT color="green">038</FONT>      }<a name="line.38"></a>
-<FONT color="green">039</FONT>    <a name="line.39"></a>
-<FONT color="green">040</FONT>      public void connectionIdle(ConnectionEvent connectionEvent) {<a name="line.40"></a>
-<FONT color="green">041</FONT>      }<a name="line.41"></a>
-<FONT color="green">042</FONT>    <a name="line.42"></a>
-<FONT color="green">043</FONT>      public void connectionTimedOut(ConnectionEvent connectionEvent) {<a name="line.43"></a>
-<FONT color="green">044</FONT>      }<a name="line.44"></a>
-<FONT color="green">045</FONT>    <a name="line.45"></a>
-<FONT color="green">046</FONT>      public void connectionLogoutRequest(ConnectionEvent connectionEvent) {<a name="line.46"></a>
-<FONT color="green">047</FONT>      }<a name="line.47"></a>
-<FONT color="green">048</FONT>    <a name="line.48"></a>
-<FONT color="green">049</FONT>      public void connectionSentBreak(ConnectionEvent connectionEvent) {<a name="line.49"></a>
-<FONT color="green">050</FONT>      }<a name="line.50"></a>
-<FONT color="green">051</FONT>    <a name="line.51"></a>
-<FONT color="green">052</FONT>      public static Shell createShell() {<a name="line.52"></a>
-<FONT color="green">053</FONT>        return new TelnetHandler();<a name="line.53"></a>
-<FONT color="green">054</FONT>      }<a name="line.54"></a>
-<FONT color="green">055</FONT>    }<a name="line.55"></a>
+<FONT color="green">027</FONT>    public class TelnetHandler implements Shell {<a name="line.27"></a>
+<FONT color="green">028</FONT>    <a name="line.28"></a>
+<FONT color="green">029</FONT>      public void run(Connection conn) {<a name="line.29"></a>
+<FONT color="green">030</FONT>    <a name="line.30"></a>
+<FONT color="green">031</FONT>        // Prevent screen flickering<a name="line.31"></a>
+<FONT color="green">032</FONT>        conn.getTerminalIO().setAutoflushing(false);<a name="line.32"></a>
+<FONT color="green">033</FONT>    <a name="line.33"></a>
+<FONT color="green">034</FONT>        //<a name="line.34"></a>
+<FONT color="green">035</FONT>        TelnetIO io = new TelnetIO(conn);<a name="line.35"></a>
+<FONT color="green">036</FONT>        TelnetLifeCycle lifeCycle = TelnetLifeCycle.getLifeCycle(conn);<a name="line.36"></a>
+<FONT color="green">037</FONT>        TermIOHandler handler = lifeCycle.getHandler();<a name="line.37"></a>
+<FONT color="green">038</FONT>        handler.handle(io, null);<a name="line.38"></a>
+<FONT color="green">039</FONT>      }<a name="line.39"></a>
+<FONT color="green">040</FONT>    <a name="line.40"></a>
+<FONT color="green">041</FONT>      public void connectionIdle(ConnectionEvent connectionEvent) {<a name="line.41"></a>
+<FONT color="green">042</FONT>      }<a name="line.42"></a>
+<FONT color="green">043</FONT>    <a name="line.43"></a>
+<FONT color="green">044</FONT>      public void connectionTimedOut(ConnectionEvent connectionEvent) {<a name="line.44"></a>
+<FONT color="green">045</FONT>      }<a name="line.45"></a>
+<FONT color="green">046</FONT>    <a name="line.46"></a>
+<FONT color="green">047</FONT>      public void connectionLogoutRequest(ConnectionEvent connectionEvent) {<a name="line.47"></a>
+<FONT color="green">048</FONT>      }<a name="line.48"></a>
+<FONT color="green">049</FONT>    <a name="line.49"></a>
+<FONT color="green">050</FONT>      public void connectionSentBreak(ConnectionEvent connectionEvent) {<a name="line.50"></a>
+<FONT color="green">051</FONT>      }<a name="line.51"></a>
+<FONT color="green">052</FONT>    <a name="line.52"></a>
+<FONT color="green">053</FONT>      public static Shell createShell() {<a name="line.53"></a>
+<FONT color="green">054</FONT>        return new TelnetHandler();<a name="line.54"></a>
+<FONT color="green">055</FONT>      }<a name="line.55"></a>
+<FONT color="green">056</FONT>    }<a name="line.56"></a>
 
 
 

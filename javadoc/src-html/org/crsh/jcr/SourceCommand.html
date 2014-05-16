@@ -2,7 +2,7 @@
 <BODY BGCOLOR="white">
 <PRE>
 <FONT color="green">001</FONT>    /*<a name="line.1"></a>
-<FONT color="green">002</FONT>     * Copyright (C) 2003-2009 eXo Platform SAS.<a name="line.2"></a>
+<FONT color="green">002</FONT>     * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
 <FONT color="green">003</FONT>     *<a name="line.3"></a>
 <FONT color="green">004</FONT>     * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
 <FONT color="green">005</FONT>     * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
@@ -30,79 +30,75 @@
 <FONT color="green">027</FONT>    import java.io.IOException;<a name="line.27"></a>
 <FONT color="green">028</FONT>    import java.io.InputStream;<a name="line.28"></a>
 <FONT color="green">029</FONT>    <a name="line.29"></a>
-<FONT color="green">030</FONT>    /**<a name="line.30"></a>
-<FONT color="green">031</FONT>     * @author &lt;a href="mailto:julien.viet@exoplatform.com"&gt;Julien Viet&lt;/a&gt;<a name="line.31"></a>
-<FONT color="green">032</FONT>     * @version $Revision$<a name="line.32"></a>
-<FONT color="green">033</FONT>     */<a name="line.33"></a>
-<FONT color="green">034</FONT>    public class SourceCommand extends SCPCommand implements Runnable {<a name="line.34"></a>
-<FONT color="green">035</FONT>    <a name="line.35"></a>
-<FONT color="green">036</FONT>      /** . */<a name="line.36"></a>
-<FONT color="green">037</FONT>      private boolean recursive;<a name="line.37"></a>
-<FONT color="green">038</FONT>    <a name="line.38"></a>
-<FONT color="green">039</FONT>      public SourceCommand(String target, boolean recursive) {<a name="line.39"></a>
-<FONT color="green">040</FONT>        super(target);<a name="line.40"></a>
+<FONT color="green">030</FONT>    public class SourceCommand extends SCPCommand implements Runnable {<a name="line.30"></a>
+<FONT color="green">031</FONT>    <a name="line.31"></a>
+<FONT color="green">032</FONT>      /** . */<a name="line.32"></a>
+<FONT color="green">033</FONT>      private boolean recursive;<a name="line.33"></a>
+<FONT color="green">034</FONT>    <a name="line.34"></a>
+<FONT color="green">035</FONT>      public SourceCommand(String target, boolean recursive) {<a name="line.35"></a>
+<FONT color="green">036</FONT>        super(target);<a name="line.36"></a>
+<FONT color="green">037</FONT>    <a name="line.37"></a>
+<FONT color="green">038</FONT>        //<a name="line.38"></a>
+<FONT color="green">039</FONT>        this.recursive = recursive;<a name="line.39"></a>
+<FONT color="green">040</FONT>      }<a name="line.40"></a>
 <FONT color="green">041</FONT>    <a name="line.41"></a>
-<FONT color="green">042</FONT>        //<a name="line.42"></a>
-<FONT color="green">043</FONT>        this.recursive = recursive;<a name="line.43"></a>
-<FONT color="green">044</FONT>      }<a name="line.44"></a>
-<FONT color="green">045</FONT>    <a name="line.45"></a>
-<FONT color="green">046</FONT>      @Override<a name="line.46"></a>
-<FONT color="green">047</FONT>      protected void execute(Session session, String path) throws Exception {<a name="line.47"></a>
-<FONT color="green">048</FONT>        FileSystem fs = new FileSystem() {<a name="line.48"></a>
-<FONT color="green">049</FONT>          public void startDirectory(String directoryName) throws IOException {<a name="line.49"></a>
-<FONT color="green">050</FONT>            out.write("D0755 0 ".getBytes());<a name="line.50"></a>
-<FONT color="green">051</FONT>            out.write(directoryName.getBytes());<a name="line.51"></a>
-<FONT color="green">052</FONT>            out.write("\n".getBytes());<a name="line.52"></a>
-<FONT color="green">053</FONT>            out.flush();<a name="line.53"></a>
-<FONT color="green">054</FONT>            readAck();<a name="line.54"></a>
-<FONT color="green">055</FONT>          }<a name="line.55"></a>
-<FONT color="green">056</FONT>          public void file(String fileName, int length, InputStream data) throws IOException {<a name="line.56"></a>
-<FONT color="green">057</FONT>            out.write("C0644 ".getBytes());<a name="line.57"></a>
-<FONT color="green">058</FONT>            out.write(Integer.toString(length).getBytes());<a name="line.58"></a>
-<FONT color="green">059</FONT>            out.write(" ".getBytes());<a name="line.59"></a>
-<FONT color="green">060</FONT>            out.write(fileName.getBytes());<a name="line.60"></a>
-<FONT color="green">061</FONT>            out.write("\n".getBytes());<a name="line.61"></a>
-<FONT color="green">062</FONT>            out.flush();<a name="line.62"></a>
-<FONT color="green">063</FONT>            readAck();<a name="line.63"></a>
-<FONT color="green">064</FONT>            IO.copy(data, out);<a name="line.64"></a>
-<FONT color="green">065</FONT>            ack();<a name="line.65"></a>
-<FONT color="green">066</FONT>            readAck();<a name="line.66"></a>
-<FONT color="green">067</FONT>          }<a name="line.67"></a>
-<FONT color="green">068</FONT>          public void endDirectory(String directoryName) throws IOException {<a name="line.68"></a>
-<FONT color="green">069</FONT>            out.write("E\n".getBytes());<a name="line.69"></a>
-<FONT color="green">070</FONT>            out.flush();<a name="line.70"></a>
-<FONT color="green">071</FONT>            readAck();<a name="line.71"></a>
-<FONT color="green">072</FONT>          }<a name="line.72"></a>
-<FONT color="green">073</FONT>        };<a name="line.73"></a>
-<FONT color="green">074</FONT>    <a name="line.74"></a>
-<FONT color="green">075</FONT>        Item item = session.getItem(path);<a name="line.75"></a>
-<FONT color="green">076</FONT>        if (item instanceof Node) {<a name="line.76"></a>
-<FONT color="green">077</FONT>    <a name="line.77"></a>
-<FONT color="green">078</FONT>          //<a name="line.78"></a>
-<FONT color="green">079</FONT>          BytesOutputStream baos = new BytesOutputStream();<a name="line.79"></a>
-<FONT color="green">080</FONT>    <a name="line.80"></a>
-<FONT color="green">081</FONT>          // Perform export<a name="line.81"></a>
-<FONT color="green">082</FONT>          session.exportSystemView(path, baos, false, false);<a name="line.82"></a>
-<FONT color="green">083</FONT>    <a name="line.83"></a>
-<FONT color="green">084</FONT>          //<a name="line.84"></a>
-<FONT color="green">085</FONT>          String name = item.getName();<a name="line.85"></a>
-<FONT color="green">086</FONT>          if (name.length() == 0) {<a name="line.86"></a>
-<FONT color="green">087</FONT>            name = "jcr_root.xml";<a name="line.87"></a>
-<FONT color="green">088</FONT>          } else {<a name="line.88"></a>
-<FONT color="green">089</FONT>            name = name.replace(":", "_") + ".xml";<a name="line.89"></a>
-<FONT color="green">090</FONT>          }<a name="line.90"></a>
+<FONT color="green">042</FONT>      @Override<a name="line.42"></a>
+<FONT color="green">043</FONT>      protected void execute(Session session, String path) throws Exception {<a name="line.43"></a>
+<FONT color="green">044</FONT>        FileSystem fs = new FileSystem() {<a name="line.44"></a>
+<FONT color="green">045</FONT>          public void beginDirectory(String directoryName) throws IOException {<a name="line.45"></a>
+<FONT color="green">046</FONT>            out.write("D0755 0 ".getBytes());<a name="line.46"></a>
+<FONT color="green">047</FONT>            out.write(directoryName.getBytes());<a name="line.47"></a>
+<FONT color="green">048</FONT>            out.write("\n".getBytes());<a name="line.48"></a>
+<FONT color="green">049</FONT>            out.flush();<a name="line.49"></a>
+<FONT color="green">050</FONT>            readAck();<a name="line.50"></a>
+<FONT color="green">051</FONT>          }<a name="line.51"></a>
+<FONT color="green">052</FONT>          public void file(String fileName, int length, InputStream data) throws IOException {<a name="line.52"></a>
+<FONT color="green">053</FONT>            out.write("C0644 ".getBytes());<a name="line.53"></a>
+<FONT color="green">054</FONT>            out.write(Integer.toString(length).getBytes());<a name="line.54"></a>
+<FONT color="green">055</FONT>            out.write(" ".getBytes());<a name="line.55"></a>
+<FONT color="green">056</FONT>            out.write(fileName.getBytes());<a name="line.56"></a>
+<FONT color="green">057</FONT>            out.write("\n".getBytes());<a name="line.57"></a>
+<FONT color="green">058</FONT>            out.flush();<a name="line.58"></a>
+<FONT color="green">059</FONT>            readAck();<a name="line.59"></a>
+<FONT color="green">060</FONT>            IO.copy(data, out);<a name="line.60"></a>
+<FONT color="green">061</FONT>            ack();<a name="line.61"></a>
+<FONT color="green">062</FONT>            readAck();<a name="line.62"></a>
+<FONT color="green">063</FONT>          }<a name="line.63"></a>
+<FONT color="green">064</FONT>          public void endDirectory(String directoryName) throws IOException {<a name="line.64"></a>
+<FONT color="green">065</FONT>            out.write("E\n".getBytes());<a name="line.65"></a>
+<FONT color="green">066</FONT>            out.flush();<a name="line.66"></a>
+<FONT color="green">067</FONT>            readAck();<a name="line.67"></a>
+<FONT color="green">068</FONT>          }<a name="line.68"></a>
+<FONT color="green">069</FONT>        };<a name="line.69"></a>
+<FONT color="green">070</FONT>    <a name="line.70"></a>
+<FONT color="green">071</FONT>        Item item = session.getItem(path);<a name="line.71"></a>
+<FONT color="green">072</FONT>        if (item instanceof Node) {<a name="line.72"></a>
+<FONT color="green">073</FONT>    <a name="line.73"></a>
+<FONT color="green">074</FONT>          //<a name="line.74"></a>
+<FONT color="green">075</FONT>          BytesOutputStream baos = new BytesOutputStream();<a name="line.75"></a>
+<FONT color="green">076</FONT>    <a name="line.76"></a>
+<FONT color="green">077</FONT>          // Perform export<a name="line.77"></a>
+<FONT color="green">078</FONT>          session.exportSystemView(path, baos, false, false);<a name="line.78"></a>
+<FONT color="green">079</FONT>    <a name="line.79"></a>
+<FONT color="green">080</FONT>          //<a name="line.80"></a>
+<FONT color="green">081</FONT>          String name = item.getName();<a name="line.81"></a>
+<FONT color="green">082</FONT>          if (name.length() == 0) {<a name="line.82"></a>
+<FONT color="green">083</FONT>            name = "jcr_root.xml";<a name="line.83"></a>
+<FONT color="green">084</FONT>          } else {<a name="line.84"></a>
+<FONT color="green">085</FONT>            name = name.replace(":", "_") + ".xml";<a name="line.85"></a>
+<FONT color="green">086</FONT>          }<a name="line.86"></a>
+<FONT color="green">087</FONT>    <a name="line.87"></a>
+<FONT color="green">088</FONT>          //<a name="line.88"></a>
+<FONT color="green">089</FONT>          baos.flush();<a name="line.89"></a>
+<FONT color="green">090</FONT>          baos.close();<a name="line.90"></a>
 <FONT color="green">091</FONT>    <a name="line.91"></a>
 <FONT color="green">092</FONT>          //<a name="line.92"></a>
-<FONT color="green">093</FONT>          baos.flush();<a name="line.93"></a>
-<FONT color="green">094</FONT>          baos.close();<a name="line.94"></a>
-<FONT color="green">095</FONT>    <a name="line.95"></a>
-<FONT color="green">096</FONT>          //<a name="line.96"></a>
-<FONT color="green">097</FONT>          fs.file(name, baos.size(), baos.getInputStream());<a name="line.97"></a>
-<FONT color="green">098</FONT>        } else {<a name="line.98"></a>
-<FONT color="green">099</FONT>          throw new Exception("Cannot export a property");<a name="line.99"></a>
-<FONT color="green">100</FONT>        }<a name="line.100"></a>
-<FONT color="green">101</FONT>      }<a name="line.101"></a>
-<FONT color="green">102</FONT>    }<a name="line.102"></a>
+<FONT color="green">093</FONT>          fs.file(name, baos.size(), baos.getInputStream());<a name="line.93"></a>
+<FONT color="green">094</FONT>        } else {<a name="line.94"></a>
+<FONT color="green">095</FONT>          throw new Exception("Cannot export a property");<a name="line.95"></a>
+<FONT color="green">096</FONT>        }<a name="line.96"></a>
+<FONT color="green">097</FONT>      }<a name="line.97"></a>
+<FONT color="green">098</FONT>    }<a name="line.98"></a>
 
 
 
