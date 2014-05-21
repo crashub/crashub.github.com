@@ -66,7 +66,7 @@
            ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-war.tar.gz">web</a>
            ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-spring.tar.gz">spring</a>
            ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-mule-app.tar.gz">mule</a>
-         or <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-gatein.tar.gz">gatein</a><br/>
+         or <a href="http://search.maven.org/remotecontent?filepath=org/crashub/jcr.distrib/${config.crash_jcr_version}/jcr.distrib-${config.crash_jcr_version}-packaging.tar.gz">gatein</a><br/>
             <strong>Doc:</strong>
             <a href="beta/reference.html" target="_blank">Documentation</a>,
             <a href="beta/cookbook.html" target="_blank">Cookbook</a>
