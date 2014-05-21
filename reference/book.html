@@ -805,17 +805,22 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_configuration_2">Configuration</a></li>
 <li>
 <ul class="sectlevel1">
-<li><a href="#_configuring_the_standalone_or_attach_mode">Configuring the standalone or attach mode</a></li>
+<li><a href="#_mount_point_configuration">Mount point configuration</a></li>
+<li>
+<ul class="sectlevel2">
+<li><a href="#_configuring_the_standalone_mode">Configuring the standalone mode</a></li>
+<li><a href="#_configuring_the_attach_mode">Configuring the attach mode</a></li>
 <li><a href="#_configuring_the_web_application_mode">Configuring the web application mode</a></li>
+<li><a href="#_configuring_the_spring_mode">Configuring the spring mode</a></li>
+</ul>
+</li>
 <li><a href="#_configuration_properties">Configuration properties</a></li>
 <li>
 <ul class="sectlevel2">
-<li><a href="#_changing_ssh_server_key">Changing SSH server key</a></li>
-<li><a href="#_changing_telnet_or_ssh_server_ports">Changing telnet or SSH server ports</a></li>
-<li><a href="#_changing_ssh_authentication_and_idle_timeouts">Changing SSH authentication and idle timeouts</a></li>
+<li><a href="#_configuring_the_standalone_or_attach_mode">Configuring the standalone or attach mode</a></li>
+<li><a href="#_configuring_the_web_application_mode_2">Configuring the web application mode</a></li>
+<li><a href="#_configuration_properties_2">Configuration properties</a></li>
 <li><a href="#_removing_telnet_or_ssh_access">Removing telnet or SSH access</a></li>
-<li><a href="#_configuring_shell_default_message">Configuring shell default message</a></li>
-<li><a href="#_configuring_authentication">Configuring authentication</a></li>
 </ul>
 </li>
 </ul>
@@ -918,34 +923,10 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_configuration_file">Configuration file</a></li>
 </ul>
 </li>
-<li><a href="#_jcr_plugin">JCR plugin</a></li>
-<li>
-<ul class="sectlevel1">
-<li><a href="#_jcr_implementations">JCR implementations</a></li>
-<li>
-<ul class="sectlevel2">
-<li><a href="#_exo_jcr">eXo JCR</a></li>
-<li><a href="#_apache_jackrabbit">Apache Jackrabbit</a></li>
-</ul>
-</li>
-<li><a href="#_scp_usage">SCP usage</a></li>
-<li>
-<ul class="sectlevel2">
-<li><a href="#_export_a_jcr_node">Export a JCR node</a></li>
-<li><a href="#_import_a_jcr_node">Import a JCR node</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li><a href="#_hey_i_want_to_contribute">Hey, I want to contribute!</a></li>
 <li><a href="#_commands_reference">Appendix A: Commands reference</a></li>
 <li>
 <ul class="sectlevel1">
-<li><a href="#_help">help</a></li>
-<li><a href="#_repl">repl</a></li>
-<li><a href="#_cd">cd</a></li>
-<li><a href="#_commit">commit</a></li>
-<li><a href="#_cp">cp</a></li>
 <li><a href="#_dashboard">dashboard</a></li>
 <li><a href="#_egrep">egrep</a></li>
 <li><a href="#_env">env</a></li>
@@ -999,14 +980,14 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <ul class="sectlevel2">
 <li><a href="#_jvm_gc">jvm gc</a></li>
 <li><a href="#_jvm_system">jvm system</a></li>
-<li><a href="#_jvm_pool">jvm pool</a></li>
 <li><a href="#_jvm_runtime">jvm runtime</a></li>
-<li><a href="#_jvm_top">jvm top</a></li>
 <li><a href="#_jvm_heap">jvm heap</a></li>
 <li><a href="#_jvm_pools">jvm pools</a></li>
+<li><a href="#_jvm_pool">jvm pool</a></li>
 <li><a href="#_jvm_classloading">jvm classloading</a></li>
 <li><a href="#_jvm_compilation">jvm compilation</a></li>
 <li><a href="#_jvm_nonheap">jvm nonheap</a></li>
+<li><a href="#_jvm_top">jvm top</a></li>
 </ul>
 </li>
 <li><a href="#_less">less</a></li>
@@ -1015,43 +996,12 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <ul class="sectlevel2">
 <li><a href="#_log_add">log add</a></li>
 <li><a href="#_log_set">log set</a></li>
-<li><a href="#_log_send">log send</a></li>
 <li><a href="#_log_tail">log tail</a></li>
 <li><a href="#_log_ls">log ls</a></li>
+<li><a href="#_log_send">log send</a></li>
 </ul>
 </li>
-<li><a href="#_ls">ls</a></li>
 <li><a href="#_man">man</a></li>
-<li><a href="#_mixin">mixin</a></li>
-<li>
-<ul class="sectlevel2">
-<li><a href="#_mixin_add">mixin add</a></li>
-<li><a href="#_mixin_remove">mixin remove</a></li>
-</ul>
-</li>
-<li><a href="#_mv">mv</a></li>
-<li><a href="#_node">node</a></li>
-<li>
-<ul class="sectlevel2">
-<li><a href="#_node_add">node add</a></li>
-<li><a href="#_node_set">node set</a></li>
-<li><a href="#_node_export">node export</a></li>
-<li><a href="#_node_import">node import</a></li>
-</ul>
-</li>
-<li><a href="#_pwd">pwd</a></li>
-<li><a href="#_repo">repo</a></li>
-<li>
-<ul class="sectlevel2">
-<li><a href="#_repo_info">repo info</a></li>
-<li><a href="#_repo_ls">repo ls</a></li>
-<li><a href="#_repo_use">repo use</a></li>
-</ul>
-</li>
-<li><a href="#_rm">rm</a></li>
-<li><a href="#_rollback">rollback</a></li>
-<li><a href="#_select">select</a></li>
-<li><a href="#_setperm">setperm</a></li>
 <li><a href="#_shell">shell</a></li>
 <li>
 <ul class="sectlevel2">
@@ -1083,21 +1033,8 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_thread_dump">thread dump</a></li>
 </ul>
 </li>
-<li><a href="#_version">version</a></li>
-<li>
-<ul class="sectlevel2">
-<li><a href="#_version_checkin">version checkin</a></li>
-<li><a href="#_version_checkout">version checkout</a></li>
-</ul>
-</li>
-<li><a href="#_ws">ws</a></li>
-<li>
-<ul class="sectlevel2">
-<li><a href="#_ws_login">ws login</a></li>
-<li><a href="#_ws_logout">ws logout</a></li>
-</ul>
-</li>
-<li><a href="#_xpath">xpath</a></li>
+<li><a href="#_help">help</a></li>
+<li><a href="#_repl">repl</a></li>
 </ul>
 </li>
 </ul>
@@ -1140,11 +1077,11 @@ the standalone mode, for instance you can set it up this way:</p>
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta18
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta21
 
 Follow and support the project on http://www.crashub.org
 Welcome to jerry + !
-It is 2014-05-09 17:02:01 CEST now</pre>
+It is 2014-05-20 09:02:35 CEST now</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1186,11 +1123,11 @@ instead of the JVM started by CRaSH. Let&#8217;s see quickly an example of how t
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta18
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta21
 
 Follow and support the project on http://vietj.github.com/crash
 Welcome to jerry + !
-It is 2014-05-09 17:02:01 CEST now
+It is 2014-05-20 09:02:35 CEST now
 %</pre>
 </div>
 </div>
@@ -1339,20 +1276,6 @@ and triggering the CRaSH life cycle start/stop. In this mode CRaSH has two packa
 <ul>
 <li>
 <p>A <em>core</em> war file found under <em>deploy/core/crash.war</em> provides the base CRaSH functionnalities</p>
-</li>
-<li>
-<p>A <em>gatein</em> war file found under <em>deploy/gatein/crash.war</em> provides additional Java Content Repository (JCR)
-features but deploys only in a GateIn server (Tomcat or JBoss). It extends the core packaging and adds:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>JCR browsing and interactions</p>
-</li>
-<li>
-<p>SCP support for JCR import and export</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -1549,11 +1472,11 @@ Escape character is '^]'.
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta18
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta21
 
 Follow and support the project on http://vietj.github.com/crash
 Welcome to julien.local + !
-It is 2014-05-09 17:02:01 CEST now</pre>
+It is 2014-05-20 09:02:35 CEST now</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1619,38 +1542,32 @@ JVM native input and output. When you run in standalone, CRaSh will be available
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[/]% help
-% help
+<pre>% help
 Try one of these commands with the -h or --help switch:
 
-  cd               changes the current node
-  commit           saves changes
-  consume          collects a set of nodes
-  cp               copy a node to another
-  env              display the term env
-  exportworkspace  Export a workspace on the file system (experimental)
-  fail             Fails
-  help             provides basic help
-  importworkspace  Import a workspace from the file system (experimental)
-  invoke           Invoke a static method
-  log              logging commands
-  ls               list the content of a node
-  man              format and display the on-line manual pages
-  mixin            mixin commands
-  mv               move a node
-  node             node commands
-  produce          produce a set of nodes
-  pwd              print the current node path
-  rm               remove one or several node or a property
-  rollback         rollback changes
-  select           execute a JCR sql query
-  setperm          modify the security permissions of a JCR node
-  sleep            sleep for some time
-  thread           vm thread commands
-  version          versioning commands
-  wait             Invoke a static method
-  ws               workspace commands
-  xpath            execute a JCR xpath query</pre>
+NAME      DESCRIPTION
+help      provides basic help
+repl      list the repl or change the current repl
+cron      cron management
+dashboard a monitoring dashboard
+date      show the current time
+egrep     search file(s) for lines that match a pattern
+env       display the term env
+filter    a filter for a stream of map
+java      various java language commands
+jdbc      JDBC connection
+jmx       Java Management Extensions
+jndi      Java Naming and Directory Interface
+jpa       Java persistance API
+jvm       JVM informations
+log       logging commands
+mail      send an mail to a list of recipients, the body of the mail is the input stream of the command.
+man       format and display the on-line manual pages
+shell     shell related command
+sleep     sleep for some time
+sort      sort a map
+system    vm system properties commands
+thread    JVM thread commands</pre>
 </div>
 </div>
 </div>
@@ -1956,11 +1873,180 @@ does not match, several scenarios can happen, depending on the type declared by 
 </div>
 <h1 id="_configuration_2" class="sect0"><a class="anchor" href="#_configuration_2"></a>Configuration</h1>
 <div class="paragraph">
-<p>CRaSH is configured by a set of properties, the properties are configured differently according to the mode.</p>
+<p>This chapter explains the configuration of CRaSH, configuration aims to be as simple as possible
+and is adapted to the mode running CRaSH.</p>
 </div>
 <div class="sect1">
-<h2 id="_configuring_the_standalone_or_attach_mode"><a class="anchor" href="#_configuring_the_standalone_or_attach_mode"></a>Configuring the standalone or attach mode</h2>
+<h2 id="_mount_point_configuration"><a class="anchor" href="#_mount_point_configuration"></a>Mount point configuration</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>CRaSH uses the file system for reading configuration files and discovering command source files. CRaSh uses a virtual
+file system to be decoupled from the implementation, there are up to three implementations provided out of the box
+(frameworks embedding CRaSH may add their own VFS implementation):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>file</em> : the actual file system of the operating system based on the <em>java.io.File</em> API</p>
+</li>
+<li>
+<p><em>classpath</em> : uses the resources provided by the actual classpath</p>
+</li>
+<li>
+<p><em>war</em> : the content of the web archive, available only when CRaSH is embedded in a web application</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>CRaSH can be configured for the <em>conf</em> and <em>cmd</em> mount points with a simple string that describes the VFS to be used. A <em>mount point</em>
+is configured with a list of mounts, a mount being the name of a file system associated with a path in this file system.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>file:cmd/</em> : the <em>cmd</em> directory relative to the file system running the JVM</p>
+</li>
+<li>
+<p><em>file:/cmd/</em> : the <em>cmd</em> directory relative to the root of the file system (so <em>/cmd</em>)</p>
+</li>
+<li>
+<p><em>classpath:/crash/commands/</em> : any <em>/crash/command/</em> package found in the classpath</p>
+</li>
+<li>
+<p><em>war:/WEB-INF/crash/commands/</em> : the folder <em>/WEB-INF/crash/commands</em> in the war file hosting CRaSH</p>
+</li>
+<li>
+<p><em>classpath:/crash/commands/;war:/WEB-INF/crash/commands</em> : the aggregates of two entries</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By default CRaSH provides an adapted mount point configuration for each mode, but you can customize it
+according to your needs.</p>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_standalone_mode"><a class="anchor" href="#_configuring_the_standalone_mode"></a>Configuring the standalone mode</h3>
+<div class="paragraph">
+<p>The mount point configurations of the standalone mode can be specified with command line options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the <em>-cmd</em> option set the command moint point configuration, the default value being <em>classpath:/crash/commands/</em></p>
+</li>
+<li>
+<p>the <em>-conf</em> option set the conf moint point configuration, the default value being <em>classpath:/crash/</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The default behavior of the distribution extracts the content of these mount points in the <em>/cmd</em> and <em>/conf</em> folders
+of the distribution. This behavior can be explained by looking at <em>crash.sh</em> and <em>crash.bat</em> startup scripts, they
+uses the options <em>--cmd-folder</em> and <em>--conf-folder</em> to set this behavior.</p>
+</div>
+<div class="paragraph">
+<p>Thanks to this default behavior, the commands and configurations files can be  easily modified. Without this feature, any modification
+would imply to modify the jar files, which is not a viable option.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+removing these options from the startup scripts will configure CRaSH to uses the files from the jars directly.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_attach_mode"><a class="anchor" href="#_configuring_the_attach_mode"></a>Configuring the attach mode</h3>
+<div class="paragraph">
+<p>Same as standalone mode.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_web_application_mode"><a class="anchor" href="#_configuring_the_web_application_mode"></a>Configuring the web application mode</h3>
+<div class="paragraph">
+<p>The servlet context parameters are used for configuring the paths:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;web-app&gt;</span>
+  ...
+  <span class="tag">&lt;context-param&gt;</span>
+    <span class="tag">&lt;param-name&gt;</span>crash.mountpointconfig.conf<span class="tag">&lt;/param-name&gt;</span>
+    <span class="tag">&lt;param-value&gt;</span>war:/WEB-INF/crash/<span class="tag">&lt;/param-value&gt;</span>
+  <span class="tag">&lt;/context-param&gt;</span>
+  <span class="tag">&lt;context-param&gt;</span>
+    <span class="tag">&lt;param-name&gt;</span>crash.mountpointconfig.cmd<span class="tag">&lt;/param-name&gt;</span>
+    <span class="tag">&lt;param-value&gt;</span>war:/WEB-INF/crash/commands/<span class="tag">&lt;/param-value&gt;</span>
+  <span class="tag">&lt;/context-param&gt;</span>
+  ...
+<span class="tag">&lt;/web-app&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this mode, the configs are subject to property interpolation based on the system properties of the JVM:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;web-app&gt;</span>
+  ...
+  <span class="tag">&lt;context-param&gt;</span>
+    <span class="tag">&lt;param-name&gt;</span>crash.mountpointconfig.conf<span class="tag">&lt;/param-name&gt;</span>
+    <span class="tag">&lt;param-value&gt;</span>${myconf}<span class="tag">&lt;/param-value&gt;</span>
+  <span class="tag">&lt;/context-param&gt;</span>
+  ...
+<span class="tag">&lt;/web-app&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The interpolation format allows to specify a default value when the property cannot be resolved using Bash syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;web-app&gt;</span>
+  ...
+  <span class="tag">&lt;context-param&gt;</span>
+    <span class="tag">&lt;param-name&gt;</span>crash.mountpointconfig.conf<span class="tag">&lt;/param-name&gt;</span>
+    <span class="tag">&lt;param-value&gt;</span>${myconf:-war:/WEB-INF/crash/commands/}<span class="tag">&lt;/param-value&gt;</span>
+  <span class="tag">&lt;/context-param&gt;</span>
+  ...
+<span class="tag">&lt;/web-app&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Interpolation is only available for the web application mode.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_spring_mode"><a class="anchor" href="#_configuring_the_spring_mode"></a>Configuring the spring mode</h3>
+<div class="paragraph">
+<p>The <code>org.crsh.spring.SpringWebBootstrap</code> bean exposes the <em>cmdMountPointConfig</em> and <em>confMountPointConfig</em> properties to configure it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="xml language-xml">  <span class="tag">&lt;bean</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">org.crsh.spring.SpringWebBootstrap</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;property</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cmdMountPointConfig</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">war:/WEB-INF/crash/commands/</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;property</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">confMounPointConfig</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">war:/WEB-INF/crash/</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+    ...
+  <span class="tag">&lt;/bean&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_properties"><a class="anchor" href="#_configuration_properties"></a>Configuration properties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Properties play an important role in CRaSH configuration, they are configured differently according to the mode.</p>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_standalone_or_attach_mode"><a class="anchor" href="#_configuring_the_standalone_or_attach_mode"></a>Configuring the standalone or attach mode</h3>
 <div class="paragraph">
 <p>In standalone or attach mode configuration can be in the <em>/conf/crash.properties</em> file or via the command line directly.</p>
 </div>
@@ -1982,21 +2068,17 @@ at least once to extract the file:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_configuring_the_web_application_mode"><a class="anchor" href="#_configuring_the_web_application_mode"></a>Configuring the web application mode</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_configuring_the_web_application_mode_2"><a class="anchor" href="#_configuring_the_web_application_mode_2"></a>Configuring the web application mode</h3>
 <div class="paragraph">
 <p>In the war file packaging, the configuration file can be found under <em>/WEB-INF/crash/crash.properties</em> file of the archive.
 Configuration can be overriden by Java Virtual Machine system properties by using the same property name.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_configuration_properties"><a class="anchor" href="#_configuration_properties"></a>Configuration properties</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_changing_ssh_server_key"><a class="anchor" href="#_changing_ssh_server_key"></a>Changing SSH server key</h3>
+<h3 id="_configuration_properties_2"><a class="anchor" href="#_configuration_properties_2"></a>Configuration properties</h3>
+<div class="sect3">
+<h4 id="_changing_ssh_server_key"><a class="anchor" href="#_changing_ssh_server_key"></a>Changing SSH server key</h4>
 <div class="paragraph">
 <p>The key can be changed by replacing the file <em>WEB-INF/sshd/hostkey.pem</em>. Alternatively you can configure the server
 to use an external file by using the <em>crash.ssh.keypath</em> parameter in the <em>crash.properties</em>. Uncomment the corresponding
@@ -2017,8 +2099,8 @@ will take place when someone first connects through SSH. The default behavior is
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_changing_telnet_or_ssh_server_ports"><a class="anchor" href="#_changing_telnet_or_ssh_server_ports"></a>Changing telnet or SSH server ports</h3>
+<div class="sect3">
+<h4 id="_changing_telnet_or_ssh_server_ports"><a class="anchor" href="#_changing_telnet_or_ssh_server_ports"></a>Changing telnet or SSH server ports</h4>
 <div class="paragraph">
 <p>The ports of the server are parameterized by the <em>crash.ssh.port</em> and <em>crash.telnet.port</em> parameters in the <em>crash.properties</em> file</p>
 </div>
@@ -2035,8 +2117,8 @@ crash.telnet.port=5000</pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_changing_ssh_authentication_and_idle_timeouts"><a class="anchor" href="#_changing_ssh_authentication_and_idle_timeouts"></a>Changing SSH authentication and idle timeouts</h3>
+<div class="sect3">
+<h4 id="_changing_ssh_authentication_and_idle_timeouts"><a class="anchor" href="#_changing_ssh_authentication_and_idle_timeouts"></a>Changing SSH authentication and idle timeouts ===</h4>
 <div class="paragraph">
 <p>Default authentication and idle timeout of the SSH server are set to 10 minutes (600&#8217;000 ms). Both timeouts can be configured in milliseconds with the //crash.ssh.auth-timeout// and //crash.ssh.idle-timeout// parameters in the //crash.properties// file</p>
 </div>
@@ -2048,21 +2130,21 @@ crash.ssh.idle-timeout=300000</pre>
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
 <h3 id="_removing_telnet_or_ssh_access"><a class="anchor" href="#_removing_telnet_or_ssh_access"></a>Removing telnet or SSH access</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>to remove the telnet access, remove the jar file in the <em>WEB-INF/lib/crsh.connectors.telnet-1.3.0-beta18.jar</em>.</p>
+<p>to remove the telnet access, remove the jar file in the <em>WEB-INF/lib/crsh.connectors.telnet-1.3.0-beta21.jar</em>.</p>
 </li>
 <li>
-<p>to remove the SSH access, remove the jar file in the <em>WEB-INF/lib/crsh.connectors.ssh-1.3.0-beta18.jar</em>.</p>
+<p>to remove the SSH access, remove the jar file in the <em>WEB-INF/lib/crsh.connectors.ssh-1.3.0-beta21.jar</em>.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_configuring_shell_default_message"><a class="anchor" href="#_configuring_shell_default_message"></a>Configuring shell default message</h3>
+<div class="sect3">
+<h4 id="_configuring_shell_default_message"><a class="anchor" href="#_configuring_shell_default_message"></a>Configuring shell default message</h4>
 <div class="paragraph">
 <p>The <em>/WEB-INF/crash/commands/base/login.groovy</em> file contains two closures that are evaluated each time a message is required</p>
 </div>
@@ -2080,8 +2162,8 @@ crash.ssh.idle-timeout=300000</pre>
 <p>Those closure can be customized to return different messages.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_configuring_authentication"><a class="anchor" href="#_configuring_authentication"></a>Configuring authentication</h3>
+<div class="sect3">
+<h4 id="_configuring_authentication"><a class="anchor" href="#_configuring_authentication"></a>Configuring authentication</h4>
 <div class="paragraph">
 <p>Authentication is used by the SSH server when a user authenticates. Authentication interface is pluggable and has default
 implementations. The <a href="#pluggable_auth">authentication chapter</a> explains how to write a custom authentication plugin, in this section we cover the
@@ -2108,8 +2190,8 @@ authentication. In this case plugins are tested in the order which they were spe
 <div class="paragraph">
 <p>CRaSH comes out of the box with two authentication plugins.</p>
 </div>
-<div class="sect3">
-<h4 id="_simple_authentication"><a class="anchor" href="#_simple_authentication"></a>Simple authentication</h4>
+<div class="sect4">
+<h5 id="_simple_authentication"><a class="anchor" href="#_simple_authentication"></a>Simple authentication</h5>
 <div class="paragraph">
 <p>Simple authentication provides a simple username/password authentication configured with the <em>crash.auth.simple.username</em> and
 <em>crash.auth.simple.password</em> properties:</p>
@@ -2123,8 +2205,8 @@ crash.auth.simple.password=admin</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_jaas_authentation"><a class="anchor" href="#_jaas_authentation"></a>Jaas authentation</h4>
+<div class="sect4">
+<h5 id="_jaas_authentation"><a class="anchor" href="#_jaas_authentation"></a>Jaas authentation</h5>
 <div class="paragraph">
 <p>Jaas authentication uses jaas to perform authentication configured with the <em>crash.auth.jaas.domain</em> property to define the
 jaas domain to use when performing authentication:</p>
@@ -2137,8 +2219,8 @@ crash.auth.jaas.domain=my-domain</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_key_authentication"><a class="anchor" href="#_key_authentication"></a>Key authentication</h4>
+<div class="sect4">
+<h5 id="_key_authentication"><a class="anchor" href="#_key_authentication"></a>Key authentication</h5>
 <div class="paragraph">
 <p>Key authentication relies on a set of authorized public keys to perform authentication configured with the
 <em>crash.auth.key.path</em> property to specify the path of the keys. The property should point to a valid <em>.pem</em> file.
@@ -2149,6 +2231,7 @@ Obviously only a public key is required to be in the file, although it can also 
 <pre># Authentication configuration
 crash.auth=key
 crash.auth.key.path=/Users/julien/.ssh/id_dsa.pem</pre>
+</div>
 </div>
 </div>
 </div>
@@ -3042,16 +3125,7 @@ they can be used out of the box in any CRaSH command without requiring prior imp
 <div class="listingblock">
 <div class="title">The command context</div>
 <div class="content">
-<pre class="CodeRay"><code class="java language-java"><span class="comment">/**
- * The command context provides the services for invoking a command.
- *
- * @author &lt;a href=&quot;mailto:julien.viet@exoplatform.com&quot;&gt;Julien Viet&lt;/a&gt;
- */</span>
-<span class="directive">public</span> <span class="type">interface</span> <span class="class">CommandContext</span>&lt;P&gt; <span class="directive">extends</span> Consumer&lt;P&gt;, InteractionContext, RuntimeContext, <span class="predefined-type">Closeable</span> {
-
-  <span class="type">boolean</span> isPiped();
-
-}</code></pre>
+<pre class="CodeRay"><code class="java language-java"></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3118,27 +3192,7 @@ that is the <code>java.lang.instrument.Instrumentation</code> instance obtained 
 <div class="listingblock">
 <div class="title">The invocation context</div>
 <div class="content">
-<pre class="CodeRay"><code class="java language-java">
-<span class="directive">public</span> <span class="type">interface</span> <span class="class">InvocationContext</span>&lt;P&gt; <span class="directive">extends</span> CommandContext&lt;P&gt; {
-
-  <span class="comment">/**
-   * Returns the writer for the output.
-   *
-   * @return the writer
-   */</span>
-  RenderPrintWriter getWriter();
-
-  <span class="comment">/**
-   * Resolve a command invoker for the specified command line.
-   *
-   * @param s the command line
-   * @return the command invoker
-   * @throws ScriptException any script exception
-   * @throws IOException any io exception
-   */</span>
-  CommandInvoker&lt;?, ?&gt; resolve(<span class="predefined-type">String</span> s) <span class="directive">throws</span> ScriptException, <span class="exception">IOException</span>;
-
-}</code></pre>
+<pre class="CodeRay"><code class="java language-java"></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4037,58 +4091,7 @@ interface. Let&#8217;s study the <em>simple</em> authentication plugin implement
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">java.util.Collections</span>;
-<span class="keyword">import</span> <span class="include">java.util.List</span>;
-
-<span class="comment">/**
- * The authentication plugin.
- *
- * @param &lt;C&gt; the credential parameter type
- */</span>
-<span class="directive">public</span> <span class="type">interface</span> <span class="class">AuthenticationPlugin</span>&lt;C&gt; {
-
-  <span class="comment">/** The authentication plugin to use. */</span>
-  <span class="predefined-type">PropertyDescriptor</span>&lt;<span class="predefined-type">List</span>&gt; AUTH = <span class="predefined-type">PropertyDescriptor</span>.create(<span class="string"><span class="delimiter">&quot;</span><span class="content">auth</span><span class="delimiter">&quot;</span></span>, <span class="predefined-type">Collections</span>.emptyList(), <span class="string"><span class="delimiter">&quot;</span><span class="content">The authentication plugin</span><span class="delimiter">&quot;</span></span>);
-
-  <span class="comment">/**
-   * The plugin that never authenticates, returns the name value &lt;code&gt;null&lt;/code&gt;.
-   */</span>
-  AuthenticationPlugin&lt;<span class="predefined-type">Object</span>&gt; NULL = <span class="keyword">new</span> AuthenticationPlugin&lt;<span class="predefined-type">Object</span>&gt;() {
-    <span class="directive">public</span> <span class="predefined-type">Class</span>&lt;<span class="predefined-type">Object</span>&gt; getCredentialType() {
-      <span class="keyword">return</span> <span class="predefined-type">Object</span>.class;
-    }
-    <span class="directive">public</span> <span class="predefined-type">String</span> getName() {
-      <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">null</span><span class="delimiter">&quot;</span></span>;
-    }
-    <span class="directive">public</span> <span class="type">boolean</span> authenticate(<span class="predefined-type">String</span> username, <span class="predefined-type">Object</span> password) <span class="directive">throws</span> <span class="exception">Exception</span> {
-      <span class="keyword">return</span> <span class="predefined-constant">false</span>;
-    }
-  };
-
-  <span class="comment">/**
-   * Returns the authentication plugin name.
-   *
-   * @return the plugin name
-   */</span>
-  <span class="predefined-type">String</span> getName();
-
-  <span class="comment">/**
-   * Returns the credential type.
-   *
-   * @return the credential type
-   */</span>
-  <span class="predefined-type">Class</span>&lt;C&gt; getCredentialType();
-
-  <span class="comment">/**
-   * Returns true if the user is authentified by its username and credential.
-   *
-   * @param username the username
-   * @param credential the credential
-   * @return true if authentication succeeded
-   * @throws Exception any exception that would prevent authentication to happen
-   */</span>
-  <span class="type">boolean</span> authenticate(<span class="predefined-type">String</span> username, C credential) <span class="directive">throws</span> <span class="exception">Exception</span>;
-}</code></pre>
+<pre class="CodeRay"><code class="java language-java"></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4100,13 +4103,6 @@ interface. Let&#8217;s study the <em>simple</em> authentication plugin implement
     CRaSHPlugin&lt;AuthenticationPlugin&gt; <span class="directive">implements</span>
     AuthenticationPlugin {
 
-  <span class="annotation">@Override</span>
-  <span class="directive">public</span> AuthenticationPlugin getImplementation() {
-    <span class="keyword">return</span> <span class="local-variable">this</span>;
-  }
-  <span class="directive">public</span> <span class="predefined-type">String</span> getName() {
-    <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">simple</span><span class="delimiter">&quot;</span></span>;
-  }
 
   ...
 
@@ -4134,34 +4130,6 @@ simply returns <code>this</code> because <code>SimpleAuthenticationPlugin</code>
     CRaSHPlugin&lt;AuthenticationPlugin&gt; <span class="directive">implements</span>
     AuthenticationPlugin {
 
-  <span class="comment">/** The username. */</span>
-  <span class="directive">public</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">PropertyDescriptor</span>&lt;<span class="predefined-type">String</span>&gt; SIMPLE_USERNAME =
-    <span class="predefined-type">PropertyDescriptor</span>.create(
-      <span class="string"><span class="delimiter">&quot;</span><span class="content">auth.simple.username</span><span class="delimiter">&quot;</span></span>,
-      <span class="string"><span class="delimiter">&quot;</span><span class="content">admin</span><span class="delimiter">&quot;</span></span>,
-      <span class="string"><span class="delimiter">&quot;</span><span class="content">The username</span><span class="delimiter">&quot;</span></span>);
-
-  <span class="comment">/** The password. */</span>
-  <span class="directive">public</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">PropertyDescriptor</span>&lt;<span class="predefined-type">String</span>&gt; SIMPLE_PASSWORD =
-    <span class="predefined-type">PropertyDescriptor</span>.create(
-      <span class="string"><span class="delimiter">&quot;</span><span class="content">auth.simple.password</span><span class="delimiter">&quot;</span></span>,
-      <span class="string"><span class="delimiter">&quot;</span><span class="content">admin</span><span class="delimiter">&quot;</span></span>,
-      <span class="string"><span class="delimiter">&quot;</span><span class="content">The password</span><span class="delimiter">&quot;</span></span>,
-      <span class="predefined-constant">true</span>);
-
-  <span class="annotation">@Override</span>
-  <span class="directive">protected</span> <span class="predefined-type">Iterable</span>&lt;<span class="predefined-type">PropertyDescriptor</span>&lt;?&gt;&gt; createConfigurationCapabilities() {
-    <span class="keyword">return</span> <span class="predefined-type">Arrays</span>.&lt;<span class="predefined-type">PropertyDescriptor</span>&lt;?&gt;&gt;asList(
-      SIMPLE_USERNAME,
-      SIMPLE_PASSWORD);
-  }
-
-  <span class="annotation">@Override</span>
-  <span class="directive">public</span> <span class="type">void</span> init() {
-    PluginContext context = getContext();
-    <span class="local-variable">this</span>.username = context.getProperty(SIMPLE_USERNAME);
-    <span class="local-variable">this</span>.password = context.getProperty(SIMPLE_PASSWORD);
-  }
 
   ...
 
@@ -4185,13 +4153,7 @@ from the plugin context with the method <code>getContext()</code> available in t
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">boolean</span> authenticate(<span class="predefined-type">String</span> username, <span class="predefined-type">String</span> password)
-  <span class="directive">throws</span> <span class="exception">Exception</span> {
-  <span class="keyword">return</span> <span class="local-variable">this</span>.username != <span class="predefined-constant">null</span> &amp;&amp;
-    <span class="local-variable">this</span>.password != <span class="predefined-constant">null</span> &amp;&amp;
-    <span class="local-variable">this</span>.username.equals(username) &amp;&amp;
-    <span class="local-variable">this</span>.password.equals(password);
-}</code></pre>
+<pre class="CodeRay"><code class="java language-java"></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4242,7 +4204,7 @@ command.</p>
 <p>the JavaMail jar <code>mail-1.4.jar</code></p>
 </li>
 <li>
-<p>the plugin jar <code>crash.plugins.mail-1.3.0-beta18.jar</code></p>
+<p>the plugin jar <code>crash.plugins.mail-1.3.0-beta21.jar</code></p>
 </li>
 </ul>
 </div>
@@ -4306,7 +4268,7 @@ to text before sending the email.</p>
 <p>the cron4j jar <code>cron4j-2.2.5.jar</code></p>
 </li>
 <li>
-<p>the plugin jar <code>crash.plugins.cron-1.3.0-beta18.jar</code></p>
+<p>the plugin jar <code>crash.plugins.cron-1.3.0-beta21.jar</code></p>
 </li>
 </ul>
 </div>
@@ -4340,80 +4302,6 @@ other crontab configuration file it consists of two parts:</p>
 </div>
 </div>
 </div>
-<h1 id="_jcr_plugin" class="sect0"><a class="anchor" href="#_jcr_plugin"></a>JCR plugin</h1>
-<div class="paragraph">
-<p>The CRaSH JCR extension allow to connect and interract with Java Content Repository implementations.</p>
-</div>
-<div class="sect1">
-<h2 id="_jcr_implementations"><a class="anchor" href="#_jcr_implementations"></a>JCR implementations</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_exo_jcr"><a class="anchor" href="#_exo_jcr"></a>eXo JCR</h3>
-<div class="paragraph">
-<p>todo</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_apache_jackrabbit"><a class="anchor" href="#_apache_jackrabbit"></a>Apache Jackrabbit</h3>
-<div class="paragraph">
-<p>CRaSH has been tested with Jackrabbit in the following mode : deployment as a resource accessible via JNDI on JBoss 6.1.0.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_scp_usage"><a class="anchor" href="#_scp_usage"></a>SCP usage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Secure copy can be used to import or export content. The username/password prompted by the SSH server will be used
-for authentication against the repository when the import or the export is performed.</p>
-</div>
-<div class="sect2">
-<h3 id="_export_a_jcr_node"><a class="anchor" href="#_export_a_jcr_node"></a>Export a JCR node</h3>
-<div class="paragraph">
-<p>The following command will export the node <em>/gadgets</em> in the repository <em>portal-system</em>
-of the portal container <em>portal</em>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>scp -P 2000 root@localhost:portal:portal-system:/production/app:gadgets gadgets.xml</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The node will be exported as <em>app_gadgets.xml</em>.</p>
-</div>
-<div class="paragraph">
-<p>Note that the portal container name is used for GateIn. If you do omit it, then the root container will be used.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_import_a_jcr_node"><a class="anchor" href="#_import_a_jcr_node"></a>Import a JCR node</h3>
-<div class="paragraph">
-<p>The following command will reimport the node:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>scp -P 2000 gadgets.xml root@localhost:portal:portal-system:/production/</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The exported file format use the JCR system view. You can get more information about that in the JCR specification.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-The SCP feature is experimental.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
 <h1 id="_hey_i_want_to_contribute" class="sect0"><a class="anchor" href="#_hey_i_want_to_contribute"></a>Hey, I want to contribute!</h1>
 <div class="paragraph">
 <p>Drop me an email. You can find my email on <a href="http://www.julienviet.com">http://www.julienviet.com</a>. Any kind of help is welcome.</p>
@@ -4421,150 +4309,6 @@ The SCP feature is experimental.
 <div class="sect1">
 <h2 id="_commands_reference"><a class="anchor" href="#_commands_reference"></a>Appendix A: Commands reference</h2>
 <div class="sectionbody">
-<div class="sect1">
-<h2 id="_help"><a class="anchor" href="#_help"></a>help</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       help - provides basic help
-
-SYNOPSIS
-       help [-h | --help]
-
-STREAM
-       help &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_repl"><a class="anchor" href="#_repl"></a>repl</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       repl - list the repl or change the current repl
-
-SYNOPSIS
-       repl [-h | --help] &lt;arg&gt;
-
-STREAM
-       repl &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;arg&gt;
-           the optional repl name
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_cd"><a class="anchor" href="#_cd"></a>cd</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       cd - changes the current node
-
-SYNOPSIS
-       cd [-h | --help] &lt;path&gt;
-
-STREAM
-       cd &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       The cd command changes the current node path. The command used with no argument changes to
-       the root node. A relative or absolute path argument can be provided to specify a new current
-       node path.
-
-       [/]% cd /gadgets
-       [/gadgets]% cd /gadgets
-       [/gadgets]% cd
-       [/]%
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;path&gt;
-           The new path that will change the current node navigation
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_commit"><a class="anchor" href="#_commit"></a>commit</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       commit - saves changes
-
-SYNOPSIS
-       commit [-h | --help] &lt;path&gt;
-
-STREAM
-       commit &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       Saves the changes done to the current session. A node can be provided to save the state of the
-       this nodes and its descendants only.
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;path&gt;
-           The path of the node to commit
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_cp"><a class="anchor" href="#_cp"></a>cp</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       cp - copy a node to another
-
-SYNOPSIS
-       cp [-h | --help] &lt;source&gt; &lt;target&gt;
-
-STREAM
-       cp &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       The cp command copies a node to a target location in the JCR tree.
-
-       [/registry]% cp foo bar
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;source&gt;
-           The path of the source node to copy
-
-       &lt;target&gt;
-           The path of the target node to be copied
-</pre>
-</div>
-</div>
-</div>
-</div>
 <div class="sect1">
 <h2 id="_dashboard"><a class="anchor" href="#_dashboard"></a>dashboard</h2>
 <div class="sectionbody">
@@ -5276,19 +5020,17 @@ COMMANDS
        system
            Show JVM operating system
 
-       pool
-           Show JVM memory pool
-
        runtime
            Show JVM runtime
-
-       top
 
        heap
            Show JVM memory heap
 
        pools
            Show JVM memory pools
+
+       pool
+           Show JVM memory pool
 
        classloading
            Show JVM classloding
@@ -5298,6 +5040,8 @@ COMMANDS
 
        nonheap
            Show JVM memory non heap
+
+       top
 </pre>
 </div>
 </div>
@@ -5342,28 +5086,6 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_jvm_pool"><a class="anchor" href="#_jvm_pool"></a>jvm pool</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jvm pool - Show JVM memory pool
-
-SYNOPSIS
-       jvm [-h | --help] pool &lt;pools&gt;...
-
-STREAM
-       jvm pool &lt;java.lang.String, java.lang.management.MemoryUsage&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;pools&gt;...
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_jvm_runtime"><a class="anchor" href="#_jvm_runtime"></a>jvm runtime</h3>
 <div class="listingblock">
 <div class="content">
@@ -5375,26 +5097,6 @@ SYNOPSIS
 
 STREAM
        jvm runtime &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_jvm_top"><a class="anchor" href="#_jvm_top"></a>jvm top</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jvm top
-
-SYNOPSIS
-       jvm [-h | --help] top
-
-STREAM
-       jvm top &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
 
 PARAMETERS
        [-h | --help]
@@ -5439,6 +5141,28 @@ STREAM
 PARAMETERS
        [-h | --help]
            Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jvm_pool"><a class="anchor" href="#_jvm_pool"></a>jvm pool</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jvm pool - Show JVM memory pool
+
+SYNOPSIS
+       jvm [-h | --help] pool &lt;pools&gt;...
+
+STREAM
+       jvm pool &lt;java.lang.String, java.lang.management.MemoryUsage&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;pools&gt;...
 </pre>
 </div>
 </div>
@@ -5495,6 +5219,26 @@ SYNOPSIS
 
 STREAM
        jvm nonheap &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jvm_top"><a class="anchor" href="#_jvm_top"></a>jvm top</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jvm top
+
+SYNOPSIS
+       jvm [-h | --help] top
+
+STREAM
+       jvm top &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
 
 PARAMETERS
        [-h | --help]
@@ -5560,17 +5304,6 @@ COMMANDS
 
            % log ls | log set -l warn
 
-       send
-           The send command log one or several loggers with a specified message. For instance the
-           following impersonates the javax.management.mbeanserver class and send a message on its own
-           logger.
-
-           #% log send -m hello javax.management.mbeanserver
-
-           Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
-
-           % log ls | log send -m hello -l warn
-
        tail
            The tail command provides a tail view of a list of loggers. One or several logger names can
            be specified as argument and the -l option configures the level threshold. When no logger
@@ -5600,6 +5333,17 @@ COMMANDS
 
            The log ls command is a &lt;Void,Logger&gt; command, therefore any logger produced can be
            consumed.
+
+       send
+           The send command log one or several loggers with a specified message. For instance the
+           following impersonates the javax.management.mbeanserver class and send a message on its own
+           logger.
+
+           #% log send -m hello javax.management.mbeanserver
+
+           Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
+
+           % log ls | log send -m hello -l warn
 </pre>
 </div>
 </div>
@@ -5661,46 +5405,6 @@ PARAMETERS
            The logger level to assign among {trace, debug, info, warn, error}
 
        &lt;name&gt;...
-           The name of the logger
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_log_send"><a class="anchor" href="#_log_send"></a>log send</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       log send - send a message to a logger
-
-SYNOPSIS
-       log [-h | --help] send [-m | --message] [-l | --level] &lt;name&gt;
-
-STREAM
-       log send &lt;java.util.logging.Logger, java.lang.Object&gt;
-
-DESCRIPTION
-       The send command log one or several loggers with a specified message. For instance the
-       following impersonates the javax.management.mbeanserver class and send a message on its own
-       logger.
-
-       #% log send -m hello javax.management.mbeanserver
-
-       Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
-
-       % log ls | log send -m hello -l warn
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       [-m | --message]
-           The message to log
-
-       [-l | --level]
-           The logger level to assign among {trace, debug, info, warn, error}
-
-       &lt;name&gt;
            The name of the logger
 </pre>
 </div>
@@ -5785,50 +5489,44 @@ PARAMETERS
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ls"><a class="anchor" href="#_ls"></a>ls</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_log_send"><a class="anchor" href="#_log_send"></a>log send</h3>
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       ls - list the content of a node
+       log send - send a message to a logger
 
 SYNOPSIS
-       ls [-d | --depth] [-h | --help] &lt;path&gt;
+       log [-h | --help] send [-m | --message] [-l | --level] &lt;name&gt;
 
 STREAM
-       ls &lt;java.lang.Void, java.lang.Object&gt;
+       log send &lt;java.util.logging.Logger, java.lang.Object&gt;
 
 DESCRIPTION
-       The ls command displays the content of a node. By default it lists the content of the
-       current node, however it also accepts a path argument that can be absolute or relative.
+       The send command log one or several loggers with a specified message. For instance the
+       following impersonates the javax.management.mbeanserver class and send a message on its own
+       logger.
 
-       [/]% ls
-       /
-       +-properties
-       | +-jcr:primaryType: nt:unstructured
-       | +-jcr:mixinTypes: [exo:owneable,exo:privilegeable]
-       | +-exo:owner: '__system'
-       | +-exo:permissions: [any read,*:/platform/administrators read]
-       +-children
-       | +-/workspace
-       | +-/contents
-       | +-/Users
-       | +-/gadgets
-       | +-/folder
+       #% log send -m hello javax.management.mbeanserver
+
+       Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
+
+       % log ls | log send -m hello -l warn
 
 PARAMETERS
-       [-d | --depth]
-           The depth of the printed tree
-
        [-h | --help]
            Display this help message
 
-       &lt;path&gt;
-           The path of the node content to list
+       [-m | --message]
+           The message to log
+
+       [-l | --level]
+           The logger level to assign among {trace, debug, info, warn, error}
+
+       &lt;name&gt;
+           The name of the logger
 </pre>
+</div>
 </div>
 </div>
 </div>
@@ -5853,750 +5551,6 @@ PARAMETERS
 
        &lt;command&gt;
            the command
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_mixin"><a class="anchor" href="#_mixin"></a>mixin</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       mixin - mixin commands
-
-SYNOPSIS
-       mixin [-h | --help] COMMAND [ARGS]
-
-DESCRIPTION
-       The mixin command manipulates JCR node mixins. Mixins can be added to or removed from nodes.
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-COMMANDS
-       add
-           The add command addds a mixin to one or several nodes, this command is a &lt;Node,Void&gt;
-           command, and can add a mixin from an incoming node stream, for instance:
-
-           [/]% select * from mynode | mixin add mix:versionable
-
-
-       remove
-           The remove command removes a mixin from one or several nodes, this command is a &lt;Node,Void&gt;
-           command, and can remove a mixin from an incoming node stream, for instance:
-
-           [/]% select * from mynode | mixin remove mix:versionable
-
-</pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_mixin_add"><a class="anchor" href="#_mixin_add"></a>mixin add</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       mixin add - add a mixin to one or several nodes
-
-SYNOPSIS
-       mixin [-h | --help] add &lt;mixin&gt; &lt;paths&gt;...
-
-STREAM
-       mixin add &lt;javax.jcr.Node, javax.jcr.Node&gt;
-
-DESCRIPTION
-       The add command addds a mixin to one or several nodes, this command is a &lt;Node,Void&gt;
-       command, and can add a mixin from an incoming node stream, for instance:
-
-       [/]% select * from mynode | mixin add mix:versionable
-
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;mixin&gt;
-           the mixin name to add
-
-       &lt;paths&gt;...
-           the paths of the node receiving the mixin
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_mixin_remove"><a class="anchor" href="#_mixin_remove"></a>mixin remove</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       mixin remove - removes a mixin from one or several nodes
-
-SYNOPSIS
-       mixin [-h | --help] remove &lt;mixin&gt; &lt;paths&gt;...
-
-STREAM
-       mixin remove &lt;javax.jcr.Node, javax.jcr.Node&gt;
-
-DESCRIPTION
-       The remove command removes a mixin from one or several nodes, this command is a &lt;Node,Void&gt;
-       command, and can remove a mixin from an incoming node stream, for instance:
-
-       [/]% select * from mynode | mixin remove mix:versionable
-
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;mixin&gt;
-           the mixin name to remove
-
-       &lt;paths&gt;...
-           the paths of the node receiving the mixin
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_mv"><a class="anchor" href="#_mv"></a>mv</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       mv - move a node
-
-SYNOPSIS
-       mv [-h | --help] &lt;source&gt; &lt;target&gt;
-
-STREAM
-       mv &lt;javax.jcr.Node, javax.jcr.Node&gt;
-
-DESCRIPTION
-       The mv command can move a node to a target location in the JCR tree. It can be used also to
-       rename a node. The mv command is a &lt;Node,Node&gt; command consuming a stream of node to move
-       them and producing nodes that were moved.
-
-       [/registry]% mv Registry Registry2
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;source&gt;
-           The path of the source node to move, absolute or relative
-
-       &lt;target&gt;
-           The destination path absolute or relative
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_node"><a class="anchor" href="#_node"></a>node</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       node - node commands
-
-SYNOPSIS
-       node [-h | --help] COMMAND [ARGS]
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-COMMANDS
-       add
-           The addnode command creates one or several nodes. The command takes at least one node as
-           argument, but it can take more. Each path can be either absolute or relative, relative path
-           creates nodes relative to the current node. By default the node type is the default
-           repository node type, but the option -t can be used to specify another one.
-
-           [/registry]% addnode foo
-           Node /foo created
-
-           [/registry]% addnode -t nt:file bar juu
-           Node /bar /juu created
-
-           The addnode command is a &lt;Void,Node&gt; command that produces all the nodes that were created.
-
-       set
-           The set command updates the property of a node.
-
-           Create or destroy property foo with the value bar on the root node:
-
-           [/]% set foo bar
-           Property created
-
-           Update the existing foo property:
-
-           [/]% set foo juu
-
-           When a property is created and does not have a property descriptor that constraint its type,
-           you can specify it with the -t option
-
-           [/]% set -t LONG long_property 3
-
-           Remove a property
-
-           [/]% set foo
-
-           set is a &lt;Node,Void&gt; command updating the property of the consumed node stream.
-
-       export
-           Exports a node as an nt file in the same workspace:
-
-           [/]% node export gadgets /gadgets.xml
-           The node has been exported
-
-
-       import
-           Imports a node from an nt:file node located in the workspace:
-
-           [/]% importnode /gadgets.xml /
-           Node imported
-
-</pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_node_add"><a class="anchor" href="#_node_add"></a>node add</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       node add - creates one or several nodes
-
-SYNOPSIS
-       node [-h | --help] add [-t | --type] &lt;paths&gt;...
-
-STREAM
-       node add &lt;java.lang.Void, javax.jcr.Node&gt;
-
-DESCRIPTION
-       The addnode command creates one or several nodes. The command takes at least one node as
-       argument, but it can take more. Each path can be either absolute or relative, relative path
-       creates nodes relative to the current node. By default the node type is the default
-       repository node type, but the option -t can be used to specify another one.
-
-       [/registry]% addnode foo
-       Node /foo created
-
-       [/registry]% addnode -t nt:file bar juu
-       Node /bar /juu created
-
-       The addnode command is a &lt;Void,Node&gt; command that produces all the nodes that were created.
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       [-t | --type]
-           The name of the primary node type to create.
-
-       &lt;paths&gt;...
-           The paths of the new node to be created, the paths can either be absolute or relative.
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_node_set"><a class="anchor" href="#_node_set"></a>node set</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       node set - set a property on the current node
-
-SYNOPSIS
-       node [-h | --help] set [-t | --type] &lt;propertyName&gt; &lt;propertyValue&gt;
-
-STREAM
-       node set &lt;javax.jcr.Node, javax.jcr.Node&gt;
-
-DESCRIPTION
-       The set command updates the property of a node.
-
-       Create or destroy property foo with the value bar on the root node:
-
-       [/]% set foo bar
-       Property created
-
-       Update the existing foo property:
-
-       [/]% set foo juu
-
-       When a property is created and does not have a property descriptor that constraint its type,
-       you can specify it with the -t option
-
-       [/]% set -t LONG long_property 3
-
-       Remove a property
-
-       [/]% set foo
-
-       set is a &lt;Node,Void&gt; command updating the property of the consumed node stream.
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       [-t | --type]
-           The property type to use when it cannot be inferred
-
-       &lt;propertyName&gt;
-           The name of the property to alter
-
-       &lt;propertyValue&gt;
-           The new value of the property
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_node_export"><a class="anchor" href="#_node_export"></a>node export</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       node export - export a node to an nt file
-
-SYNOPSIS
-       node [-h | --help] export &lt;source&gt; &lt;target&gt;
-
-STREAM
-       node export &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       Exports a node as an nt file in the same workspace:
-
-       [/]% node export gadgets /gadgets.xml
-       The node has been exported
-
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;source&gt;
-           The path of the exported node
-
-       &lt;target&gt;
-           The path of the exported nt:file node
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_node_import"><a class="anchor" href="#_node_import"></a>node import</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       node import - imports a node from an nt file
-
-SYNOPSIS
-       node [-h | --help] import &lt;source&gt; &lt;target&gt;
-
-STREAM
-       node import &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       Imports a node from an nt:file node located in the workspace:
-
-       [/]% importnode /gadgets.xml /
-       Node imported
-
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;source&gt;
-           The path of the imported nt:file node
-
-       &lt;target&gt;
-           The path of the parent imported node
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_pwd"><a class="anchor" href="#_pwd"></a>pwd</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       pwd - print the current node path
-
-SYNOPSIS
-       pwd [-h | --help]
-
-STREAM
-       pwd &lt;java.lang.Void, groovy.util.Node&gt;
-
-DESCRIPTION
-       The pwd command prints the current node path, the current node is produced by this command.
-
-       [/gadgets]% pwd
-       /gadgets
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_repo"><a class="anchor" href="#_repo"></a>repo</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       repo - repository interaction commands
-
-SYNOPSIS
-       repo [-h | --help] COMMAND [ARGS]
-
-DESCRIPTION
-       The repo commands allow to select a repository to use, it is the main entry point for
-       using JCR commands.
-
-       The set of available repository plugins can be discovered with the ls command:
-
-       % repo ls
-       Available JCR plugins:
-       exo - Exo JCR plugin - You can use a container bound repository: 'repo use container=portal'
-
-       A repository can then be selected with the use command.
-
-       For the eXo repository you can use a container bound repository:
-       % repo use container=portal
-
-
-       jackrabbit - Jackrabbit JCR Plugin.
-
-       JackRabbit must be properly configured to provide any of the following access
-       methods. For the details, see the following resources.
-       * http://jackrabbit.apache.org/deployment-models.html
-       * http://wiki.apache.org/jackrabbit/RemoteAccess
-       * http://jackrabbit.apache.org/shared-j2ee-resource-howto.html
-
-       Connect via RMI:
-       % repo use org.apache.jackrabbit.repository.uri=rmi://localhost:1099/jackrabbit
-       Connect via JNDI:
-       % repo use org.apache.jackrabbit.repository.uri=jndi:java:comp/env/jcr/jackrabbit
-       Connect via WebDAV:
-       % repo use org.apache.jackrabbit.repository.uri=http://localhost:8080/jackrabbit-webapp/repository/
-
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-COMMANDS
-       info
-           The info command print the descriptor of the current repository.
-
-       ls
-           The ls command print the available repository plugins.
-
-       use
-           The use command changes the current repository used by for JCR commands. The command accepts
-           a set of properties as main command argument that will be used to select a repository:
-
-           % repo use parameterName=parameterValue;nextParameterName=nextParameterValue
-
-           The parameters is specific to JCR plugin implementations, more details can be found thanks
-           to the ls command.
-
-</pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_repo_info"><a class="anchor" href="#_repo_info"></a>repo info</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       repo info - show info about the current repository
-
-SYNOPSIS
-       repo [-h | --help] info
-
-STREAM
-       repo info &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       The info command print the descriptor of the current repository.
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_repo_ls"><a class="anchor" href="#_repo_ls"></a>repo ls</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       repo ls - list the available repository plugins
-
-SYNOPSIS
-       repo [-h | --help] ls
-
-STREAM
-       repo ls &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       The ls command print the available repository plugins.
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_repo_use"><a class="anchor" href="#_repo_use"></a>repo use</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       repo use - changes the current repository
-
-SYNOPSIS
-       repo [-h | --help] use &lt;parameters&gt;
-
-STREAM
-       repo use &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       The use command changes the current repository used by for JCR commands. The command accepts
-       a set of properties as main command argument that will be used to select a repository:
-
-       % repo use parameterName=parameterValue;nextParameterName=nextParameterValue
-
-       The parameters is specific to JCR plugin implementations, more details can be found thanks
-       to the ls command.
-
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;parameters&gt;
-           The parameters used to instantiate the repository to be used in this session
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_rm"><a class="anchor" href="#_rm"></a>rm</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       rm - remove one or several node or a property
-
-SYNOPSIS
-       rm [-h | --help] &lt;paths&gt;...
-
-STREAM
-       rm &lt;javax.jcr.Node, java.lang.Void&gt;
-
-DESCRIPTION
-       The rm command removes a node or property specified by its path either absolute or relative.
-       This operation is executed against the JCR session, meaning that it will not be effective
-       until it is commited to the JCR server.
-
-       [/]% rm foo
-       Node /foo removed
-
-       It is possible to specify several nodes.
-
-       [/]% rm foo bar
-       Node /foo /bar removed
-
-       rm is a &lt;Node,Void&gt; command removing all the consumed nodes.
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;paths&gt;...
-           The paths of the node to remove
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_rollback"><a class="anchor" href="#_rollback"></a>rollback</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       rollback - rollback changes
-
-SYNOPSIS
-       rollback [-h | --help] &lt;path&gt;
-
-STREAM
-       rollback &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       Rollbacks the changes of the current session. A node can be provided to rollback
-       the state of the this nodes and its descendants only.
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;path&gt;
-           the path to rollback
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_select"><a class="anchor" href="#_select"></a>select</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       select - execute a JCR sql query
-
-SYNOPSIS
-       select [-o | --offset] [-l | --limit] [-a | --all] [-h | --help] &lt;query&gt;...
-
-STREAM
-       select &lt;java.lang.Void, javax.jcr.Node&gt;
-
-DESCRIPTION
-       Queries in SQL format are possible via the ##select## command. You can write a query with
-       the same syntax defined by the specification and add options to control the number of
-       results returned. By default the number of nodes is limited to 5 results:
-
-       [/]% select * from nt:base
-       The query matched 1114 nodes
-       +-/
-       | +-properties
-       | | +-jcr:primaryType: nt:unstructured
-       | | +-jcr:mixinTypes: [exo:owneable,exo:privilegeable]
-       | | +-exo:owner: '__system'
-       | | +-exo:permissions: [any read,*:/platform/administrators read]
-       +-/workspace
-       | +-properties
-       | | +-jcr:primaryType: mop:workspace
-       | | +-jcr:uuid: 'a69f226ec0a80002007ca83e5845cdac'
-       ...
-
-       Display 20 nodes from the offset 10:
-
-       [/]% select -o 10 -l 20 * from nt:base
-       The query matched 1114 nodes
-       ...
-
-       It is possible also to remove the limit of displayed nodes with the -a option (you should
-       use this option with care) :
-
-       [/]% select -a * from nt:base
-       The query matched 1114 nodes
-       ...
-
-       select is a &lt;Void,Node&gt; command producing all the matched nodes.
-
-PARAMETERS
-       [-o | --offset]
-           The offset of the first node to display
-
-       [-l | --limit]
-           The number of nodes displayed, by default this value is equals to 5
-
-       [-a | --all]
-           Display all the results by ignoring the limit argument, this should be used with care for large result set
-
-       [-h | --help]
-           Display this help message
-
-       &lt;query&gt;...
-           The query, as is
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_setperm"><a class="anchor" href="#_setperm"></a>setperm</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       setperm - modify the security permissions of a JCR node
-
-SYNOPSIS
-       setperm [-i | --identity] [-a | --add] [-r | --remove] [-h | --help] &lt;paths&gt;...
-
-STREAM
-       setperm &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       The setperm commands configures the security of a node based on (see eXo JCR access
-       control at http://wiki.exoplatform.com/xwiki/bin/view/JCR/Access%20Control). When a node
-       is protected by access control, it owns a mixin named exo:privilegeable that contains a
-       exo:permissions property, for instance:
-
-       [/production]% ls
-       /production
-       +-properties
-       | +-jcr:primaryType: nt:unstructured
-       | +-jcr:mixinTypes: [exo:privilegeable]
-       | +-exo:permissions: [*:/platform/administrators read,*:/platform/administrators add_node]
-       +-children
-       | +-/production/app:gadgets
-       | +-/production/app:applications
-       | +-/production/mop:workspace
-
-       You can alter the node permission list with the setperm command:
-
-       [/production]% setperm -i *:/platform/mygroup -a read -a add_node /
-       Node /production updated to [read,add_node]
-
-       You can also remove a permission by using the -r option.
-
-       [/production]% setperm -i *:/platform/mygroup -r add_node /
-       Node /production updated to [read]
-
-       The setperm command will add automatically the exo:privilegeable mixin on the node when it
-       is missing. The setperm is a &lt;Node,Void&gt; command altering the security of the consumed
-       node stream.
-
-PARAMETERS
-       [-i | --identity]
-           the identity
-
-       [-a | --add]
-           the permissions to use
-
-       [-r | --remove]
-           the permissions to remove
-
-       [-h | --help]
-           Display this help message
-
-       &lt;paths&gt;...
-           The node path list to secure
 </pre>
 </div>
 </div>
@@ -7133,244 +6087,47 @@ PARAMETERS
 </div>
 </div>
 <div class="sect1">
-<h2 id="_version"><a class="anchor" href="#_version"></a>version</h2>
+<h2 id="_help"><a class="anchor" href="#_help"></a>help</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       version - versioning commands
+       help - provides basic help
 
 SYNOPSIS
-       version [-h | --help] COMMAND [ARGS]
-
-DESCRIPTION
-       Versionning commands
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-COMMANDS
-       checkin
-           Perform a node checkin
-
-       checkout
-           Perform a node checkout
-</pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_version_checkin"><a class="anchor" href="#_version_checkin"></a>version checkin</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       version checkin - checkin a node
-
-SYNOPSIS
-       version [-h | --help] checkin &lt;path&gt;
+       help [-h | --help]
 
 STREAM
-       version checkin &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       Perform a node checkin
+       help &lt;java.lang.Void, java.lang.Object&gt;
 
 PARAMETERS
        [-h | --help]
            Display this help message
-
-       &lt;path&gt;
-           The node path to checkin
 </pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_version_checkout"><a class="anchor" href="#_version_checkout"></a>version checkout</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       version checkout - checkout a node
-
-SYNOPSIS
-       version [-h | --help] checkout &lt;path&gt;
-
-STREAM
-       version checkout &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       Perform a node checkout
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;path&gt;
-           The node path to checkout
-</pre>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ws"><a class="anchor" href="#_ws"></a>ws</h2>
+<h2 id="_repl"><a class="anchor" href="#_repl"></a>repl</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       ws - workspace commands
+       repl - list the repl or change the current repl
 
 SYNOPSIS
-       ws [-h | --help] COMMAND [ARGS]
-
-DESCRIPTION
-       The ws command provides a set of commands interacting with JCR workspace.
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-COMMANDS
-       login
-
-           This command login to a JCR workspace and establish a session with the repository.
-           When you are connected the shell maintain a JCR session and allows you to interact with
-           the session in a shell oriented fashion. The repository name must be specified and
-           optionally you can specify a user name and password to have more privileges.
-
-           Before performing a login operation, a repository must be first selected with the repo
-           command, for instance:
-
-           % repo use container=portal
-
-           Once a repository is obtained the login operation can be done:
-
-           % ws login portal-system
-           Connected to workspace portal-system
-
-           % ws login -u root -p gtn portal-system
-           Connected to workspace portal-system
-
-
-
-       logout
-           This command logout from the currently connected JCR workspace
-</pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ws_login"><a class="anchor" href="#_ws_login"></a>ws login</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       ws login - login to a workspace
-
-SYNOPSIS
-       ws [-h | --help] login [-u | --username] [-p | --password] [-c | --container] &lt;workspaceName&gt;
+       repl [-h | --help] &lt;arg&gt;
 
 STREAM
-       ws login &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-
-       This command login to a JCR workspace and establish a session with the repository.
-       When you are connected the shell maintain a JCR session and allows you to interact with
-       the session in a shell oriented fashion. The repository name must be specified and
-       optionally you can specify a user name and password to have more privileges.
-
-       Before performing a login operation, a repository must be first selected with the repo
-       command, for instance:
-
-       % repo use container=portal
-
-       Once a repository is obtained the login operation can be done:
-
-       % ws login portal-system
-       Connected to workspace portal-system
-
-       % ws login -u root -p gtn portal-system
-       Connected to workspace portal-system
-
-
+       repl &lt;java.lang.Void, java.lang.Object&gt;
 
 PARAMETERS
        [-h | --help]
            Display this help message
 
-       [-u | --username]
-           The user name
-
-       [-p | --password]
-           The user password
-
-       [-c | --container]
-           The portal container name (eXo JCR specific)
-
-       &lt;workspaceName&gt;
-           The name of the workspace to connect to
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ws_logout"><a class="anchor" href="#_ws_logout"></a>ws logout</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       ws logout - logout from a workspace
-
-SYNOPSIS
-       ws [-h | --help] logout
-
-STREAM
-       ws logout &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       This command logout from the currently connected JCR workspace
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_xpath"><a class="anchor" href="#_xpath"></a>xpath</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       xpath - execute a JCR xpath query
-
-SYNOPSIS
-       xpath [-o | --offset] [-l | --limit] [-a | --all] [-h | --help] &lt;query&gt;
-
-STREAM
-       xpath &lt;java.lang.Void, java.lang.Object&gt;
-
-DESCRIPTION
-       Executes a JCR query with the xpath dialect, by default results are limited to 5.
-       All results matched by the query are produced by this command.
-
-PARAMETERS
-       [-o | --offset]
-           The offset of the first node to display
-
-       [-l | --limit]
-           The number of nodes displayed, by default this value is equals to 5
-
-       [-a | --all]
-           Display all the results by ignoring the limit argument, this should be used with care for large result set
-
-       [-h | --help]
-           Display this help message
-
-       &lt;query&gt;
-           The query
+       &lt;arg&gt;
+           the optional repl name
 </pre>
 </div>
 </div>
@@ -7381,7 +6138,7 @@ PARAMETERS
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-05-09 17:01:52 CEST
+Last updated 2014-05-20 09:02:25 CEST
 </div>
 </div>
 </body>
