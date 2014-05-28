@@ -927,6 +927,14 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_commands_reference">Appendix A: Commands reference</a></li>
 <li>
 <ul class="sectlevel1">
+<li><a href="#_cron">cron</a></li>
+<li>
+<ul class="sectlevel2">
+<li><a href="#_cron_config">cron config</a></li>
+<li><a href="#_cron_spawn">cron spawn</a></li>
+<li><a href="#_cron_history">cron history</a></li>
+</ul>
+</li>
 <li><a href="#_dashboard">dashboard</a></li>
 <li><a href="#_egrep">egrep</a></li>
 <li><a href="#_env">env</a></li>
@@ -945,18 +953,18 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_jdbc_table">jdbc table</a></li>
 <li><a href="#_jdbc_open">jdbc open</a></li>
 <li><a href="#_jdbc_connect">jdbc connect</a></li>
+<li><a href="#_jdbc_tables">jdbc tables</a></li>
+<li><a href="#_jdbc_select">jdbc select</a></li>
 <li><a href="#_jdbc_info">jdbc info</a></li>
 <li><a href="#_jdbc_execute">jdbc execute</a></li>
-<li><a href="#_jdbc_select">jdbc select</a></li>
-<li><a href="#_jdbc_tables">jdbc tables</a></li>
 </ul>
 </li>
 <li><a href="#_jmx">jmx</a></li>
 <li>
 <ul class="sectlevel2">
 <li><a href="#_jmx_get">jmx get</a></li>
-<li><a href="#_jmx_find">jmx find</a></li>
-<li><a href="#_jmx_attributes">jmx attributes</a></li>
+<li><a href="#_jmx_query">jmx query</a></li>
+<li><a href="#_jmx_info">jmx info</a></li>
 </ul>
 </li>
 <li><a href="#_jndi">jndi</a></li>
@@ -980,14 +988,14 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <ul class="sectlevel2">
 <li><a href="#_jvm_gc">jvm gc</a></li>
 <li><a href="#_jvm_system">jvm system</a></li>
-<li><a href="#_jvm_runtime">jvm runtime</a></li>
-<li><a href="#_jvm_heap">jvm heap</a></li>
 <li><a href="#_jvm_pools">jvm pools</a></li>
+<li><a href="#_jvm_runtime">jvm runtime</a></li>
+<li><a href="#_jvm_top">jvm top</a></li>
 <li><a href="#_jvm_pool">jvm pool</a></li>
+<li><a href="#_jvm_heap">jvm heap</a></li>
 <li><a href="#_jvm_classloading">jvm classloading</a></li>
 <li><a href="#_jvm_compilation">jvm compilation</a></li>
 <li><a href="#_jvm_nonheap">jvm nonheap</a></li>
-<li><a href="#_jvm_top">jvm top</a></li>
 </ul>
 </li>
 <li><a href="#_less">less</a></li>
@@ -1001,6 +1009,7 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_log_send">log send</a></li>
 </ul>
 </li>
+<li><a href="#_mail">mail</a></li>
 <li><a href="#_man">man</a></li>
 <li><a href="#_shell">shell</a></li>
 <li>
@@ -1077,11 +1086,11 @@ the standalone mode, for instance you can set it up this way:</p>
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta21
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta22
 
 Follow and support the project on http://www.crashub.org
 Welcome to jerry + !
-It is 2014-05-20 09:02:35 CEST now</pre>
+It is 2014-05-27 16:56:28 CEST now</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1123,11 +1132,11 @@ instead of the JVM started by CRaSH. Let&#8217;s see quickly an example of how t
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta21
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta22
 
 Follow and support the project on http://vietj.github.com/crash
 Welcome to jerry + !
-It is 2014-05-20 09:02:35 CEST now
+It is 2014-05-27 16:56:28 CEST now
 %</pre>
 </div>
 </div>
@@ -1472,11 +1481,11 @@ Escape character is '^]'.
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta21
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-beta22
 
 Follow and support the project on http://vietj.github.com/crash
 Welcome to julien.local + !
-It is 2014-05-20 09:02:35 CEST now</pre>
+It is 2014-05-27 16:56:28 CEST now</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2136,10 +2145,10 @@ crash.ssh.idle-timeout=300000</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>to remove the telnet access, remove the jar file in the <em>WEB-INF/lib/crsh.connectors.telnet-1.3.0-beta21.jar</em>.</p>
+<p>to remove the telnet access, remove the jar file in the <em>WEB-INF/lib/crsh.connectors.telnet-1.3.0-beta22.jar</em>.</p>
 </li>
 <li>
-<p>to remove the SSH access, remove the jar file in the <em>WEB-INF/lib/crsh.connectors.ssh-1.3.0-beta21.jar</em>.</p>
+<p>to remove the SSH access, remove the jar file in the <em>WEB-INF/lib/crsh.connectors.ssh-1.3.0-beta22.jar</em>.</p>
 </li>
 </ul>
 </div>
@@ -2627,6 +2636,50 @@ written in Java
   <span class="directive">public</span> <span class="type">void</span> sub2() {
     ...
   }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_org_crsh_cli_named_code"><a class="anchor" href="#__code_org_crsh_cli_named_code"></a><code>@org.crsh.cli.Named</code></h4>
+<div class="paragraph">
+<p>Overrides the default command name, the command name must follow these rules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>it must not be empty</p>
+</li>
+<li>
+<p>the first letter must be a letter</p>
+</li>
+<li>
+<p>the other letters must be</p>
+<div class="ulist">
+<ul>
+<li>
+<p>a letter</p>
+</li>
+<li>
+<p>a digit</p>
+</li>
+<li>
+<p>the <code>_</code> or <code>-</code> character</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="groovy language-groovy"><span class="annotation">@Named</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">foo</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">sample</span> {
+   <span class="annotation">@Command</span>
+   <span class="annotation">@Named</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">bar</span><span class="delimiter">&quot;</span></span>)
+   <span class="directive">public</span> <span class="type">void</span> m() {
+     ...
+   }
 }</code></pre>
 </div>
 </div>
@@ -3478,14 +3531,14 @@ a thread interruption during the execution a command.</p>
 </div>
 <div class="paragraph">
 <p>If you command thread is in the waiting state, an <code>InterruptedException</code> will be thrown otherwise
-  you can check the current thread status with <code>Thread.interrupted()</code> static method:</p>
+  you can check the current thread status with <code>Thread.currentThread.isInterrupted()</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay"><code class="groovy language-groovy"><span class="type">class</span> <span class="class">clock</span> {
   <span class="annotation">@Command</span>
   <span class="predefined-type">Object</span> main(InvocationContext&lt;<span class="predefined-type">Date</span>&gt; context) {
-    <span class="keyword">while</span> (!<span class="predefined-type">Thread</span>.interrupted()) { <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="keyword">while</span> (!<span class="predefined-type">Thread</span>.currentThread().isInterrupted()) { <i class="conum" data-value="1"></i><b>(1)</b>
        context.provide(<span class="keyword">new</span> <span class="predefined-type">Date</span>());
        context.flush();
        <span class="keyword">try</span> {
@@ -3527,6 +3580,21 @@ Tue May 06 22:27:55 CEST 2014Tue May 06 22:27:56 CEST 2014Tue May 06 22:27:57 CE
 
 %</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+when you are programming a long lived command that will stop upon a signal you should
+follow the pattern above and never forget to leave the thread in the interrupted state
+when your thread exits the command. We recommend also to understand well how Java thread interruption
+works.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -4204,7 +4272,7 @@ command.</p>
 <p>the JavaMail jar <code>mail-1.4.jar</code></p>
 </li>
 <li>
-<p>the plugin jar <code>crash.plugins.mail-1.3.0-beta21.jar</code></p>
+<p>the plugin jar <code>crash.plugins.mail-1.3.0-beta22.jar</code></p>
 </li>
 </ul>
 </div>
@@ -4268,7 +4336,7 @@ to text before sending the email.</p>
 <p>the cron4j jar <code>cron4j-2.2.5.jar</code></p>
 </li>
 <li>
-<p>the plugin jar <code>crash.plugins.cron-1.3.0-beta21.jar</code></p>
+<p>the plugin jar <code>crash.plugins.cron-1.3.0-beta22.jar</code></p>
 </li>
 </ul>
 </div>
@@ -4309,6 +4377,98 @@ other crontab configuration file it consists of two parts:</p>
 <div class="sect1">
 <h2 id="_commands_reference"><a class="anchor" href="#_commands_reference"></a>Appendix A: Commands reference</h2>
 <div class="sectionbody">
+<div class="sect1">
+<h2 id="_cron"><a class="anchor" href="#_cron"></a>cron</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       cron - manages the cron plugin
+
+SYNOPSIS
+       cron [-h | --help] COMMAND [ARGS]
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+COMMANDS
+       config
+           read or write the cron config path
+
+       spawn
+           trigger the cron service now
+
+       history
+           display the process history
+</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cron_config"><a class="anchor" href="#_cron_config"></a>cron config</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       cron config - read or write the cron config path
+
+SYNOPSIS
+       cron [-h | --help] config &lt;path&gt;
+
+STREAM
+       cron config &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;path&gt;
+           the new config path when specified
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cron_spawn"><a class="anchor" href="#_cron_spawn"></a>cron spawn</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       cron spawn - trigger the cron service now
+
+SYNOPSIS
+       cron [-h | --help] spawn
+
+STREAM
+       cron spawn &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cron_history"><a class="anchor" href="#_cron_history"></a>cron history</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       cron history - display the process history
+
+SYNOPSIS
+       cron [-h | --help] history
+
+STREAM
+       cron history &lt;java.lang.Void, java.util.Map&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_dashboard"><a class="anchor" href="#_dashboard"></a>dashboard</h2>
 <div class="sectionbody">
@@ -4480,17 +4640,17 @@ COMMANDS
        connect
            connect to database with a JDBC connection string
 
+       tables
+           describe the tables
+
+       select
+           select SQL statement
+
        info
            describe the database
 
        execute
            execute a SQL statement
-
-       select
-           select SQL statement
-
-       tables
-           describe the tables
 </pre>
 </div>
 </div>
@@ -4613,6 +4773,49 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
+<h3 id="_jdbc_tables"><a class="anchor" href="#_jdbc_tables"></a>jdbc tables</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jdbc tables - describe the tables
+
+SYNOPSIS
+       jdbc [-h | --help] tables
+
+STREAM
+       jdbc tables &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jdbc_select"><a class="anchor" href="#_jdbc_select"></a>jdbc select</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jdbc select - select SQL statement
+
+SYNOPSIS
+       jdbc [-h | --help] select &lt;statement&gt;...
+
+STREAM
+       jdbc select &lt;java.lang.Void, java.util.Map&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;statement&gt;...
+           The statement
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_jdbc_info"><a class="anchor" href="#_jdbc_info"></a>jdbc info</h3>
 <div class="listingblock">
 <div class="content">
@@ -4655,49 +4858,6 @@ PARAMETERS
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_jdbc_select"><a class="anchor" href="#_jdbc_select"></a>jdbc select</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jdbc select - select SQL statement
-
-SYNOPSIS
-       jdbc [-h | --help] select &lt;statement&gt;...
-
-STREAM
-       jdbc select &lt;java.lang.Void, java.util.Map&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;statement&gt;...
-           The statement
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_jdbc_tables"><a class="anchor" href="#_jdbc_tables"></a>jdbc tables</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jdbc tables - describe the tables
-
-SYNOPSIS
-       jdbc [-h | --help] tables
-
-STREAM
-       jdbc tables &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -4711,19 +4871,50 @@ PARAMETERS
 SYNOPSIS
        jmx [-h | --help] COMMAND [ARGS]
 
+DESCRIPTION
+       The jmx commands interracts with the JMX registry allowing several kind JMX operations.
+
 PARAMETERS
        [-h | --help]
            Display this help message
 
 COMMANDS
        get
-           get attributes of an MBean
+           Retrieves the attributes of a stream of managed beans, this command can be used by specifying managed bean arguments
+           % jmx get java.lang:type=ClassLoading
+           It also accepts a managed bean stream:
+           % jmx query -p java.lang:* | jmx get
+           By default all managed bean attributes will be retrieved, the attributes option allow to use a list of attributes:
+           % jmx query -p java.lang:* | jmx get -a TotalSwapSpaceSize
 
-       find
-           find mbeans
 
-       attributes
-           return the attributes info of an MBean
+       query
+           Create a stream of managed beans, by default the stream will contain all the registered managed beans:
+           % jmx query
+           ...
+           The stream can be filtered with the pattern option:
+           % jmx query -p java.lang:*
+           ...
+
+       info
+           Provide the mbean info for a managed bean:
+           % jmx info java.lang:type=ClassLoading
+           sun.management.ClassLoadingImpl
+           +- ClassName   sun.management.ClassLoadingImpl
+           |  Description Information on the management interface of the MBean
+           +-Descriptor
+           | +-immutableInfo      true
+           |   interfaceClassName java.lang.management.ClassLoadingMXBean
+           |   mxbean             true
+           +-Attributes
+           | +-NAME                  TYPE                        DESCRIPTION
+           |   Verbose               boolean                     Verbose
+           |   TotalLoadedClassCount long                        TotalLoadedClassCount
+           |   LoadedClassCount      int                         LoadedClassCount
+           |   UnloadedClassCount    long                        UnloadedClassCount
+           |   ObjectName            javax.management.ObjectName ObjectName
+           +-Operations
+
 </pre>
 </div>
 </div>
@@ -4732,64 +4923,109 @@ COMMANDS
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       jmx get - get attributes of an MBean
+       jmx get - get attributes of a managed bean
 
 SYNOPSIS
-       jmx [-h | --help] get &lt;arg&gt;...
+       jmx [-h | --help] get [-s | --silent] [-a | --attributes] &lt;mbean&gt;...
 
 STREAM
        jmx get &lt;javax.management.ObjectName, java.util.Map&gt;
+
+DESCRIPTION
+       Retrieves the attributes of a stream of managed beans, this command can be used by specifying managed bean arguments
+       % jmx get java.lang:type=ClassLoading
+       It also accepts a managed bean stream:
+       % jmx query -p java.lang:* | jmx get
+       By default all managed bean attributes will be retrieved, the attributes option allow to use a list of attributes:
+       % jmx query -p java.lang:* | jmx get -a TotalSwapSpaceSize
+
 
 PARAMETERS
        [-h | --help]
            Display this help message
 
-       &lt;arg&gt;...
+       [-s | --silent]
+           Silent mode ignores any attribute runtime failures
+
+       [-a | --attributes]
+           specifies a managed bean attribute name
+
+       &lt;mbean&gt;...
+           a managed bean object name
 </pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_jmx_find"><a class="anchor" href="#_jmx_find"></a>jmx find</h3>
+<h3 id="_jmx_query"><a class="anchor" href="#_jmx_query"></a>jmx query</h3>
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       jmx find - find mbeans
+       jmx query - query mbeans
 
 SYNOPSIS
-       jmx [-h | --help] find [-p | --pattern]
+       jmx [-h | --help] query [-p | --pattern]
 
 STREAM
-       jmx find &lt;java.lang.Void, javax.management.ObjectName&gt;
+       jmx query &lt;java.lang.Void, javax.management.ObjectName&gt;
+
+DESCRIPTION
+       Create a stream of managed beans, by default the stream will contain all the registered managed beans:
+       % jmx query
+       ...
+       The stream can be filtered with the pattern option:
+       % jmx query -p java.lang:*
+       ...
 
 PARAMETERS
        [-h | --help]
            Display this help message
 
        [-p | --pattern]
-           The object name pattern
+           the object name pattern for the query
 </pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_jmx_attributes"><a class="anchor" href="#_jmx_attributes"></a>jmx attributes</h3>
+<h3 id="_jmx_info"><a class="anchor" href="#_jmx_info"></a>jmx info</h3>
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       jmx attributes - return the attributes info of an MBean
+       jmx info - provide the mbean info of a managed bean
 
 SYNOPSIS
-       jmx [-h | --help] attributes &lt;arg&gt;
+       jmx [-h | --help] info &lt;arg&gt;
 
 STREAM
-       jmx attributes &lt;java.lang.Void, java.util.Map&gt;
+       jmx info &lt;java.lang.Void, javax.management.MBeanInfo&gt;
+
+DESCRIPTION
+       Provide the mbean info for a managed bean:
+       % jmx info java.lang:type=ClassLoading
+       sun.management.ClassLoadingImpl
+       +- ClassName   sun.management.ClassLoadingImpl
+       |  Description Information on the management interface of the MBean
+       +-Descriptor
+       | +-immutableInfo      true
+       |   interfaceClassName java.lang.management.ClassLoadingMXBean
+       |   mxbean             true
+       +-Attributes
+       | +-NAME                  TYPE                        DESCRIPTION
+       |   Verbose               boolean                     Verbose
+       |   TotalLoadedClassCount long                        TotalLoadedClassCount
+       |   LoadedClassCount      int                         LoadedClassCount
+       |   UnloadedClassCount    long                        UnloadedClassCount
+       |   ObjectName            javax.management.ObjectName ObjectName
+       +-Operations
+
 
 PARAMETERS
        [-h | --help]
            Display this help message
 
        &lt;arg&gt;
+           a managed bean object name
 </pre>
 </div>
 </div>
@@ -5020,17 +5256,19 @@ COMMANDS
        system
            Show JVM operating system
 
-       runtime
-           Show JVM runtime
-
-       heap
-           Show JVM memory heap
-
        pools
            Show JVM memory pools
 
+       runtime
+           Show JVM runtime
+
+       top
+
        pool
            Show JVM memory pool
+
+       heap
+           Show JVM memory heap
 
        classloading
            Show JVM classloding
@@ -5040,8 +5278,6 @@ COMMANDS
 
        nonheap
            Show JVM memory non heap
-
-       top
 </pre>
 </div>
 </div>
@@ -5086,6 +5322,26 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
+<h3 id="_jvm_pools"><a class="anchor" href="#_jvm_pools"></a>jvm pools</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jvm pools - Show JVM memory pools
+
+SYNOPSIS
+       jvm [-h | --help] pools
+
+STREAM
+       jvm pools &lt;java.lang.Void, java.lang.String&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_jvm_runtime"><a class="anchor" href="#_jvm_runtime"></a>jvm runtime</h3>
 <div class="listingblock">
 <div class="content">
@@ -5106,37 +5362,17 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_jvm_heap"><a class="anchor" href="#_jvm_heap"></a>jvm heap</h3>
+<h3 id="_jvm_top"><a class="anchor" href="#_jvm_top"></a>jvm top</h3>
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       jvm heap - Show JVM memory heap
+       jvm top
 
 SYNOPSIS
-       jvm [-h | --help] heap
+       jvm [-h | --help] top
 
 STREAM
-       jvm heap &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_jvm_pools"><a class="anchor" href="#_jvm_pools"></a>jvm pools</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jvm pools - Show JVM memory pools
-
-SYNOPSIS
-       jvm [-h | --help] pools
-
-STREAM
-       jvm pools &lt;java.lang.Void, java.lang.String&gt;
+       jvm top &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
 
 PARAMETERS
        [-h | --help]
@@ -5163,6 +5399,26 @@ PARAMETERS
            Display this help message
 
        &lt;pools&gt;...
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jvm_heap"><a class="anchor" href="#_jvm_heap"></a>jvm heap</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jvm heap - Show JVM memory heap
+
+SYNOPSIS
+       jvm [-h | --help] heap
+
+STREAM
+       jvm heap &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
 </pre>
 </div>
 </div>
@@ -5227,26 +5483,6 @@ PARAMETERS
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_jvm_top"><a class="anchor" href="#_jvm_top"></a>jvm top</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jvm top
-
-SYNOPSIS
-       jvm [-h | --help] top
-
-STREAM
-       jvm top &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -5255,13 +5491,23 @@ PARAMETERS
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       less - more...
+       less - opposite of more
 
 SYNOPSIS
        less [-h | --help]
 
 STREAM
        less &lt;org.crsh.text.Chunk, org.crsh.text.Chunk&gt;
+
+DESCRIPTION
+       Less  is a program similar to more, but which allows backward movement in the file as well as forward movement.
+
+       The following commands are available while less is running:
+
+       SPACE - Scroll forward one page
+       UP    - Scroll forward one line
+       DOWN  - Scroll backward one line
+       q     - Quit
 
 PARAMETERS
        [-h | --help]
@@ -5527,6 +5773,46 @@ PARAMETERS
            The name of the logger
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mail"><a class="anchor" href="#_mail"></a>mail</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       mail - send an mail to a list of recipients, the body of the mail is the input stream of the command.
+
+SYNOPSIS
+       mail [-b | --block] [-s | --subject] [-h | --help] &lt;recipients&gt;...
+
+STREAM
+       mail &lt;org.crsh.text.Chunk, org.crsh.text.Chunk&gt;
+
+DESCRIPTION
+       Send an mail to a list of recipients.
+
+       The body of the mail is the input stream of the command. For example, the output of the "thread ls | thread dump" command
+       can be piped into the mail command: an email with the list of current JVM thread is sent to the admin:
+
+       % thread ls | thread dump | mail -s "The thread dump" admin@foo.com
+
+
+PARAMETERS
+       [-b | --block]
+           block until the mails are delivered
+
+       [-s | --subject]
+           mail subject
+
+       [-h | --help]
+           Display this help message
+
+       &lt;recipients&gt;...
+           mail recipients
+</pre>
 </div>
 </div>
 </div>
@@ -6138,7 +6424,7 @@ PARAMETERS
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-05-20 09:02:25 CEST
+Last updated 2014-05-27 16:56:20 CEST
 </div>
 </div>
 </body>
