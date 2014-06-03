@@ -9,7 +9,7 @@
 
   <properties>
     <crash.version>1.2.9</crash.version>
-    <crash-next.version>1.3.0-cr4</crash-next.version>
+    <crash-next.version>1.3.0-cr5</crash-next.version>
   </properties>
 
   <scm>
