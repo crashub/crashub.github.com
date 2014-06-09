@@ -808,8 +808,6 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_mount_point_configuration">Mount point configuration</a></li>
 <li>
 <ul class="sectlevel2">
-<li><a href="#_configuring_the_standalone_mode">Configuring the standalone mode</a></li>
-<li><a href="#_configuring_the_attach_mode">Configuring the attach mode</a></li>
 <li><a href="#_configuring_the_web_application_mode">Configuring the web application mode</a></li>
 <li><a href="#_configuring_the_spring_mode">Configuring the spring mode</a></li>
 </ul>
@@ -819,8 +817,7 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <ul class="sectlevel2">
 <li><a href="#_configuring_the_standalone_or_attach_mode">Configuring the standalone or attach mode</a></li>
 <li><a href="#_configuring_the_web_application_mode_2">Configuring the web application mode</a></li>
-<li><a href="#_configuration_properties_2">Configuration properties</a></li>
-<li><a href="#_removing_telnet_or_ssh_access">Removing telnet or SSH access</a></li>
+<li><a href="#_configuring_shell_default_message">Configuring shell default message</a></li>
 </ul>
 </li>
 </ul>
@@ -828,15 +825,48 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_connectors">Connectors</a></li>
 <li>
 <ul class="sectlevel1">
-<li><a href="#_connectors_2">Connectors</a></li>
+<li><a href="#_jvm_connector">JVM connector</a></li>
+<li><a href="#_ssh_connector">SSH connector</a></li>
 <li>
 <ul class="sectlevel2">
-<li><a href="#_jline_connector">JLine connector</a></li>
-<li><a href="#_ssh_connector">SSH connector</a></li>
-<li><a href="#_telnet_connector">Telnet connector</a></li>
-<li><a href="#_web_connector">Web connector</a></li>
+<li><a href="#_changing_the_ssh_server_port">Changing the SSH server port</a></li>
+<li><a href="#_changing_ssh_server_key">Changing SSH server key</a></li>
+<li><a href="#_changing_ssh_authentication_and_idle_timeouts">Changing SSH authentication and idle timeouts</a></li>
+<li><a href="#_removing_ssh_access">Removing SSH access</a></li>
+<li><a href="#_overriding_the_encoding">Overriding the encoding</a></li>
 </ul>
 </li>
+<li><a href="#_telnet_connector">Telnet connector</a></li>
+<li>
+<ul class="sectlevel2">
+<li><a href="#_changing_the_telnet_server_port">Changing the Telnet server port</a></li>
+<li><a href="#_removing_telnet_access">Removing Telnet access</a></li>
+</ul>
+</li>
+<li><a href="#_web_connector">Web connector</a></li>
+<li>
+<ul class="sectlevel2">
+<li><a href="#_client_setup">Client setup</a></li>
+<li><a href="#_server_setup">Server setup</a></li>
+<li><a href="#_step_by_step_setup_recap">Step by step setup (recap)</a></li>
+<li><a href="#_securing_the_server">Securing the server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_authentication">Authentication</a></li>
+<li>
+<ul class="sectlevel1">
+<li><a href="#_authentication_configuration">Authentication configuration</a></li>
+<li>
+<ul class="sectlevel2">
+<li><a href="#_simple_authentication">Simple authentication</a></li>
+<li><a href="#_jaas_authentation">Jaas authentation</a></li>
+<li><a href="#_key_authentication">Key authentication</a></li>
+</ul>
+</li>
+<li><a href="#pluggable_auth">Pluggable authentication</a></li>
+<li><a href="#_spring_authentication">Spring authentication</a></li>
 </ul>
 </li>
 <li><a href="#developers">Developers</a></li>
@@ -905,7 +935,6 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_standalone_crash">Standalone CRaSH</a></li>
 </ul>
 </li>
-<li><a href="#pluggable_auth">Pluggable authentication</a></li>
 </ul>
 </li>
 <li><a href="#_mail_plugin">Mail plugin</a></li>
@@ -930,9 +959,9 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_cron">cron</a></li>
 <li>
 <ul class="sectlevel2">
-<li><a href="#_cron_config">cron config</a></li>
-<li><a href="#_cron_spawn">cron spawn</a></li>
 <li><a href="#_cron_history">cron history</a></li>
+<li><a href="#_cron_spawn">cron spawn</a></li>
+<li><a href="#_cron_config">cron config</a></li>
 </ul>
 </li>
 <li><a href="#_dashboard">dashboard</a></li>
@@ -953,10 +982,10 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_jdbc_table">jdbc table</a></li>
 <li><a href="#_jdbc_open">jdbc open</a></li>
 <li><a href="#_jdbc_connect">jdbc connect</a></li>
-<li><a href="#_jdbc_tables">jdbc tables</a></li>
-<li><a href="#_jdbc_select">jdbc select</a></li>
-<li><a href="#_jdbc_execute">jdbc execute</a></li>
 <li><a href="#_jdbc_info">jdbc info</a></li>
+<li><a href="#_jdbc_select">jdbc select</a></li>
+<li><a href="#_jdbc_tables">jdbc tables</a></li>
+<li><a href="#_jdbc_execute">jdbc execute</a></li>
 </ul>
 </li>
 <li><a href="#_jmx">jmx</a></li>
@@ -983,33 +1012,38 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_jpa_entities">jpa entities</a></li>
 </ul>
 </li>
+<li><a href="#_jul">jul</a></li>
+<li>
+<ul class="sectlevel2">
+<li><a href="#_jul_add">jul add</a></li>
+<li><a href="#_jul_set">jul set</a></li>
+<li><a href="#_jul_tail">jul tail</a></li>
+<li><a href="#_jul_ls">jul ls</a></li>
+<li><a href="#_jul_send">jul send</a></li>
+</ul>
+</li>
 <li><a href="#_jvm">jvm</a></li>
 <li>
 <ul class="sectlevel2">
 <li><a href="#_jvm_gc">jvm gc</a></li>
 <li><a href="#_jvm_system">jvm system</a></li>
-<li><a href="#_jvm_pools">jvm pools</a></li>
 <li><a href="#_jvm_runtime">jvm runtime</a></li>
-<li><a href="#_jvm_pool">jvm pool</a></li>
 <li><a href="#_jvm_top">jvm top</a></li>
+<li><a href="#_jvm_pool">jvm pool</a></li>
 <li><a href="#_jvm_heap">jvm heap</a></li>
 <li><a href="#_jvm_classloading">jvm classloading</a></li>
 <li><a href="#_jvm_compilation">jvm compilation</a></li>
 <li><a href="#_jvm_nonheap">jvm nonheap</a></li>
+<li><a href="#_jvm_pools">jvm pools</a></li>
 </ul>
 </li>
 <li><a href="#_less">less</a></li>
-<li><a href="#_log">log</a></li>
+<li><a href="#_mail">mail</a></li>
 <li>
 <ul class="sectlevel2">
-<li><a href="#_log_add">log add</a></li>
-<li><a href="#_log_set">log set</a></li>
-<li><a href="#_log_tail">log tail</a></li>
-<li><a href="#_log_ls">log ls</a></li>
-<li><a href="#_log_send">log send</a></li>
+<li><a href="#_mail_send">mail send</a></li>
 </ul>
 </li>
-<li><a href="#_mail">mail</a></li>
 <li><a href="#_man">man</a></li>
 <li><a href="#_shell">shell</a></li>
 <li>
@@ -1086,11 +1120,11 @@ the standalone mode, for instance you can set it up this way:</p>
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr5
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr7
 
 Follow and support the project on http://www.crashub.org
 Welcome to jerry + !
-It is 2014-06-03 16:41:30 CEST now</pre>
+It is 2014-06-06 15:18:21 CEST now</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1132,11 +1166,11 @@ instead of the JVM started by CRaSH. Let&#8217;s see quickly an example of how t
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr5
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr7
 
 Follow and support the project on http://vietj.github.com/crash
 Welcome to jerry + !
-It is 2014-06-03 16:41:30 CEST now
+It is 2014-06-06 15:18:21 CEST now
 %</pre>
 </div>
 </div>
@@ -1358,83 +1392,6 @@ and triggering the CRaSH life cycle start/stop. In this mode CRaSH has two packa
 <p>Any Spring managed beans that extend <code>org.crsh.plugin.CRaSHPlugin</code> will be automatically
 registered as plugins in addition to those declared in <code>META-INF/services/org.crsh.plugin.CRaSHPlugin</code>.</p>
 </div>
-<div class="paragraph">
-<p>For example, the following implements a CRaSH authentication plugin that uses a JDBC DataSource
-managed by Spring:</p>
-</div>
-<div class="listingblock">
-<div class="title">Spring managed authentication plugin</div>
-<div class="content">
-<pre class="CodeRay"><code class="java language-java"><span class="keyword">package</span> <span class="namespace">example</span>;
-
-<span class="keyword">import</span> <span class="include">java.sql.Connection</span>;
-<span class="keyword">import</span> <span class="include">java.sql.PreparedStatement</span>;
-<span class="keyword">import</span> <span class="include">java.sql.ResultSet</span>;
-
-<span class="keyword">import</span> <span class="include">javax.sql.DataSource</span>;
-
-<span class="keyword">import</span> <span class="include">org.crsh.auth.AuthenticationPlugin</span>;
-<span class="keyword">import</span> <span class="include">org.crsh.plugin.CRaSHPlugin</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.beans.factory.annotation.Autowired</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.stereotype.Component</span>;
-
-<span class="annotation">@Component</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">dbCrshAuth</span><span class="delimiter">&quot;</span></span>)
-<span class="directive">public</span> <span class="type">class</span> <span class="class">DbCrshAuthPlugin</span> <span class="directive">extends</span> CRaSHPlugin&lt;AuthenticationPlugin&gt;
-        <span class="directive">implements</span> AuthenticationPlugin {
-
-    <span class="annotation">@Autowired</span>
-    <span class="directive">private</span> <span class="predefined-type">DataSource</span> dataSource;
-
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> AuthenticationPlugin getImplementation() {
-        <span class="keyword">return</span> <span class="local-variable">this</span>;
-    }
-
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> <span class="type">boolean</span> authenticate(<span class="predefined-type">String</span> username, <span class="predefined-type">String</span> password)
-            <span class="directive">throws</span> <span class="exception">Exception</span> {
-        <span class="predefined-type">Connection</span> conn = dataSource.getConnection();
-
-        <span class="predefined-type">PreparedStatement</span> statement = conn
-                .prepareStatement(<span class="string"><span class="delimiter">&quot;</span><span class="content">SELECT COUNT(*) FROM users WHERE username = ? AND password = ?</span><span class="delimiter">&quot;</span></span>);
-        statement.setString(<span class="integer">1</span>, username);
-        statement.setString(<span class="integer">2</span>, password);
-
-        <span class="predefined-type">ResultSet</span> rs = statement.executeQuery();
-        <span class="keyword">return</span> rs.getInt(<span class="integer">1</span>) &gt;= <span class="integer">1</span>;
-    }
-
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> <span class="predefined-type">String</span> getName() {
-        <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">dbCrshAuth</span><span class="delimiter">&quot;</span></span>;
-    }
-
-    <span class="directive">public</span> <span class="type">void</span> setDataSource(<span class="predefined-type">DataSource</span> dataSource) {
-        <span class="local-variable">this</span>.dataSource = dataSource;
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The above code uses Spring annotation driven beans, but this works the same with beans configured
-in XML:</p>
-</div>
-<div class="listingblock">
-<div class="title">Custom authentication bean in spring.xml</div>
-<div class="content">
-<pre class="CodeRay"><code class="xml language-xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="tag">&lt;beans</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.springframework.org/schema/beans</span><span class="delimiter">&quot;</span></span>
-       <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
-       <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.springframework.org/schema/beans</span>
-       <span class="content">http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-
-    <span class="tag">&lt;bean</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">example.DbCrshAuthPlugin</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-        <span class="tag">&lt;property</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dataSource</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dataSource</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
-    <span class="tag">&lt;/bean&gt;</span>
-
-<span class="tag">&lt;/beans&gt;</span></code></pre>
-</div>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_embedding_in_a_spring_web_app"><a class="anchor" href="#_embedding_in_a_spring_web_app"></a>Embedding in a Spring web app</h4>
@@ -1481,11 +1438,11 @@ Escape character is '^]'.
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr5
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr7
 
 Follow and support the project on http://vietj.github.com/crash
 Welcome to julien.local + !
-It is 2014-06-03 16:41:30 CEST now</pre>
+It is 2014-06-06 15:18:21 CEST now</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1569,8 +1526,8 @@ jmx       Java Management Extensions
 jndi      Java Naming and Directory Interface
 jpa       Java persistance API
 jvm       JVM informations
-log       logging commands
-mail      send an mail to a list of recipients, the body of the mail is the input stream of the command.
+jul       java.util.logging commands
+mail      interact with emails
 man       format and display the on-line manual pages
 shell     shell related command
 sleep     sleep for some time
@@ -1796,24 +1753,26 @@ does not match, several scenarios can happen, depending on the type declared by 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_log_command"><a class="anchor" href="#_log_command"></a>Log command</h4>
+<h4 id="_jul_command"><a class="anchor" href="#_jul_command"></a>Jul command</h4>
 <div class="paragraph">
-<p>The <code>log</code> command manipulates <code>java.util.logging.Logger</code> objects:</p>
+<p>The <code>Jul</code> command manipulates <code>java.util.logging.Logger</code> objects:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>log ls</code> : produces logger objects</p>
+<p><code>jul ls</code> : produces logger objects</p>
 </li>
 <li>
-<p><code>log send</code> : consumes logger object and sends a message</p>
+<p><code>jul send</code> : consumes logger object and sends a message</p>
 </li>
 <li>
-<p><code>log tail</code> : produces log record objects</p>
+<p><code>jul tail</code> : produces log record objects</p>
 </li>
 <li>
-<p><code>log set</code> : consumes logger object and sets the log level
-+ <code>log add</code> : create new logger and produces them</p>
+<p><code>jul set</code> : consumes logger object and sets the log level</p>
+</li>
+<li>
+<p><code>jul add</code> : create new logger and produces them</p>
 </li>
 </ul>
 </div>
@@ -1934,49 +1893,6 @@ is configured with a list of mounts, a mount being the name of a file system ass
 according to your needs.</p>
 </div>
 <div class="sect2">
-<h3 id="_configuring_the_standalone_mode"><a class="anchor" href="#_configuring_the_standalone_mode"></a>Configuring the standalone mode</h3>
-<div class="paragraph">
-<p>The mount point configurations of the standalone mode can be specified with command line options:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>the <em>-cmd</em> option set the command moint point configuration, the default value being <em>classpath:/crash/commands/</em></p>
-</li>
-<li>
-<p>the <em>-conf</em> option set the conf moint point configuration, the default value being <em>classpath:/crash/</em></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The default behavior of the distribution extracts the content of these mount points in the <em>/cmd</em> and <em>/conf</em> folders
-of the distribution. This behavior can be explained by looking at <em>crash.sh</em> and <em>crash.bat</em> startup scripts, they
-uses the options <em>--cmd-folder</em> and <em>--conf-folder</em> to set this behavior.</p>
-</div>
-<div class="paragraph">
-<p>Thanks to this default behavior, the commands and configurations files can be  easily modified. Without this feature, any modification
-would imply to modify the jar files, which is not a viable option.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-removing these options from the startup scripts will configure CRaSH to uses the files from the jars directly.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_configuring_the_attach_mode"><a class="anchor" href="#_configuring_the_attach_mode"></a>Configuring the attach mode</h3>
-<div class="paragraph">
-<p>Same as standalone mode.</p>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_configuring_the_web_application_mode"><a class="anchor" href="#_configuring_the_web_application_mode"></a>Configuring the web application mode</h3>
 <div class="paragraph">
 <p>The servlet context parameters are used for configuring the paths:</p>
@@ -2085,9 +2001,58 @@ Configuration can be overriden by Java Virtual Machine system properties by usin
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuration_properties_2"><a class="anchor" href="#_configuration_properties_2"></a>Configuration properties</h3>
-<div class="sect3">
-<h4 id="_changing_ssh_server_key"><a class="anchor" href="#_changing_ssh_server_key"></a>Changing SSH server key</h4>
+<h3 id="_configuring_shell_default_message"><a class="anchor" href="#_configuring_shell_default_message"></a>Configuring shell default message</h3>
+<div class="paragraph">
+<p>The <em>/crash/commands/base/login.groovy</em> file contains two closures that are evaluated each time a message is required</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>prompt</code> closure returns the prompt message</p>
+</li>
+<li>
+<p>The <code>welcome</code> closure returns the welcome message</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Those closure can be customized to return different messages.</p>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_connectors" class="sect0"><a class="anchor" href="#_connectors"></a>Connectors</h1>
+<div class="paragraph">
+<p>Connectors manages the connection of the client to the shell.</p>
+</div>
+<div class="sect1">
+<h2 id="_jvm_connector"><a class="anchor" href="#_jvm_connector"></a>JVM connector</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The jvm connector is used in the standalone mode and relies on the JVM streams (<em>System.in</em>, <em>System.out</em> and
+<em>System.err</em>).</p>
+</div>
+<div class="paragraph">
+<p>The jvm connector uses the default platform encoding provided by the JVM.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ssh_connector"><a class="anchor" href="#_ssh_connector"></a>SSH connector</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_changing_the_ssh_server_port"><a class="anchor" href="#_changing_the_ssh_server_port"></a>Changing the SSH server port</h3>
+<div class="paragraph">
+<p>The ports of the server is parameterized by the <em>crash.ssh.port</em> configuration property</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>crash.ssh.port=2000</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_changing_ssh_server_key"><a class="anchor" href="#_changing_ssh_server_key"></a>Changing SSH server key</h3>
 <div class="paragraph">
 <p>The key can be changed by replacing the file <em>WEB-INF/sshd/hostkey.pem</em>. Alternatively you can configure the server
 to use an external file by using the <em>crash.ssh.keypath</em> parameter in the <em>crash.properties</em>. Uncomment the corresponding
@@ -2108,28 +2073,12 @@ will take place when someone first connects through SSH. The default behavior is
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_changing_telnet_or_ssh_server_ports"><a class="anchor" href="#_changing_telnet_or_ssh_server_ports"></a>Changing telnet or SSH server ports</h4>
+<div class="sect2">
+<h3 id="_changing_ssh_authentication_and_idle_timeouts"><a class="anchor" href="#_changing_ssh_authentication_and_idle_timeouts"></a>Changing SSH authentication and idle timeouts</h3>
 <div class="paragraph">
-<p>The ports of the server are parameterized by the <em>crash.ssh.port</em> and <em>crash.telnet.port</em> parameters in the <em>crash.properties</em> file</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># SSH configuration
-crash.ssh.port=2000</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># Telnet configuration
-crash.telnet.port=5000</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_changing_ssh_authentication_and_idle_timeouts"><a class="anchor" href="#_changing_ssh_authentication_and_idle_timeouts"></a>Changing SSH authentication and idle timeouts ===</h4>
-<div class="paragraph">
-<p>Default authentication and idle timeout of the SSH server are set to 10 minutes (600&#8217;000 ms). Both timeouts can be configured in milliseconds with the //crash.ssh.auth-timeout// and //crash.ssh.idle-timeout// parameters in the //crash.properties// file</p>
+<p>Default authentication and idle timeout of the SSH server are set to 10 minutes (600&#8217;000 ms). Both timeouts can be
+configured in milliseconds with the <em>crash.ssh.auth-timeout</em> and <em>crash.ssh.idle-timeout</em> parameters in the
+<em>crash.properties</em> file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2139,141 +2088,51 @@ crash.ssh.idle-timeout=300000</pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_removing_ssh_access"><a class="anchor" href="#_removing_ssh_access"></a>Removing SSH access</h3>
+<div class="paragraph">
+<p>To remove the SSH access, remove the jar file <em>crash.connectors.ssh-1.3.0-cr7.jar</em>.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_removing_telnet_or_ssh_access"><a class="anchor" href="#_removing_telnet_or_ssh_access"></a>Removing telnet or SSH access</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>to remove the telnet access, remove the jar file in the <em>WEB-INF/lib/crsh.connectors.telnet-1.3.0-cr5.jar</em>.</p>
-</li>
-<li>
-<p>to remove the SSH access, remove the jar file in the <em>WEB-INF/lib/crsh.connectors.ssh-1.3.0-cr5.jar</em>.</p>
-</li>
-</ul>
-</div>
-<div class="sect3">
-<h4 id="_configuring_shell_default_message"><a class="anchor" href="#_configuring_shell_default_message"></a>Configuring shell default message</h4>
+<h3 id="_overriding_the_encoding"><a class="anchor" href="#_overriding_the_encoding"></a>Overriding the encoding</h3>
 <div class="paragraph">
-<p>The <em>/WEB-INF/crash/commands/base/login.groovy</em> file contains two closures that are evaluated each time a message is required</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The <code>prompt</code> closure returns the prompt message</p>
-</li>
-<li>
-<p>The <code>welcome</code> closure returns the welcome message</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Those closure can be customized to return different messages.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_configuring_authentication"><a class="anchor" href="#_configuring_authentication"></a>Configuring authentication</h4>
-<div class="paragraph">
-<p>Authentication is used by the SSH server when a user authenticates. Authentication interface is pluggable and has default
-implementations. The <a href="#pluggable_auth">authentication chapter</a> explains how to write a custom authentication plugin, in this section we cover the
-configuation of the authentication.</p>
-</div>
-<div class="paragraph">
-<p>The configuration of the authentication plugin is done via property, this is necessary because several plugins can be detected
-by CRaSH, and the plugin is selected via the property <em>crash.auth</em> that must match the authentication plugin name:</p>
+<p>By default the SSH connector uses the <em>UTF-8</em> encoding, this can be changed using the <em>crash.ssh.encoding</em> configuration
+property.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>crash.auth=simple</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It can also take a comma-separated list of multiple authentication plugins, allowing to mix username/password and key
-authentication. In this case plugins are tested in the order which they were specified:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>crash.auth=simple,key</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>CRaSH comes out of the box with two authentication plugins.</p>
-</div>
-<div class="sect4">
-<h5 id="_simple_authentication"><a class="anchor" href="#_simple_authentication"></a>Simple authentication</h5>
-<div class="paragraph">
-<p>Simple authentication provides a simple username/password authentication configured with the <em>crash.auth.simple.username</em> and
-<em>crash.auth.simple.password</em> properties:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># Authentication configuration
-crash.auth=simple
-crash.auth.simple.username=admin
-crash.auth.simple.password=admin</pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_jaas_authentation"><a class="anchor" href="#_jaas_authentation"></a>Jaas authentation</h5>
-<div class="paragraph">
-<p>Jaas authentication uses jaas to perform authentication configured with the <em>crash.auth.jaas.domain</em> property to define the
-jaas domain to use when performing authentication:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># Authentication configuration
-crash.auth=jaas
-crash.auth.jaas.domain=my-domain</pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_key_authentication"><a class="anchor" href="#_key_authentication"></a>Key authentication</h5>
-<div class="paragraph">
-<p>Key authentication relies on a set of authorized public keys to perform authentication configured with the
-<em>crash.auth.key.path</em> property to specify the path of the keys. The property should point to a valid <em>.pem</em> file.
-Obviously only a public key is required to be in the file, although it can also contain a private key (that will not be used).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre># Authentication configuration
-crash.auth=key
-crash.auth.key.path=/Users/julien/.ssh/id_dsa.pem</pre>
+<pre>crash.ssh.encoding=UTF-8</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<h1 id="_connectors" class="sect0"><a class="anchor" href="#_connectors"></a>Connectors</h1>
 <div class="sect1">
-<h2 id="_connectors_2"><a class="anchor" href="#_connectors_2"></a>Connectors</h2>
+<h2 id="_telnet_connector"><a class="anchor" href="#_telnet_connector"></a>Telnet connector</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Connectors manages the connection of the client to the shell.</p>
-</div>
 <div class="sect2">
-<h3 id="_jline_connector"><a class="anchor" href="#_jline_connector"></a>JLine connector</h3>
+<h3 id="_changing_the_telnet_server_port"><a class="anchor" href="#_changing_the_telnet_server_port"></a>Changing the Telnet server port</h3>
 <div class="paragraph">
-<p>todo</p>
+<p>The ports of the server is parameterized by the <em>crash.telnet.port</em> configuration property</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre>crash.telnet.port=5000</pre>
 </div>
-<div class="sect2">
-<h3 id="_ssh_connector"><a class="anchor" href="#_ssh_connector"></a>SSH connector</h3>
-<div class="paragraph">
-<p>todo</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_telnet_connector"><a class="anchor" href="#_telnet_connector"></a>Telnet connector</h3>
+<h3 id="_removing_telnet_access"><a class="anchor" href="#_removing_telnet_access"></a>Removing Telnet access</h3>
 <div class="paragraph">
-<p>todo</p>
+<p>To remove the Telnet access, remove the jar file <em>crash.connectors.telnet-1.3.0-cr7.jar</em>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_web_connector"><a class="anchor" href="#_web_connector"></a>Web connector</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_web_connector"><a class="anchor" href="#_web_connector"></a>Web connector</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The websocket provides connectivity from a web browser through WebSockets based on:</p>
 </div>
@@ -2290,8 +2149,8 @@ crash.auth.key.path=/Users/julien/.ssh/id_dsa.pem</pre>
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="_client_setup"><a class="anchor" href="#_client_setup"></a>Client setup</h4>
+<div class="sect2">
+<h3 id="_client_setup"><a class="anchor" href="#_client_setup"></a>Client setup</h3>
 <div class="paragraph">
 <p>CRaSH.js is the client side part of the connector, it is built on top of the <em>jQuery Terminal Emulator Plugin</em> and
  uses a client/server protocol for the shell connection.</p>
@@ -2331,8 +2190,8 @@ crash.connect(url);</code></pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_server_setup"><a class="anchor" href="#_server_setup"></a>Server setup</h4>
+<div class="sect2">
+<h3 id="_server_setup"><a class="anchor" href="#_server_setup"></a>Server setup</h3>
 <div class="paragraph">
 <p>Currently the WebSocket server uses the JSR 356 API, the connector is bootstrapped by the <code>org.crashub:crash.connectors.web</code> jar
 that contains an annotation based endpoint bound to the <em>/crash</em> uri. Therefore the full uri is prefixed by the web application
@@ -2344,8 +2203,8 @@ when the jar is in the <em>WEB-INF/lib</em> of the web application (they are loc
 jar). To activate the connector the property <code>crash.web.enabled</code> must be set to <code>true</code>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_step_by_step_setup_recap"><a class="anchor" href="#_step_by_step_setup_recap"></a>Step by step setup (recap)</h4>
+<div class="sect2">
+<h3 id="_step_by_step_setup_recap"><a class="anchor" href="#_step_by_step_setup_recap"></a>Step by step setup (recap)</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2358,16 +2217,281 @@ jar). To activate the connector the property <code>crash.web.enabled</code> must
 <p>create a web page in your war file that contains the assets listed previously</p>
 </li>
 <li>
-<p>setup <em>CRaSH.js</em> in the page</p>
+<p>setup <em>crash.js</em> in the page</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_securing_the_server"><a class="anchor" href="#_securing_the_server"></a>Securing the server</h4>
+<div class="sect2">
+<h3 id="_securing_the_server"><a class="anchor" href="#_securing_the_server"></a>Securing the server</h3>
 <div class="paragraph">
 <p>todo</p>
 </div>
+</div>
+</div>
+</div>
+<h1 id="_authentication" class="sect0"><a class="anchor" href="#_authentication"></a>Authentication</h1>
+<div class="sect1">
+<h2 id="_authentication_configuration"><a class="anchor" href="#_authentication_configuration"></a>Authentication configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Authentication is used by the SSH server when a user authenticates. Authentication interface is pluggable and has default
+implementations. The <a href="#pluggable_auth">authentication chapter</a> explains how to write a custom authentication plugin, in this section we cover the
+configuation of the authentication.</p>
+</div>
+<div class="paragraph">
+<p>The configuration of the authentication plugin is done via property, this is necessary because several plugins can be detected
+by CRaSH, and the plugin is selected via the property <em>crash.auth</em> that must match the authentication plugin name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>crash.auth=simple</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It can also take a comma-separated list of multiple authentication plugins, allowing to mix username/password and key
+authentication. In this case plugins are tested in the order which they were specified:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>crash.auth=simple,key</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>CRaSH comes out of the box with two authentication plugins.</p>
+</div>
+<div class="sect2">
+<h3 id="_simple_authentication"><a class="anchor" href="#_simple_authentication"></a>Simple authentication</h3>
+<div class="paragraph">
+<p>Simple authentication provides a simple username/password authentication configured with the <em>crash.auth.simple.username</em> and
+<em>crash.auth.simple.password</em> properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># Authentication configuration
+crash.auth=simple
+crash.auth.simple.username=admin
+crash.auth.simple.password=admin</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jaas_authentation"><a class="anchor" href="#_jaas_authentation"></a>Jaas authentation</h3>
+<div class="paragraph">
+<p>Jaas authentication uses jaas to perform authentication configured with the <em>crash.auth.jaas.domain</em> property to define the
+jaas domain to use when performing authentication:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># Authentication configuration
+crash.auth=jaas
+crash.auth.jaas.domain=my-domain</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_authentication"><a class="anchor" href="#_key_authentication"></a>Key authentication</h3>
+<div class="paragraph">
+<p>Key authentication relies on a set of authorized public keys to perform authentication configured with the
+<em>crash.auth.key.path</em> property to specify the path of the keys. The property should point to a valid <em>.pem</em> file.
+Obviously only a public key is required to be in the file, although it can also contain a private key (that will not be used).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># Authentication configuration
+crash.auth=key
+crash.auth.key.path=/Users/julien/.ssh/id_dsa.pem</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pluggable_auth"><a class="anchor" href="#pluggable_auth"></a>Pluggable authentication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Creating a custom authentication mechanism is done by implementing a CRaSH plugin that provides an implementation of the <code>AuthenticationPlugin</code>
+interface. Let&#8217;s study the <em>simple</em> authentication plugin implementation.</p>
+</div>
+<div class="paragraph">
+<p>The <code>AuthenticationPlugin</code> is the interface to implement in order to integrate CRaSH with an authentication mechanism:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="java language-java"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The integration as a CRaSH plugin mandates to extend the class <code>CRaSHPlugin</code> with the generic type <code>AuthenticationPlugin</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SimpleAuthenticationPlugin</span> <span class="directive">extends</span>
+    CRaSHPlugin&lt;AuthenticationPlugin&gt; <span class="directive">implements</span>
+    AuthenticationPlugin {
+
+
+  ...
+
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>getName()</code> method returns the <em>simple</em> value that matchs the <em>crash.auth</em> configuration property</p>
+</li>
+<li>
+<p>The <code>getImplementation()</code> method returns the object that implements the <code>AuthenticationPlugin</code> class, this method
+is implemented from the <code>CRaSHPlugin</code> abstract class, but in our case it
+simply returns <code>this</code> because <code>SimpleAuthenticationPlugin</code> is directly the implementation class.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s study how the plugin retrieves the configuration properties <code>crash.auth.simple.username</code> and <code>crash.auth.simple.password</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SimpleAuthenticationPlugin</span> <span class="directive">extends</span>
+    CRaSHPlugin&lt;AuthenticationPlugin&gt; <span class="directive">implements</span>
+    AuthenticationPlugin {
+
+
+  ...
+
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>createConfigurationCapabilities()</code> method returns the constants <code>SIMPLE_USERNAME</code> and <code>SIMPLE_PASSWORD</code> that defines
+the configuration properties that the plugin uses</p>
+</li>
+<li>
+<p>The <code>init()</code> method is invoked by CRaSH before the plugin will be used, at this moment, the configuration properties are retrieved
+from the plugin context with the method <code>getContext()</code> available in the <code>CRaSHPlugin</code> base class</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Finally the plugin needs to provide the <code>authenticate()</code> method that implement the authentication logic:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay"><code class="java language-java"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The logic is straightforward with an equality check of the username and password.</p>
+</div>
+<div class="paragraph">
+<p>Last but not least we must declare our plugin to make it recognized by CRaSH, this is achieved thanks to the <code>java.util.ServiceLoader</code>
+class. CRaSH uses the <code>ServiceLoader</code> for loading plugins and the loader needs a file to be present in the jar file containing
+the class under the name <code>META-INF/services/org.crsh.plugin.CRaSHPlugin</code> containing the class name of the plugin:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>org.crsh.auth.SimpleAuthenticationPlugin</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When all of this is done, the plugin and its service loader descriptor must be packaged in a jar file and available on the classpath
+of CRaSH.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can learn more about the <code>java.util.ServiceLoader</code> by looking at the online <a href="http://docs.oracle.com/javase/6/docs/api/java/util/ServiceLoader.html">javadoc</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spring_authentication"><a class="anchor" href="#_spring_authentication"></a>Spring authentication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When running in the Spring embedded mode, any Spring bean extending <code>org.crsh.plugin.CRaSHPlugin</code> will be registered
+as a CRaSH plugin. This can be used for delegating CRaSH authentication to a Spring bean:</p>
+</div>
+<div class="listingblock">
+<div class="title">Spring managed authentication plugin</div>
+<div class="content">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">package</span> <span class="namespace">example</span>;
+
+<span class="keyword">import</span> <span class="include">java.sql.Connection</span>;
+<span class="keyword">import</span> <span class="include">java.sql.PreparedStatement</span>;
+<span class="keyword">import</span> <span class="include">java.sql.ResultSet</span>;
+
+<span class="keyword">import</span> <span class="include">javax.sql.DataSource</span>;
+
+<span class="keyword">import</span> <span class="include">org.crsh.auth.AuthenticationPlugin</span>;
+<span class="keyword">import</span> <span class="include">org.crsh.plugin.CRaSHPlugin</span>;
+<span class="keyword">import</span> <span class="include">org.springframework.beans.factory.annotation.Autowired</span>;
+<span class="keyword">import</span> <span class="include">org.springframework.stereotype.Component</span>;
+
+<span class="annotation">@Component</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">dbCrshAuth</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">DbCrshAuthPlugin</span> <span class="directive">extends</span> CRaSHPlugin&lt;AuthenticationPlugin&gt;
+        <span class="directive">implements</span> AuthenticationPlugin {
+
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> <span class="predefined-type">DataSource</span> dataSource;
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> AuthenticationPlugin getImplementation() {
+        <span class="keyword">return</span> <span class="local-variable">this</span>;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">boolean</span> authenticate(<span class="predefined-type">String</span> username, <span class="predefined-type">String</span> password)
+            <span class="directive">throws</span> <span class="exception">Exception</span> {
+        <span class="predefined-type">Connection</span> conn = dataSource.getConnection();
+
+        <span class="predefined-type">PreparedStatement</span> statement = conn
+                .prepareStatement(<span class="string"><span class="delimiter">&quot;</span><span class="content">SELECT COUNT(*) FROM users WHERE username = ? AND password = ?</span><span class="delimiter">&quot;</span></span>);
+        statement.setString(<span class="integer">1</span>, username);
+        statement.setString(<span class="integer">2</span>, password);
+
+        <span class="predefined-type">ResultSet</span> rs = statement.executeQuery();
+        <span class="keyword">return</span> rs.getInt(<span class="integer">1</span>) &gt;= <span class="integer">1</span>;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">String</span> getName() {
+        <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">dbCrshAuth</span><span class="delimiter">&quot;</span></span>;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setDataSource(<span class="predefined-type">DataSource</span> dataSource) {
+        <span class="local-variable">this</span>.dataSource = dataSource;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above code uses Spring annotation driven beans, but this works the same with beans configured
+in XML:</p>
+</div>
+<div class="listingblock">
+<div class="title">Custom authentication bean in spring.xml</div>
+<div class="content">
+<pre class="CodeRay"><code class="xml language-xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="tag">&lt;beans</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.springframework.org/schema/beans</span><span class="delimiter">&quot;</span></span>
+       <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
+       <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.springframework.org/schema/beans</span>
+       <span class="content">http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+
+    <span class="tag">&lt;bean</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">example.DbCrshAuthPlugin</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;property</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dataSource</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">ref</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">dataSource</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;/bean&gt;</span>
+
+<span class="tag">&lt;/beans&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -4010,7 +4134,7 @@ UTF-8</pre>
 <div class="listingblock">
 <div class="title">Passing an options and arguments</div>
 <div class="content">
-<pre>% log.send(m:"hello", "the.category")
+<pre>% jul.send(m:"hello", "the.category")
 Aug 12, 2013 11:22:50 AM org.codehaus.groovy.reflection.CachedMethod invoke
 INFO: hello</pre>
 </div>
@@ -4049,10 +4173,10 @@ system.propget { ["file.encoding"] }
 <div class="listingblock">
 <div class="title">Passing an options and arguments</div>
 <div class="content">
-<pre>% (log.send { m="hello"; "the category" })()
+<pre>% (jul.send { m="hello"; "the category" })()
 ...
-% cmd = log.send { m="hello"; "the category" }
-log.send { m="hello"; ["the category"] }
+% cmd = jul.send { m="hello"; "the category" }
+jul.send { m="hello"; ["the category"] }
 % cmd()
 ...</pre>
 </div>
@@ -4180,114 +4304,6 @@ built upon the <a href="#standalone_bootstrap">Standalone bootstrap</a>.</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="pluggable_auth"><a class="anchor" href="#pluggable_auth"></a>Pluggable authentication</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Creating a custom authentication mechanism is done by implementing a CRaSH plugin that provides an implementation of the <code>AuthenticationPlugin</code>
-interface. Let&#8217;s study the <em>simple</em> authentication plugin implementation.</p>
-</div>
-<div class="paragraph">
-<p>The <code>AuthenticationPlugin</code> is the interface to implement in order to integrate CRaSH with an authentication mechanism:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The integration as a CRaSH plugin mandates to extend the class <code>CRaSHPlugin</code> with the generic type <code>AuthenticationPlugin</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SimpleAuthenticationPlugin</span> <span class="directive">extends</span>
-    CRaSHPlugin&lt;AuthenticationPlugin&gt; <span class="directive">implements</span>
-    AuthenticationPlugin {
-
-
-  ...
-
-}</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The <code>getName()</code> method returns the <em>simple</em> value that matchs the <em>crash.auth</em> configuration property</p>
-</li>
-<li>
-<p>The <code>getImplementation()</code> method returns the object that implements the <code>AuthenticationPlugin</code> class, this method
-is implemented from the <code>CRaSHPlugin</code> abstract class, but in our case it
-simply returns <code>this</code> because <code>SimpleAuthenticationPlugin</code> is directly the implementation class.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Now let&#8217;s study how the plugin retrieves the configuration properties <code>crash.auth.simple.username</code> and <code>crash.auth.simple.password</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SimpleAuthenticationPlugin</span> <span class="directive">extends</span>
-    CRaSHPlugin&lt;AuthenticationPlugin&gt; <span class="directive">implements</span>
-    AuthenticationPlugin {
-
-
-  ...
-
-}</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The <code>createConfigurationCapabilities()</code> method returns the constants <code>SIMPLE_USERNAME</code> and <code>SIMPLE_PASSWORD</code> that defines
-the configuration properties that the plugin uses</p>
-</li>
-<li>
-<p>The <code>init()</code> method is invoked by CRaSH before the plugin will be used, at this moment, the configuration properties are retrieved
-from the plugin context with the method <code>getContext()</code> available in the <code>CRaSHPlugin</code> base class</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Finally the plugin needs to provide the <code>authenticate()</code> method that implement the authentication logic:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay"><code class="java language-java"></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The logic is straightforward with an equality check of the username and password.</p>
-</div>
-<div class="paragraph">
-<p>Last but not least we must declare our plugin to make it recognized by CRaSH, this is achieved thanks to the <code>java.util.ServiceLoader</code>
-class. CRaSH uses the <code>ServiceLoader</code> for loading plugins and the loader needs a file to be present in the jar file containing
-the class under the name <code>META-INF/services/org.crsh.plugin.CRaSHPlugin</code> containing the class name of the plugin:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>org.crsh.auth.SimpleAuthenticationPlugin</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When all of this is done, the plugin and its service loader descriptor must be packaged in a jar file and available on the classpath
-of CRaSH.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can learn more about the <code>java.util.ServiceLoader</code> by looking at the online <a href="http://docs.oracle.com/javase/6/docs/api/java/util/ServiceLoader.html">javadoc</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
 <h1 id="_mail_plugin" class="sect0"><a class="anchor" href="#_mail_plugin"></a>Mail plugin</h1>
 <div class="paragraph">
 <p>The mail plugin configures an email client for CRaSH. This email client can be used as a service or via the <code>mail</code>
@@ -4305,7 +4321,7 @@ command.</p>
 <p>the JavaMail jar <code>mail-1.4.jar</code></p>
 </li>
 <li>
-<p>the plugin jar <code>crash.plugins.mail-1.3.0-cr5.jar</code></p>
+<p>the plugin jar <code>crash.plugins.mail-1.3.0-cr7.jar</code></p>
 </li>
 </ul>
 </div>
@@ -4347,7 +4363,7 @@ to text before sending the email.</p>
 <div class="listingblock">
 <div class="title">Send an email with a JVM thread dump</div>
 <div class="content">
-<pre class="nowrap">% thread ls | thread dump | mail -s "The thread dump" admin@foo.com</pre>
+<pre class="nowrap">% thread ls | thread dump | mail send -s "The thread dump" admin@foo.com</pre>
 </div>
 </div>
 </div>
@@ -4369,7 +4385,7 @@ to text before sending the email.</p>
 <p>the cron4j jar <code>cron4j-2.2.5.jar</code></p>
 </li>
 <li>
-<p>the plugin jar <code>crash.plugins.cron-1.3.0-cr5.jar</code></p>
+<p>the plugin jar <code>crash.plugins.cron-1.3.0-cr7.jar</code></p>
 </li>
 </ul>
 </div>
@@ -4398,7 +4414,7 @@ other crontab configuration file it consists of two parts:</p>
 <div class="listingblock">
 <div class="title">Send an mail with a JVM thread dump once every hour, at the begin of the fifth minute (00:05, 01:05, 02:05 etc.).</div>
 <div class="content">
-<pre class="nowrap">5 * * * * thread ls | thread dump | mail -s "the threads" -b admin@gmail.com</pre>
+<pre class="nowrap">5 * * * * thread ls | thread dump | mail send -s "the threads" -b admin@gmail.com</pre>
 </div>
 </div>
 </div>
@@ -4426,36 +4442,33 @@ PARAMETERS
            Display this help message
 
 COMMANDS
-       config
-           read or write the cron config path
+       history
+           display the process history
 
        spawn
            trigger the cron service now
 
-       history
-           display the process history
+       config
+           read or write the cron config path
 </pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cron_config"><a class="anchor" href="#_cron_config"></a>cron config</h3>
+<h3 id="_cron_history"><a class="anchor" href="#_cron_history"></a>cron history</h3>
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       cron config - read or write the cron config path
+       cron history - display the process history
 
 SYNOPSIS
-       cron [-h | --help] config &lt;path&gt;
+       cron [-h | --help] history
 
 STREAM
-       cron config &lt;java.lang.Void, java.lang.Object&gt;
+       cron history &lt;java.lang.Void, java.util.Map&gt;
 
 PARAMETERS
        [-h | --help]
            Display this help message
-
-       &lt;path&gt;
-           the new config path when specified
 </pre>
 </div>
 </div>
@@ -4481,21 +4494,24 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cron_history"><a class="anchor" href="#_cron_history"></a>cron history</h3>
+<h3 id="_cron_config"><a class="anchor" href="#_cron_config"></a>cron config</h3>
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       cron history - display the process history
+       cron config - read or write the cron config path
 
 SYNOPSIS
-       cron [-h | --help] history
+       cron [-h | --help] config &lt;path&gt;
 
 STREAM
-       cron history &lt;java.lang.Void, java.util.Map&gt;
+       cron config &lt;java.lang.Void, java.lang.Object&gt;
 
 PARAMETERS
        [-h | --help]
            Display this help message
+
+       &lt;path&gt;
+           the new config path when specified
 </pre>
 </div>
 </div>
@@ -4536,7 +4552,7 @@ SYNOPSIS
        egrep [-h | --help] &lt;pattern&gt;
 
 STREAM
-       egrep &lt;java.lang.CharSequence, java.lang.Object&gt;
+       egrep &lt;java.lang.Void, java.lang.Object&gt;
 
 PARAMETERS
        [-h | --help]
@@ -4673,17 +4689,17 @@ COMMANDS
        connect
            connect to database with a JDBC connection string
 
-       tables
-           describe the tables
+       info
+           describe the database
 
        select
            select SQL statement
 
+       tables
+           describe the tables
+
        execute
            execute a SQL statement
-
-       info
-           describe the database
 </pre>
 </div>
 </div>
@@ -4806,17 +4822,17 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_jdbc_tables"><a class="anchor" href="#_jdbc_tables"></a>jdbc tables</h3>
+<h3 id="_jdbc_info"><a class="anchor" href="#_jdbc_info"></a>jdbc info</h3>
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       jdbc tables - describe the tables
+       jdbc info - describe the database
 
 SYNOPSIS
-       jdbc [-h | --help] tables
+       jdbc [-h | --help] info
 
 STREAM
-       jdbc tables &lt;java.lang.Void, java.lang.Object&gt;
+       jdbc info &lt;java.lang.Void, java.util.Map&gt;
 
 PARAMETERS
        [-h | --help]
@@ -4849,6 +4865,26 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
+<h3 id="_jdbc_tables"><a class="anchor" href="#_jdbc_tables"></a>jdbc tables</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jdbc tables - describe the tables
+
+SYNOPSIS
+       jdbc [-h | --help] tables
+
+STREAM
+       jdbc tables &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_jdbc_execute"><a class="anchor" href="#_jdbc_execute"></a>jdbc execute</h3>
 <div class="listingblock">
 <div class="content">
@@ -4867,26 +4903,6 @@ PARAMETERS
 
        &lt;statement&gt;...
            The statement
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_jdbc_info"><a class="anchor" href="#_jdbc_info"></a>jdbc info</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jdbc info - describe the database
-
-SYNOPSIS
-       jdbc [-h | --help] info
-
-STREAM
-       jdbc info &lt;java.lang.Void, java.util.Map&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
 </pre>
 </div>
 </div>
@@ -5000,7 +5016,7 @@ PARAMETERS
        jmx query - query mbeans
 
 SYNOPSIS
-       jmx [-h | --help] query [-p | --pattern]
+       jmx [-h | --help] query &lt;arg&gt;
 
 STREAM
        jmx query &lt;java.lang.Void, javax.management.ObjectName&gt;
@@ -5017,7 +5033,7 @@ PARAMETERS
        [-h | --help]
            Display this help message
 
-       [-p | --pattern]
+       &lt;arg&gt;
            the object name pattern for the query
 </pre>
 </div>
@@ -5271,6 +5287,266 @@ PARAMETERS
 </div>
 </div>
 <div class="sect1">
+<h2 id="_jul"><a class="anchor" href="#_jul"></a>jul</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jul - java.util.logging commands
+
+SYNOPSIS
+       jul [-h | --help] COMMAND [ARGS]
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+COMMANDS
+       add
+           create one or several loggers
+
+       set
+           The set command sets the level of a logger. One or several logger names can be specified as
+           arguments and the -l option specify the level among the finest, finer, fine, info, warn and
+           severe levels. When no level is specified, the level is cleared and the level will be
+           inherited from its ancestors.
+
+           % jul set -l trace foo
+           % jul set foo
+
+           The logger name can be omitted and instead stream of logger can be consumed as it is a
+           &lt;Logger,Void&gt; command. The following set the level warn on all the available loggers:
+
+           % jul ls | jul set -l warn
+
+       tail
+           The tail command provides a tail view of a list of loggers. One or several logger names can
+           be specified as argument and the -l option configures the level threshold. When no logger
+           name is specified, the root logger will be tailed, when no level is specified, the info
+           level will be used:
+
+           % jul tail
+           Feb 10, 2014 1:50:36 PM java_util_logging_Logger$log call
+           INFO: HELLO
+
+           The tail process will end upon interruption (ctrl-c).
+
+       ls
+           The jul ls command list all the available loggers, for instance:
+
+           % jul ls
+           org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/].[default]
+           org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/eXoGadgetServer].[concat]
+           org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/dashboard].[jsp]
+           ...
+
+           The -f switch provides filtering with a Java regular expression
+
+           % jul ls -f javax.*
+           javax.management.mbeanserver
+           javax.management.modelmbean
+
+           The jul ls command is a &lt;Void,Logger&gt; command, therefore any logger produced can be
+           consumed.
+
+       send
+           The send command log one or several loggers with a specified message. For instance the
+           following impersonates the javax.management.mbeanserver class and send a message on its own
+           logger.
+
+           #% jul send -m hello javax.management.mbeanserver
+
+           Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
+
+           % jul ls | jul send -m hello -l warn
+</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jul_add"><a class="anchor" href="#_jul_add"></a>jul add</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jul add - create one or several loggers
+
+SYNOPSIS
+       jul [-h | --help] add &lt;name&gt;...
+
+STREAM
+       jul add &lt;java.lang.Void, java.util.logging.Logger&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;name&gt;...
+           The name of the logger
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jul_set"><a class="anchor" href="#_jul_set"></a>jul set</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jul set - configures the level of one of several loggers
+
+SYNOPSIS
+       jul [-h | --help] set [-l | --level] &lt;name&gt;...
+
+STREAM
+       jul set &lt;java.util.logging.Logger, java.lang.Object&gt;
+
+DESCRIPTION
+       The set command sets the level of a logger. One or several logger names can be specified as
+       arguments and the -l option specify the level among the finest, finer, fine, info, warn and
+       severe levels. When no level is specified, the level is cleared and the level will be
+       inherited from its ancestors.
+
+       % jul set -l trace foo
+       % jul set foo
+
+       The logger name can be omitted and instead stream of logger can be consumed as it is a
+       &lt;Logger,Void&gt; command. The following set the level warn on all the available loggers:
+
+       % jul ls | jul set -l warn
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       [-l | --level]
+           The logger level to assign among {trace, debug, info, warn, error}
+
+       &lt;name&gt;...
+           The name of the logger
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jul_tail"><a class="anchor" href="#_jul_tail"></a>jul tail</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jul tail - tail loggers
+
+SYNOPSIS
+       jul [-h | --help] tail [-l | --level] &lt;name&gt;...
+
+STREAM
+       jul tail &lt;java.lang.Void, java.util.logging.LogRecord&gt;
+
+DESCRIPTION
+       The tail command provides a tail view of a list of loggers. One or several logger names can
+       be specified as argument and the -l option configures the level threshold. When no logger
+       name is specified, the root logger will be tailed, when no level is specified, the info
+       level will be used:
+
+       % jul tail
+       Feb 10, 2014 1:50:36 PM java_util_logging_Logger$log call
+       INFO: HELLO
+
+       The tail process will end upon interruption (ctrl-c).
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       [-l | --level]
+           The logger level to assign among {trace, debug, info, warn, error}
+
+       &lt;name&gt;...
+           The name of the logger
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jul_ls"><a class="anchor" href="#_jul_ls"></a>jul ls</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jul ls - list the available loggers
+
+SYNOPSIS
+       jul [-h | --help] ls [-f | --filter]
+
+STREAM
+       jul ls &lt;java.lang.Void, java.util.logging.Logger&gt;
+
+DESCRIPTION
+       The jul ls command list all the available loggers, for instance:
+
+       % jul ls
+       org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/].[default]
+       org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/eXoGadgetServer].[concat]
+       org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/dashboard].[jsp]
+       ...
+
+       The -f switch provides filtering with a Java regular expression
+
+       % jul ls -f javax.*
+       javax.management.mbeanserver
+       javax.management.modelmbean
+
+       The jul ls command is a &lt;Void,Logger&gt; command, therefore any logger produced can be
+       consumed.
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       [-f | --filter]
+           A regular expressions used to filter the loggers
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jul_send"><a class="anchor" href="#_jul_send"></a>jul send</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jul send - send a message to a jul logger
+
+SYNOPSIS
+       jul [-h | --help] send [-m | --message] [-l | --level] &lt;name&gt;
+
+STREAM
+       jul send &lt;java.util.logging.Logger, java.lang.Object&gt;
+
+DESCRIPTION
+       The send command log one or several loggers with a specified message. For instance the
+       following impersonates the javax.management.mbeanserver class and send a message on its own
+       logger.
+
+       #% jul send -m hello javax.management.mbeanserver
+
+       Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
+
+       % jul ls | jul send -m hello -l warn
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       [-m | --message]
+           The message to log
+
+       [-l | --level]
+           The logger level to assign among {trace, debug, info, warn, error}
+
+       &lt;name&gt;
+           The name of the logger
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_jvm"><a class="anchor" href="#_jvm"></a>jvm</h2>
 <div class="sectionbody">
 <div class="listingblock">
@@ -5292,16 +5568,13 @@ COMMANDS
        system
            Show JVM operating system
 
-       pools
-           Show JVM memory pools
-
        runtime
            Show JVM runtime
 
+       top
+
        pool
            Show JVM memory pool
-
-       top
 
        heap
            Show JVM memory heap
@@ -5314,6 +5587,9 @@ COMMANDS
 
        nonheap
            Show JVM memory non heap
+
+       pools
+           Show JVM memory pools
 </pre>
 </div>
 </div>
@@ -5358,26 +5634,6 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_jvm_pools"><a class="anchor" href="#_jvm_pools"></a>jvm pools</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jvm pools - Show JVM memory pools
-
-SYNOPSIS
-       jvm [-h | --help] pools
-
-STREAM
-       jvm pools &lt;java.lang.Void, java.lang.String&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_jvm_runtime"><a class="anchor" href="#_jvm_runtime"></a>jvm runtime</h3>
 <div class="listingblock">
 <div class="content">
@@ -5389,6 +5645,26 @@ SYNOPSIS
 
 STREAM
        jvm runtime &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jvm_top"><a class="anchor" href="#_jvm_top"></a>jvm top</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jvm top
+
+SYNOPSIS
+       jvm [-h | --help] top
+
+STREAM
+       jvm top &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
 
 PARAMETERS
        [-h | --help]
@@ -5415,26 +5691,6 @@ PARAMETERS
            Display this help message
 
        &lt;pools&gt;...
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_jvm_top"><a class="anchor" href="#_jvm_top"></a>jvm top</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jvm top
-
-SYNOPSIS
-       jvm [-h | --help] top
-
-STREAM
-       jvm top &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
 </pre>
 </div>
 </div>
@@ -5519,6 +5775,26 @@ PARAMETERS
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_jvm_pools"><a class="anchor" href="#_jvm_pools"></a>jvm pools</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jvm pools - Show JVM memory pools
+
+SYNOPSIS
+       jvm [-h | --help] pools
+
+STREAM
+       jvm pools &lt;java.lang.Void, java.lang.String&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -5554,278 +5830,44 @@ PARAMETERS
 </div>
 </div>
 <div class="sect1">
-<h2 id="_log"><a class="anchor" href="#_log"></a>log</h2>
+<h2 id="_mail"><a class="anchor" href="#_mail"></a>mail</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       log - logging commands
+       mail - interact with emails
 
 SYNOPSIS
-       log [-h | --help] COMMAND [ARGS]
+       mail [-h | --help] COMMAND [ARGS]
 
 PARAMETERS
        [-h | --help]
            Display this help message
 
 COMMANDS
-       add
-           create one or several loggers
-
-       set
-           The set command sets the level of a logger. One or several logger names can be specified as
-           arguments and the -l option specify the level among the finest, finer, fine, info, warn and
-           severe levels. When no level is specified, the level is cleared and the level will be
-           inherited from its ancestors.
-
-           % log set -l trace foo
-           % log set foo
-
-           The logger name can be omitted and instead stream of logger can be consumed as it is a
-           &lt;Logger,Void&gt; command. The following set the level warn on all the available loggers:
-
-           % log ls | log set -l warn
-
-       tail
-           The tail command provides a tail view of a list of loggers. One or several logger names can
-           be specified as argument and the -l option configures the level threshold. When no logger
-           name is specified, the root logger will be tailed, when no level is specified, the info
-           level will be used:
-
-           % log tail
-           Feb 10, 2014 1:50:36 PM java_util_logging_Logger$log call
-           INFO: HELLO
-
-           The tail process will end upon interruption (ctrl-c).
-
-       ls
-           The log ls command list all the available loggers., for instance:
-
-           % log ls
-           org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/].[default]
-           org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/eXoGadgetServer].[concat]
-           org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/dashboard].[jsp]
-           ...
-
-           The -f switch provides filtering with a Java regular expression
-
-           % log ls -f javax.*
-           javax.management.mbeanserver
-           javax.management.modelmbean
-
-           The log ls command is a &lt;Void,Logger&gt; command, therefore any logger produced can be
-           consumed.
-
        send
-           The send command log one or several loggers with a specified message. For instance the
-           following impersonates the javax.management.mbeanserver class and send a message on its own
-           logger.
+           Send an mail to a list of recipients.
 
-           #% log send -m hello javax.management.mbeanserver
+           The body of the mail is the input stream of the command. For example, the output of the "thread ls | thread dump" command
+           can be piped into the mail command: an email with the list of current JVM thread is sent to the admin:
 
-           Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
+           % thread ls | thread dump | mail send -s "The thread dump" admin@foo.com
 
-           % log ls | log send -m hello -l warn
 </pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_log_add"><a class="anchor" href="#_log_add"></a>log add</h3>
+<h3 id="_mail_send"><a class="anchor" href="#_mail_send"></a>mail send</h3>
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       log add - create one or several loggers
+       mail send - send an mail to a list of recipients, the body of the mail is the input stream of the command.
 
 SYNOPSIS
-       log [-h | --help] add &lt;name&gt;...
+       mail [-h | --help] send [-b | --block] [-s | --subject] [--width] [--height] &lt;recipients&gt;...
 
 STREAM
-       log add &lt;java.lang.Void, java.util.logging.Logger&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;name&gt;...
-           The name of the logger
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_log_set"><a class="anchor" href="#_log_set"></a>log set</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       log set - configures the level of one of several loggers
-
-SYNOPSIS
-       log [-h | --help] set [-l | --level] &lt;name&gt;...
-
-STREAM
-       log set &lt;java.util.logging.Logger, java.lang.Object&gt;
-
-DESCRIPTION
-       The set command sets the level of a logger. One or several logger names can be specified as
-       arguments and the -l option specify the level among the finest, finer, fine, info, warn and
-       severe levels. When no level is specified, the level is cleared and the level will be
-       inherited from its ancestors.
-
-       % log set -l trace foo
-       % log set foo
-
-       The logger name can be omitted and instead stream of logger can be consumed as it is a
-       &lt;Logger,Void&gt; command. The following set the level warn on all the available loggers:
-
-       % log ls | log set -l warn
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       [-l | --level]
-           The logger level to assign among {trace, debug, info, warn, error}
-
-       &lt;name&gt;...
-           The name of the logger
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_log_tail"><a class="anchor" href="#_log_tail"></a>log tail</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       log tail - tail loggers
-
-SYNOPSIS
-       log [-h | --help] tail [-l | --level] &lt;name&gt;...
-
-STREAM
-       log tail &lt;java.lang.Void, java.util.logging.LogRecord&gt;
-
-DESCRIPTION
-       The tail command provides a tail view of a list of loggers. One or several logger names can
-       be specified as argument and the -l option configures the level threshold. When no logger
-       name is specified, the root logger will be tailed, when no level is specified, the info
-       level will be used:
-
-       % log tail
-       Feb 10, 2014 1:50:36 PM java_util_logging_Logger$log call
-       INFO: HELLO
-
-       The tail process will end upon interruption (ctrl-c).
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       [-l | --level]
-           The logger level to assign among {trace, debug, info, warn, error}
-
-       &lt;name&gt;...
-           The name of the logger
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_log_ls"><a class="anchor" href="#_log_ls"></a>log ls</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       log ls - list the available loggers
-
-SYNOPSIS
-       log [-h | --help] ls [-f | --filter]
-
-STREAM
-       log ls &lt;java.lang.Void, java.util.logging.Logger&gt;
-
-DESCRIPTION
-       The log ls command list all the available loggers., for instance:
-
-       % log ls
-       org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/].[default]
-       org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/eXoGadgetServer].[concat]
-       org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/dashboard].[jsp]
-       ...
-
-       The -f switch provides filtering with a Java regular expression
-
-       % log ls -f javax.*
-       javax.management.mbeanserver
-       javax.management.modelmbean
-
-       The log ls command is a &lt;Void,Logger&gt; command, therefore any logger produced can be
-       consumed.
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       [-f | --filter]
-           A regular expressions used to filter the loggers
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_log_send"><a class="anchor" href="#_log_send"></a>log send</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       log send - send a message to a logger
-
-SYNOPSIS
-       log [-h | --help] send [-m | --message] [-l | --level] &lt;name&gt;
-
-STREAM
-       log send &lt;java.util.logging.Logger, java.lang.Object&gt;
-
-DESCRIPTION
-       The send command log one or several loggers with a specified message. For instance the
-       following impersonates the javax.management.mbeanserver class and send a message on its own
-       logger.
-
-       #% log send -m hello javax.management.mbeanserver
-
-       Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
-
-       % log ls | log send -m hello -l warn
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       [-m | --message]
-           The message to log
-
-       [-l | --level]
-           The logger level to assign among {trace, debug, info, warn, error}
-
-       &lt;name&gt;
-           The name of the logger
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_mail"><a class="anchor" href="#_mail"></a>mail</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       mail - send an mail to a list of recipients, the body of the mail is the input stream of the command.
-
-SYNOPSIS
-       mail [-b | --block] [-s | --subject] [-h | --help] &lt;recipients&gt;...
-
-STREAM
-       mail &lt;java.lang.CharSequence, java.lang.CharSequence&gt;
+       mail send &lt;java.lang.Object, java.lang.Object&gt;
 
 DESCRIPTION
        Send an mail to a list of recipients.
@@ -5833,22 +5875,29 @@ DESCRIPTION
        The body of the mail is the input stream of the command. For example, the output of the "thread ls | thread dump" command
        can be piped into the mail command: an email with the list of current JVM thread is sent to the admin:
 
-       % thread ls | thread dump | mail -s "The thread dump" admin@foo.com
+       % thread ls | thread dump | mail send -s "The thread dump" admin@foo.com
 
 
 PARAMETERS
+       [-h | --help]
+           Display this help message
+
        [-b | --block]
            block until the mails are delivered
 
        [-s | --subject]
            mail subject
 
-       [-h | --help]
-           Display this help message
+       [--width]
+           override the screen width
+
+       [--height]
+           override the screen height
 
        &lt;recipients&gt;...
            mail recipients
 </pre>
+</div>
 </div>
 </div>
 </div>
@@ -6460,7 +6509,7 @@ PARAMETERS
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-06-03 16:41:20 CEST
+Last updated 2014-06-06 15:18:13 CEST
 </div>
 </div>
 </body>
