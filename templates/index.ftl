@@ -62,16 +62,24 @@
             <strong>Embedded</strong> <a href="/visualvm.html">VisualVM</a> plugin<br/>
             <strong>Embedded</strong> <a href="https://github.com/crashub/mod-shell">Vert.x</a> module<br/>
             <h4>${config.crash_next_version}</h4>
-            <strong>Distributions:</strong>
-            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}.tar.gz">standalone</a>
-           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-docs.tar.gz">docs</a>
-           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-war.tar.gz">web</a>
-           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-spring.tar.gz">spring</a>
-           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-mule-app.tar.gz">mule</a>
-         or <a href="http://search.maven.org/remotecontent?filepath=org/crashub/jcr.distrib/${config.crash_jcr_version}/jcr.distrib-${config.crash_jcr_version}-packaging.tar.gz">gatein</a><br/>
-            <strong>Doc:</strong>
-            <a href="beta/reference.html" target="_blank">Documentation</a>,
-            <a href="beta/cookbook.html" target="_blank">Cookbook</a>
+            <strong>Standalone:</strong>
+            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}.tar.gz">download</a>
+            , <a href="managers.html#gvm">gvm</a>
+            , <a href="managers.html#rpm">rpm</a>
+            or <a href="managers.html#brew">brew</a>
+            <br/>
+            <strong>Embedded:</strong>
+            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-war.tar.gz">Web</a>
+            , <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-spring.tar.gz">Spring</a>
+            , <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-mule-app.tar.gz">Mule</a>
+            , <a href="https://github.com/crashub/mod-shell">Vert.x</a>
+            , <a href="http://grails.org/plugin/crash">Grails</a>
+            or <a href="http://search.maven.org/remotecontent?filepath=org/crashub/jcr.distrib/${config.crash_jcr_version}/jcr.distrib-${config.crash_jcr_version}-packaging.tar.gz">GateIn</a>
+            <br/>
+            <strong>Docs:</strong>
+            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-docs.tar.gz">download</a>
+            , <a href="beta/reference.html" target="_blank">reference</a>
+            or <a href="beta/cookbook.html" target="_blank">cookbook</a>
             <!--
             <a href="beta/javadoc/index.html" target="_blank">Javadoc</a>
             -->
