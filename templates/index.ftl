@@ -50,20 +50,9 @@
           </div>
           <div class="span4">
             <h3>Download</h3>
-            <h4>${config.crash_version}</h4>
-            <strong>Distributions:</strong>
-            <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}.tar.gz">standalone</a>
-              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-docs.tar.gz">docs</a>
-              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-war.tar.gz">web</a>
-              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-spring.tar.gz">spring</a>
-              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-mule-app.tar.gz">mule</a>
-              or <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-gatein.tar.gz">gatein</a><br/>
-            <strong>Snapshots:</strong> <a href="http://repository.exoplatform.org/service/local/artifact/maven/content?g=org.crsh&a=crsh.distrib&v=LATEST&e=tar.gz&r=crsh-snapshots">zip</a><br/>
-            <strong>Embedded</strong> <a href="/visualvm.html">VisualVM</a> plugin<br/>
-            <strong>Embedded</strong> <a href="https://github.com/crashub/mod-shell">Vert.x</a> module<br/>
             <h4>${config.crash_next_version}</h4>
             <strong>Standalone:</strong>
-            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}.tar.gz">download</a>
+            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}.tar.gz">tar.gz</a>
             , <a href="managers.html#gvm">gvm</a>
             , <a href="managers.html#rpm">rpm</a>
             or <a href="managers.html#brew">brew</a>
@@ -77,12 +66,22 @@
             or <a href="http://search.maven.org/remotecontent?filepath=org/crashub/jcr.distrib/${config.crash_jcr_version}/jcr.distrib-${config.crash_jcr_version}-packaging.tar.gz">GateIn</a>
             <br/>
             <strong>Docs:</strong>
-            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-docs.tar.gz">download</a>
-            , <a href="beta/reference.html" target="_blank">reference</a>
-            or <a href="beta/cookbook.html" target="_blank">cookbook</a>
-            <!--
-            <a href="beta/javadoc/index.html" target="_blank">Javadoc</a>
-            -->
+            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/${config.crash_next_version}/crash.distrib-${config.crash_next_version}-docs.tar.gz">tar.gz</a>
+            , <a href="1.3/reference.html" target="_blank">reference</a>
+            , <a href="1.3/cookbook.html" target="_blank">cookbook</a>
+            or <a href="1.3/javadoc/index.html" target="_blank">javadoc</a>
+            <h4>${config.crash_version}</h4>
+            <strong>Distributions:</strong>
+            <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}.tar.gz">tar.gz</a>
+            , <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-war.tar.gz">web</a>
+            , <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-spring.tar.gz">spring</a>
+            , <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-mule-app.tar.gz">mule</a>
+            or <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-gatein.tar.gz">gatein</a><br/>
+            <strong>Docs:</strong>
+            <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/${config.crash_version}/crsh.distrib-${config.crash_version}-docs.tar.gz">tar.gz</a>
+            , <a href="1.2/reference.html" target="_blank">reference</a>
+            , <a href="1.2/cookbook.html" target="_blank">cookbook</a>
+            or <a href="1.2/javadoc/index.html" target="_blank">javadoc</a>
           </div>
           <div class="span4">
             <h3>Resources</h3>
