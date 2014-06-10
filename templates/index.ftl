@@ -40,8 +40,8 @@
           <div class="span4">
             <h3>Featuring</h3>
             <ul class="unstyled">
-              <li><strong>Groovy</strong> commands: system, <a href="http://vimeo.com/40807396" target="_blank">JDBC</a>, threads, ...</li>
-              <li><strong>Extendable</strong> with custom commands</li>
+              <li><strong>JVM</strong> commands: system, <a href="http://vimeo.com/40807396" target="_blank">jdbc</a>, threads, ...</li>
+              <li><strong>Custom</strong> commands</li>
               <li><strong>Screencasts:</strong> <a href="https://vimeo.com/47014671">1.1 features</a></li>
               <li><strong>SSH</strong> & <strong>Telnet</strong> connectors</li>
               <li><a href="http://vimeo.com/40290434" target="_blank">Standalone</a> mode</li>
@@ -86,7 +86,6 @@
           <div class="span4">
             <h3>Resources</h3>
             <address>
-            <strong>Try</strong> <a href="http://try.crashub.org">online</a><br/>
             <strong>Twitter:</strong> <a href="https://twitter.com/crashub">@crashub</a><br />
             <strong>Users:</strong> <a href="http://groups.google.com/group/crash-users">crash-users@googlegroups.com</a><br />
             <strong>Contribute:</strong> <a href="https://github.com/crashub/crash/wiki/todo" target="_blank">Todo</a><br />

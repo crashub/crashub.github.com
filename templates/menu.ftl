@@ -4,9 +4,10 @@
         <div class="container">
           <ul id="tabs" class="nav">
             <li><a href="/">Home</a></li>
-            <li><a href="/video.html">Video</a></li>
             <li><a href="/embedded.html">Embedded</a></li>
             <li><a href="/managers.html">Managers</a></li>
+            <li><a href="http://try.crashub.org">Demo</a></li>
+            <li><a href="/video.html">Video</a></li>
             <li><a href="/contributors.html">Contributors</a></li>
             <li><a href="/links.html">Links</a></li>
           </ul>
