@@ -248,13 +248,13 @@
 <span class="sourceLineNo">240</span>  }<a name="line.240"></a>
 <span class="sourceLineNo">241</span><a name="line.241"></a>
 <span class="sourceLineNo">242</span>  public void show(Element element) {<a name="line.242"></a>
-<span class="sourceLineNo">243</span>    element.render(new RenderAppendable(this.out));<a name="line.243"></a>
+<span class="sourceLineNo">243</span>    element.render(new RenderAppendable(this.out.out));<a name="line.243"></a>
 <span class="sourceLineNo">244</span>  }<a name="line.244"></a>
 <span class="sourceLineNo">245</span><a name="line.245"></a>
 <span class="sourceLineNo">246</span>  @Override<a name="line.246"></a>
 <span class="sourceLineNo">247</span>  public void print(Object obj) {<a name="line.247"></a>
 <span class="sourceLineNo">248</span>    if (obj instanceof Element) {<a name="line.248"></a>
-<span class="sourceLineNo">249</span>      RenderAppendable out = new RenderAppendable(this.out);<a name="line.249"></a>
+<span class="sourceLineNo">249</span>      RenderAppendable out = new RenderAppendable(this.out.out);<a name="line.249"></a>
 <span class="sourceLineNo">250</span>      ((Element)obj).renderer().render(out);<a name="line.250"></a>
 <span class="sourceLineNo">251</span>    } else {<a name="line.251"></a>
 <span class="sourceLineNo">252</span>      super.print(obj);<a name="line.252"></a>

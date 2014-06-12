@@ -79,7 +79,7 @@
 <span class="sourceLineNo">071</span>          sb.append('|').append(factory.line);<a name="line.71"></a>
 <span class="sourceLineNo">072</span>        }<a name="line.72"></a>
 <span class="sourceLineNo">073</span>      }<a name="line.73"></a>
-<span class="sourceLineNo">074</span>      throw new CommandException(line, ErrorKind.SYNTAX, sb.toString());<a name="line.74"></a>
+<span class="sourceLineNo">074</span>      throw new CommandException(ErrorKind.SYNTAX, sb.toString());<a name="line.74"></a>
 <span class="sourceLineNo">075</span>    }<a name="line.75"></a>
 <span class="sourceLineNo">076</span>  }<a name="line.76"></a>
 <span class="sourceLineNo">077</span><a name="line.77"></a>
@@ -91,16 +91,16 @@
 <span class="sourceLineNo">083</span>    return next;<a name="line.83"></a>
 <span class="sourceLineNo">084</span>  }<a name="line.84"></a>
 <span class="sourceLineNo">085</span><a name="line.85"></a>
-<span class="sourceLineNo">086</span>  public CommandInvoker&lt;Void, Object&gt; create(ShellSession session) throws CommandException {<a name="line.86"></a>
+<span class="sourceLineNo">086</span>  public CommandInvoker&lt;Void, Object&gt; create(ShellSession session) throws CommandNotFoundException, CommandException {<a name="line.86"></a>
 <span class="sourceLineNo">087</span>    LinkedList&lt;CommandInvoker&gt; pipes = new LinkedList&lt;CommandInvoker&gt;();<a name="line.87"></a>
 <span class="sourceLineNo">088</span>    for (PipeLineFactory current = this;current != null;current = current.next) {<a name="line.88"></a>
 <span class="sourceLineNo">089</span>      Command&lt;?&gt; command = session.getCommand(current.name);<a name="line.89"></a>
 <span class="sourceLineNo">090</span>      if (command == null) {<a name="line.90"></a>
-<span class="sourceLineNo">091</span>        throw new CommandException(current.name, ErrorKind.EVALUATION, "Unknown command");<a name="line.91"></a>
+<span class="sourceLineNo">091</span>        throw new CommandNotFoundException(current.name);<a name="line.91"></a>
 <span class="sourceLineNo">092</span>      }<a name="line.92"></a>
 <span class="sourceLineNo">093</span>      CommandInvoker commandInvoker = command.resolveInvoker(current.rest);<a name="line.93"></a>
 <span class="sourceLineNo">094</span>      if (commandInvoker == null) {<a name="line.94"></a>
-<span class="sourceLineNo">095</span>        throw new CommandException(current.name, ErrorKind.EVALUATION, "Command " + current.rest + " cannot not be invoked");<a name="line.95"></a>
+<span class="sourceLineNo">095</span>        throw new CommandNotFoundException(current.name);<a name="line.95"></a>
 <span class="sourceLineNo">096</span>      }<a name="line.96"></a>
 <span class="sourceLineNo">097</span>      pipes.add(commandInvoker);<a name="line.97"></a>
 <span class="sourceLineNo">098</span>    }<a name="line.98"></a>

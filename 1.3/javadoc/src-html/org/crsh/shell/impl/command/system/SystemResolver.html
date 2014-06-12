@@ -85,7 +85,7 @@
 <span class="sourceLineNo">077</span>      description = shellCommand.describe(commandClass.getSimpleName(), Format.DESCRIBE);<a name="line.77"></a>
 <span class="sourceLineNo">078</span>    }<a name="line.78"></a>
 <span class="sourceLineNo">079</span>    catch (IntrospectionException e) {<a name="line.79"></a>
-<span class="sourceLineNo">080</span>      throw new CommandException(commandClass.getSimpleName(), ErrorKind.INTERNAL, "Invalid cli annotation", e);<a name="line.80"></a>
+<span class="sourceLineNo">080</span>      throw new CommandException(ErrorKind.SYNTAX, "Invalid cli annotation in command " + commandClass.getSimpleName(), e);<a name="line.80"></a>
 <span class="sourceLineNo">081</span>    }<a name="line.81"></a>
 <span class="sourceLineNo">082</span>    return new CommandResolution() {<a name="line.82"></a>
 <span class="sourceLineNo">083</span>      @Override<a name="line.83"></a>

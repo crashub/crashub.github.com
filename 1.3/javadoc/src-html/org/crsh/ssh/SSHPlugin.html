@@ -68,13 +68,13 @@
 <span class="sourceLineNo">060</span>  public static final PropertyDescriptor&lt;String&gt; SSH_SERVER_KEYGEN = PropertyDescriptor.create("ssh.keygen", "false", "Whether to automatically generate a host key");<a name="line.60"></a>
 <span class="sourceLineNo">061</span><a name="line.61"></a>
 <span class="sourceLineNo">062</span>  /** The SSH server idle timeout property. */<a name="line.62"></a>
-<span class="sourceLineNo">063</span>  public static final PropertyDescriptor&lt;Integer&gt; SSH_SERVER_IDLE_TIMEOUT = PropertyDescriptor.create("ssh.idle-timeout", SSH_SERVER_IDLE_DEFAULT_TIMEOUT, "The idle-timeout for ssh sessions in milliseconds");<a name="line.63"></a>
+<span class="sourceLineNo">063</span>  public static final PropertyDescriptor&lt;Integer&gt; SSH_SERVER_IDLE_TIMEOUT = PropertyDescriptor.create("ssh.idle_timeout", SSH_SERVER_IDLE_DEFAULT_TIMEOUT, "The idle-timeout for ssh sessions in milliseconds");<a name="line.63"></a>
 <span class="sourceLineNo">064</span><a name="line.64"></a>
 <span class="sourceLineNo">065</span>  /** The SSH server authentication timeout property. */<a name="line.65"></a>
-<span class="sourceLineNo">066</span>  public static final PropertyDescriptor&lt;Integer&gt; SSH_SERVER_AUTH_TIMEOUT = PropertyDescriptor.create("ssh.auth-timeout", SSH_SERVER_AUTH_DEFAULT_TIMEOUT, "The authentication timeout for ssh sessions in milliseconds");<a name="line.66"></a>
+<span class="sourceLineNo">066</span>  public static final PropertyDescriptor&lt;Integer&gt; SSH_SERVER_AUTH_TIMEOUT = PropertyDescriptor.create("ssh.auth_timeout", SSH_SERVER_AUTH_DEFAULT_TIMEOUT, "The authentication timeout for ssh sessions in milliseconds");<a name="line.66"></a>
 <span class="sourceLineNo">067</span><a name="line.67"></a>
 <span class="sourceLineNo">068</span>  /** The SSH charset. */<a name="line.68"></a>
-<span class="sourceLineNo">069</span>  public static final PropertyDescriptor&lt;Charset&gt; SSH_ENCODING = new PropertyDescriptor&lt;Charset&gt;(Charset.class, "ssh.encoding", Utils.UTF_8, "The ssh stream encoding") {<a name="line.69"></a>
+<span class="sourceLineNo">069</span>  public static final PropertyDescriptor&lt;Charset&gt; SSH_ENCODING = new PropertyDescriptor&lt;Charset&gt;(Charset.class, "ssh.default_encoding", Utils.UTF_8, "The ssh stream default encoding when no one could be determined") {<a name="line.69"></a>
 <span class="sourceLineNo">070</span>    @Override<a name="line.70"></a>
 <span class="sourceLineNo">071</span>    protected Charset doParse(String s) throws Exception {<a name="line.71"></a>
 <span class="sourceLineNo">072</span>      return Charset.forName(s);<a name="line.72"></a>

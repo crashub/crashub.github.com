@@ -67,10 +67,10 @@
 <span class="sourceLineNo">059</span>      classFiles = compiler.compile(name, script);<a name="line.59"></a>
 <span class="sourceLineNo">060</span>    }<a name="line.60"></a>
 <span class="sourceLineNo">061</span>    catch (IOException e) {<a name="line.61"></a>
-<span class="sourceLineNo">062</span>      throw new CommandException(name, ErrorKind.INTERNAL, "Could not access command", e);<a name="line.62"></a>
+<span class="sourceLineNo">062</span>      throw new CommandException(ErrorKind.INTERNAL, "Could not access command", e);<a name="line.62"></a>
 <span class="sourceLineNo">063</span>    }<a name="line.63"></a>
 <span class="sourceLineNo">064</span>    catch (CompilationFailureException e) {<a name="line.64"></a>
-<span class="sourceLineNo">065</span>        throw new CommandException(name, ErrorKind.EVALUATION, "Could not compile command", e);<a name="line.65"></a>
+<span class="sourceLineNo">065</span>        throw new CommandException(ErrorKind.INTERNAL, "Could not compile command", e);<a name="line.65"></a>
 <span class="sourceLineNo">066</span>    }<a name="line.66"></a>
 <span class="sourceLineNo">067</span>    for (JavaClassFileObject classFile : classFiles) {<a name="line.67"></a>
 <span class="sourceLineNo">068</span>      String className = classFile.getClassName();<a name="line.68"></a>
@@ -84,7 +84,7 @@
 <span class="sourceLineNo">076</span>            command = new ClassShellCommand(clazz);<a name="line.76"></a>
 <span class="sourceLineNo">077</span>          }<a name="line.77"></a>
 <span class="sourceLineNo">078</span>          catch (IntrospectionException e) {<a name="line.78"></a>
-<span class="sourceLineNo">079</span>            throw new CommandException(name, ErrorKind.EVALUATION, "Invalid cli annotations", e);<a name="line.79"></a>
+<span class="sourceLineNo">079</span>            throw new CommandException(ErrorKind.INTERNAL, "Invalid cli annotations", e);<a name="line.79"></a>
 <span class="sourceLineNo">080</span>          }<a name="line.80"></a>
 <span class="sourceLineNo">081</span>          final String description = command.describe(name, Format.DESCRIBE);<a name="line.81"></a>
 <span class="sourceLineNo">082</span>          return new CommandResolution() {<a name="line.82"></a>
@@ -99,11 +99,11 @@
 <span class="sourceLineNo">091</span>          };<a name="line.91"></a>
 <span class="sourceLineNo">092</span>        }<a name="line.92"></a>
 <span class="sourceLineNo">093</span>        catch (ClassNotFoundException e) {<a name="line.93"></a>
-<span class="sourceLineNo">094</span>          throw new CommandException(name, ErrorKind.EVALUATION, "Command cannot be loaded", e);<a name="line.94"></a>
+<span class="sourceLineNo">094</span>          throw new CommandException(ErrorKind.INTERNAL, "Command cannot be loaded", e);<a name="line.94"></a>
 <span class="sourceLineNo">095</span>        }<a name="line.95"></a>
 <span class="sourceLineNo">096</span>      }<a name="line.96"></a>
 <span class="sourceLineNo">097</span>    }<a name="line.97"></a>
-<span class="sourceLineNo">098</span>    throw new CommandException(name, ErrorKind.EVALUATION, "Command class not found");<a name="line.98"></a>
+<span class="sourceLineNo">098</span>    throw new CommandException(ErrorKind.INTERNAL, "Command class not found");<a name="line.98"></a>
 <span class="sourceLineNo">099</span>  }<a name="line.99"></a>
 <span class="sourceLineNo">100</span><a name="line.100"></a>
 <span class="sourceLineNo">101</span>  public void init(ShellSession session) {<a name="line.101"></a>

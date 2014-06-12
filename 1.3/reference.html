@@ -751,6 +751,7 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <h1>CRaSH Reference Guide</h1>
 <span id="author" class="author">Julien Viet</span><br>
 <span id="email" class="email"><a href="http://www.julienviet.com">http://www.julienviet.com</a></span><br>
+<span id="revdate">v1.3.0-cr8</span>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
@@ -826,6 +827,12 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li>
 <ul class="sectlevel1">
 <li><a href="#_jvm_connector">JVM connector</a></li>
+<li>
+<ul class="sectlevel2">
+<li><a href="#_terminal_detection">Terminal detection</a></li>
+<li><a href="#_jline_logging">JLine logging</a></li>
+</ul>
+</li>
 <li><a href="#_ssh_connector">SSH connector</a></li>
 <li>
 <ul class="sectlevel2">
@@ -833,7 +840,7 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_changing_ssh_server_key">Changing SSH server key</a></li>
 <li><a href="#_changing_ssh_authentication_and_idle_timeouts">Changing SSH authentication and idle timeouts</a></li>
 <li><a href="#_removing_ssh_access">Removing SSH access</a></li>
-<li><a href="#_overriding_the_encoding">Overriding the encoding</a></li>
+<li><a href="#_character_encoding">Character encoding</a></li>
 </ul>
 </li>
 <li><a href="#_telnet_connector">Telnet connector</a></li>
@@ -959,9 +966,9 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_cron">cron</a></li>
 <li>
 <ul class="sectlevel2">
+<li><a href="#_cron_config">cron config</a></li>
 <li><a href="#_cron_history">cron history</a></li>
 <li><a href="#_cron_spawn">cron spawn</a></li>
-<li><a href="#_cron_config">cron config</a></li>
 </ul>
 </li>
 <li><a href="#_dashboard">dashboard</a></li>
@@ -982,10 +989,10 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_jdbc_table">jdbc table</a></li>
 <li><a href="#_jdbc_open">jdbc open</a></li>
 <li><a href="#_jdbc_connect">jdbc connect</a></li>
-<li><a href="#_jdbc_info">jdbc info</a></li>
 <li><a href="#_jdbc_select">jdbc select</a></li>
-<li><a href="#_jdbc_tables">jdbc tables</a></li>
 <li><a href="#_jdbc_execute">jdbc execute</a></li>
+<li><a href="#_jdbc_info">jdbc info</a></li>
+<li><a href="#_jdbc_tables">jdbc tables</a></li>
 </ul>
 </li>
 <li><a href="#_jmx">jmx</a></li>
@@ -1031,10 +1038,10 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_jvm_top">jvm top</a></li>
 <li><a href="#_jvm_pool">jvm pool</a></li>
 <li><a href="#_jvm_heap">jvm heap</a></li>
+<li><a href="#_jvm_pools">jvm pools</a></li>
 <li><a href="#_jvm_classloading">jvm classloading</a></li>
 <li><a href="#_jvm_compilation">jvm compilation</a></li>
 <li><a href="#_jvm_nonheap">jvm nonheap</a></li>
-<li><a href="#_jvm_pools">jvm pools</a></li>
 </ul>
 </li>
 <li><a href="#_less">less</a></li>
@@ -1058,12 +1065,12 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li>
 <ul class="sectlevel2">
 <li><a href="#_system_gc">system gc</a></li>
-<li><a href="#_system_propls">system propls</a></li>
-<li><a href="#_system_propset">system propset</a></li>
-<li><a href="#_system_propget">system propget</a></li>
-<li><a href="#_system_proprm">system proprm</a></li>
 <li><a href="#_system_freemem">system freemem</a></li>
 <li><a href="#_system_totalmem">system totalmem</a></li>
+<li><a href="#_system_proprm">system proprm</a></li>
+<li><a href="#_system_propget">system propget</a></li>
+<li><a href="#_system_propset">system propset</a></li>
+<li><a href="#_system_propls">system propls</a></li>
 </ul>
 </li>
 <li><a href="#_thread_2">thread</a></li>
@@ -1088,7 +1095,7 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Common Reusable SHell (CRaSH) deploys in a Java runtime and provides interactions with the JVM.
-Commands are written in Groovy and can be developed at runtime making the extension of the shell very easy
+Commands are written in Groovy or Java and can be developed at runtime making the extension of the shell very easy
 with fast development cycle.</p>
 </div>
 </div>
@@ -1120,11 +1127,11 @@ the standalone mode, for instance you can set it up this way:</p>
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr7
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr8
 
 Follow and support the project on http://www.crashub.org
 Welcome to jerry + !
-It is 2014-06-06 15:18:21 CEST now</pre>
+It is 2014-06-11 18:21:01 CEST now</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1166,11 +1173,11 @@ instead of the JVM started by CRaSH. Let&#8217;s see quickly an example of how t
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr7
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr8
 
 Follow and support the project on http://vietj.github.com/crash
 Welcome to jerry + !
-It is 2014-06-06 15:18:21 CEST now
+It is 2014-06-11 18:21:01 CEST now
 %</pre>
 </div>
 </div>
@@ -1368,8 +1375,8 @@ and triggering the CRaSH life cycle start/stop. In this mode CRaSH has two packa
         <span class="tag">&lt;prop</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">crash.ssh.port</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>2000<span class="tag">&lt;/prop&gt;</span>
 
         <span class="comment">&lt;!-- Optional SSH timeouts --&gt;</span>
-        <span class="tag">&lt;prop</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">crash.ssh.auth-timeout</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>300000<span class="tag">&lt;/prop&gt;</span>
-        <span class="tag">&lt;prop</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">crash.ssh.idle-timeout</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>300000<span class="tag">&lt;/prop&gt;</span>
+        <span class="tag">&lt;prop</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">crash.ssh.auth_timeout</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>300000<span class="tag">&lt;/prop&gt;</span>
+        <span class="tag">&lt;prop</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">crash.ssh.idle_timeout</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>300000<span class="tag">&lt;/prop&gt;</span>
 
         <span class="comment">&lt;!-- Telnet configuration --&gt;</span>
         <span class="tag">&lt;prop</span> <span class="attribute-name">key</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">crash.telnet.port</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>5000<span class="tag">&lt;/prop&gt;</span>
@@ -1438,11 +1445,11 @@ Escape character is '^]'.
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr7
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr8
 
 Follow and support the project on http://vietj.github.com/crash
 Welcome to julien.local + !
-It is 2014-06-06 15:18:21 CEST now</pre>
+It is 2014-06-11 18:21:01 CEST now</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2035,6 +2042,45 @@ Configuration can be overriden by Java Virtual Machine system properties by usin
 <div class="paragraph">
 <p>The jvm connector uses the default platform encoding provided by the JVM.</p>
 </div>
+<div class="paragraph">
+<p>The jvm connector uses some parts of the <a href="https://github.com/jline/jline2">JLine</a> library, since 1.3 it uses the
+<em>terminal detection and configuration</em> and the <em>key mapping</em>. The JLine library is shaded and included in the
+<em>crash.shell</em> jar: you don&#8217;t need the JLine jar on your classpath and the included jar will not conflict
+with another existing JLine jar.</p>
+</div>
+<div class="paragraph">
+<p>JLine can be configured via system properties and the property names should be prefixed with <code>org.crsh.console</code> as
+the library is shaded.</p>
+</div>
+<div class="sect2">
+<h3 id="_terminal_detection"><a class="anchor" href="#_terminal_detection"></a>Terminal detection</h3>
+<div class="paragraph">
+<p>By default JLine autodetects the terminal based of the current operating system, the autodetection can be configured
+to a more specific terminal type with the <code>org.crsh.console.jline.terminal</code> property, see the JLine
+<a href="https://github.com/jline/jline2/wiki/Terminal%20Factory%20Configuration">wiki</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+running CRaSH an IDE terminal has limited capabilities and setting the system property
+<code>org.crsh.console.jline.terminal=none</code> will improve the user experience
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jline_logging"><a class="anchor" href="#_jline_logging"></a>JLine logging</h3>
+<div class="paragraph">
+<p>JLine logging is useful for troubleshooting the terminal emulation, trace and debug can be activated with the
+<code>org.crsh.console.jline.internal.Log.debug=true</code> and <code>org.crsh.console.jline.internal.Log.trace=true</code>, see the
+JLine <a href="https://github.com/jline/jline2/wiki/Logging%20Configuration">wiki</a></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2083,26 +2129,39 @@ configured in milliseconds with the <em>crash.ssh.auth-timeout</em> and <em>cras
 <div class="listingblock">
 <div class="content">
 <pre># SSH configuration 5 minutes = 5 * 60 * 1000 = 300'000
-crash.ssh.auth-timeout=300000
-crash.ssh.idle-timeout=300000</pre>
+crash.ssh.auth_timeout=300000
+crash.ssh.idle_timeout=300000</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+those properties are named <em>crash.ssh.auth-timeout</em> and <em>crash.ssh.idle-timeout</em> in previous version.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_removing_ssh_access"><a class="anchor" href="#_removing_ssh_access"></a>Removing SSH access</h3>
 <div class="paragraph">
-<p>To remove the SSH access, remove the jar file <em>crash.connectors.ssh-1.3.0-cr7.jar</em>.</p>
+<p>To remove the SSH access, remove the jar file <em>crash.connectors.ssh-1.3.0-cr8.jar</em>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_overriding_the_encoding"><a class="anchor" href="#_overriding_the_encoding"></a>Overriding the encoding</h3>
+<h3 id="_character_encoding"><a class="anchor" href="#_character_encoding"></a>Character encoding</h3>
 <div class="paragraph">
-<p>By default the SSH connector uses the <em>UTF-8</em> encoding, this can be changed using the <em>crash.ssh.encoding</em> configuration
+<p>By default the SSH connector will uses the <em>LC_CTYPE</em> env value set by the remote client. When this cannot be achieved
+the SSH connector uses the <em>UTF-8</em> as default encoding. This default value can be changed using the <em>crash.ssh.default_encoding</em> configuration
 property.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>crash.ssh.encoding=UTF-8</pre>
+<pre>crash.ssh.default_encoding=UTF-8</pre>
 </div>
 </div>
 </div>
@@ -2125,7 +2184,7 @@ property.</p>
 <div class="sect2">
 <h3 id="_removing_telnet_access"><a class="anchor" href="#_removing_telnet_access"></a>Removing Telnet access</h3>
 <div class="paragraph">
-<p>To remove the Telnet access, remove the jar file <em>crash.connectors.telnet-1.3.0-cr7.jar</em>.</p>
+<p>To remove the Telnet access, remove the jar file <em>crash.connectors.telnet-1.3.0-cr8.jar</em>.</p>
 </div>
 </div>
 </div>
@@ -4321,7 +4380,7 @@ command.</p>
 <p>the JavaMail jar <code>mail-1.4.jar</code></p>
 </li>
 <li>
-<p>the plugin jar <code>crash.plugins.mail-1.3.0-cr7.jar</code></p>
+<p>the plugin jar <code>crash.plugins.mail-1.3.0-cr8.jar</code></p>
 </li>
 </ul>
 </div>
@@ -4385,7 +4444,7 @@ to text before sending the email.</p>
 <p>the cron4j jar <code>cron4j-2.2.5.jar</code></p>
 </li>
 <li>
-<p>the plugin jar <code>crash.plugins.cron-1.3.0-cr7.jar</code></p>
+<p>the plugin jar <code>crash.plugins.cron-1.3.0-cr8.jar</code></p>
 </li>
 </ul>
 </div>
@@ -4442,15 +4501,38 @@ PARAMETERS
            Display this help message
 
 COMMANDS
+       config
+           read or write the cron config path
+
        history
            display the process history
 
        spawn
            trigger the cron service now
-
-       config
-           read or write the cron config path
 </pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cron_config"><a class="anchor" href="#_cron_config"></a>cron config</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       cron config - read or write the cron config path
+
+SYNOPSIS
+       cron [-h | --help] config &lt;path&gt;
+
+STREAM
+       cron config &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;path&gt;
+           the new config path when specified
+</pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -4489,29 +4571,6 @@ STREAM
 PARAMETERS
        [-h | --help]
            Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_cron_config"><a class="anchor" href="#_cron_config"></a>cron config</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       cron config - read or write the cron config path
-
-SYNOPSIS
-       cron [-h | --help] config &lt;path&gt;
-
-STREAM
-       cron config &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;path&gt;
-           the new config path when specified
 </pre>
 </div>
 </div>
@@ -4689,17 +4748,17 @@ COMMANDS
        connect
            connect to database with a JDBC connection string
 
-       info
-           describe the database
-
        select
            select SQL statement
 
-       tables
-           describe the tables
-
        execute
            execute a SQL statement
+
+       info
+           describe the database
+
+       tables
+           describe the tables
 </pre>
 </div>
 </div>
@@ -4822,26 +4881,6 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_jdbc_info"><a class="anchor" href="#_jdbc_info"></a>jdbc info</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jdbc info - describe the database
-
-SYNOPSIS
-       jdbc [-h | --help] info
-
-STREAM
-       jdbc info &lt;java.lang.Void, java.util.Map&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_jdbc_select"><a class="anchor" href="#_jdbc_select"></a>jdbc select</h3>
 <div class="listingblock">
 <div class="content">
@@ -4865,26 +4904,6 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_jdbc_tables"><a class="anchor" href="#_jdbc_tables"></a>jdbc tables</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jdbc tables - describe the tables
-
-SYNOPSIS
-       jdbc [-h | --help] tables
-
-STREAM
-       jdbc tables &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_jdbc_execute"><a class="anchor" href="#_jdbc_execute"></a>jdbc execute</h3>
 <div class="listingblock">
 <div class="content">
@@ -4903,6 +4922,46 @@ PARAMETERS
 
        &lt;statement&gt;...
            The statement
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jdbc_info"><a class="anchor" href="#_jdbc_info"></a>jdbc info</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jdbc info - describe the database
+
+SYNOPSIS
+       jdbc [-h | --help] info
+
+STREAM
+       jdbc info &lt;java.lang.Void, java.util.Map&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jdbc_tables"><a class="anchor" href="#_jdbc_tables"></a>jdbc tables</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jdbc tables - describe the tables
+
+SYNOPSIS
+       jdbc [-h | --help] tables
+
+STREAM
+       jdbc tables &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
 </pre>
 </div>
 </div>
@@ -5579,6 +5638,9 @@ COMMANDS
        heap
            Show JVM memory heap
 
+       pools
+           Show JVM memory pools
+
        classloading
            Show JVM classloding
 
@@ -5587,9 +5649,6 @@ COMMANDS
 
        nonheap
            Show JVM memory non heap
-
-       pools
-           Show JVM memory pools
 </pre>
 </div>
 </div>
@@ -5716,6 +5775,26 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
+<h3 id="_jvm_pools"><a class="anchor" href="#_jvm_pools"></a>jvm pools</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jvm pools - Show JVM memory pools
+
+SYNOPSIS
+       jvm [-h | --help] pools
+
+STREAM
+       jvm pools &lt;java.lang.Void, java.lang.String&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_jvm_classloading"><a class="anchor" href="#_jvm_classloading"></a>jvm classloading</h3>
 <div class="listingblock">
 <div class="content">
@@ -5767,26 +5846,6 @@ SYNOPSIS
 
 STREAM
        jvm nonheap &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_jvm_pools"><a class="anchor" href="#_jvm_pools"></a>jvm pools</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jvm pools - Show JVM memory pools
-
-SYNOPSIS
-       jvm [-h | --help] pools
-
-STREAM
-       jvm pools &lt;java.lang.Void, java.lang.String&gt;
 
 PARAMETERS
        [-h | --help]
@@ -6062,23 +6121,23 @@ COMMANDS
        gc
            call garbage collector
 
-       propls
-           list the vm system properties
-
-       propset
-           set a system property
-
-       propget
-           get a system property
-
-       proprm
-           remove a system property
-
        freemem
            show free memory
 
        totalmem
            show total memory
+
+       proprm
+           remove a system property
+
+       propget
+           get a system property
+
+       propset
+           set a system property
+
+       propls
+           list the vm system properties
 </pre>
 </div>
 </div>
@@ -6098,101 +6157,6 @@ STREAM
 PARAMETERS
        [-h | --help]
            Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_system_propls"><a class="anchor" href="#_system_propls"></a>system propls</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       system propls - list the vm system properties
-
-SYNOPSIS
-       system [-h | --help] propls [-f | --filter]
-
-STREAM
-       system propls &lt;java.lang.Void, java.util.Map&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       [-f | --filter]
-           filter the property with a regular expression on their name
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_system_propset"><a class="anchor" href="#_system_propset"></a>system propset</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       system propset - set a system property
-
-SYNOPSIS
-       system [-h | --help] propset &lt;name&gt; &lt;value&gt;
-
-STREAM
-       system propset &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;name&gt;
-           The name of the property
-
-       &lt;value&gt;
-           The value of the property
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_system_propget"><a class="anchor" href="#_system_propget"></a>system propget</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       system propget - get a system property
-
-SYNOPSIS
-       system [-h | --help] propget &lt;name&gt;
-
-STREAM
-       system propget &lt;java.lang.Void, java.lang.String&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;name&gt;
-           The name of the property
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_system_proprm"><a class="anchor" href="#_system_proprm"></a>system proprm</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       system proprm - remove a system property
-
-SYNOPSIS
-       system [-h | --help] proprm &lt;name&gt;
-
-STREAM
-       system proprm &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;name&gt;
-           The name of the property
 </pre>
 </div>
 </div>
@@ -6245,6 +6209,101 @@ PARAMETERS
 
        [-d | --decimal]
            The number of decimal (default 0)
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_system_proprm"><a class="anchor" href="#_system_proprm"></a>system proprm</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       system proprm - remove a system property
+
+SYNOPSIS
+       system [-h | --help] proprm &lt;name&gt;
+
+STREAM
+       system proprm &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;name&gt;
+           The name of the property
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_system_propget"><a class="anchor" href="#_system_propget"></a>system propget</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       system propget - get a system property
+
+SYNOPSIS
+       system [-h | --help] propget &lt;name&gt;
+
+STREAM
+       system propget &lt;java.lang.Void, java.lang.String&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;name&gt;
+           The name of the property
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_system_propset"><a class="anchor" href="#_system_propset"></a>system propset</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       system propset - set a system property
+
+SYNOPSIS
+       system [-h | --help] propset &lt;name&gt; &lt;value&gt;
+
+STREAM
+       system propset &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;name&gt;
+           The name of the property
+
+       &lt;value&gt;
+           The value of the property
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_system_propls"><a class="anchor" href="#_system_propls"></a>system propls</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       system propls - list the vm system properties
+
+SYNOPSIS
+       system [-h | --help] propls [-f | --filter]
+
+STREAM
+       system propls &lt;java.lang.Void, java.util.Map&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       [-f | --filter]
+           filter the property with a regular expression on their name
 </pre>
 </div>
 </div>
@@ -6509,7 +6568,7 @@ PARAMETERS
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-06-06 15:18:13 CEST
+Last updated 2014-06-11 18:20:52 CEST
 </div>
 </div>
 </body>

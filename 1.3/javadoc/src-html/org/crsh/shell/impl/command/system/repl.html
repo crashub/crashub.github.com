@@ -42,107 +42,105 @@
 <span class="sourceLineNo">034</span>import org.crsh.text.Decoration;<a name="line.34"></a>
 <span class="sourceLineNo">035</span>import org.crsh.text.Style;<a name="line.35"></a>
 <span class="sourceLineNo">036</span>import org.crsh.text.ui.LabelElement;<a name="line.36"></a>
-<span class="sourceLineNo">037</span>import org.crsh.text.ui.RowElement;<a name="line.37"></a>
-<span class="sourceLineNo">038</span>import org.crsh.text.ui.TableElement;<a name="line.38"></a>
-<span class="sourceLineNo">039</span><a name="line.39"></a>
-<span class="sourceLineNo">040</span>import java.io.IOException;<a name="line.40"></a>
-<span class="sourceLineNo">041</span>import java.util.LinkedHashMap;<a name="line.41"></a>
-<span class="sourceLineNo">042</span>import java.util.Map;<a name="line.42"></a>
-<span class="sourceLineNo">043</span><a name="line.43"></a>
-<span class="sourceLineNo">044</span>/** @author Julien Viet */<a name="line.44"></a>
-<span class="sourceLineNo">045</span>public class repl extends BaseCommand implements ReplCompleter {<a name="line.45"></a>
-<span class="sourceLineNo">046</span><a name="line.46"></a>
-<span class="sourceLineNo">047</span>  @Usage("list the repl or change the current repl")<a name="line.47"></a>
-<span class="sourceLineNo">048</span>  @Command<a name="line.48"></a>
-<span class="sourceLineNo">049</span>  public void main(<a name="line.49"></a>
-<span class="sourceLineNo">050</span>      InvocationContext&lt;Object&gt; context,<a name="line.50"></a>
-<span class="sourceLineNo">051</span>      @Argument(completer = ReplCompleter.class)<a name="line.51"></a>
-<span class="sourceLineNo">052</span>      @Usage("the optional repl name")<a name="line.52"></a>
-<span class="sourceLineNo">053</span>      String name) throws IOException {<a name="line.53"></a>
-<span class="sourceLineNo">054</span>    ShellSession session = (ShellSession)context.getSession();<a name="line.54"></a>
-<span class="sourceLineNo">055</span>    Repl current = session.getRepl();<a name="line.55"></a>
-<span class="sourceLineNo">056</span>    if (name != null) {<a name="line.56"></a>
-<span class="sourceLineNo">057</span>      if (name.equals(current.getLanguage().getName())) {<a name="line.57"></a>
-<span class="sourceLineNo">058</span>        context.provide("Using repl " + name);<a name="line.58"></a>
-<span class="sourceLineNo">059</span>      } else {<a name="line.59"></a>
-<span class="sourceLineNo">060</span>        Repl found = null;<a name="line.60"></a>
-<span class="sourceLineNo">061</span>        for (Language lang : session.getContext().getPlugins(Language.class)) {<a name="line.61"></a>
-<span class="sourceLineNo">062</span>          if (lang.getName().equals(name)) {<a name="line.62"></a>
-<span class="sourceLineNo">063</span>            if (lang.isActive()) {<a name="line.63"></a>
-<span class="sourceLineNo">064</span>              found = lang.getRepl();<a name="line.64"></a>
-<span class="sourceLineNo">065</span>              if (found != null) {<a name="line.65"></a>
-<span class="sourceLineNo">066</span>                break;<a name="line.66"></a>
-<span class="sourceLineNo">067</span>              } else {<a name="line.67"></a>
-<span class="sourceLineNo">068</span>                throw new ScriptException("Language " + name + " does not provide a repl");<a name="line.68"></a>
-<span class="sourceLineNo">069</span>              }<a name="line.69"></a>
-<span class="sourceLineNo">070</span>            } else {<a name="line.70"></a>
-<span class="sourceLineNo">071</span>              throw new ScriptException("Language " + name + " not active");<a name="line.71"></a>
-<span class="sourceLineNo">072</span>            }<a name="line.72"></a>
-<span class="sourceLineNo">073</span>          }<a name="line.73"></a>
-<span class="sourceLineNo">074</span>        }<a name="line.74"></a>
-<span class="sourceLineNo">075</span>        if (found != null) {<a name="line.75"></a>
-<span class="sourceLineNo">076</span>          session.setRepl(found);<a name="line.76"></a>
-<span class="sourceLineNo">077</span>          context.provide("Using repl " + name);<a name="line.77"></a>
-<span class="sourceLineNo">078</span>        } else {<a name="line.78"></a>
-<span class="sourceLineNo">079</span>          throw new ScriptException("Repl " + name + " not found");<a name="line.79"></a>
-<span class="sourceLineNo">080</span>        }<a name="line.80"></a>
-<span class="sourceLineNo">081</span>      }<a name="line.81"></a>
-<span class="sourceLineNo">082</span>    } else {<a name="line.82"></a>
-<span class="sourceLineNo">083</span><a name="line.83"></a>
-<span class="sourceLineNo">084</span>      //<a name="line.84"></a>
-<span class="sourceLineNo">085</span>      LinkedHashMap&lt;Repl, Boolean&gt; repls = new LinkedHashMap&lt;Repl, Boolean&gt;();<a name="line.85"></a>
-<span class="sourceLineNo">086</span>      repls.put(ScriptRepl.getInstance(), true);<a name="line.86"></a>
-<span class="sourceLineNo">087</span>      for (Language lang : session.getContext().getPlugins(Language.class)) {<a name="line.87"></a>
-<span class="sourceLineNo">088</span>        Repl repl = lang.getRepl();<a name="line.88"></a>
-<span class="sourceLineNo">089</span>        if (repl != null) {<a name="line.89"></a>
-<span class="sourceLineNo">090</span>          repls.put(repl, lang.isActive());<a name="line.90"></a>
-<span class="sourceLineNo">091</span>        }<a name="line.91"></a>
-<span class="sourceLineNo">092</span>      }<a name="line.92"></a>
-<span class="sourceLineNo">093</span><a name="line.93"></a>
-<span class="sourceLineNo">094</span>      //<a name="line.94"></a>
-<span class="sourceLineNo">095</span>      TableElement table = new TableElement().rightCellPadding(1);<a name="line.95"></a>
-<span class="sourceLineNo">096</span>      table.row(<a name="line.96"></a>
-<span class="sourceLineNo">097</span>        new LabelElement("NAME").style(Style.style(Decoration.bold)),<a name="line.97"></a>
-<span class="sourceLineNo">098</span>        new LabelElement("DISPLAY NAME"),<a name="line.98"></a>
-<span class="sourceLineNo">099</span>        new LabelElement("DESCRIPTION"),<a name="line.99"></a>
-<span class="sourceLineNo">100</span>        new LabelElement("ACTIVE")<a name="line.100"></a>
-<span class="sourceLineNo">101</span>      );<a name="line.101"></a>
-<span class="sourceLineNo">102</span>      for (Map.Entry&lt;Repl, Boolean&gt; entry : repls.entrySet()) {<a name="line.102"></a>
-<span class="sourceLineNo">103</span>        Boolean active = entry.getValue();<a name="line.103"></a>
-<span class="sourceLineNo">104</span>        String langDescription = entry.getKey().getDescription();<a name="line.104"></a>
-<span class="sourceLineNo">105</span>        String langDisplayName = entry.getKey().getLanguage().getDisplayName();<a name="line.105"></a>
-<span class="sourceLineNo">106</span>        String langName = entry.getKey().getLanguage().getName();<a name="line.106"></a>
-<span class="sourceLineNo">107</span>        table.row(<a name="line.107"></a>
-<span class="sourceLineNo">108</span>          new LabelElement(langName).style(Style.style(Color.red)),<a name="line.108"></a>
-<span class="sourceLineNo">109</span>          new LabelElement(langDisplayName != null ? langDisplayName : ""),<a name="line.109"></a>
-<span class="sourceLineNo">110</span>          new LabelElement(langDescription != null ? langDescription : ""),<a name="line.110"></a>
-<span class="sourceLineNo">111</span>          new LabelElement(active)<a name="line.111"></a>
-<span class="sourceLineNo">112</span>        );<a name="line.112"></a>
-<span class="sourceLineNo">113</span>      }<a name="line.113"></a>
-<span class="sourceLineNo">114</span><a name="line.114"></a>
-<span class="sourceLineNo">115</span>      //<a name="line.115"></a>
-<span class="sourceLineNo">116</span>      context.provide(new LabelElement("Current repl is " + current.getLanguage().getName() + "available repl are:\n"));<a name="line.116"></a>
-<span class="sourceLineNo">117</span>      context.provide(table);<a name="line.117"></a>
-<span class="sourceLineNo">118</span>    }<a name="line.118"></a>
-<span class="sourceLineNo">119</span>  }<a name="line.119"></a>
-<span class="sourceLineNo">120</span><a name="line.120"></a>
-<span class="sourceLineNo">121</span>  @Override<a name="line.121"></a>
-<span class="sourceLineNo">122</span>  public Completion complete(ParameterDescriptor parameter, String prefix) throws Exception {<a name="line.122"></a>
-<span class="sourceLineNo">123</span>    ShellSession session = (ShellSession)context.getSession();<a name="line.123"></a>
-<span class="sourceLineNo">124</span>    Completion.Builder builder = Completion.builder(prefix);<a name="line.124"></a>
-<span class="sourceLineNo">125</span>    for (Language lang : session.getContext().getPlugins(Language.class)) {<a name="line.125"></a>
-<span class="sourceLineNo">126</span>      if (lang.isActive()) {<a name="line.126"></a>
-<span class="sourceLineNo">127</span>        if (lang.getRepl() != null) {<a name="line.127"></a>
-<span class="sourceLineNo">128</span>          String name = lang.getName();<a name="line.128"></a>
-<span class="sourceLineNo">129</span>          if (name.startsWith(prefix)) {<a name="line.129"></a>
-<span class="sourceLineNo">130</span>            builder.add(name.substring(prefix.length()), true);<a name="line.130"></a>
-<span class="sourceLineNo">131</span>          }<a name="line.131"></a>
-<span class="sourceLineNo">132</span>        }<a name="line.132"></a>
-<span class="sourceLineNo">133</span>      }<a name="line.133"></a>
-<span class="sourceLineNo">134</span>    }<a name="line.134"></a>
-<span class="sourceLineNo">135</span>    return builder.build();<a name="line.135"></a>
-<span class="sourceLineNo">136</span>  }<a name="line.136"></a>
-<span class="sourceLineNo">137</span>}<a name="line.137"></a>
+<span class="sourceLineNo">037</span>import org.crsh.text.ui.TableElement;<a name="line.37"></a>
+<span class="sourceLineNo">038</span><a name="line.38"></a>
+<span class="sourceLineNo">039</span>import java.util.LinkedHashMap;<a name="line.39"></a>
+<span class="sourceLineNo">040</span>import java.util.Map;<a name="line.40"></a>
+<span class="sourceLineNo">041</span><a name="line.41"></a>
+<span class="sourceLineNo">042</span>/** @author Julien Viet */<a name="line.42"></a>
+<span class="sourceLineNo">043</span>public class repl extends BaseCommand implements ReplCompleter {<a name="line.43"></a>
+<span class="sourceLineNo">044</span><a name="line.44"></a>
+<span class="sourceLineNo">045</span>  @Usage("list the repl or change the current repl")<a name="line.45"></a>
+<span class="sourceLineNo">046</span>  @Command<a name="line.46"></a>
+<span class="sourceLineNo">047</span>  public void main(<a name="line.47"></a>
+<span class="sourceLineNo">048</span>      InvocationContext&lt;Object&gt; context,<a name="line.48"></a>
+<span class="sourceLineNo">049</span>      @Argument(completer = ReplCompleter.class)<a name="line.49"></a>
+<span class="sourceLineNo">050</span>      @Usage("the optional repl name")<a name="line.50"></a>
+<span class="sourceLineNo">051</span>      String name) throws Exception {<a name="line.51"></a>
+<span class="sourceLineNo">052</span>    ShellSession session = (ShellSession)context.getSession();<a name="line.52"></a>
+<span class="sourceLineNo">053</span>    Repl current = session.getRepl();<a name="line.53"></a>
+<span class="sourceLineNo">054</span>    if (name != null) {<a name="line.54"></a>
+<span class="sourceLineNo">055</span>      if (name.equals(current.getLanguage().getName())) {<a name="line.55"></a>
+<span class="sourceLineNo">056</span>        context.provide("Using repl " + name);<a name="line.56"></a>
+<span class="sourceLineNo">057</span>      } else {<a name="line.57"></a>
+<span class="sourceLineNo">058</span>        Repl found = null;<a name="line.58"></a>
+<span class="sourceLineNo">059</span>        for (Language lang : session.getContext().getPlugins(Language.class)) {<a name="line.59"></a>
+<span class="sourceLineNo">060</span>          if (lang.getName().equals(name)) {<a name="line.60"></a>
+<span class="sourceLineNo">061</span>            if (lang.isActive()) {<a name="line.61"></a>
+<span class="sourceLineNo">062</span>              found = lang.getRepl();<a name="line.62"></a>
+<span class="sourceLineNo">063</span>              if (found != null) {<a name="line.63"></a>
+<span class="sourceLineNo">064</span>                break;<a name="line.64"></a>
+<span class="sourceLineNo">065</span>              } else {<a name="line.65"></a>
+<span class="sourceLineNo">066</span>                throw new ScriptException("Language " + name + " does not provide a repl");<a name="line.66"></a>
+<span class="sourceLineNo">067</span>              }<a name="line.67"></a>
+<span class="sourceLineNo">068</span>            } else {<a name="line.68"></a>
+<span class="sourceLineNo">069</span>              throw new ScriptException("Language " + name + " not active");<a name="line.69"></a>
+<span class="sourceLineNo">070</span>            }<a name="line.70"></a>
+<span class="sourceLineNo">071</span>          }<a name="line.71"></a>
+<span class="sourceLineNo">072</span>        }<a name="line.72"></a>
+<span class="sourceLineNo">073</span>        if (found != null) {<a name="line.73"></a>
+<span class="sourceLineNo">074</span>          session.setRepl(found);<a name="line.74"></a>
+<span class="sourceLineNo">075</span>          context.provide("Using repl " + name);<a name="line.75"></a>
+<span class="sourceLineNo">076</span>        } else {<a name="line.76"></a>
+<span class="sourceLineNo">077</span>          throw new ScriptException("Repl " + name + " not found");<a name="line.77"></a>
+<span class="sourceLineNo">078</span>        }<a name="line.78"></a>
+<span class="sourceLineNo">079</span>      }<a name="line.79"></a>
+<span class="sourceLineNo">080</span>    } else {<a name="line.80"></a>
+<span class="sourceLineNo">081</span><a name="line.81"></a>
+<span class="sourceLineNo">082</span>      //<a name="line.82"></a>
+<span class="sourceLineNo">083</span>      LinkedHashMap&lt;Repl, Boolean&gt; repls = new LinkedHashMap&lt;Repl, Boolean&gt;();<a name="line.83"></a>
+<span class="sourceLineNo">084</span>      repls.put(ScriptRepl.getInstance(), true);<a name="line.84"></a>
+<span class="sourceLineNo">085</span>      for (Language lang : session.getContext().getPlugins(Language.class)) {<a name="line.85"></a>
+<span class="sourceLineNo">086</span>        Repl repl = lang.getRepl();<a name="line.86"></a>
+<span class="sourceLineNo">087</span>        if (repl != null) {<a name="line.87"></a>
+<span class="sourceLineNo">088</span>          repls.put(repl, lang.isActive());<a name="line.88"></a>
+<span class="sourceLineNo">089</span>        }<a name="line.89"></a>
+<span class="sourceLineNo">090</span>      }<a name="line.90"></a>
+<span class="sourceLineNo">091</span><a name="line.91"></a>
+<span class="sourceLineNo">092</span>      //<a name="line.92"></a>
+<span class="sourceLineNo">093</span>      TableElement table = new TableElement().rightCellPadding(1);<a name="line.93"></a>
+<span class="sourceLineNo">094</span>      table.row(<a name="line.94"></a>
+<span class="sourceLineNo">095</span>        new LabelElement("NAME").style(Style.style(Decoration.bold)),<a name="line.95"></a>
+<span class="sourceLineNo">096</span>        new LabelElement("DISPLAY NAME"),<a name="line.96"></a>
+<span class="sourceLineNo">097</span>        new LabelElement("DESCRIPTION"),<a name="line.97"></a>
+<span class="sourceLineNo">098</span>        new LabelElement("ACTIVE")<a name="line.98"></a>
+<span class="sourceLineNo">099</span>      );<a name="line.99"></a>
+<span class="sourceLineNo">100</span>      for (Map.Entry&lt;Repl, Boolean&gt; entry : repls.entrySet()) {<a name="line.100"></a>
+<span class="sourceLineNo">101</span>        Boolean active = entry.getValue();<a name="line.101"></a>
+<span class="sourceLineNo">102</span>        String langDescription = entry.getKey().getDescription();<a name="line.102"></a>
+<span class="sourceLineNo">103</span>        String langDisplayName = entry.getKey().getLanguage().getDisplayName();<a name="line.103"></a>
+<span class="sourceLineNo">104</span>        String langName = entry.getKey().getLanguage().getName();<a name="line.104"></a>
+<span class="sourceLineNo">105</span>        table.row(<a name="line.105"></a>
+<span class="sourceLineNo">106</span>          new LabelElement(langName).style(Style.style(Color.red)),<a name="line.106"></a>
+<span class="sourceLineNo">107</span>          new LabelElement(langDisplayName != null ? langDisplayName : ""),<a name="line.107"></a>
+<span class="sourceLineNo">108</span>          new LabelElement(langDescription != null ? langDescription : ""),<a name="line.108"></a>
+<span class="sourceLineNo">109</span>          new LabelElement(active)<a name="line.109"></a>
+<span class="sourceLineNo">110</span>        );<a name="line.110"></a>
+<span class="sourceLineNo">111</span>      }<a name="line.111"></a>
+<span class="sourceLineNo">112</span><a name="line.112"></a>
+<span class="sourceLineNo">113</span>      //<a name="line.113"></a>
+<span class="sourceLineNo">114</span>      context.provide(new LabelElement("Current repl is " + current.getLanguage().getName() + "available repl are:\n"));<a name="line.114"></a>
+<span class="sourceLineNo">115</span>      context.provide(table);<a name="line.115"></a>
+<span class="sourceLineNo">116</span>    }<a name="line.116"></a>
+<span class="sourceLineNo">117</span>  }<a name="line.117"></a>
+<span class="sourceLineNo">118</span><a name="line.118"></a>
+<span class="sourceLineNo">119</span>  @Override<a name="line.119"></a>
+<span class="sourceLineNo">120</span>  public Completion complete(ParameterDescriptor parameter, String prefix) throws Exception {<a name="line.120"></a>
+<span class="sourceLineNo">121</span>    ShellSession session = (ShellSession)context.getSession();<a name="line.121"></a>
+<span class="sourceLineNo">122</span>    Completion.Builder builder = Completion.builder(prefix);<a name="line.122"></a>
+<span class="sourceLineNo">123</span>    for (Language lang : session.getContext().getPlugins(Language.class)) {<a name="line.123"></a>
+<span class="sourceLineNo">124</span>      if (lang.isActive()) {<a name="line.124"></a>
+<span class="sourceLineNo">125</span>        if (lang.getRepl() != null) {<a name="line.125"></a>
+<span class="sourceLineNo">126</span>          String name = lang.getName();<a name="line.126"></a>
+<span class="sourceLineNo">127</span>          if (name.startsWith(prefix)) {<a name="line.127"></a>
+<span class="sourceLineNo">128</span>            builder.add(name.substring(prefix.length()), true);<a name="line.128"></a>
+<span class="sourceLineNo">129</span>          }<a name="line.129"></a>
+<span class="sourceLineNo">130</span>        }<a name="line.130"></a>
+<span class="sourceLineNo">131</span>      }<a name="line.131"></a>
+<span class="sourceLineNo">132</span>    }<a name="line.132"></a>
+<span class="sourceLineNo">133</span>    return builder.build();<a name="line.133"></a>
+<span class="sourceLineNo">134</span>  }<a name="line.134"></a>
+<span class="sourceLineNo">135</span>}<a name="line.135"></a>
 
 
 

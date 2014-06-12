@@ -96,7 +96,7 @@
 <span class="sourceLineNo">088</span>          source = new String(script.getContent(), "UTF-8");<a name="line.88"></a>
 <span class="sourceLineNo">089</span>        }<a name="line.89"></a>
 <span class="sourceLineNo">090</span>        catch (UnsupportedEncodingException e) {<a name="line.90"></a>
-<span class="sourceLineNo">091</span>          throw new CommandException(name, ErrorKind.INTERNAL, "Could not compile command script " + name, e);<a name="line.91"></a>
+<span class="sourceLineNo">091</span>          throw new CommandException(ErrorKind.INTERNAL, "Could not compile command script " + name, e);<a name="line.91"></a>
 <span class="sourceLineNo">092</span>        }<a name="line.92"></a>
 <span class="sourceLineNo">093</span><a name="line.93"></a>
 <span class="sourceLineNo">094</span>        //<a name="line.94"></a>
