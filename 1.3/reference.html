@@ -751,7 +751,7 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <h1>CRaSH Reference Guide</h1>
 <span id="author" class="author">Julien Viet</span><br>
 <span id="email" class="email"><a href="http://www.julienviet.com">http://www.julienviet.com</a></span><br>
-<span id="revdate">v1.3.0-cr8</span>
+<span id="revdate">v1.3.0</span>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
@@ -967,8 +967,8 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li>
 <ul class="sectlevel2">
 <li><a href="#_cron_config">cron config</a></li>
-<li><a href="#_cron_history">cron history</a></li>
 <li><a href="#_cron_spawn">cron spawn</a></li>
+<li><a href="#_cron_history">cron history</a></li>
 </ul>
 </li>
 <li><a href="#_dashboard">dashboard</a></li>
@@ -989,10 +989,10 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_jdbc_table">jdbc table</a></li>
 <li><a href="#_jdbc_open">jdbc open</a></li>
 <li><a href="#_jdbc_connect">jdbc connect</a></li>
-<li><a href="#_jdbc_select">jdbc select</a></li>
-<li><a href="#_jdbc_execute">jdbc execute</a></li>
 <li><a href="#_jdbc_info">jdbc info</a></li>
+<li><a href="#_jdbc_select">jdbc select</a></li>
 <li><a href="#_jdbc_tables">jdbc tables</a></li>
+<li><a href="#_jdbc_execute">jdbc execute</a></li>
 </ul>
 </li>
 <li><a href="#_jmx">jmx</a></li>
@@ -1025,8 +1025,8 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_jul_add">jul add</a></li>
 <li><a href="#_jul_set">jul set</a></li>
 <li><a href="#_jul_tail">jul tail</a></li>
-<li><a href="#_jul_ls">jul ls</a></li>
 <li><a href="#_jul_send">jul send</a></li>
+<li><a href="#_jul_ls">jul ls</a></li>
 </ul>
 </li>
 <li><a href="#_jvm">jvm</a></li>
@@ -1034,11 +1034,11 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <ul class="sectlevel2">
 <li><a href="#_jvm_gc">jvm gc</a></li>
 <li><a href="#_jvm_system">jvm system</a></li>
+<li><a href="#_jvm_pools">jvm pools</a></li>
 <li><a href="#_jvm_runtime">jvm runtime</a></li>
 <li><a href="#_jvm_top">jvm top</a></li>
 <li><a href="#_jvm_pool">jvm pool</a></li>
 <li><a href="#_jvm_heap">jvm heap</a></li>
-<li><a href="#_jvm_pools">jvm pools</a></li>
 <li><a href="#_jvm_classloading">jvm classloading</a></li>
 <li><a href="#_jvm_compilation">jvm compilation</a></li>
 <li><a href="#_jvm_nonheap">jvm nonheap</a></li>
@@ -1065,12 +1065,12 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li>
 <ul class="sectlevel2">
 <li><a href="#_system_gc">system gc</a></li>
-<li><a href="#_system_freemem">system freemem</a></li>
-<li><a href="#_system_totalmem">system totalmem</a></li>
-<li><a href="#_system_proprm">system proprm</a></li>
-<li><a href="#_system_propget">system propget</a></li>
 <li><a href="#_system_propset">system propset</a></li>
 <li><a href="#_system_propls">system propls</a></li>
+<li><a href="#_system_propget">system propget</a></li>
+<li><a href="#_system_proprm">system proprm</a></li>
+<li><a href="#_system_freemem">system freemem</a></li>
+<li><a href="#_system_totalmem">system totalmem</a></li>
 </ul>
 </li>
 <li><a href="#_thread_2">thread</a></li>
@@ -1078,8 +1078,8 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <ul class="sectlevel2">
 <li><a href="#_thread_stop">thread stop</a></li>
 <li><a href="#_thread_interrupt">thread interrupt</a></li>
-<li><a href="#_thread_ls">thread ls</a></li>
 <li><a href="#_thread_top">thread top</a></li>
+<li><a href="#_thread_ls">thread ls</a></li>
 <li><a href="#_thread_dump">thread dump</a></li>
 </ul>
 </li>
@@ -1127,11 +1127,11 @@ the standalone mode, for instance you can set it up this way:</p>
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr8
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0
 
 Follow and support the project on http://www.crashub.org
 Welcome to jerry + !
-It is 2014-06-11 18:21:01 CEST now</pre>
+It is 2014-06-12 23:27:57 CEST now</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1173,11 +1173,11 @@ instead of the JVM started by CRaSH. Let&#8217;s see quickly an example of how t
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr8
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0
 
 Follow and support the project on http://vietj.github.com/crash
 Welcome to jerry + !
-It is 2014-06-11 18:21:01 CEST now
+It is 2014-06-12 23:27:57 CEST now
 %</pre>
 </div>
 </div>
@@ -1445,11 +1445,11 @@ Escape character is '^]'.
  .~      ~. |`````````,       .'.                   ..'''' |         |
 |           |'''|'''''      .''```.              .''       |_________|
 |           |    `.       .'       `.         ..'          |         |
- `.______.' |      `.   .'           `. ....''             |         | 1.3.0-cr8
+ `.______.' |      `.   .'           `. ....''             |         | 1.3.0
 
 Follow and support the project on http://vietj.github.com/crash
 Welcome to julien.local + !
-It is 2014-06-11 18:21:01 CEST now</pre>
+It is 2014-06-12 23:27:57 CEST now</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2149,7 +2149,7 @@ those properties are named <em>crash.ssh.auth-timeout</em> and <em>crash.ssh.idl
 <div class="sect2">
 <h3 id="_removing_ssh_access"><a class="anchor" href="#_removing_ssh_access"></a>Removing SSH access</h3>
 <div class="paragraph">
-<p>To remove the SSH access, remove the jar file <em>crash.connectors.ssh-1.3.0-cr8.jar</em>.</p>
+<p>To remove the SSH access, remove the jar file <em>crash.connectors.ssh-1.3.0.jar</em>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2184,7 +2184,7 @@ property.</p>
 <div class="sect2">
 <h3 id="_removing_telnet_access"><a class="anchor" href="#_removing_telnet_access"></a>Removing Telnet access</h3>
 <div class="paragraph">
-<p>To remove the Telnet access, remove the jar file <em>crash.connectors.telnet-1.3.0-cr8.jar</em>.</p>
+<p>To remove the Telnet access, remove the jar file <em>crash.connectors.telnet-1.3.0.jar</em>.</p>
 </div>
 </div>
 </div>
@@ -4380,7 +4380,7 @@ command.</p>
 <p>the JavaMail jar <code>mail-1.4.jar</code></p>
 </li>
 <li>
-<p>the plugin jar <code>crash.plugins.mail-1.3.0-cr8.jar</code></p>
+<p>the plugin jar <code>crash.plugins.mail-1.3.0.jar</code></p>
 </li>
 </ul>
 </div>
@@ -4444,7 +4444,7 @@ to text before sending the email.</p>
 <p>the cron4j jar <code>cron4j-2.2.5.jar</code></p>
 </li>
 <li>
-<p>the plugin jar <code>crash.plugins.cron-1.3.0-cr8.jar</code></p>
+<p>the plugin jar <code>crash.plugins.cron-1.3.0.jar</code></p>
 </li>
 </ul>
 </div>
@@ -4504,11 +4504,11 @@ COMMANDS
        config
            read or write the cron config path
 
-       history
-           display the process history
-
        spawn
            trigger the cron service now
+
+       history
+           display the process history
 </pre>
 </div>
 </div>
@@ -4536,26 +4536,6 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_cron_history"><a class="anchor" href="#_cron_history"></a>cron history</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       cron history - display the process history
-
-SYNOPSIS
-       cron [-h | --help] history
-
-STREAM
-       cron history &lt;java.lang.Void, java.util.Map&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_cron_spawn"><a class="anchor" href="#_cron_spawn"></a>cron spawn</h3>
 <div class="listingblock">
 <div class="content">
@@ -4567,6 +4547,26 @@ SYNOPSIS
 
 STREAM
        cron spawn &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cron_history"><a class="anchor" href="#_cron_history"></a>cron history</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       cron history - display the process history
+
+SYNOPSIS
+       cron [-h | --help] history
+
+STREAM
+       cron history &lt;java.lang.Void, java.util.Map&gt;
 
 PARAMETERS
        [-h | --help]
@@ -4748,17 +4748,17 @@ COMMANDS
        connect
            connect to database with a JDBC connection string
 
-       select
-           select SQL statement
-
-       execute
-           execute a SQL statement
-
        info
            describe the database
 
+       select
+           select SQL statement
+
        tables
            describe the tables
+
+       execute
+           execute a SQL statement
 </pre>
 </div>
 </div>
@@ -4881,6 +4881,26 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
+<h3 id="_jdbc_info"><a class="anchor" href="#_jdbc_info"></a>jdbc info</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jdbc info - describe the database
+
+SYNOPSIS
+       jdbc [-h | --help] info
+
+STREAM
+       jdbc info &lt;java.lang.Void, java.util.Map&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_jdbc_select"><a class="anchor" href="#_jdbc_select"></a>jdbc select</h3>
 <div class="listingblock">
 <div class="content">
@@ -4904,6 +4924,26 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
+<h3 id="_jdbc_tables"><a class="anchor" href="#_jdbc_tables"></a>jdbc tables</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jdbc tables - describe the tables
+
+SYNOPSIS
+       jdbc [-h | --help] tables
+
+STREAM
+       jdbc tables &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_jdbc_execute"><a class="anchor" href="#_jdbc_execute"></a>jdbc execute</h3>
 <div class="listingblock">
 <div class="content">
@@ -4922,46 +4962,6 @@ PARAMETERS
 
        &lt;statement&gt;...
            The statement
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_jdbc_info"><a class="anchor" href="#_jdbc_info"></a>jdbc info</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jdbc info - describe the database
-
-SYNOPSIS
-       jdbc [-h | --help] info
-
-STREAM
-       jdbc info &lt;java.lang.Void, java.util.Map&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_jdbc_tables"><a class="anchor" href="#_jdbc_tables"></a>jdbc tables</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jdbc tables - describe the tables
-
-SYNOPSIS
-       jdbc [-h | --help] tables
-
-STREAM
-       jdbc tables &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
 </pre>
 </div>
 </div>
@@ -5390,6 +5390,17 @@ COMMANDS
 
            The tail process will end upon interruption (ctrl-c).
 
+       send
+           The send command log one or several loggers with a specified message. For instance the
+           following impersonates the javax.management.mbeanserver class and send a message on its own
+           logger.
+
+           #% jul send -m hello javax.management.mbeanserver
+
+           Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
+
+           % jul ls | jul send -m hello -l warn
+
        ls
            The jul ls command list all the available loggers, for instance:
 
@@ -5407,17 +5418,6 @@ COMMANDS
 
            The jul ls command is a &lt;Void,Logger&gt; command, therefore any logger produced can be
            consumed.
-
-       send
-           The send command log one or several loggers with a specified message. For instance the
-           following impersonates the javax.management.mbeanserver class and send a message on its own
-           logger.
-
-           #% jul send -m hello javax.management.mbeanserver
-
-           Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
-
-           % jul ls | jul send -m hello -l warn
 </pre>
 </div>
 </div>
@@ -5523,6 +5523,46 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
+<h3 id="_jul_send"><a class="anchor" href="#_jul_send"></a>jul send</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jul send - send a message to a jul logger
+
+SYNOPSIS
+       jul [-h | --help] send [-m | --message] [-l | --level] &lt;name&gt;
+
+STREAM
+       jul send &lt;java.util.logging.Logger, java.lang.Object&gt;
+
+DESCRIPTION
+       The send command log one or several loggers with a specified message. For instance the
+       following impersonates the javax.management.mbeanserver class and send a message on its own
+       logger.
+
+       #% jul send -m hello javax.management.mbeanserver
+
+       Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
+
+       % jul ls | jul send -m hello -l warn
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       [-m | --message]
+           The message to log
+
+       [-l | --level]
+           The logger level to assign among {trace, debug, info, warn, error}
+
+       &lt;name&gt;
+           The name of the logger
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_jul_ls"><a class="anchor" href="#_jul_ls"></a>jul ls</h3>
 <div class="listingblock">
 <div class="content">
@@ -5563,46 +5603,6 @@ PARAMETERS
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_jul_send"><a class="anchor" href="#_jul_send"></a>jul send</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jul send - send a message to a jul logger
-
-SYNOPSIS
-       jul [-h | --help] send [-m | --message] [-l | --level] &lt;name&gt;
-
-STREAM
-       jul send &lt;java.util.logging.Logger, java.lang.Object&gt;
-
-DESCRIPTION
-       The send command log one or several loggers with a specified message. For instance the
-       following impersonates the javax.management.mbeanserver class and send a message on its own
-       logger.
-
-       #% jul send -m hello javax.management.mbeanserver
-
-       Send is a &lt;Logger, Void&gt; command, it can log messages to consumed log objects:
-
-       % jul ls | jul send -m hello -l warn
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       [-m | --message]
-           The message to log
-
-       [-l | --level]
-           The logger level to assign among {trace, debug, info, warn, error}
-
-       &lt;name&gt;
-           The name of the logger
-</pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -5627,6 +5627,9 @@ COMMANDS
        system
            Show JVM operating system
 
+       pools
+           Show JVM memory pools
+
        runtime
            Show JVM runtime
 
@@ -5637,9 +5640,6 @@ COMMANDS
 
        heap
            Show JVM memory heap
-
-       pools
-           Show JVM memory pools
 
        classloading
            Show JVM classloding
@@ -5684,6 +5684,26 @@ SYNOPSIS
 
 STREAM
        jvm system &lt;java.lang.Void, java.util.Map&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jvm_pools"><a class="anchor" href="#_jvm_pools"></a>jvm pools</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       jvm pools - Show JVM memory pools
+
+SYNOPSIS
+       jvm [-h | --help] pools
+
+STREAM
+       jvm pools &lt;java.lang.Void, java.lang.String&gt;
 
 PARAMETERS
        [-h | --help]
@@ -5766,26 +5786,6 @@ SYNOPSIS
 
 STREAM
        jvm heap &lt;java.lang.Void, java.lang.management.MemoryUsage&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_jvm_pools"><a class="anchor" href="#_jvm_pools"></a>jvm pools</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       jvm pools - Show JVM memory pools
-
-SYNOPSIS
-       jvm [-h | --help] pools
-
-STREAM
-       jvm pools &lt;java.lang.Void, java.lang.String&gt;
 
 PARAMETERS
        [-h | --help]
@@ -6121,23 +6121,23 @@ COMMANDS
        gc
            call garbage collector
 
-       freemem
-           show free memory
-
-       totalmem
-           show total memory
-
-       proprm
-           remove a system property
-
-       propget
-           get a system property
-
        propset
            set a system property
 
        propls
            list the vm system properties
+
+       propget
+           get a system property
+
+       proprm
+           remove a system property
+
+       freemem
+           show free memory
+
+       totalmem
+           show total memory
 </pre>
 </div>
 </div>
@@ -6157,6 +6157,101 @@ STREAM
 PARAMETERS
        [-h | --help]
            Display this help message
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_system_propset"><a class="anchor" href="#_system_propset"></a>system propset</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       system propset - set a system property
+
+SYNOPSIS
+       system [-h | --help] propset &lt;name&gt; &lt;value&gt;
+
+STREAM
+       system propset &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;name&gt;
+           The name of the property
+
+       &lt;value&gt;
+           The value of the property
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_system_propls"><a class="anchor" href="#_system_propls"></a>system propls</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       system propls - list the vm system properties
+
+SYNOPSIS
+       system [-h | --help] propls [-f | --filter]
+
+STREAM
+       system propls &lt;java.lang.Void, java.util.Map&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       [-f | --filter]
+           filter the property with a regular expression on their name
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_system_propget"><a class="anchor" href="#_system_propget"></a>system propget</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       system propget - get a system property
+
+SYNOPSIS
+       system [-h | --help] propget &lt;name&gt;
+
+STREAM
+       system propget &lt;java.lang.Void, java.lang.String&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;name&gt;
+           The name of the property
+</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_system_proprm"><a class="anchor" href="#_system_proprm"></a>system proprm</h3>
+<div class="listingblock">
+<div class="content">
+<pre>NAME
+       system proprm - remove a system property
+
+SYNOPSIS
+       system [-h | --help] proprm &lt;name&gt;
+
+STREAM
+       system proprm &lt;java.lang.Void, java.lang.Object&gt;
+
+PARAMETERS
+       [-h | --help]
+           Display this help message
+
+       &lt;name&gt;
+           The name of the property
 </pre>
 </div>
 </div>
@@ -6209,101 +6304,6 @@ PARAMETERS
 
        [-d | --decimal]
            The number of decimal (default 0)
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_system_proprm"><a class="anchor" href="#_system_proprm"></a>system proprm</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       system proprm - remove a system property
-
-SYNOPSIS
-       system [-h | --help] proprm &lt;name&gt;
-
-STREAM
-       system proprm &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;name&gt;
-           The name of the property
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_system_propget"><a class="anchor" href="#_system_propget"></a>system propget</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       system propget - get a system property
-
-SYNOPSIS
-       system [-h | --help] propget &lt;name&gt;
-
-STREAM
-       system propget &lt;java.lang.Void, java.lang.String&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;name&gt;
-           The name of the property
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_system_propset"><a class="anchor" href="#_system_propset"></a>system propset</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       system propset - set a system property
-
-SYNOPSIS
-       system [-h | --help] propset &lt;name&gt; &lt;value&gt;
-
-STREAM
-       system propset &lt;java.lang.Void, java.lang.Object&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       &lt;name&gt;
-           The name of the property
-
-       &lt;value&gt;
-           The value of the property
-</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_system_propls"><a class="anchor" href="#_system_propls"></a>system propls</h3>
-<div class="listingblock">
-<div class="content">
-<pre>NAME
-       system propls - list the vm system properties
-
-SYNOPSIS
-       system [-h | --help] propls [-f | --filter]
-
-STREAM
-       system propls &lt;java.lang.Void, java.util.Map&gt;
-
-PARAMETERS
-       [-h | --help]
-           Display this help message
-
-       [-f | --filter]
-           filter the property with a regular expression on their name
 </pre>
 </div>
 </div>
@@ -6367,11 +6367,11 @@ COMMANDS
        interrupt
            Interrup VM threads.
 
-       ls
-           list the vm threads
-
        top
            thread top
+
+       ls
+           list the vm threads
 
        dump
            Dump VM threads.
@@ -6431,17 +6431,17 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_thread_ls"><a class="anchor" href="#_thread_ls"></a>thread ls</h3>
+<h3 id="_thread_top"><a class="anchor" href="#_thread_top"></a>thread top</h3>
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       thread ls - list the vm threads
+       thread top - thread top
 
 SYNOPSIS
-       thread [-h | --help] ls [-n | --name] [-g | --group] [-s | --state]
+       thread [-h | --help] top [-n | --name] [-g | --group] [-s | --state]
 
 STREAM
-       thread ls &lt;java.lang.Void, java.lang.Thread&gt;
+       thread top &lt;java.lang.Void, java.lang.Object&gt;
 
 PARAMETERS
        [-h | --help]
@@ -6460,17 +6460,17 @@ PARAMETERS
 </div>
 </div>
 <div class="sect2">
-<h3 id="_thread_top"><a class="anchor" href="#_thread_top"></a>thread top</h3>
+<h3 id="_thread_ls"><a class="anchor" href="#_thread_ls"></a>thread ls</h3>
 <div class="listingblock">
 <div class="content">
 <pre>NAME
-       thread top - thread top
+       thread ls - list the vm threads
 
 SYNOPSIS
-       thread [-h | --help] top [-n | --name] [-g | --group] [-s | --state]
+       thread [-h | --help] ls [-n | --name] [-g | --group] [-s | --state]
 
 STREAM
-       thread top &lt;java.lang.Void, java.lang.Object&gt;
+       thread ls &lt;java.lang.Void, java.lang.Thread&gt;
 
 PARAMETERS
        [-h | --help]
@@ -6568,7 +6568,7 @@ PARAMETERS
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-06-11 18:20:52 CEST
+Last updated 2014-06-12 23:27:49 CEST
 </div>
 </div>
 </body>
