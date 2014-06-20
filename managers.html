@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CRaSH the shell for the Java Platform</title>
+    <link rel="stylesheet" href="css/site.css">
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-1292368-36', 'crashub.org');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+
+  <div>
+
+
+    <div class="navbar navbar-fixed-top">
+  <a href="https://github.com/crashub"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+      <div class="navbar-inner">
+        <div class="container">
+          <ul id="tabs" class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/embedded.html">Embedded</a></li>
+            <li><a href="/managers.html">Managers</a></li>
+            <li><a href="http://try.crashub.org">Demo</a></li>
+            <li><a href="/video.html">Video</a></li>
+            <li><a href="/contributors.html">Contributors</a></li>
+            <li><a href="/links.html">Links</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	
+	
+<div class="container">
+    <div class="row">
+        <div class="offset2 span8">
+        <p>The standalone version of CRaSH can be installed from various package managers.</p>
+        <h3 name="gvm">Groovy enVironment Manager</h3>
+        <p>GVM is a tool for managing parallel Versions of multiple Software Development Kits on most Unix based systems.
+            It provides a convenient command line interface for installing, switching, removing and listing Candidates,
+            supported platorms:</p>
+        <ul>
+            <li>Linux</li>
+            <li>Mac OSX</li>
+            <li>Cygwin</li>
+            <li>Solaris</li>
+            <li>FreeBSD (with bash installed)</li>
+        </ul>
+        <p>The intructions for installing CRaSH are available on the <a href="http://gvmtool.net">gvm site</a></p>
+
+        <h3 name="brew">Brew</h3>
+        <p><a href="http://brew.sh">Brew</a> is the missing package manager for OS X, CRaSH is available as a Brew formula.</p>
+
+        <h3 name="rpm">RPM</h3>
+        <p>CRaSH can also be installed from RPMs.</p>
+
+        <h4>Centos 6</h4>
+        <p>Add Yum repository by editing repo file <code>/etc/yum.repos.d/devops-incubator.repo</code></p>
+        <pre>[home_henri_gomez_devops-incubator]
+name=Devops Incubator Packages   (CentOS_CentOS-6)
+type=rpm-md
+baseurl=http://download.opensuse.org/repositories/home:/henri_gomez:/devops-incubator/CentOS_CentOS-6/
+gpgcheck=1
+gpgkey=http://download.opensuse.org/repositories/home:/henri_gomez:/devops-incubator/CentOS_CentOS-6/repodata/repomd.xml.key
+enabled=1</pre>
+        <p>Install CRaSH</p>
+        <pre>sudo yum update
+sudo yum install crash</pre>
+
+        <h4>Fedora 20</h4>
+        <p>Add Yum repository by editing repo file <code>/etc/yum.repos.d/devops-incubator.repo</code></p>
+        <pre>[home_henri_gomez_devops-incubator]
+name=Devops Incubator Packages   (Fedora_20)
+type=rpm-md
+baseurl=http://download.opensuse.org/repositories/home:/henri_gomez:/devops-incubator/Fedora_20/
+gpgcheck=1
+gpgkey=http://download.opensuse.org/repositories/home:/henri_gomez:/devops-incubator/Fedora_19/repodata/repomd.xml.key
+enabled=1</pre>
+        <p>Install CRaSH</p>
+        <pre>sudo yum update
+sudo yum install crash</pre>
+
+        <h4>openSUSE 13.1</h4>
+        <p>Add Zypper repository by editing repo file <code>/etc/zypp/repos.d/devops-incubator.repo</code></p>
+        <pre>[home_henri_gomez_devops-incubator]
+name=Devops Incubator Packages   (openSUSE_13.1)
+type=rpm-md
+baseurl=http://download.opensuse.org/repositories/home:/henri_gomez:/devops-incubator/openSUSE_13.1/
+gpgcheck=1
+gpgkey=http://download.opensuse.org/repositories/home:/henri_gomez:/devops-incubator/openSUSE_13.1/repodata/repomd.xml.key
+enabled=1</pre>
+        <p>Install CRaSH</p>
+        <pre>sudo zypper ref
+sudo zypper update
+sudo zypper install crash</pre>
+        </div>
+    </div>
+</div>
+
+
+    <div class="container">
+        <hr>
+        <footer>
+            <p>Sponsored by <a href="http://www.exoplatform.com">eXo Platform</a></p>
+        </footer>
+    </div>
+
+  </div>
+
+  <script src="js/jquery-1.7.1.min.js"></script>
+  <script src="js/bootstrap-dropdown.js"></script>
+
+</body>
+
+</html>
