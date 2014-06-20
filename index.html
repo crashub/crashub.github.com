@@ -11,7 +11,7 @@
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-1292368-1', 'exoplatform.com');
+        ga('create', 'UA-1292368-36', 'crashub.org');
         ga('send', 'pageview');
 
     </script>
@@ -26,10 +26,11 @@
         <div class="container">
           <ul id="tabs" class="nav">
             <li><a href="/">Home</a></li>
-            <li><a href="/embedded.html">Embedded</a></li>
-            <li><a href="/managers.html">Managers</a></li>
-            <li><a href="http://try.crashub.org">Demo</a></li>
+            <li><a href="reference.html">Documentation</a></li>
+            <li><a href="cookbook.html">Cookbook</a></li>
+            <li><a href="javadoc/index.html" target="_blank">Javadoc</a></li>
             <li><a href="/video.html">Video</a></li>
+            <li><a href="/embedded.html">Embedded</a></li>
             <li><a href="/contributors.html">Contributors</a></li>
             <li><a href="/links.html">Links</a></li>
           </ul>
@@ -43,13 +44,11 @@
         <a name="home"></a>
         <div class="hero-unit center">
           <div class="logo visible-desktop">
-  _____     ________                 _______    ____ ____
- .'     `.  |        `.             .'       `. |    |    |
-|    |    | |    |    |  .-------.  |    |    | |    |    |
-|    |____| |    `   .' |   _|    |  .    '~_ ` |         |
-|    |    | |    .   `.  .~'      | | `~_    `| |         |
-|    |    | |    |    | |    |    | |    |    | |    |    |
- `._____.'  |____|____| `.________|  `._____.'  |____|____|</div>
+   ______                                                  .         .
+ .~      ~. |`````````,       .'.                   ..'''' |         |
+|           |'''|'''''      .''```.              .''       |_________|
+|           |    `.       .'       `.         ..'          |         |
+ `.______.' |      `.   .'           `. ....''             |         |</div>
           <p class="hidden-desktop">CRaSH</p>
           <p>The shell for the Java Platform</p>
           <p>Open source and open minded</p>
@@ -58,8 +57,8 @@
           <div class="span4">
             <h3>Featuring</h3>
             <ul class="unstyled">
-              <li><strong>JVM</strong> commands: system, <a href="http://vimeo.com/40807396" target="_blank">jdbc</a>, threads, ...</li>
-              <li><strong>Custom</strong> commands</li>
+              <li><strong>Groovy</strong> commands: system, <a href="http://vimeo.com/40807396" target="_blank">JDBC</a>, threads, ...</li>
+              <li><strong>Extendable</strong> with custom commands</li>
               <li><strong>Screencasts:</strong> <a href="https://vimeo.com/47014671">1.1 features</a></li>
               <li><strong>SSH</strong> & <strong>Telnet</strong> connectors</li>
               <li><a href="http://vimeo.com/40290434" target="_blank">Standalone</a> mode</li>
@@ -68,42 +67,36 @@
           </div>
           <div class="span4">
             <h3>Download</h3>
-            <h4>1.3.0</h4>
-            <strong>Standalone:</strong>
-            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/1.3.0/crash.distrib-1.3.0.tar.gz">tar.gz</a>
-            , <a href="managers.html#gvm">gvm</a>
-            , <a href="managers.html#rpm">rpm</a>
-            or <a href="managers.html#brew">brew</a>
-            <br/>
-            <strong>Embedded:</strong>
-            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/1.3.0/crash.distrib-1.3.0-war.tar.gz">Web</a>
-            , <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/1.3.0/crash.distrib-1.3.0-spring.tar.gz">Spring</a>
-            , <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/1.3.0/crash.distrib-1.3.0-mule-app.tar.gz">Mule</a>
-            , <a href="https://github.com/crashub/mod-shell">Vert.x</a>
-            , <a href="http://grails.org/plugin/crash">Grails</a>
-            or <a href="http://search.maven.org/remotecontent?filepath=org/crashub/jcr.distrib/1.0.0/jcr.distrib-1.0.0-packaging.tar.gz">GateIn</a>
-            <br/>
-            <strong>Docs:</strong>
-            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/1.3.0/crash.distrib-1.3.0-docs.tar.gz">tar.gz</a>
-            , <a href="1.3/reference.html" target="_blank">reference</a>
-            , <a href="1.3/cookbook.html" target="_blank">cookbook</a>
-            or <a href="1.3/javadoc/index.html" target="_blank">javadoc</a>
-            <h4>1.2.10</h4>
+            <h4>1.2.9</h4>
             <strong>Distributions:</strong>
-            <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.10/crsh.distrib-1.2.10.tar.gz">tar.gz</a>
-            , <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.10/crsh.distrib-1.2.10-war.tar.gz">web</a>
-            , <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.10/crsh.distrib-1.2.10-spring.tar.gz">spring</a>
-            , <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.10/crsh.distrib-1.2.10-mule-app.tar.gz">mule</a>
-            or <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.10/crsh.distrib-1.2.10-gatein.tar.gz">gatein</a><br/>
-            <strong>Docs:</strong>
-            <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.10/crsh.distrib-1.2.10-docs.tar.gz">tar.gz</a>
-            , <a href="1.2/reference.html" target="_blank">reference</a>
-            , <a href="1.2/cookbook.html" target="_blank">cookbook</a>
-            or <a href="1.2/javadoc/index.html" target="_blank">javadoc</a>
+            <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.9/crsh.distrib-1.2.9.tar.gz">standalone</a>
+              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.9/crsh.distrib-1.2.9-docs.tar.gz">docs</a>
+              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.9/crsh.distrib-1.2.9-war.tar.gz">web</a>
+              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.9/crsh.distrib-1.2.9-spring.tar.gz">spring</a>
+              ,<a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.9/crsh.distrib-1.2.9-mule-app.tar.gz">mule</a>
+              or <a href="http://search.maven.org/remotecontent?filepath=org/crsh/crsh.distrib/1.2.9/crsh.distrib-1.2.9-gatein.tar.gz">gatein</a><br/>
+            <strong>Snapshots:</strong> <a href="http://repository.exoplatform.org/service/local/artifact/maven/content?g=org.crsh&a=crsh.distrib&v=LATEST&e=tar.gz&r=crsh-snapshots">zip</a><br/>
+            <strong>Embedded</strong> <a href="/visualvm.html">VisualVM</a> plugin<br/>
+            <strong>Embedded</strong> <a href="https://github.com/crashub/mod-shell">Vert.x</a> module<br/>
+            <h4>1.3.0-cr5</h4>
+            <strong>Distributions:</strong>
+            <a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/1.3.0-cr5/crash.distrib-1.3.0-cr5.tar.gz">standalone</a>
+           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/1.3.0-cr5/crash.distrib-1.3.0-cr5-docs.tar.gz">docs</a>
+           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/1.3.0-cr5/crash.distrib-1.3.0-cr5-war.tar.gz">web</a>
+           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/1.3.0-cr5/crash.distrib-1.3.0-cr5-spring.tar.gz">spring</a>
+           ,<a href="http://search.maven.org/remotecontent?filepath=org/crashub/crash.distrib/1.3.0-cr5/crash.distrib-1.3.0-cr5-mule-app.tar.gz">mule</a>
+         or <a href="http://search.maven.org/remotecontent?filepath=org/crashub/jcr.distrib/1.0.0-cr5/jcr.distrib-1.0.0-cr5-packaging.tar.gz">gatein</a><br/>
+            <strong>Doc:</strong>
+            <a href="beta/reference.html" target="_blank">Documentation</a>,
+            <a href="beta/cookbook.html" target="_blank">Cookbook</a>
+            <!--
+            <a href="beta/javadoc/index.html" target="_blank">Javadoc</a>
+            -->
           </div>
           <div class="span4">
             <h3>Resources</h3>
             <address>
+            <strong>Try</strong> <a href="http://try.crashub.org">online</a><br/>
             <strong>Twitter:</strong> <a href="https://twitter.com/crashub">@crashub</a><br />
             <strong>Users:</strong> <a href="http://groups.google.com/group/crash-users">crash-users@googlegroups.com</a><br />
             <strong>Contribute:</strong> <a href="https://github.com/crashub/crash/wiki/todo" target="_blank">Todo</a><br />
