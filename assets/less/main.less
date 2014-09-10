@@ -1,0 +1,299 @@
+body {
+	padding-top: 60px;
+	ul li {
+		list-style: none;
+	}
+}
+
+/** Navigation bar **/
+.navbar {
+	background: @blue;
+	border-bottom: 3px solid @black;
+	.github {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 100;
+	}
+	.logo {
+		display: block;
+		padding: 10px 0;
+	}
+	
+	.navbar-right {
+		position: absolute;
+		right: 10px;
+		top: 0;
+		z-index: 200;
+		> li {
+			background: transparent; 
+			border: 1px solid transparent;
+			margin: 15px 5px;
+			a {
+				color: @white;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				font-weight: bold;
+				&:hover, &:focus {
+					background-color: transparent;
+				}
+			}
+		}
+		
+		> li:hover, li.active {
+			background: transparent;
+			border: 1px solid @light-blue;
+			border-radius: 5px;
+			> a, > a:hover, > a:focus {
+				background: transparent;
+				color: @white;
+			}
+		}
+		
+		> li:last-child {
+			margin: 0;
+			border: none;
+			&:hover, &:active { 
+				border: none;
+			}
+		}
+		
+		> li > ul > li {
+			display: inline-block;
+			list-style: none;
+			border-left: 1px solid @light-gray;
+			a {
+				padding: 18px;
+				display: block;
+				.uiIconCrash {
+					width: 24px;
+					height: 24px;
+					background: url("@{image-path}icon/menu-icon-white.png") no-repeat left top;
+					display: block;
+					&.uiIconGithub {
+						background-position: 0 0;
+					}
+					
+					&.uiIconTwitter {
+						background-position: -24px 0;
+					}
+					
+					&.uiIconExo {
+						background-position: -48px 0;
+					}
+				}
+				&:hover, &:focus, &:active {
+					.uiIconCrash {
+						background-image: url("@{image-path}icon/menu-icon-dark.png");
+					}
+				}			
+			}
+		}
+	}
+}
+
+/********* banner *********/
+.section-banner {
+	.banner {
+		background: url("@{image-path}banner.png") no-repeat;
+		background-size: cover;
+		.caption {
+			color: @white;
+			width: 100%; 
+			padding: 175px 0;
+			h1 {
+				line-height: (@line-height-base );
+			}
+			.btn-primary {
+				font-size: @font-size-h2;
+			}
+		}
+	}
+}
+
+/***** block content on homepage *****/
+.grayBlock {
+	background: @light-gray;
+}
+
+.features, .video, .download, .partner {
+	padding: 0 0 40px 0;
+	.row {
+		margin-bottom: 10px;
+	}
+}
+
+.page-header {
+	border-bottom: none;
+}
+
+.features {
+	h3 {
+		position: relative;
+		&:before {
+		    background: @gray;
+		    content: "";
+		    display: block;
+		    height: 4px;
+		    position: absolute;
+		    top: 50%;
+		    width: 100%;
+		}
+		span {
+		    background: @white;
+		    position: relative;
+		    z-index: 1;
+		}
+	}
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+.features { 
+	.row:nth-child(odd) {
+		h3 {
+			text-align: left;
+			span {
+				padding-right: 15px;
+			}
+		}
+	}
+	.row:nth-child(even) {
+		h3 {
+			text-align: right;
+			span {
+				padding-left: 15px;
+			}
+		}
+	}
+}
+
+
+.video .info {
+	padding: 110px 0;
+}
+
+.download {
+	.big-text {
+		font-size: @font-size-xlarge;
+		&.text-gray {
+			color: @gray;
+		}
+	}
+	.col-md-7 {
+		.info3 {
+			padding: 50px 0;
+		}
+		.info2 {
+			padding: 70px 0;
+		}
+	}
+}
+
+.partner {
+	.panel-body {
+		height: 350px;
+		.thumbnail {
+			border: 1px solid transparent;
+		}
+		h5 {
+			font-weight: bold;
+			margin: 20px 10px 20px 0;
+		}
+	}
+}
+
+/********** footer **********/
+.footer {
+	line-height: 30px;
+	padding: 15px 15px 0;
+	.footer-links li {
+		float: left;
+	    padding: 0 2px;
+	    list-style: none;
+	}
+	
+	.uiIconSoc {
+		background: url("@{image-path}icon/social-icon.png") no-repeat;
+		display: inline-block;
+	    height: 30px;
+	    width: 30px;
+	}
+	
+	.uiIconFacebook {
+		background-position: 0 0;
+	}
+	
+	.uiIconTwitter {
+		background-position: -35px 0;
+	}
+	
+	.uiIconGplus {
+		background-position: -70px 0;
+	}
+	
+	.uiIconLinkedin {
+		background-position: -105px 0;
+	}
+	
+	.uiIconRss {
+		background-position: -140px 0;
+	}
+	
+	.uiIconYoutube {
+		background-position: -175px 0;
+	}
+}
+
+
+
+/** child pages **/
+.install-page, .links-page {
+	.content-blk {
+		margin: 40px 0;
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+		li {
+			background: url("@{image-path}icon/item-list-icon.png") no-repeat left 7px;
+			padding-left: 20px;
+		}
+	}
+}
+
+.install-page {
+	font-size: @font-size-h5;
+	line-height: 1.8;
+}
+
+.links-page {
+	.content-blk {
+		ul > li > a {
+			font-size: @font-size-h5;
+			color: @blue;
+		}
+	}
+}
+
+.contributors-page {
+	.panel {
+		background: @light-gray;
+		text-align: center;
+		height: 425px;
+		a.thumbnail {
+			padding: 0;
+			border: none;
+			background: transparent;
+			img.img-responsive {
+				border-radius: 50%;	
+			}
+		}
+		h3 {
+			border-bottom: 1px solid lighten(@gray, 46%);
+			padding-bottom: 20px;
+		}
+	}
+}

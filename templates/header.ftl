@@ -11,10 +11,8 @@
     <meta name="generator" content"JBake">
 
     <!-- Le styles &ndash;&gt;
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/asciidoctor.css" rel="stylesheet">
-    <link href="/css/base.css" rel="stylesheet">
-    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <!-- <link href="/css/asciidoctor.css" rel="stylesheet">
+    <!-- <link href="/css/base.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements &ndash;&gt;
     <!--[if lt IE 9]>
@@ -37,6 +35,7 @@
 <head>
     <meta charset="utf-8" />
     <title>CRaSH the shell for the Java Platform</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/site.css">
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -46,10 +45,9 @@
 
         ga('create', 'UA-1292368-36', 'crashub.org');
         ga('send', 'pageview');
-
     </script>
+    
 </head>
 <body>
 
-  <div>
 
