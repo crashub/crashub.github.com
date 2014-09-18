@@ -2,7 +2,7 @@
 			<div class="container">
 				<p class="pull-left">Sponsored by <a href="#" class="text-blue">eXo Platform</a></p>
 				<ul class="footer-links pull-right clearfix">
-					<li>Follow Us: </li>
+					<li>Follow us: </li>
 					<li><a href="#"><i class="uiIconSoc uiIconFacebook"></i></a></li>
 					<li><a href="#"><i class="uiIconSoc uiIconTwitter"></i></a></li>
 					<li><a href="#"><i class="uiIconSoc uiIconGplus"></i></a></li>

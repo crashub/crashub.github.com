@@ -19,7 +19,7 @@
 		            <li><a href="/managers.html">Install</a></li>
 		            <li><a href="http://try.crashub.org">Demo</a></li>
 		            <li><a href="/contributors.html">Contributors</a></li>
-		            <li><a href="/links.html">Link</a></li>
+		            <li><a href="/links.html">Links</a></li>
 		            <li class="menu-icon-item">
 		            	<ul>
 		            		<li><a href="#"><i class="uiIconCrash uiIconGithub"></i></a></li>
