@@ -53,7 +53,7 @@
 			<div class="page-header"><h1 class="big-title-with-arrow">Video</h1></div>
 			<div class="row">
 				<div class="col-md-5"><div class="info"><a href="#" class="text-blue">CRaSH : the shell for the Java Virtual Machine</a> from <a href="#" class="text-blue">JavaZone</a> on <a href="#" class="text-blue">Vimeo</a>. </div></div>
-				<div class="col-md-7"><div class="video-wrapper text-center"><img class="img-responsive" src="../images/video.png"></div></div>
+				<div class="col-md-7"><div class="video-wrapper text-center"><iframe height="281" frameborder="0" width="500" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" src="//player.vimeo.com/video/74553180"></iframe></div></div>
 			</div>
 		</div>
 	</div>

@@ -1,8 +1,14 @@
-body {
+body {  	
+	font-family:  "HelveticaNeueLTStd", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:  400; 
 	padding-top: 60px;
 	ul li {
 		list-style: none;
 	}
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-weight: normal;
 }
 
 /** Navigation bar **/
@@ -32,7 +38,7 @@ body {
 			a {
 				color: @white;
 				padding: 7px 20px;
-				font-weight: bold;
+				font-weight: 500;
 				&:hover, &:focus {
 					background-color: transparent;
 				}
@@ -97,6 +103,7 @@ body {
 			padding: 175px 0;
 			h1 {
 				line-height: 1.2;
+				font-weight: 300;
 				a {
 					color: @light-blue;
 				}
@@ -177,7 +184,7 @@ body {
 
 .video {
 	.info {
-		padding: 50px 120px 0 0;
+		padding: 50px 120px 50px 0;
 	}
 	.video-wrapper {
 		margin-top: -50px;
@@ -188,20 +195,19 @@ body {
 	.big-text {
 		font-size: @font-size-xlarge;
 		line-height: 1.1;
+		font-weight: bolder;
 		&.text-gray {
 			color: @gray;
 		}
 	}
-	.col-md-8 {
-		.info3 {
-			padding: 28px 0 28px 30px;
-			p {
-				margin-bottom: 5px;
-			}
+	.info3 {
+		padding: 28px 0 28px 30px;
+		p {
+			margin-bottom: 5px;
 		}
-		.info2 {
-			padding: 40px 0 40px 30px;
-		}
+	}
+	.info2 {
+		padding: 40px 0 40px 30px;
 	}
 }
 
@@ -289,7 +295,7 @@ body {
 		margin: 0;
 		padding: 0;
 		li {
-			background: url("@{image-path}icon/item-list-icon.png") no-repeat left 7px;
+			background: url("@{image-path}icon/item-list-icon.png") no-repeat left 10px;
 			padding-left: 20px;
 			line-height: 1.8;
 		}

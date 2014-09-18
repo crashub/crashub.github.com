@@ -1,53 +1,22 @@
-/*
-@mixin breakpoint($point) {
-	@if ($point === desktop) {
-		@media (min-width: 1600px) { 
-			@font-size-base: 14px;
-		}
-	}
-	@else if ($point === desktop) {
-		@media (max-width: 992px) { 
-			@font-size-base: 14px;
-		}
-	}
-	@else if ($point === laptop) {
-		@media (max-width: 767px) { 
-			@font-size-base: 14px;
-		}
-	}
-	@else if ($point === tablet) {
-		@media (max-width: 480px) { 
-			@font-size-base: 12px;
-		}
-	}
-	@else if ($point === mobileonly) {
-		@media (max-width: 320px) { 
-			@font-size-base: 10px;
-		}
-	}
-}
-*/
-
-@media (min-width: 1600px) {
-	
-}
-
-/* 768 -> 992	*/			
-
-/*767 */
-
 @media (max-width: 992px) {
 	body {
-		.video .info {
-	    	padding: 20px 0;
-	    }
-	    
+		.navbar .navbar-right {
+			> li > a {
+				padding: 7px 8px;
+			}
+		}
+		.video {
+			.info {
+		    	padding: 0 0 50px 0;
+		    }
+			.video-wrapper {
+					margin-top: 0;
+			}	   
+		} 
 	    .download {
-	    	.col-md-7 {
-	    		.info3, .info2 {
-	    			padding: 0;
-	    		}
-	    	}
+    		.info3, .info2 {
+    			padding: 0;
+    		}
 		}
 	}
 }
@@ -55,7 +24,7 @@
 @media (max-width: 767px) {
 	body {
 		h1 {
-			font-size: 24px;
+			font-size: 30px;
 		}
 		h3 {
 			font-size: 16px;		
@@ -94,7 +63,11 @@
 			.caption .btn-primary {
 				font-size: @font-size-base;
 			}
-		}	    
+		}	 
+		.features, .video, .download {
+			font-size: 14px;
+		}
+		   
 		.features {
 			h3:before {
 				height: 2px;
@@ -108,6 +81,11 @@
 	    	.big-text {
 				font-size: 60px;
 			}
+			.col-md-8 {
+				.info3, .info2 {
+					padding: 0;
+				}
+			}
 		}
 	}
 }
@@ -115,8 +93,6 @@
 /*480*/
 @media (max-width: 480px) { 
 	body {
-		font-size: 12px;
-		
 		.footer-links.pull-right {
 			float: left;
 		}
@@ -132,6 +108,5 @@
 				font-size: 12px;
 			}
 		}
-		
 	}
 }
