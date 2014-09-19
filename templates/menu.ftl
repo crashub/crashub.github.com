@@ -11,7 +11,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 		        </button>
-				<a class="logo" href="/"><img class="img-responsive"alt="logo" src="../images/logo.png"></a>
+				<a class="logo" href="http://www.crashub.org/"><img class="img-responsive"alt="logo" src="../images/logo.png"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -22,9 +22,9 @@
 		            <li><a href="/links.html">Links</a></li>
 		            <li class="menu-icon-item">
 		            	<ul>
-		            		<li><a href="#"><i class="uiIconCrash uiIconGithub"></i></a></li>
-		            		<li><a href="#"><i class="uiIconCrash uiIconTwitter"></i></a></li>
-		            		<li><a href="#"><i class="uiIconCrash uiIconExo"></i></a></li>
+		            		<li><a href="https://github.com/crashub/crash"><i class="uiIconCrash uiIconGithub"></i></a></li>
+		            		<li><a href="https://twitter.com/crashub"><i class="uiIconCrash uiIconTwitter"></i></a></li>
+		            		<li><a href="http://community.exoplatform.com/"><i class="uiIconCrash uiIconExo"></i></a></li>
 						</ul>
 					</li>
 				</ul>
