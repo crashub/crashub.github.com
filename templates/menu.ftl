@@ -15,11 +15,12 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-		            <li class="active"><a href="/">Home</a></li>
-		            <li><a href="/managers.html">Install</a></li>
-		            <li><a href="http://try.crashub.org">Demo</a></li>
-		            <li><a href="/contributors.html">Contributors</a></li>
-		            <li><a href="/links.html">Links</a></li>
+		            <li <#if (content.title)??> <#else>class="active"</#if>><a href="/">Home</a></li>
+					<li <#if (content.title)??><#if (content.title == "Managers")>class="active"</#if></#if>><a href="/managers.html">Install</a></li>
+					<li <#if (content.title)??><#if (content.title == "Demo")>class="active"</#if></#if>><a href="http://try.crashub.org">Demo</a></li>
+					<li <#if (content.title)??><#if (content.title == "Contributors")>class="active"</#if></#if>><a href="/contributors.html">Contributors</a></li>
+					<li <#if (content.title)??><#if (content.title == "Links")>class="active"</#if></#if>><a href="/links.html">Links</a></li>
+		            
 		            <li class="menu-icon-item">
 		            	<ul>
 		            		<li><a href="https://github.com/crashub/crash"><i class="uiIconCrash uiIconGithub"></i></a></li>
