@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		> li > ul > li {
 			display: inline-block;
 			list-style: none;
-			border-left: 1px solid @light-gray;
+			border-left: 1px solid @light-blue;
 			a {
 				padding: 18px;
 				display: block;
@@ -104,7 +104,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 			h1 {
 				line-height: 1.2;
 				font-weight: 300;
-				a {
+				span {
 					color: @light-blue;
 				}
 			}
@@ -166,6 +166,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		}
 		p {
 			text-align: left;
+			padding-right: 75px;
+			margin-top: 15px;
 		}
 	}
 	.row:nth-child(even) {
@@ -177,6 +179,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 		}
 		p {
 			text-align: right;
+			padding-left: 75px;
+			margin-top: 15px;
 		}
 	}
 }
@@ -212,19 +216,27 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .partner {
-	.panel {
-		margin-bottom: 15px;
-		border-radius: 0;
-		box-shadow: none;
-		.panel-body {
-			height: 350px;
-			.thumbnail {
-				border: none;
-				padding: 0;
-			}
-			h4 {
-				font-weight: bold;
-				margin: 20px 10px 20px 0;
+	.col-md-3 {
+		padding-left: 9px;
+		padding-right: 9px;
+		.panel {
+			margin-bottom: 10px;
+			border-radius: 0;
+			box-shadow: none;
+			.panel-body {
+				height: 350px;
+				.thumbnail {
+					border: none;
+					padding: 0;
+				}
+				h4 {
+					font-weight: bold;
+					margin: 20px 10px 20px 0;
+					padding-left: 5px;
+				}
+				p {
+					padding: 0 5px;
+				}
 			}
 		}
 	}
