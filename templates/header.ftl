@@ -10,6 +10,7 @@
     <meta name="generator" content"JBake">
     <meta charset="utf-8" />
     <title>CRaSH the shell for the Java Platform</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/site.css">
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
