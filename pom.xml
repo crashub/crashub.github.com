@@ -175,6 +175,29 @@
           </plugin>
 
           <plugin>
+          	<groupId>org.lesscss</groupId>
+			<artifactId>lesscss-maven-plugin</artifactId>
+			<version>1.7.0.1.1</version>
+			<executions>
+				<execution>
+					<phase>site</phase>
+					<goals>
+						<goal>compile</goal>
+					</goals>
+					<configuration>
+						<sourceDirectory>${project.basedir}/assets/less</sourceDirectory>
+						<outputDirectory>${project.build.directory}/output/css</outputDirectory>
+						<compress>true</compress>
+						<includes>
+							<include>site.less</include>
+						</includes>
+					</configuration>
+				</execution>
+			</executions>
+			</plugin>
+			
+			
+			<plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-scm-publish-plugin</artifactId>
             <version>1.0</version>
