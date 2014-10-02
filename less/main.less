@@ -317,6 +317,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .install-page {
 	font-size: @font-size-h5;
 	line-height: 1.8;
+	.content-blk h2 > a {
+		color: @text-color;
+		&:hover {
+			color: @text-color;
+			text-decoration: none;
+		}
+	}
 }
 
 .links-page {
