@@ -97,7 +97,7 @@
 							<div class="col-md-3">
 								<div class="panel">
 									<div class="panel-body">
-										<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/spring-boot.png" /></a>
+										<a class="thumbnail" href="http://www.youtube.com/watch?v=3R1Yt2QKs38"><img class="img-responsive" src="../images/logo/spring-boot.png" /></a>
 										<h4>Spring Boot</h4>
 										<p>CRaSH is officially embedded as Spring Boot remote shell.</p>
 									</div>
@@ -106,7 +106,7 @@
 							<div class="col-md-3">
 								<div class="panel">
 									<div class="panel-body">
-										<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/osv.png" /></a>
+										<a class="thumbnail" href="http://osv.io"><img class="img-responsive" src="../images/logo/osv.png" /></a>
 										<h4>OSv</h4>
 										<p>CRaSH is used as the main shell for OSv, a new operating system designed for the cloud.</p>
 									</div>
@@ -115,7 +115,7 @@
 							<div class="col-md-3">
 								<div class="panel">
 									<div class="panel-body">
-										<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/exo-platform.png" /></a>
+										<a class="thumbnail" href="http://www.exoplatform.com"><img class="img-responsive" src="../images/logo/exo-platform.png" /></a>
 										<h4>eXo Platform</h4>
 										<p>Provides a remote shell for eXo Plaform with a JCR console</p>
 									</div>
@@ -124,7 +124,7 @@
 							<div class="col-md-3">
 								<div class="panel">
 									<div class="panel-body">
-										<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/mulesoft-esb.png" /></a>
+										<a class="thumbnail" href="http://www.mulesoft.org/what-mule-esb"><img class="img-responsive" src="../images/logo/mulesoft-esb.png" /></a>
 										<h4>Mulesoft Enterprise Service Bus</h4>
 										<p>A Mulesoft ESB integration created by David Dossot</p>
 									</div>
@@ -141,7 +141,7 @@
 							<div class="col-md-3">
 								<div class="panel">
 									<div class="panel-body">
-										<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/vert-x.png" /></a>
+										<a class="thumbnail" href="http://vertx.io"><img class="img-responsive" src="../images/logo/vert-x.png" /></a>
 										<h4>Vert.x</h4>
 										<p>A Vert.x module that provides an interactive shell for Vert.x</p>
 									</div>
@@ -150,7 +150,7 @@
 							<div class="col-md-3">
 								<div class="panel">
 									<div class="panel-body">
-										<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/grails-plugin.png" /></a>
+										<a class="thumbnail" href="http://grails.org"><img class="img-responsive" src="../images/logo/grails-plugin.png" /></a>
 										<h4>Grails Plugin</h4>
 										<p>CRaSH is available as a Grails plugin</p>
 									</div>
@@ -159,7 +159,7 @@
 							<div class="col-md-3">
 								<div class="panel">
 									<div class="panel-body">
-										<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/play-framework.png" /></a>
+										<a class="thumbnail" href="https://github.com/tjdett/play2-crash-plugin"><img class="img-responsive" src="../images/logo/play-framework.png" /></a>
 										<h4>Play Framework</h4>
 										<p>A Play 2 CRaSH Plugin</p>
 									</div>
@@ -168,7 +168,7 @@
 							<div class="col-md-3">
 								<div class="panel">
 									<div class="panel-body">
-										<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/x-wiki.png" /></a>
+										<a class="thumbnail" href="http://extensions.xwiki.org/xwiki/bin/view/Extension/CRaSH+Integration"><img class="img-responsive" src="../images/logo/x-wiki.png" /></a>
 										<h4>XWiki integration</h4>
 										<p>A remote shell for the XWiki project</p>
 									</div>
@@ -185,7 +185,7 @@
 							<div class="col-md-3">
 								<div class="panel">
 									<div class="panel-body">
-										<a class="thumbnail" href="#"><img class="img-responsive" src="../images/logo/silver-peas.png" /></a>
+										<a class="thumbnail" href="http://www.silverpeas.org"><img class="img-responsive" src="../images/logo/silver-peas.png" /></a>
 										<h4>Silverpeas</h4>
 										<p>Silverpeas JCR shell</p>
 									</div>
