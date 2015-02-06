@@ -1,0 +1,44 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+#
+# The above will handle all files NOT found below
+#
+# These files are text and should be normalized (Convert crlf => lf)
+*.md            text
+*.adoc          text
+*.textile       text
+*.mustache      text
+*.csv           text
+*.tab           text
+*.tsv           text
+*.css           text
+*.df            text
+*.htm           text
+*.html          text
+*.java          text
+*.js            text
+*.json          text
+*.jsp           text
+*.jspf          text
+*.properties    text
+*.sh            text
+*.sql           text
+*.svg           text
+*.tld           text
+*.txt           text
+*.xml           text
+*.sql           text
+
+# Declare files that will always have CRLF line endings on checkout.
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+
+# Denote all files that are truly binary and should not be modified.
+# (binary is a macro for -text -diff)
+*.gif           binary
+*.ico           binary
+*.jpg           binary
+*.jpeg          binary
+*.png           binary
+
