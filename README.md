@@ -23,5 +23,5 @@ for instance with bash:
 % git clone https://github.com/crashub/crashub.github.com.git
 % cd crashub.github.com
 % git checkout site
-% mvn site-deploy -Dgithub.global.userName=myusername -Dgithub.global.password=mypassword
+% mvn site-deploy
 ```

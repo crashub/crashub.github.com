@@ -208,10 +208,8 @@
             <artifactId>maven-scm-publish-plugin</artifactId>
             <version>1.0</version>
             <configuration>
-              <pubScmUrl>scm:git:https://github.com/crashub/crashub.github.com</pubScmUrl>
+              <pubScmUrl>scm:git:git@github.com:crashub/crashub.github.com.git</pubScmUrl>
               <scmBranch>master</scmBranch>
-              <username>${github.global.userName}</username>
-              <password>${github.global.password}</password>
               <content>${project.build.directory}/output</content>
               <tryUpdate>true</tryUpdate>
             </configuration>
