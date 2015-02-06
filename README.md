@@ -9,8 +9,8 @@ for instance with bash:
 
 ```
 % git clone https://github.com/crashub/crashub.github.com.git
-% git checkout site
 % cd crashub.github.com
+% git checkout site
 % mvn site
 % cd target
 % jbake --server
