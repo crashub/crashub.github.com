@@ -1,8 +1,8 @@
 # Preview howto
 
-- install jbake 2.2.1 (http://jbake.org)
+- install jbake 2.3.2 (http://jbake.org)
 - build the site : mvn site -> it creates the content in target/output
-- to preview the site run : "jbake --server" in the target directory
+- to preview the site run : "jbake --server target/output/"
 - open browser to localhost:8820
 
 for instance with bash:
@@ -12,8 +12,7 @@ for instance with bash:
 % cd crashub.github.com
 % git checkout site
 % mvn site
-% cd target
-% jbake --server
+% jbake --server target/output/
 ```
 
 # Publish howto
