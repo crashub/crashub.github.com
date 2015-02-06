@@ -1,152 +1,147 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-<head>
-<title>Source code</title>
-<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
-</head>
-<body>
-<div class="sourceContainer">
-<pre><span class="sourceLineNo">001</span>/*<a name="line.1"></a>
-<span class="sourceLineNo">002</span> * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
-<span class="sourceLineNo">003</span> *<a name="line.3"></a>
-<span class="sourceLineNo">004</span> * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
-<span class="sourceLineNo">005</span> * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
-<span class="sourceLineNo">006</span> * published by the Free Software Foundation; either version 2.1 of<a name="line.6"></a>
-<span class="sourceLineNo">007</span> * the License, or (at your option) any later version.<a name="line.7"></a>
-<span class="sourceLineNo">008</span> *<a name="line.8"></a>
-<span class="sourceLineNo">009</span> * This software is distributed in the hope that it will be useful,<a name="line.9"></a>
-<span class="sourceLineNo">010</span> * but WITHOUT ANY WARRANTY; without even the implied warranty of<a name="line.10"></a>
-<span class="sourceLineNo">011</span> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU<a name="line.11"></a>
-<span class="sourceLineNo">012</span> * Lesser General Public License for more details.<a name="line.12"></a>
-<span class="sourceLineNo">013</span> *<a name="line.13"></a>
-<span class="sourceLineNo">014</span> * You should have received a copy of the GNU Lesser General Public<a name="line.14"></a>
-<span class="sourceLineNo">015</span> * License along with this software; if not, write to the Free<a name="line.15"></a>
-<span class="sourceLineNo">016</span> * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA<a name="line.16"></a>
-<span class="sourceLineNo">017</span> * 02110-1301 USA, or see the FSF site: http://www.fsf.org.<a name="line.17"></a>
-<span class="sourceLineNo">018</span> */<a name="line.18"></a>
-<span class="sourceLineNo">019</span><a name="line.19"></a>
-<span class="sourceLineNo">020</span>package org.crsh.text.renderers;<a name="line.20"></a>
-<span class="sourceLineNo">021</span><a name="line.21"></a>
-<span class="sourceLineNo">022</span>import org.crsh.text.LineRenderer;<a name="line.22"></a>
-<span class="sourceLineNo">023</span>import org.crsh.text.Renderer;<a name="line.23"></a>
-<span class="sourceLineNo">024</span>import org.crsh.text.ui.*;<a name="line.24"></a>
-<span class="sourceLineNo">025</span><a name="line.25"></a>
-<span class="sourceLineNo">026</span>import java.util.*;<a name="line.26"></a>
-<span class="sourceLineNo">027</span><a name="line.27"></a>
-<span class="sourceLineNo">028</span>/**<a name="line.28"></a>
-<span class="sourceLineNo">029</span> * @author &lt;a href="mailto:alain.defrance@exoplatform.com"&gt;Alain Defrance&lt;/a&gt;<a name="line.29"></a>
-<span class="sourceLineNo">030</span> */<a name="line.30"></a>
-<span class="sourceLineNo">031</span>public class EntityTypeRenderer extends Renderer&lt;EntityTypeRenderer.EntityTypeData&gt; {<a name="line.31"></a>
-<span class="sourceLineNo">032</span><a name="line.32"></a>
-<span class="sourceLineNo">033</span>  @Override<a name="line.33"></a>
-<span class="sourceLineNo">034</span>  public Class&lt;EntityTypeRenderer.EntityTypeData&gt; getType() {<a name="line.34"></a>
-<span class="sourceLineNo">035</span>    return EntityTypeRenderer.EntityTypeData.class;<a name="line.35"></a>
-<span class="sourceLineNo">036</span>  }<a name="line.36"></a>
-<span class="sourceLineNo">037</span><a name="line.37"></a>
-<span class="sourceLineNo">038</span>  @Override<a name="line.38"></a>
-<span class="sourceLineNo">039</span>  public LineRenderer renderer(Iterator&lt;EntityTypeRenderer.EntityTypeData&gt; stream) {<a name="line.39"></a>
-<span class="sourceLineNo">040</span><a name="line.40"></a>
-<span class="sourceLineNo">041</span>    TableElement table = new TableElement();<a name="line.41"></a>
-<span class="sourceLineNo">042</span><a name="line.42"></a>
-<span class="sourceLineNo">043</span>    table.setRightCellPadding(1);<a name="line.43"></a>
-<span class="sourceLineNo">044</span><a name="line.44"></a>
-<span class="sourceLineNo">045</span>    while (stream.hasNext()) {<a name="line.45"></a>
-<span class="sourceLineNo">046</span>      EntityTypeData entityTypeData = stream.next();<a name="line.46"></a>
-<span class="sourceLineNo">047</span><a name="line.47"></a>
-<span class="sourceLineNo">048</span>      if (!entityTypeData.verbose) {<a name="line.48"></a>
-<span class="sourceLineNo">049</span>        if (table.getRows().size() == 0) {<a name="line.49"></a>
-<span class="sourceLineNo">050</span>          RowElement header = new RowElement(true);<a name="line.50"></a>
-<span class="sourceLineNo">051</span>          header.add("NAME", "TYPE");<a name="line.51"></a>
-<span class="sourceLineNo">052</span>          table.add(header);<a name="line.52"></a>
-<span class="sourceLineNo">053</span>        }<a name="line.53"></a>
-<span class="sourceLineNo">054</span>        RowElement row = new RowElement();<a name="line.54"></a>
-<span class="sourceLineNo">055</span>        row.add(entityTypeData.name, entityTypeData.type);<a name="line.55"></a>
-<span class="sourceLineNo">056</span>        table.add(row);<a name="line.56"></a>
-<span class="sourceLineNo">057</span>      } else {<a name="line.57"></a>
-<span class="sourceLineNo">058</span>        table.setColumnLayout(Layout.weighted(1));<a name="line.58"></a>
-<span class="sourceLineNo">059</span>        RowElement name = new RowElement();<a name="line.59"></a>
-<span class="sourceLineNo">060</span>        name.add("Name : " + entityTypeData.name);<a name="line.60"></a>
-<span class="sourceLineNo">061</span>        table.add(name);<a name="line.61"></a>
-<span class="sourceLineNo">062</span>        RowElement type = new RowElement();<a name="line.62"></a>
-<span class="sourceLineNo">063</span>        type.add("Type : " + entityTypeData.type);<a name="line.63"></a>
-<span class="sourceLineNo">064</span>        table.add(type);<a name="line.64"></a>
-<span class="sourceLineNo">065</span>        RowElement mapping = new RowElement();<a name="line.65"></a>
-<span class="sourceLineNo">066</span>        mapping.add("Mapping : " + entityTypeData.mapping);<a name="line.66"></a>
-<span class="sourceLineNo">067</span>        table.add(mapping);<a name="line.67"></a>
-<span class="sourceLineNo">068</span><a name="line.68"></a>
-<span class="sourceLineNo">069</span>        if (entityTypeData.attributes.size() &gt; 0) {<a name="line.69"></a>
-<span class="sourceLineNo">070</span>          RowElement attributesLabel = new RowElement();<a name="line.70"></a>
-<span class="sourceLineNo">071</span>          attributesLabel.add("Attributes : ");<a name="line.71"></a>
-<span class="sourceLineNo">072</span>          table.add(attributesLabel);<a name="line.72"></a>
-<span class="sourceLineNo">073</span><a name="line.73"></a>
-<span class="sourceLineNo">074</span>          TableElement attributeTable = new TableElement();<a name="line.74"></a>
-<span class="sourceLineNo">075</span>          attributeTable.setRightCellPadding(1);<a name="line.75"></a>
-<span class="sourceLineNo">076</span>          RowElement attributeRowHeader = new RowElement(true);<a name="line.76"></a>
-<span class="sourceLineNo">077</span>          attributeRowHeader.add("NAME", "TYPE", "ASSOCIATION", "COLLECTION", "MAPPING");<a name="line.77"></a>
-<span class="sourceLineNo">078</span>          attributeTable.add(attributeRowHeader);<a name="line.78"></a>
-<span class="sourceLineNo">079</span><a name="line.79"></a>
-<span class="sourceLineNo">080</span>          for (AttributeData attributes : entityTypeData.attributes) {<a name="line.80"></a>
-<span class="sourceLineNo">081</span>            RowElement row = new RowElement();<a name="line.81"></a>
-<span class="sourceLineNo">082</span>            row.add(attributes.name, attributes.type, "" + attributes.association, "" + attributes.collection, attributes.mapping);<a name="line.82"></a>
-<span class="sourceLineNo">083</span>            attributeTable.add(row);<a name="line.83"></a>
-<span class="sourceLineNo">084</span>          }<a name="line.84"></a>
-<span class="sourceLineNo">085</span><a name="line.85"></a>
-<span class="sourceLineNo">086</span>          RowElement attributesRow = new RowElement();<a name="line.86"></a>
-<span class="sourceLineNo">087</span>          attributesRow.add(attributeTable);<a name="line.87"></a>
-<span class="sourceLineNo">088</span>          table.add(attributesRow);<a name="line.88"></a>
-<span class="sourceLineNo">089</span><a name="line.89"></a>
-<span class="sourceLineNo">090</span>        }<a name="line.90"></a>
-<span class="sourceLineNo">091</span>      }<a name="line.91"></a>
-<span class="sourceLineNo">092</span><a name="line.92"></a>
-<span class="sourceLineNo">093</span>    }<a name="line.93"></a>
-<span class="sourceLineNo">094</span><a name="line.94"></a>
-<span class="sourceLineNo">095</span>    return table.renderer();<a name="line.95"></a>
-<span class="sourceLineNo">096</span>  <a name="line.96"></a>
-<span class="sourceLineNo">097</span>  }<a name="line.97"></a>
-<span class="sourceLineNo">098</span><a name="line.98"></a>
-<span class="sourceLineNo">099</span>  public static class EntityTypeData {<a name="line.99"></a>
-<span class="sourceLineNo">100</span><a name="line.100"></a>
-<span class="sourceLineNo">101</span>    public final String name;<a name="line.101"></a>
-<span class="sourceLineNo">102</span>    public final String type;<a name="line.102"></a>
-<span class="sourceLineNo">103</span>    public final String mapping;<a name="line.103"></a>
-<span class="sourceLineNo">104</span>    public final boolean verbose;<a name="line.104"></a>
-<span class="sourceLineNo">105</span>    public final List&lt;AttributeData&gt; attributes;<a name="line.105"></a>
-<span class="sourceLineNo">106</span><a name="line.106"></a>
-<span class="sourceLineNo">107</span>    public EntityTypeData(String name, String type, String mapping) {<a name="line.107"></a>
-<span class="sourceLineNo">108</span>      this(name, type, mapping, false);<a name="line.108"></a>
-<span class="sourceLineNo">109</span>    }<a name="line.109"></a>
-<span class="sourceLineNo">110</span><a name="line.110"></a>
-<span class="sourceLineNo">111</span>    public EntityTypeData(String name, String type, String mapping, boolean verbose) {<a name="line.111"></a>
-<span class="sourceLineNo">112</span>      this.name = name;<a name="line.112"></a>
-<span class="sourceLineNo">113</span>      this.type = type;<a name="line.113"></a>
-<span class="sourceLineNo">114</span>      this.mapping = mapping;<a name="line.114"></a>
-<span class="sourceLineNo">115</span>      this.verbose = verbose;<a name="line.115"></a>
-<span class="sourceLineNo">116</span>      this.attributes = new ArrayList&lt;AttributeData&gt;();<a name="line.116"></a>
-<span class="sourceLineNo">117</span>    }<a name="line.117"></a>
-<span class="sourceLineNo">118</span><a name="line.118"></a>
-<span class="sourceLineNo">119</span>    public void add(AttributeData d) {<a name="line.119"></a>
-<span class="sourceLineNo">120</span>      attributes.add(d);<a name="line.120"></a>
-<span class="sourceLineNo">121</span>    }<a name="line.121"></a>
-<span class="sourceLineNo">122</span>    <a name="line.122"></a>
-<span class="sourceLineNo">123</span>  }<a name="line.123"></a>
-<span class="sourceLineNo">124</span><a name="line.124"></a>
-<span class="sourceLineNo">125</span>  public static class AttributeData {<a name="line.125"></a>
-<span class="sourceLineNo">126</span>    public final String name;<a name="line.126"></a>
-<span class="sourceLineNo">127</span>    public final String type;<a name="line.127"></a>
-<span class="sourceLineNo">128</span>    public final Boolean association;<a name="line.128"></a>
-<span class="sourceLineNo">129</span>    public final Boolean collection;<a name="line.129"></a>
-<span class="sourceLineNo">130</span>    public final String mapping;<a name="line.130"></a>
-<span class="sourceLineNo">131</span><a name="line.131"></a>
-<span class="sourceLineNo">132</span>    public AttributeData(String name, String type, Boolean association, Boolean collection, String mapping) {<a name="line.132"></a>
-<span class="sourceLineNo">133</span>      this.name = name;<a name="line.133"></a>
-<span class="sourceLineNo">134</span>      this.type = type;<a name="line.134"></a>
-<span class="sourceLineNo">135</span>      this.association = (association != null ? association : false);<a name="line.135"></a>
-<span class="sourceLineNo">136</span>      this.collection = (collection != null ? collection : false);<a name="line.136"></a>
-<span class="sourceLineNo">137</span>      this.mapping = mapping;<a name="line.137"></a>
-<span class="sourceLineNo">138</span>    }<a name="line.138"></a>
-<span class="sourceLineNo">139</span>    <a name="line.139"></a>
-<span class="sourceLineNo">140</span>  }<a name="line.140"></a>
-<span class="sourceLineNo">141</span>}<a name="line.141"></a>
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    /*<a name="line.1"></a>
+<FONT color="green">002</FONT>     * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
+<FONT color="green">003</FONT>     *<a name="line.3"></a>
+<FONT color="green">004</FONT>     * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
+<FONT color="green">005</FONT>     * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
+<FONT color="green">006</FONT>     * published by the Free Software Foundation; either version 2.1 of<a name="line.6"></a>
+<FONT color="green">007</FONT>     * the License, or (at your option) any later version.<a name="line.7"></a>
+<FONT color="green">008</FONT>     *<a name="line.8"></a>
+<FONT color="green">009</FONT>     * This software is distributed in the hope that it will be useful,<a name="line.9"></a>
+<FONT color="green">010</FONT>     * but WITHOUT ANY WARRANTY; without even the implied warranty of<a name="line.10"></a>
+<FONT color="green">011</FONT>     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU<a name="line.11"></a>
+<FONT color="green">012</FONT>     * Lesser General Public License for more details.<a name="line.12"></a>
+<FONT color="green">013</FONT>     *<a name="line.13"></a>
+<FONT color="green">014</FONT>     * You should have received a copy of the GNU Lesser General Public<a name="line.14"></a>
+<FONT color="green">015</FONT>     * License along with this software; if not, write to the Free<a name="line.15"></a>
+<FONT color="green">016</FONT>     * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA<a name="line.16"></a>
+<FONT color="green">017</FONT>     * 02110-1301 USA, or see the FSF site: http://www.fsf.org.<a name="line.17"></a>
+<FONT color="green">018</FONT>     */<a name="line.18"></a>
+<FONT color="green">019</FONT>    <a name="line.19"></a>
+<FONT color="green">020</FONT>    package org.crsh.text.renderers;<a name="line.20"></a>
+<FONT color="green">021</FONT>    <a name="line.21"></a>
+<FONT color="green">022</FONT>    import org.crsh.text.LineRenderer;<a name="line.22"></a>
+<FONT color="green">023</FONT>    import org.crsh.text.Renderer;<a name="line.23"></a>
+<FONT color="green">024</FONT>    import org.crsh.text.ui.*;<a name="line.24"></a>
+<FONT color="green">025</FONT>    <a name="line.25"></a>
+<FONT color="green">026</FONT>    import java.util.*;<a name="line.26"></a>
+<FONT color="green">027</FONT>    <a name="line.27"></a>
+<FONT color="green">028</FONT>    /**<a name="line.28"></a>
+<FONT color="green">029</FONT>     * @author &lt;a href="mailto:alain.defrance@exoplatform.com"&gt;Alain Defrance&lt;/a&gt;<a name="line.29"></a>
+<FONT color="green">030</FONT>     */<a name="line.30"></a>
+<FONT color="green">031</FONT>    public class EntityTypeRenderer extends Renderer&lt;EntityTypeRenderer.EntityTypeData&gt; {<a name="line.31"></a>
+<FONT color="green">032</FONT>    <a name="line.32"></a>
+<FONT color="green">033</FONT>      @Override<a name="line.33"></a>
+<FONT color="green">034</FONT>      public Class&lt;EntityTypeRenderer.EntityTypeData&gt; getType() {<a name="line.34"></a>
+<FONT color="green">035</FONT>        return EntityTypeRenderer.EntityTypeData.class;<a name="line.35"></a>
+<FONT color="green">036</FONT>      }<a name="line.36"></a>
+<FONT color="green">037</FONT>    <a name="line.37"></a>
+<FONT color="green">038</FONT>      @Override<a name="line.38"></a>
+<FONT color="green">039</FONT>      public LineRenderer renderer(Iterator&lt;EntityTypeRenderer.EntityTypeData&gt; stream) {<a name="line.39"></a>
+<FONT color="green">040</FONT>    <a name="line.40"></a>
+<FONT color="green">041</FONT>        TableElement table = new TableElement();<a name="line.41"></a>
+<FONT color="green">042</FONT>    <a name="line.42"></a>
+<FONT color="green">043</FONT>        table.setRightCellPadding(1);<a name="line.43"></a>
+<FONT color="green">044</FONT>    <a name="line.44"></a>
+<FONT color="green">045</FONT>        while (stream.hasNext()) {<a name="line.45"></a>
+<FONT color="green">046</FONT>          EntityTypeData entityTypeData = stream.next();<a name="line.46"></a>
+<FONT color="green">047</FONT>    <a name="line.47"></a>
+<FONT color="green">048</FONT>          if (!entityTypeData.verbose) {<a name="line.48"></a>
+<FONT color="green">049</FONT>            if (table.getRows().size() == 0) {<a name="line.49"></a>
+<FONT color="green">050</FONT>              RowElement header = new RowElement(true);<a name="line.50"></a>
+<FONT color="green">051</FONT>              header.add("NAME", "TYPE");<a name="line.51"></a>
+<FONT color="green">052</FONT>              table.add(header);<a name="line.52"></a>
+<FONT color="green">053</FONT>            }<a name="line.53"></a>
+<FONT color="green">054</FONT>            RowElement row = new RowElement();<a name="line.54"></a>
+<FONT color="green">055</FONT>            row.add(entityTypeData.name, entityTypeData.type);<a name="line.55"></a>
+<FONT color="green">056</FONT>            table.add(row);<a name="line.56"></a>
+<FONT color="green">057</FONT>          } else {<a name="line.57"></a>
+<FONT color="green">058</FONT>            table.setColumnLayout(Layout.weighted(1));<a name="line.58"></a>
+<FONT color="green">059</FONT>            RowElement name = new RowElement();<a name="line.59"></a>
+<FONT color="green">060</FONT>            name.add("Name : " + entityTypeData.name);<a name="line.60"></a>
+<FONT color="green">061</FONT>            table.add(name);<a name="line.61"></a>
+<FONT color="green">062</FONT>            RowElement type = new RowElement();<a name="line.62"></a>
+<FONT color="green">063</FONT>            type.add("Type : " + entityTypeData.type);<a name="line.63"></a>
+<FONT color="green">064</FONT>            table.add(type);<a name="line.64"></a>
+<FONT color="green">065</FONT>            RowElement mapping = new RowElement();<a name="line.65"></a>
+<FONT color="green">066</FONT>            mapping.add("Mapping : " + entityTypeData.mapping);<a name="line.66"></a>
+<FONT color="green">067</FONT>            table.add(mapping);<a name="line.67"></a>
+<FONT color="green">068</FONT>    <a name="line.68"></a>
+<FONT color="green">069</FONT>            if (entityTypeData.attributes.size() &gt; 0) {<a name="line.69"></a>
+<FONT color="green">070</FONT>              RowElement attributesLabel = new RowElement();<a name="line.70"></a>
+<FONT color="green">071</FONT>              attributesLabel.add("Attributes : ");<a name="line.71"></a>
+<FONT color="green">072</FONT>              table.add(attributesLabel);<a name="line.72"></a>
+<FONT color="green">073</FONT>    <a name="line.73"></a>
+<FONT color="green">074</FONT>              TableElement attributeTable = new TableElement();<a name="line.74"></a>
+<FONT color="green">075</FONT>              attributeTable.setRightCellPadding(1);<a name="line.75"></a>
+<FONT color="green">076</FONT>              RowElement attributeRowHeader = new RowElement(true);<a name="line.76"></a>
+<FONT color="green">077</FONT>              attributeRowHeader.add("NAME", "TYPE", "ASSOCIATION", "COLLECTION", "MAPPING");<a name="line.77"></a>
+<FONT color="green">078</FONT>              attributeTable.add(attributeRowHeader);<a name="line.78"></a>
+<FONT color="green">079</FONT>    <a name="line.79"></a>
+<FONT color="green">080</FONT>              for (AttributeData attributes : entityTypeData.attributes) {<a name="line.80"></a>
+<FONT color="green">081</FONT>                RowElement row = new RowElement();<a name="line.81"></a>
+<FONT color="green">082</FONT>                row.add(attributes.name, attributes.type, "" + attributes.association, "" + attributes.collection, attributes.mapping);<a name="line.82"></a>
+<FONT color="green">083</FONT>                attributeTable.add(row);<a name="line.83"></a>
+<FONT color="green">084</FONT>              }<a name="line.84"></a>
+<FONT color="green">085</FONT>    <a name="line.85"></a>
+<FONT color="green">086</FONT>              RowElement attributesRow = new RowElement();<a name="line.86"></a>
+<FONT color="green">087</FONT>              attributesRow.add(attributeTable);<a name="line.87"></a>
+<FONT color="green">088</FONT>              table.add(attributesRow);<a name="line.88"></a>
+<FONT color="green">089</FONT>    <a name="line.89"></a>
+<FONT color="green">090</FONT>            }<a name="line.90"></a>
+<FONT color="green">091</FONT>          }<a name="line.91"></a>
+<FONT color="green">092</FONT>    <a name="line.92"></a>
+<FONT color="green">093</FONT>        }<a name="line.93"></a>
+<FONT color="green">094</FONT>    <a name="line.94"></a>
+<FONT color="green">095</FONT>        return table.renderer();<a name="line.95"></a>
+<FONT color="green">096</FONT>      <a name="line.96"></a>
+<FONT color="green">097</FONT>      }<a name="line.97"></a>
+<FONT color="green">098</FONT>    <a name="line.98"></a>
+<FONT color="green">099</FONT>      public static class EntityTypeData {<a name="line.99"></a>
+<FONT color="green">100</FONT>    <a name="line.100"></a>
+<FONT color="green">101</FONT>        public final String name;<a name="line.101"></a>
+<FONT color="green">102</FONT>        public final String type;<a name="line.102"></a>
+<FONT color="green">103</FONT>        public final String mapping;<a name="line.103"></a>
+<FONT color="green">104</FONT>        public final boolean verbose;<a name="line.104"></a>
+<FONT color="green">105</FONT>        public final List&lt;AttributeData&gt; attributes;<a name="line.105"></a>
+<FONT color="green">106</FONT>    <a name="line.106"></a>
+<FONT color="green">107</FONT>        public EntityTypeData(String name, String type, String mapping) {<a name="line.107"></a>
+<FONT color="green">108</FONT>          this(name, type, mapping, false);<a name="line.108"></a>
+<FONT color="green">109</FONT>        }<a name="line.109"></a>
+<FONT color="green">110</FONT>    <a name="line.110"></a>
+<FONT color="green">111</FONT>        public EntityTypeData(String name, String type, String mapping, boolean verbose) {<a name="line.111"></a>
+<FONT color="green">112</FONT>          this.name = name;<a name="line.112"></a>
+<FONT color="green">113</FONT>          this.type = type;<a name="line.113"></a>
+<FONT color="green">114</FONT>          this.mapping = mapping;<a name="line.114"></a>
+<FONT color="green">115</FONT>          this.verbose = verbose;<a name="line.115"></a>
+<FONT color="green">116</FONT>          this.attributes = new ArrayList&lt;AttributeData&gt;();<a name="line.116"></a>
+<FONT color="green">117</FONT>        }<a name="line.117"></a>
+<FONT color="green">118</FONT>    <a name="line.118"></a>
+<FONT color="green">119</FONT>        public void add(AttributeData d) {<a name="line.119"></a>
+<FONT color="green">120</FONT>          attributes.add(d);<a name="line.120"></a>
+<FONT color="green">121</FONT>        }<a name="line.121"></a>
+<FONT color="green">122</FONT>        <a name="line.122"></a>
+<FONT color="green">123</FONT>      }<a name="line.123"></a>
+<FONT color="green">124</FONT>    <a name="line.124"></a>
+<FONT color="green">125</FONT>      public static class AttributeData {<a name="line.125"></a>
+<FONT color="green">126</FONT>        public final String name;<a name="line.126"></a>
+<FONT color="green">127</FONT>        public final String type;<a name="line.127"></a>
+<FONT color="green">128</FONT>        public final Boolean association;<a name="line.128"></a>
+<FONT color="green">129</FONT>        public final Boolean collection;<a name="line.129"></a>
+<FONT color="green">130</FONT>        public final String mapping;<a name="line.130"></a>
+<FONT color="green">131</FONT>    <a name="line.131"></a>
+<FONT color="green">132</FONT>        public AttributeData(String name, String type, Boolean association, Boolean collection, String mapping) {<a name="line.132"></a>
+<FONT color="green">133</FONT>          this.name = name;<a name="line.133"></a>
+<FONT color="green">134</FONT>          this.type = type;<a name="line.134"></a>
+<FONT color="green">135</FONT>          this.association = (association != null ? association : false);<a name="line.135"></a>
+<FONT color="green">136</FONT>          this.collection = (collection != null ? collection : false);<a name="line.136"></a>
+<FONT color="green">137</FONT>          this.mapping = mapping;<a name="line.137"></a>
+<FONT color="green">138</FONT>        }<a name="line.138"></a>
+<FONT color="green">139</FONT>        <a name="line.139"></a>
+<FONT color="green">140</FONT>      }<a name="line.140"></a>
+<FONT color="green">141</FONT>    }<a name="line.141"></a>
 
 
 
@@ -207,7 +202,6 @@
 
 
 
-</pre>
-</div>
-</body>
-</html>
+</PRE>
+</BODY>
+</HTML>

@@ -1,113 +1,108 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-<head>
-<title>Source code</title>
-<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
-</head>
-<body>
-<div class="sourceContainer">
-<pre><span class="sourceLineNo">001</span>/*<a name="line.1"></a>
-<span class="sourceLineNo">002</span> * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
-<span class="sourceLineNo">003</span> *<a name="line.3"></a>
-<span class="sourceLineNo">004</span> * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
-<span class="sourceLineNo">005</span> * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
-<span class="sourceLineNo">006</span> * published by the Free Software Foundation; either version 2.1 of<a name="line.6"></a>
-<span class="sourceLineNo">007</span> * the License, or (at your option) any later version.<a name="line.7"></a>
-<span class="sourceLineNo">008</span> *<a name="line.8"></a>
-<span class="sourceLineNo">009</span> * This software is distributed in the hope that it will be useful,<a name="line.9"></a>
-<span class="sourceLineNo">010</span> * but WITHOUT ANY WARRANTY; without even the implied warranty of<a name="line.10"></a>
-<span class="sourceLineNo">011</span> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU<a name="line.11"></a>
-<span class="sourceLineNo">012</span> * Lesser General Public License for more details.<a name="line.12"></a>
-<span class="sourceLineNo">013</span> *<a name="line.13"></a>
-<span class="sourceLineNo">014</span> * You should have received a copy of the GNU Lesser General Public<a name="line.14"></a>
-<span class="sourceLineNo">015</span> * License along with this software; if not, write to the Free<a name="line.15"></a>
-<span class="sourceLineNo">016</span> * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA<a name="line.16"></a>
-<span class="sourceLineNo">017</span> * 02110-1301 USA, or see the FSF site: http://www.fsf.org.<a name="line.17"></a>
-<span class="sourceLineNo">018</span> */<a name="line.18"></a>
-<span class="sourceLineNo">019</span><a name="line.19"></a>
-<span class="sourceLineNo">020</span>package org.crsh.vfs.spi;<a name="line.20"></a>
-<span class="sourceLineNo">021</span><a name="line.21"></a>
-<span class="sourceLineNo">022</span>import java.io.IOException;<a name="line.22"></a>
-<span class="sourceLineNo">023</span>import java.io.InputStream;<a name="line.23"></a>
-<span class="sourceLineNo">024</span>import java.util.Iterator;<a name="line.24"></a>
-<span class="sourceLineNo">025</span><a name="line.25"></a>
-<span class="sourceLineNo">026</span>/**<a name="line.26"></a>
-<span class="sourceLineNo">027</span> * &lt;p&gt;A driver for the file system, this interface is the Service Provider Interface (SPI) part<a name="line.27"></a>
-<span class="sourceLineNo">028</span> * provided by CRaSH.&lt;/p&gt;<a name="line.28"></a>
-<span class="sourceLineNo">029</span> *<a name="line.29"></a>
-<span class="sourceLineNo">030</span> * &lt;p&gt;The driver works with handles which are opaque objects that model a path in the file system,<a name="line.30"></a>
-<span class="sourceLineNo">031</span> * an handle can represent a file or a directory and is considered as non modifiable from the file<a name="line.31"></a>
-<span class="sourceLineNo">032</span> * system perspective.&lt;/p&gt;<a name="line.32"></a>
-<span class="sourceLineNo">033</span> *<a name="line.33"></a>
-<span class="sourceLineNo">034</span> * @param &lt;H&gt; the handle generic type.<a name="line.34"></a>
-<span class="sourceLineNo">035</span> */<a name="line.35"></a>
-<span class="sourceLineNo">036</span>public interface FSDriver&lt;H&gt; {<a name="line.36"></a>
-<span class="sourceLineNo">037</span><a name="line.37"></a>
-<span class="sourceLineNo">038</span>  /**<a name="line.38"></a>
-<span class="sourceLineNo">039</span>   * Returns the root handle.<a name="line.39"></a>
-<span class="sourceLineNo">040</span>   *<a name="line.40"></a>
-<span class="sourceLineNo">041</span>   * @return the root handle<a name="line.41"></a>
-<span class="sourceLineNo">042</span>   * @throws IOException any io exception<a name="line.42"></a>
-<span class="sourceLineNo">043</span>   */<a name="line.43"></a>
-<span class="sourceLineNo">044</span>  H root() throws IOException;<a name="line.44"></a>
-<span class="sourceLineNo">045</span><a name="line.45"></a>
-<span class="sourceLineNo">046</span>  /**<a name="line.46"></a>
-<span class="sourceLineNo">047</span>   * Returns the name of the handle.<a name="line.47"></a>
-<span class="sourceLineNo">048</span>   *<a name="line.48"></a>
-<span class="sourceLineNo">049</span>   * @param handle the handle<a name="line.49"></a>
-<span class="sourceLineNo">050</span>   * @return the handle name<a name="line.50"></a>
-<span class="sourceLineNo">051</span>   * @throws IOException any io exception<a name="line.51"></a>
-<span class="sourceLineNo">052</span>   */<a name="line.52"></a>
-<span class="sourceLineNo">053</span>  String name(H handle) throws IOException;<a name="line.53"></a>
-<span class="sourceLineNo">054</span><a name="line.54"></a>
-<span class="sourceLineNo">055</span>  /**<a name="line.55"></a>
-<span class="sourceLineNo">056</span>   * Returns true if the handle represent a directory.<a name="line.56"></a>
-<span class="sourceLineNo">057</span>   *<a name="line.57"></a>
-<span class="sourceLineNo">058</span>   * @param handle the handle<a name="line.58"></a>
-<span class="sourceLineNo">059</span>   * @return true if the handle is a directory, false otherwise<a name="line.59"></a>
-<span class="sourceLineNo">060</span>   * @throws IOException any io exception<a name="line.60"></a>
-<span class="sourceLineNo">061</span>   */<a name="line.61"></a>
-<span class="sourceLineNo">062</span>  boolean isDir(H handle) throws IOException;<a name="line.62"></a>
-<span class="sourceLineNo">063</span><a name="line.63"></a>
-<span class="sourceLineNo">064</span>  /**<a name="line.64"></a>
-<span class="sourceLineNo">065</span>   * Return the specific child of a directory handle, null should be returned if no such<a name="line.65"></a>
-<span class="sourceLineNo">066</span>   * child exist.<a name="line.66"></a>
-<span class="sourceLineNo">067</span>   *<a name="line.67"></a>
-<span class="sourceLineNo">068</span>   * @param handle the directory handle<a name="line.68"></a>
-<span class="sourceLineNo">069</span>   * @param name the child name<a name="line.69"></a>
-<span class="sourceLineNo">070</span>   * @return the specified child<a name="line.70"></a>
-<span class="sourceLineNo">071</span>   * @throws IOException any io exception<a name="line.71"></a>
-<span class="sourceLineNo">072</span>   */<a name="line.72"></a>
-<span class="sourceLineNo">073</span>  H child(H handle, String name) throws IOException;<a name="line.73"></a>
-<span class="sourceLineNo">074</span><a name="line.74"></a>
-<span class="sourceLineNo">075</span>  /**<a name="line.75"></a>
-<span class="sourceLineNo">076</span>   * Returns an iterable over the children of of a specific directory handle.<a name="line.76"></a>
-<span class="sourceLineNo">077</span>   *<a name="line.77"></a>
-<span class="sourceLineNo">078</span>   * @param handle the directory handle<a name="line.78"></a>
-<span class="sourceLineNo">079</span>   * @return the children as an iterable<a name="line.79"></a>
-<span class="sourceLineNo">080</span>   * @throws IOException any io exception<a name="line.80"></a>
-<span class="sourceLineNo">081</span>   */<a name="line.81"></a>
-<span class="sourceLineNo">082</span>  Iterable&lt;H&gt; children(H handle) throws IOException;<a name="line.82"></a>
-<span class="sourceLineNo">083</span><a name="line.83"></a>
-<span class="sourceLineNo">084</span>  /**<a name="line.84"></a>
-<span class="sourceLineNo">085</span>   * Return the last modified date timestamp of an handle.<a name="line.85"></a>
-<span class="sourceLineNo">086</span>   *<a name="line.86"></a>
-<span class="sourceLineNo">087</span>   * @param handle the handle<a name="line.87"></a>
-<span class="sourceLineNo">088</span>   * @return the last modified timestamp<a name="line.88"></a>
-<span class="sourceLineNo">089</span>   * @throws IOException any io exception<a name="line.89"></a>
-<span class="sourceLineNo">090</span>   */<a name="line.90"></a>
-<span class="sourceLineNo">091</span>  long getLastModified(H handle) throws IOException;<a name="line.91"></a>
-<span class="sourceLineNo">092</span><a name="line.92"></a>
-<span class="sourceLineNo">093</span>  /**<a name="line.93"></a>
-<span class="sourceLineNo">094</span>   * Return an iterator over the resources represented by the specified file handle.<a name="line.94"></a>
-<span class="sourceLineNo">095</span>   *<a name="line.95"></a>
-<span class="sourceLineNo">096</span>   * @param handle the file handle<a name="line.96"></a>
-<span class="sourceLineNo">097</span>   * @return the iterator<a name="line.97"></a>
-<span class="sourceLineNo">098</span>   * @throws IOException any io exception<a name="line.98"></a>
-<span class="sourceLineNo">099</span>   */<a name="line.99"></a>
-<span class="sourceLineNo">100</span>  Iterator&lt;InputStream&gt; open(H handle) throws IOException;<a name="line.100"></a>
-<span class="sourceLineNo">101</span><a name="line.101"></a>
-<span class="sourceLineNo">102</span>}<a name="line.102"></a>
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    /*<a name="line.1"></a>
+<FONT color="green">002</FONT>     * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
+<FONT color="green">003</FONT>     *<a name="line.3"></a>
+<FONT color="green">004</FONT>     * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
+<FONT color="green">005</FONT>     * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
+<FONT color="green">006</FONT>     * published by the Free Software Foundation; either version 2.1 of<a name="line.6"></a>
+<FONT color="green">007</FONT>     * the License, or (at your option) any later version.<a name="line.7"></a>
+<FONT color="green">008</FONT>     *<a name="line.8"></a>
+<FONT color="green">009</FONT>     * This software is distributed in the hope that it will be useful,<a name="line.9"></a>
+<FONT color="green">010</FONT>     * but WITHOUT ANY WARRANTY; without even the implied warranty of<a name="line.10"></a>
+<FONT color="green">011</FONT>     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU<a name="line.11"></a>
+<FONT color="green">012</FONT>     * Lesser General Public License for more details.<a name="line.12"></a>
+<FONT color="green">013</FONT>     *<a name="line.13"></a>
+<FONT color="green">014</FONT>     * You should have received a copy of the GNU Lesser General Public<a name="line.14"></a>
+<FONT color="green">015</FONT>     * License along with this software; if not, write to the Free<a name="line.15"></a>
+<FONT color="green">016</FONT>     * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA<a name="line.16"></a>
+<FONT color="green">017</FONT>     * 02110-1301 USA, or see the FSF site: http://www.fsf.org.<a name="line.17"></a>
+<FONT color="green">018</FONT>     */<a name="line.18"></a>
+<FONT color="green">019</FONT>    <a name="line.19"></a>
+<FONT color="green">020</FONT>    package org.crsh.vfs.spi;<a name="line.20"></a>
+<FONT color="green">021</FONT>    <a name="line.21"></a>
+<FONT color="green">022</FONT>    import java.io.IOException;<a name="line.22"></a>
+<FONT color="green">023</FONT>    import java.io.InputStream;<a name="line.23"></a>
+<FONT color="green">024</FONT>    import java.util.Iterator;<a name="line.24"></a>
+<FONT color="green">025</FONT>    <a name="line.25"></a>
+<FONT color="green">026</FONT>    /**<a name="line.26"></a>
+<FONT color="green">027</FONT>     * &lt;p&gt;A driver for the file system, this interface is the Service Provider Interface (SPI) part<a name="line.27"></a>
+<FONT color="green">028</FONT>     * provided by CRaSH.&lt;/p&gt;<a name="line.28"></a>
+<FONT color="green">029</FONT>     *<a name="line.29"></a>
+<FONT color="green">030</FONT>     * &lt;p&gt;The driver works with handles which are opaque objects that model a path in the file system,<a name="line.30"></a>
+<FONT color="green">031</FONT>     * an handle can represent a file or a directory and is considered as non modifiable from the file<a name="line.31"></a>
+<FONT color="green">032</FONT>     * system perspective.&lt;/p&gt;<a name="line.32"></a>
+<FONT color="green">033</FONT>     *<a name="line.33"></a>
+<FONT color="green">034</FONT>     * @param &lt;H&gt; the handle generic type.<a name="line.34"></a>
+<FONT color="green">035</FONT>     */<a name="line.35"></a>
+<FONT color="green">036</FONT>    public interface FSDriver&lt;H&gt; {<a name="line.36"></a>
+<FONT color="green">037</FONT>    <a name="line.37"></a>
+<FONT color="green">038</FONT>      /**<a name="line.38"></a>
+<FONT color="green">039</FONT>       * Returns the root handle.<a name="line.39"></a>
+<FONT color="green">040</FONT>       *<a name="line.40"></a>
+<FONT color="green">041</FONT>       * @return the root handle<a name="line.41"></a>
+<FONT color="green">042</FONT>       * @throws IOException any io exception<a name="line.42"></a>
+<FONT color="green">043</FONT>       */<a name="line.43"></a>
+<FONT color="green">044</FONT>      H root() throws IOException;<a name="line.44"></a>
+<FONT color="green">045</FONT>    <a name="line.45"></a>
+<FONT color="green">046</FONT>      /**<a name="line.46"></a>
+<FONT color="green">047</FONT>       * Returns the name of the handle.<a name="line.47"></a>
+<FONT color="green">048</FONT>       *<a name="line.48"></a>
+<FONT color="green">049</FONT>       * @param handle the handle<a name="line.49"></a>
+<FONT color="green">050</FONT>       * @return the handle name<a name="line.50"></a>
+<FONT color="green">051</FONT>       * @throws IOException any io exception<a name="line.51"></a>
+<FONT color="green">052</FONT>       */<a name="line.52"></a>
+<FONT color="green">053</FONT>      String name(H handle) throws IOException;<a name="line.53"></a>
+<FONT color="green">054</FONT>    <a name="line.54"></a>
+<FONT color="green">055</FONT>      /**<a name="line.55"></a>
+<FONT color="green">056</FONT>       * Returns true if the handle represent a directory.<a name="line.56"></a>
+<FONT color="green">057</FONT>       *<a name="line.57"></a>
+<FONT color="green">058</FONT>       * @param handle the handle<a name="line.58"></a>
+<FONT color="green">059</FONT>       * @return true if the handle is a directory, false otherwise<a name="line.59"></a>
+<FONT color="green">060</FONT>       * @throws IOException any io exception<a name="line.60"></a>
+<FONT color="green">061</FONT>       */<a name="line.61"></a>
+<FONT color="green">062</FONT>      boolean isDir(H handle) throws IOException;<a name="line.62"></a>
+<FONT color="green">063</FONT>    <a name="line.63"></a>
+<FONT color="green">064</FONT>      /**<a name="line.64"></a>
+<FONT color="green">065</FONT>       * Return the specific child of a directory handle, null should be returned if no such<a name="line.65"></a>
+<FONT color="green">066</FONT>       * child exist.<a name="line.66"></a>
+<FONT color="green">067</FONT>       *<a name="line.67"></a>
+<FONT color="green">068</FONT>       * @param handle the directory handle<a name="line.68"></a>
+<FONT color="green">069</FONT>       * @param name the child name<a name="line.69"></a>
+<FONT color="green">070</FONT>       * @return the specified child<a name="line.70"></a>
+<FONT color="green">071</FONT>       * @throws IOException any io exception<a name="line.71"></a>
+<FONT color="green">072</FONT>       */<a name="line.72"></a>
+<FONT color="green">073</FONT>      H child(H handle, String name) throws IOException;<a name="line.73"></a>
+<FONT color="green">074</FONT>    <a name="line.74"></a>
+<FONT color="green">075</FONT>      /**<a name="line.75"></a>
+<FONT color="green">076</FONT>       * Returns an iterable over the children of of a specific directory handle.<a name="line.76"></a>
+<FONT color="green">077</FONT>       *<a name="line.77"></a>
+<FONT color="green">078</FONT>       * @param handle the directory handle<a name="line.78"></a>
+<FONT color="green">079</FONT>       * @return the children as an iterable<a name="line.79"></a>
+<FONT color="green">080</FONT>       * @throws IOException any io exception<a name="line.80"></a>
+<FONT color="green">081</FONT>       */<a name="line.81"></a>
+<FONT color="green">082</FONT>      Iterable&lt;H&gt; children(H handle) throws IOException;<a name="line.82"></a>
+<FONT color="green">083</FONT>    <a name="line.83"></a>
+<FONT color="green">084</FONT>      /**<a name="line.84"></a>
+<FONT color="green">085</FONT>       * Return the last modified date timestamp of an handle.<a name="line.85"></a>
+<FONT color="green">086</FONT>       *<a name="line.86"></a>
+<FONT color="green">087</FONT>       * @param handle the handle<a name="line.87"></a>
+<FONT color="green">088</FONT>       * @return the last modified timestamp<a name="line.88"></a>
+<FONT color="green">089</FONT>       * @throws IOException any io exception<a name="line.89"></a>
+<FONT color="green">090</FONT>       */<a name="line.90"></a>
+<FONT color="green">091</FONT>      long getLastModified(H handle) throws IOException;<a name="line.91"></a>
+<FONT color="green">092</FONT>    <a name="line.92"></a>
+<FONT color="green">093</FONT>      /**<a name="line.93"></a>
+<FONT color="green">094</FONT>       * Return an iterator over the resources represented by the specified file handle.<a name="line.94"></a>
+<FONT color="green">095</FONT>       *<a name="line.95"></a>
+<FONT color="green">096</FONT>       * @param handle the file handle<a name="line.96"></a>
+<FONT color="green">097</FONT>       * @return the iterator<a name="line.97"></a>
+<FONT color="green">098</FONT>       * @throws IOException any io exception<a name="line.98"></a>
+<FONT color="green">099</FONT>       */<a name="line.99"></a>
+<FONT color="green">100</FONT>      Iterator&lt;InputStream&gt; open(H handle) throws IOException;<a name="line.100"></a>
+<FONT color="green">101</FONT>    <a name="line.101"></a>
+<FONT color="green">102</FONT>    }<a name="line.102"></a>
 
 
 
@@ -168,7 +163,6 @@
 
 
 
-</pre>
-</div>
-</body>
-</html>
+</PRE>
+</BODY>
+</HTML>

@@ -1,98 +1,93 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-<head>
-<title>Source code</title>
-<link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
-</head>
-<body>
-<div class="sourceContainer">
-<pre><span class="sourceLineNo">001</span>/*<a name="line.1"></a>
-<span class="sourceLineNo">002</span> * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
-<span class="sourceLineNo">003</span> *<a name="line.3"></a>
-<span class="sourceLineNo">004</span> * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
-<span class="sourceLineNo">005</span> * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
-<span class="sourceLineNo">006</span> * published by the Free Software Foundation; either version 2.1 of<a name="line.6"></a>
-<span class="sourceLineNo">007</span> * the License, or (at your option) any later version.<a name="line.7"></a>
-<span class="sourceLineNo">008</span> *<a name="line.8"></a>
-<span class="sourceLineNo">009</span> * This software is distributed in the hope that it will be useful,<a name="line.9"></a>
-<span class="sourceLineNo">010</span> * but WITHOUT ANY WARRANTY; without even the implied warranty of<a name="line.10"></a>
-<span class="sourceLineNo">011</span> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU<a name="line.11"></a>
-<span class="sourceLineNo">012</span> * Lesser General Public License for more details.<a name="line.12"></a>
-<span class="sourceLineNo">013</span> *<a name="line.13"></a>
-<span class="sourceLineNo">014</span> * You should have received a copy of the GNU Lesser General Public<a name="line.14"></a>
-<span class="sourceLineNo">015</span> * License along with this software; if not, write to the Free<a name="line.15"></a>
-<span class="sourceLineNo">016</span> * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA<a name="line.16"></a>
-<span class="sourceLineNo">017</span> * 02110-1301 USA, or see the FSF site: http://www.fsf.org.<a name="line.17"></a>
-<span class="sourceLineNo">018</span> */<a name="line.18"></a>
-<span class="sourceLineNo">019</span>package org.crsh.lang.impl.java;<a name="line.19"></a>
-<span class="sourceLineNo">020</span><a name="line.20"></a>
-<span class="sourceLineNo">021</span>import javax.tools.Diagnostic;<a name="line.21"></a>
-<span class="sourceLineNo">022</span>import javax.tools.DiagnosticCollector;<a name="line.22"></a>
-<span class="sourceLineNo">023</span>import javax.tools.JavaCompiler;<a name="line.23"></a>
-<span class="sourceLineNo">024</span>import javax.tools.JavaFileObject;<a name="line.24"></a>
-<span class="sourceLineNo">025</span>import javax.tools.ToolProvider;<a name="line.25"></a>
-<span class="sourceLineNo">026</span>import java.io.IOException;<a name="line.26"></a>
-<span class="sourceLineNo">027</span>import java.net.URISyntaxException;<a name="line.27"></a>
-<span class="sourceLineNo">028</span>import java.nio.charset.Charset;<a name="line.28"></a>
-<span class="sourceLineNo">029</span>import java.util.ArrayList;<a name="line.29"></a>
-<span class="sourceLineNo">030</span>import java.util.Collections;<a name="line.30"></a>
-<span class="sourceLineNo">031</span>import java.util.List;<a name="line.31"></a>
-<span class="sourceLineNo">032</span><a name="line.32"></a>
-<span class="sourceLineNo">033</span>/** @author Julien Viet */<a name="line.33"></a>
-<span class="sourceLineNo">034</span>class Compiler {<a name="line.34"></a>
-<span class="sourceLineNo">035</span><a name="line.35"></a>
-<span class="sourceLineNo">036</span>  /** . */<a name="line.36"></a>
-<span class="sourceLineNo">037</span>  private final ClassLoader classLoader;<a name="line.37"></a>
-<span class="sourceLineNo">038</span><a name="line.38"></a>
-<span class="sourceLineNo">039</span>  Compiler() {<a name="line.39"></a>
-<span class="sourceLineNo">040</span>    this.classLoader = Thread.currentThread().getContextClassLoader();<a name="line.40"></a>
-<span class="sourceLineNo">041</span>  }<a name="line.41"></a>
-<span class="sourceLineNo">042</span><a name="line.42"></a>
-<span class="sourceLineNo">043</span>  Compiler(ClassLoader classLoader) {<a name="line.43"></a>
-<span class="sourceLineNo">044</span>    this.classLoader = classLoader;<a name="line.44"></a>
-<span class="sourceLineNo">045</span>  }<a name="line.45"></a>
-<span class="sourceLineNo">046</span><a name="line.46"></a>
-<span class="sourceLineNo">047</span>  List&lt;JavaClassFileObject&gt; compile(String className, String source) throws IOException, CompilationFailureException {<a name="line.47"></a>
-<span class="sourceLineNo">048</span><a name="line.48"></a>
-<span class="sourceLineNo">049</span>    // Get compiler<a name="line.49"></a>
-<span class="sourceLineNo">050</span>    JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();<a name="line.50"></a>
-<span class="sourceLineNo">051</span><a name="line.51"></a>
-<span class="sourceLineNo">052</span>    // Diagnostics<a name="line.52"></a>
-<span class="sourceLineNo">053</span>    DiagnosticCollector&lt;JavaFileObject&gt; diagnostics = new DiagnosticCollector&lt;JavaFileObject&gt;();<a name="line.53"></a>
-<span class="sourceLineNo">054</span><a name="line.54"></a>
-<span class="sourceLineNo">055</span>    // The compiler<a name="line.55"></a>
-<span class="sourceLineNo">056</span>    JavaFileManagerImpl fileManager = new JavaFileManagerImpl(<a name="line.56"></a>
-<span class="sourceLineNo">057</span>        compiler.getStandardFileManager(diagnostics, null, Charset.defaultCharset()),<a name="line.57"></a>
-<span class="sourceLineNo">058</span>        new ClasspathResolver(classLoader));<a name="line.58"></a>
-<span class="sourceLineNo">059</span><a name="line.59"></a>
-<span class="sourceLineNo">060</span>    //<a name="line.60"></a>
-<span class="sourceLineNo">061</span>    List&lt;JavaFileObject&gt; sources;<a name="line.61"></a>
-<span class="sourceLineNo">062</span>    try {<a name="line.62"></a>
-<span class="sourceLineNo">063</span>      sources = Collections.&lt;JavaFileObject&gt;singletonList(new JavaSourceFileObject(className, source));<a name="line.63"></a>
-<span class="sourceLineNo">064</span>    }<a name="line.64"></a>
-<span class="sourceLineNo">065</span>    catch (URISyntaxException e) {<a name="line.65"></a>
-<span class="sourceLineNo">066</span>      throw new IOException(e);<a name="line.66"></a>
-<span class="sourceLineNo">067</span>    }<a name="line.67"></a>
-<span class="sourceLineNo">068</span><a name="line.68"></a>
-<span class="sourceLineNo">069</span>    // Compile<a name="line.69"></a>
-<span class="sourceLineNo">070</span>    JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, diagnostics, null, null, sources);<a name="line.70"></a>
-<span class="sourceLineNo">071</span><a name="line.71"></a>
-<span class="sourceLineNo">072</span>    //<a name="line.72"></a>
-<span class="sourceLineNo">073</span>    Boolean ok = task.call();<a name="line.73"></a>
-<span class="sourceLineNo">074</span>    if (!ok) {<a name="line.74"></a>
-<span class="sourceLineNo">075</span>      ArrayList&lt;Diagnostic&lt;? extends JavaFileObject&gt;&gt; errors = new ArrayList&lt;Diagnostic&lt;? extends JavaFileObject&gt;&gt;();<a name="line.75"></a>
-<span class="sourceLineNo">076</span>      for (Diagnostic&lt;? extends JavaFileObject&gt; diagnostic : diagnostics.getDiagnostics()) {<a name="line.76"></a>
-<span class="sourceLineNo">077</span>        if (diagnostic.getKind() == Diagnostic.Kind.ERROR) {<a name="line.77"></a>
-<span class="sourceLineNo">078</span>          errors.add(diagnostic);<a name="line.78"></a>
-<span class="sourceLineNo">079</span>        }<a name="line.79"></a>
-<span class="sourceLineNo">080</span>      }<a name="line.80"></a>
-<span class="sourceLineNo">081</span>      throw new CompilationFailureException(errors);<a name="line.81"></a>
-<span class="sourceLineNo">082</span>    } else {<a name="line.82"></a>
-<span class="sourceLineNo">083</span>      return new ArrayList&lt;JavaClassFileObject&gt;(fileManager.getClasses());<a name="line.83"></a>
-<span class="sourceLineNo">084</span>    }<a name="line.84"></a>
-<span class="sourceLineNo">085</span>  }<a name="line.85"></a>
-<span class="sourceLineNo">086</span><a name="line.86"></a>
-<span class="sourceLineNo">087</span>}<a name="line.87"></a>
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    /*<a name="line.1"></a>
+<FONT color="green">002</FONT>     * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
+<FONT color="green">003</FONT>     *<a name="line.3"></a>
+<FONT color="green">004</FONT>     * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
+<FONT color="green">005</FONT>     * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
+<FONT color="green">006</FONT>     * published by the Free Software Foundation; either version 2.1 of<a name="line.6"></a>
+<FONT color="green">007</FONT>     * the License, or (at your option) any later version.<a name="line.7"></a>
+<FONT color="green">008</FONT>     *<a name="line.8"></a>
+<FONT color="green">009</FONT>     * This software is distributed in the hope that it will be useful,<a name="line.9"></a>
+<FONT color="green">010</FONT>     * but WITHOUT ANY WARRANTY; without even the implied warranty of<a name="line.10"></a>
+<FONT color="green">011</FONT>     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU<a name="line.11"></a>
+<FONT color="green">012</FONT>     * Lesser General Public License for more details.<a name="line.12"></a>
+<FONT color="green">013</FONT>     *<a name="line.13"></a>
+<FONT color="green">014</FONT>     * You should have received a copy of the GNU Lesser General Public<a name="line.14"></a>
+<FONT color="green">015</FONT>     * License along with this software; if not, write to the Free<a name="line.15"></a>
+<FONT color="green">016</FONT>     * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA<a name="line.16"></a>
+<FONT color="green">017</FONT>     * 02110-1301 USA, or see the FSF site: http://www.fsf.org.<a name="line.17"></a>
+<FONT color="green">018</FONT>     */<a name="line.18"></a>
+<FONT color="green">019</FONT>    package org.crsh.lang.impl.java;<a name="line.19"></a>
+<FONT color="green">020</FONT>    <a name="line.20"></a>
+<FONT color="green">021</FONT>    import javax.tools.Diagnostic;<a name="line.21"></a>
+<FONT color="green">022</FONT>    import javax.tools.DiagnosticCollector;<a name="line.22"></a>
+<FONT color="green">023</FONT>    import javax.tools.JavaCompiler;<a name="line.23"></a>
+<FONT color="green">024</FONT>    import javax.tools.JavaFileObject;<a name="line.24"></a>
+<FONT color="green">025</FONT>    import javax.tools.ToolProvider;<a name="line.25"></a>
+<FONT color="green">026</FONT>    import java.io.IOException;<a name="line.26"></a>
+<FONT color="green">027</FONT>    import java.net.URISyntaxException;<a name="line.27"></a>
+<FONT color="green">028</FONT>    import java.nio.charset.Charset;<a name="line.28"></a>
+<FONT color="green">029</FONT>    import java.util.ArrayList;<a name="line.29"></a>
+<FONT color="green">030</FONT>    import java.util.Collections;<a name="line.30"></a>
+<FONT color="green">031</FONT>    import java.util.List;<a name="line.31"></a>
+<FONT color="green">032</FONT>    <a name="line.32"></a>
+<FONT color="green">033</FONT>    /** @author Julien Viet */<a name="line.33"></a>
+<FONT color="green">034</FONT>    class Compiler {<a name="line.34"></a>
+<FONT color="green">035</FONT>    <a name="line.35"></a>
+<FONT color="green">036</FONT>      /** . */<a name="line.36"></a>
+<FONT color="green">037</FONT>      private final ClassLoader classLoader;<a name="line.37"></a>
+<FONT color="green">038</FONT>    <a name="line.38"></a>
+<FONT color="green">039</FONT>      Compiler() {<a name="line.39"></a>
+<FONT color="green">040</FONT>        this.classLoader = Thread.currentThread().getContextClassLoader();<a name="line.40"></a>
+<FONT color="green">041</FONT>      }<a name="line.41"></a>
+<FONT color="green">042</FONT>    <a name="line.42"></a>
+<FONT color="green">043</FONT>      Compiler(ClassLoader classLoader) {<a name="line.43"></a>
+<FONT color="green">044</FONT>        this.classLoader = classLoader;<a name="line.44"></a>
+<FONT color="green">045</FONT>      }<a name="line.45"></a>
+<FONT color="green">046</FONT>    <a name="line.46"></a>
+<FONT color="green">047</FONT>      List&lt;JavaClassFileObject&gt; compile(String className, String source) throws IOException, CompilationFailureException {<a name="line.47"></a>
+<FONT color="green">048</FONT>    <a name="line.48"></a>
+<FONT color="green">049</FONT>        // Get compiler<a name="line.49"></a>
+<FONT color="green">050</FONT>        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();<a name="line.50"></a>
+<FONT color="green">051</FONT>    <a name="line.51"></a>
+<FONT color="green">052</FONT>        // Diagnostics<a name="line.52"></a>
+<FONT color="green">053</FONT>        DiagnosticCollector&lt;JavaFileObject&gt; diagnostics = new DiagnosticCollector&lt;JavaFileObject&gt;();<a name="line.53"></a>
+<FONT color="green">054</FONT>    <a name="line.54"></a>
+<FONT color="green">055</FONT>        // The compiler<a name="line.55"></a>
+<FONT color="green">056</FONT>        JavaFileManagerImpl fileManager = new JavaFileManagerImpl(<a name="line.56"></a>
+<FONT color="green">057</FONT>            compiler.getStandardFileManager(diagnostics, null, Charset.defaultCharset()),<a name="line.57"></a>
+<FONT color="green">058</FONT>            new ClasspathResolver(classLoader));<a name="line.58"></a>
+<FONT color="green">059</FONT>    <a name="line.59"></a>
+<FONT color="green">060</FONT>        //<a name="line.60"></a>
+<FONT color="green">061</FONT>        List&lt;JavaFileObject&gt; sources;<a name="line.61"></a>
+<FONT color="green">062</FONT>        try {<a name="line.62"></a>
+<FONT color="green">063</FONT>          sources = Collections.&lt;JavaFileObject&gt;singletonList(new JavaSourceFileObject(className, source));<a name="line.63"></a>
+<FONT color="green">064</FONT>        }<a name="line.64"></a>
+<FONT color="green">065</FONT>        catch (URISyntaxException e) {<a name="line.65"></a>
+<FONT color="green">066</FONT>          throw new IOException(e);<a name="line.66"></a>
+<FONT color="green">067</FONT>        }<a name="line.67"></a>
+<FONT color="green">068</FONT>    <a name="line.68"></a>
+<FONT color="green">069</FONT>        // Compile<a name="line.69"></a>
+<FONT color="green">070</FONT>        JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, diagnostics, null, null, sources);<a name="line.70"></a>
+<FONT color="green">071</FONT>    <a name="line.71"></a>
+<FONT color="green">072</FONT>        //<a name="line.72"></a>
+<FONT color="green">073</FONT>        Boolean ok = task.call();<a name="line.73"></a>
+<FONT color="green">074</FONT>        if (!ok) {<a name="line.74"></a>
+<FONT color="green">075</FONT>          ArrayList&lt;Diagnostic&lt;? extends JavaFileObject&gt;&gt; errors = new ArrayList&lt;Diagnostic&lt;? extends JavaFileObject&gt;&gt;();<a name="line.75"></a>
+<FONT color="green">076</FONT>          for (Diagnostic&lt;? extends JavaFileObject&gt; diagnostic : diagnostics.getDiagnostics()) {<a name="line.76"></a>
+<FONT color="green">077</FONT>            if (diagnostic.getKind() == Diagnostic.Kind.ERROR) {<a name="line.77"></a>
+<FONT color="green">078</FONT>              errors.add(diagnostic);<a name="line.78"></a>
+<FONT color="green">079</FONT>            }<a name="line.79"></a>
+<FONT color="green">080</FONT>          }<a name="line.80"></a>
+<FONT color="green">081</FONT>          throw new CompilationFailureException(errors);<a name="line.81"></a>
+<FONT color="green">082</FONT>        } else {<a name="line.82"></a>
+<FONT color="green">083</FONT>          return new ArrayList&lt;JavaClassFileObject&gt;(fileManager.getClasses());<a name="line.83"></a>
+<FONT color="green">084</FONT>        }<a name="line.84"></a>
+<FONT color="green">085</FONT>      }<a name="line.85"></a>
+<FONT color="green">086</FONT>    <a name="line.86"></a>
+<FONT color="green">087</FONT>    }<a name="line.87"></a>
 
 
 
@@ -153,7 +148,6 @@
 
 
 
-</pre>
-</div>
-</body>
-</html>
+</PRE>
+</BODY>
+</HTML>

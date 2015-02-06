@@ -1,153 +1,148 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-<head>
-<title>Source code</title>
-<link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
-</head>
-<body>
-<div class="sourceContainer">
-<pre><span class="sourceLineNo">001</span>/*<a name="line.1"></a>
-<span class="sourceLineNo">002</span> * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
-<span class="sourceLineNo">003</span> *<a name="line.3"></a>
-<span class="sourceLineNo">004</span> * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
-<span class="sourceLineNo">005</span> * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
-<span class="sourceLineNo">006</span> * published by the Free Software Foundation; either version 2.1 of<a name="line.6"></a>
-<span class="sourceLineNo">007</span> * the License, or (at your option) any later version.<a name="line.7"></a>
-<span class="sourceLineNo">008</span> *<a name="line.8"></a>
-<span class="sourceLineNo">009</span> * This software is distributed in the hope that it will be useful,<a name="line.9"></a>
-<span class="sourceLineNo">010</span> * but WITHOUT ANY WARRANTY; without even the implied warranty of<a name="line.10"></a>
-<span class="sourceLineNo">011</span> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU<a name="line.11"></a>
-<span class="sourceLineNo">012</span> * Lesser General Public License for more details.<a name="line.12"></a>
-<span class="sourceLineNo">013</span> *<a name="line.13"></a>
-<span class="sourceLineNo">014</span> * You should have received a copy of the GNU Lesser General Public<a name="line.14"></a>
-<span class="sourceLineNo">015</span> * License along with this software; if not, write to the Free<a name="line.15"></a>
-<span class="sourceLineNo">016</span> * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA<a name="line.16"></a>
-<span class="sourceLineNo">017</span> * 02110-1301 USA, or see the FSF site: http://www.fsf.org.<a name="line.17"></a>
-<span class="sourceLineNo">018</span> */<a name="line.18"></a>
-<span class="sourceLineNo">019</span><a name="line.19"></a>
-<span class="sourceLineNo">020</span>package org.crsh.spring;<a name="line.20"></a>
-<span class="sourceLineNo">021</span><a name="line.21"></a>
-<span class="sourceLineNo">022</span>import org.crsh.plugin.Embedded;<a name="line.22"></a>
-<span class="sourceLineNo">023</span>import org.crsh.plugin.PluginDiscovery;<a name="line.23"></a>
-<span class="sourceLineNo">024</span>import org.crsh.util.Utils;<a name="line.24"></a>
-<span class="sourceLineNo">025</span>import org.crsh.vfs.spi.FSMountFactory;<a name="line.25"></a>
-<span class="sourceLineNo">026</span>import org.crsh.vfs.spi.file.FileMountFactory;<a name="line.26"></a>
-<span class="sourceLineNo">027</span>import org.crsh.vfs.spi.url.ClassPathMountFactory;<a name="line.27"></a>
-<span class="sourceLineNo">028</span>import org.springframework.beans.BeansException;<a name="line.28"></a>
-<span class="sourceLineNo">029</span>import org.springframework.beans.factory.BeanClassLoaderAware;<a name="line.29"></a>
-<span class="sourceLineNo">030</span>import org.springframework.beans.factory.BeanFactory;<a name="line.30"></a>
-<span class="sourceLineNo">031</span>import org.springframework.beans.factory.BeanFactoryAware;<a name="line.31"></a>
-<span class="sourceLineNo">032</span>import org.springframework.beans.factory.DisposableBean;<a name="line.32"></a>
-<span class="sourceLineNo">033</span>import org.springframework.beans.factory.InitializingBean;<a name="line.33"></a>
-<span class="sourceLineNo">034</span>import org.springframework.beans.factory.ListableBeanFactory;<a name="line.34"></a>
-<span class="sourceLineNo">035</span><a name="line.35"></a>
-<span class="sourceLineNo">036</span>import java.util.Collections;<a name="line.36"></a>
-<span class="sourceLineNo">037</span>import java.util.HashMap;<a name="line.37"></a>
-<span class="sourceLineNo">038</span>import java.util.Map;<a name="line.38"></a>
-<span class="sourceLineNo">039</span>import java.util.logging.Level;<a name="line.39"></a>
-<span class="sourceLineNo">040</span><a name="line.40"></a>
-<span class="sourceLineNo">041</span>public class SpringBootstrap extends Embedded implements<a name="line.41"></a>
-<span class="sourceLineNo">042</span>    BeanClassLoaderAware,<a name="line.42"></a>
-<span class="sourceLineNo">043</span>    BeanFactoryAware,<a name="line.43"></a>
-<span class="sourceLineNo">044</span>    InitializingBean,<a name="line.44"></a>
-<span class="sourceLineNo">045</span>    DisposableBean {<a name="line.45"></a>
-<span class="sourceLineNo">046</span><a name="line.46"></a>
-<span class="sourceLineNo">047</span>  /** . */<a name="line.47"></a>
-<span class="sourceLineNo">048</span>  private ClassLoader loader;<a name="line.48"></a>
-<span class="sourceLineNo">049</span><a name="line.49"></a>
-<span class="sourceLineNo">050</span>  /** . */<a name="line.50"></a>
-<span class="sourceLineNo">051</span>  private BeanFactory factory;<a name="line.51"></a>
-<span class="sourceLineNo">052</span><a name="line.52"></a>
-<span class="sourceLineNo">053</span>  /** . */<a name="line.53"></a>
-<span class="sourceLineNo">054</span>  protected final HashMap&lt;String, FSMountFactory&lt;?&gt;&gt; drivers = new HashMap&lt;String, FSMountFactory&lt;?&gt;&gt;();<a name="line.54"></a>
-<span class="sourceLineNo">055</span><a name="line.55"></a>
-<span class="sourceLineNo">056</span>  /** . */<a name="line.56"></a>
-<span class="sourceLineNo">057</span>  private String cmdMountPointConfig;<a name="line.57"></a>
-<span class="sourceLineNo">058</span><a name="line.58"></a>
-<span class="sourceLineNo">059</span>  /** . */<a name="line.59"></a>
-<span class="sourceLineNo">060</span>  private String confMountPointConfig;<a name="line.60"></a>
-<span class="sourceLineNo">061</span><a name="line.61"></a>
-<span class="sourceLineNo">062</span>  public SpringBootstrap() {<a name="line.62"></a>
-<span class="sourceLineNo">063</span>  }<a name="line.63"></a>
-<span class="sourceLineNo">064</span><a name="line.64"></a>
-<span class="sourceLineNo">065</span>  public String getCmdMountPointConfig() {<a name="line.65"></a>
-<span class="sourceLineNo">066</span>    return cmdMountPointConfig;<a name="line.66"></a>
-<span class="sourceLineNo">067</span>  }<a name="line.67"></a>
-<span class="sourceLineNo">068</span><a name="line.68"></a>
-<span class="sourceLineNo">069</span>  public void setCmdMountPointConfig(String cmdMountPointConfig) {<a name="line.69"></a>
-<span class="sourceLineNo">070</span>    this.cmdMountPointConfig = cmdMountPointConfig;<a name="line.70"></a>
-<span class="sourceLineNo">071</span>  }<a name="line.71"></a>
-<span class="sourceLineNo">072</span><a name="line.72"></a>
-<span class="sourceLineNo">073</span>  public String getConfMountPointConfig() {<a name="line.73"></a>
-<span class="sourceLineNo">074</span>    return confMountPointConfig;<a name="line.74"></a>
-<span class="sourceLineNo">075</span>  }<a name="line.75"></a>
-<span class="sourceLineNo">076</span><a name="line.76"></a>
-<span class="sourceLineNo">077</span>  public void setConfMountPointConfig(String confMountPointConfig) {<a name="line.77"></a>
-<span class="sourceLineNo">078</span>    this.confMountPointConfig = confMountPointConfig;<a name="line.78"></a>
-<span class="sourceLineNo">079</span>  }<a name="line.79"></a>
-<span class="sourceLineNo">080</span><a name="line.80"></a>
-<span class="sourceLineNo">081</span>  public void setBeanClassLoader(ClassLoader loader) {<a name="line.81"></a>
-<span class="sourceLineNo">082</span>    this.loader = loader;<a name="line.82"></a>
-<span class="sourceLineNo">083</span>  }<a name="line.83"></a>
-<span class="sourceLineNo">084</span><a name="line.84"></a>
-<span class="sourceLineNo">085</span>  public void setBeanFactory(BeanFactory factory) throws BeansException {<a name="line.85"></a>
-<span class="sourceLineNo">086</span>    this.factory = factory;<a name="line.86"></a>
-<span class="sourceLineNo">087</span>  }<a name="line.87"></a>
-<span class="sourceLineNo">088</span><a name="line.88"></a>
-<span class="sourceLineNo">089</span>  public void afterPropertiesSet() throws Exception {<a name="line.89"></a>
-<span class="sourceLineNo">090</span><a name="line.90"></a>
-<span class="sourceLineNo">091</span>    // Initialise the registerable drivers<a name="line.91"></a>
-<span class="sourceLineNo">092</span>    try {<a name="line.92"></a>
-<span class="sourceLineNo">093</span>      drivers.put("classpath", new ClassPathMountFactory(loader));<a name="line.93"></a>
-<span class="sourceLineNo">094</span>      drivers.put("file", new FileMountFactory(Utils.getCurrentDirectory()));<a name="line.94"></a>
-<span class="sourceLineNo">095</span>    }<a name="line.95"></a>
-<span class="sourceLineNo">096</span>    catch (Exception e) {<a name="line.96"></a>
-<span class="sourceLineNo">097</span>      log.log(Level.SEVERE, "Coult not initialize classpath driver", e);<a name="line.97"></a>
-<span class="sourceLineNo">098</span>      return;<a name="line.98"></a>
-<span class="sourceLineNo">099</span>    }<a name="line.99"></a>
-<span class="sourceLineNo">100</span><a name="line.100"></a>
-<span class="sourceLineNo">101</span>    // List beans<a name="line.101"></a>
-<span class="sourceLineNo">102</span>    Map&lt;String,Object&gt; attributes = new HashMap&lt;String, Object&gt;();<a name="line.102"></a>
-<span class="sourceLineNo">103</span>    attributes.put("factory", factory);<a name="line.103"></a>
-<span class="sourceLineNo">104</span>    if (factory instanceof ListableBeanFactory) {<a name="line.104"></a>
-<span class="sourceLineNo">105</span>      ListableBeanFactory listable = (ListableBeanFactory)factory;<a name="line.105"></a>
-<span class="sourceLineNo">106</span>      attributes.put("beans", new SpringMap(listable));<a name="line.106"></a>
-<span class="sourceLineNo">107</span>    }<a name="line.107"></a>
-<span class="sourceLineNo">108</span><a name="line.108"></a>
-<span class="sourceLineNo">109</span>    //<a name="line.109"></a>
-<span class="sourceLineNo">110</span>    PluginDiscovery discovery = new SpringPluginDiscovery(loader, factory);<a name="line.110"></a>
-<span class="sourceLineNo">111</span><a name="line.111"></a>
-<span class="sourceLineNo">112</span>    //<a name="line.112"></a>
-<span class="sourceLineNo">113</span>    start(Collections.unmodifiableMap(attributes), discovery, loader);<a name="line.113"></a>
-<span class="sourceLineNo">114</span>  }<a name="line.114"></a>
-<span class="sourceLineNo">115</span><a name="line.115"></a>
-<span class="sourceLineNo">116</span>  @Override<a name="line.116"></a>
-<span class="sourceLineNo">117</span>  protected Map&lt;String, FSMountFactory&lt;?&gt;&gt; getMountFactories() {<a name="line.117"></a>
-<span class="sourceLineNo">118</span>    return drivers;<a name="line.118"></a>
-<span class="sourceLineNo">119</span>  }<a name="line.119"></a>
-<span class="sourceLineNo">120</span><a name="line.120"></a>
-<span class="sourceLineNo">121</span>  @Override<a name="line.121"></a>
-<span class="sourceLineNo">122</span>  protected String resolveConfMountPointConfig() {<a name="line.122"></a>
-<span class="sourceLineNo">123</span>    return confMountPointConfig != null ? confMountPointConfig : getDefaultConfMountPointConfig();<a name="line.123"></a>
-<span class="sourceLineNo">124</span>  }<a name="line.124"></a>
-<span class="sourceLineNo">125</span><a name="line.125"></a>
-<span class="sourceLineNo">126</span>  @Override<a name="line.126"></a>
-<span class="sourceLineNo">127</span>  protected String resolveCmdMountPointConfig() {<a name="line.127"></a>
-<span class="sourceLineNo">128</span>    return cmdMountPointConfig != null ? cmdMountPointConfig : getDefaultCmdMountPointConfig();<a name="line.128"></a>
-<span class="sourceLineNo">129</span>  }<a name="line.129"></a>
-<span class="sourceLineNo">130</span><a name="line.130"></a>
-<span class="sourceLineNo">131</span>  protected String getDefaultCmdMountPointConfig() {<a name="line.131"></a>
-<span class="sourceLineNo">132</span>    return "classpath:/crash/commands/";<a name="line.132"></a>
-<span class="sourceLineNo">133</span>  }<a name="line.133"></a>
-<span class="sourceLineNo">134</span><a name="line.134"></a>
-<span class="sourceLineNo">135</span>  protected String getDefaultConfMountPointConfig() {<a name="line.135"></a>
-<span class="sourceLineNo">136</span>    return "classpath:/crash/";<a name="line.136"></a>
-<span class="sourceLineNo">137</span>  }<a name="line.137"></a>
-<span class="sourceLineNo">138</span><a name="line.138"></a>
-<span class="sourceLineNo">139</span>  public void destroy() throws Exception {<a name="line.139"></a>
-<span class="sourceLineNo">140</span>    stop();<a name="line.140"></a>
-<span class="sourceLineNo">141</span>  }<a name="line.141"></a>
-<span class="sourceLineNo">142</span>}<a name="line.142"></a>
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    /*<a name="line.1"></a>
+<FONT color="green">002</FONT>     * Copyright (C) 2012 eXo Platform SAS.<a name="line.2"></a>
+<FONT color="green">003</FONT>     *<a name="line.3"></a>
+<FONT color="green">004</FONT>     * This is free software; you can redistribute it and/or modify it<a name="line.4"></a>
+<FONT color="green">005</FONT>     * under the terms of the GNU Lesser General Public License as<a name="line.5"></a>
+<FONT color="green">006</FONT>     * published by the Free Software Foundation; either version 2.1 of<a name="line.6"></a>
+<FONT color="green">007</FONT>     * the License, or (at your option) any later version.<a name="line.7"></a>
+<FONT color="green">008</FONT>     *<a name="line.8"></a>
+<FONT color="green">009</FONT>     * This software is distributed in the hope that it will be useful,<a name="line.9"></a>
+<FONT color="green">010</FONT>     * but WITHOUT ANY WARRANTY; without even the implied warranty of<a name="line.10"></a>
+<FONT color="green">011</FONT>     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU<a name="line.11"></a>
+<FONT color="green">012</FONT>     * Lesser General Public License for more details.<a name="line.12"></a>
+<FONT color="green">013</FONT>     *<a name="line.13"></a>
+<FONT color="green">014</FONT>     * You should have received a copy of the GNU Lesser General Public<a name="line.14"></a>
+<FONT color="green">015</FONT>     * License along with this software; if not, write to the Free<a name="line.15"></a>
+<FONT color="green">016</FONT>     * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA<a name="line.16"></a>
+<FONT color="green">017</FONT>     * 02110-1301 USA, or see the FSF site: http://www.fsf.org.<a name="line.17"></a>
+<FONT color="green">018</FONT>     */<a name="line.18"></a>
+<FONT color="green">019</FONT>    <a name="line.19"></a>
+<FONT color="green">020</FONT>    package org.crsh.spring;<a name="line.20"></a>
+<FONT color="green">021</FONT>    <a name="line.21"></a>
+<FONT color="green">022</FONT>    import org.crsh.plugin.Embedded;<a name="line.22"></a>
+<FONT color="green">023</FONT>    import org.crsh.plugin.PluginDiscovery;<a name="line.23"></a>
+<FONT color="green">024</FONT>    import org.crsh.util.Utils;<a name="line.24"></a>
+<FONT color="green">025</FONT>    import org.crsh.vfs.spi.FSMountFactory;<a name="line.25"></a>
+<FONT color="green">026</FONT>    import org.crsh.vfs.spi.file.FileMountFactory;<a name="line.26"></a>
+<FONT color="green">027</FONT>    import org.crsh.vfs.spi.url.ClassPathMountFactory;<a name="line.27"></a>
+<FONT color="green">028</FONT>    import org.springframework.beans.BeansException;<a name="line.28"></a>
+<FONT color="green">029</FONT>    import org.springframework.beans.factory.BeanClassLoaderAware;<a name="line.29"></a>
+<FONT color="green">030</FONT>    import org.springframework.beans.factory.BeanFactory;<a name="line.30"></a>
+<FONT color="green">031</FONT>    import org.springframework.beans.factory.BeanFactoryAware;<a name="line.31"></a>
+<FONT color="green">032</FONT>    import org.springframework.beans.factory.DisposableBean;<a name="line.32"></a>
+<FONT color="green">033</FONT>    import org.springframework.beans.factory.InitializingBean;<a name="line.33"></a>
+<FONT color="green">034</FONT>    import org.springframework.beans.factory.ListableBeanFactory;<a name="line.34"></a>
+<FONT color="green">035</FONT>    <a name="line.35"></a>
+<FONT color="green">036</FONT>    import java.util.Collections;<a name="line.36"></a>
+<FONT color="green">037</FONT>    import java.util.HashMap;<a name="line.37"></a>
+<FONT color="green">038</FONT>    import java.util.Map;<a name="line.38"></a>
+<FONT color="green">039</FONT>    import java.util.logging.Level;<a name="line.39"></a>
+<FONT color="green">040</FONT>    <a name="line.40"></a>
+<FONT color="green">041</FONT>    public class SpringBootstrap extends Embedded implements<a name="line.41"></a>
+<FONT color="green">042</FONT>        BeanClassLoaderAware,<a name="line.42"></a>
+<FONT color="green">043</FONT>        BeanFactoryAware,<a name="line.43"></a>
+<FONT color="green">044</FONT>        InitializingBean,<a name="line.44"></a>
+<FONT color="green">045</FONT>        DisposableBean {<a name="line.45"></a>
+<FONT color="green">046</FONT>    <a name="line.46"></a>
+<FONT color="green">047</FONT>      /** . */<a name="line.47"></a>
+<FONT color="green">048</FONT>      private ClassLoader loader;<a name="line.48"></a>
+<FONT color="green">049</FONT>    <a name="line.49"></a>
+<FONT color="green">050</FONT>      /** . */<a name="line.50"></a>
+<FONT color="green">051</FONT>      private BeanFactory factory;<a name="line.51"></a>
+<FONT color="green">052</FONT>    <a name="line.52"></a>
+<FONT color="green">053</FONT>      /** . */<a name="line.53"></a>
+<FONT color="green">054</FONT>      protected final HashMap&lt;String, FSMountFactory&lt;?&gt;&gt; drivers = new HashMap&lt;String, FSMountFactory&lt;?&gt;&gt;();<a name="line.54"></a>
+<FONT color="green">055</FONT>    <a name="line.55"></a>
+<FONT color="green">056</FONT>      /** . */<a name="line.56"></a>
+<FONT color="green">057</FONT>      private String cmdMountPointConfig;<a name="line.57"></a>
+<FONT color="green">058</FONT>    <a name="line.58"></a>
+<FONT color="green">059</FONT>      /** . */<a name="line.59"></a>
+<FONT color="green">060</FONT>      private String confMountPointConfig;<a name="line.60"></a>
+<FONT color="green">061</FONT>    <a name="line.61"></a>
+<FONT color="green">062</FONT>      public SpringBootstrap() {<a name="line.62"></a>
+<FONT color="green">063</FONT>      }<a name="line.63"></a>
+<FONT color="green">064</FONT>    <a name="line.64"></a>
+<FONT color="green">065</FONT>      public String getCmdMountPointConfig() {<a name="line.65"></a>
+<FONT color="green">066</FONT>        return cmdMountPointConfig;<a name="line.66"></a>
+<FONT color="green">067</FONT>      }<a name="line.67"></a>
+<FONT color="green">068</FONT>    <a name="line.68"></a>
+<FONT color="green">069</FONT>      public void setCmdMountPointConfig(String cmdMountPointConfig) {<a name="line.69"></a>
+<FONT color="green">070</FONT>        this.cmdMountPointConfig = cmdMountPointConfig;<a name="line.70"></a>
+<FONT color="green">071</FONT>      }<a name="line.71"></a>
+<FONT color="green">072</FONT>    <a name="line.72"></a>
+<FONT color="green">073</FONT>      public String getConfMountPointConfig() {<a name="line.73"></a>
+<FONT color="green">074</FONT>        return confMountPointConfig;<a name="line.74"></a>
+<FONT color="green">075</FONT>      }<a name="line.75"></a>
+<FONT color="green">076</FONT>    <a name="line.76"></a>
+<FONT color="green">077</FONT>      public void setConfMountPointConfig(String confMountPointConfig) {<a name="line.77"></a>
+<FONT color="green">078</FONT>        this.confMountPointConfig = confMountPointConfig;<a name="line.78"></a>
+<FONT color="green">079</FONT>      }<a name="line.79"></a>
+<FONT color="green">080</FONT>    <a name="line.80"></a>
+<FONT color="green">081</FONT>      public void setBeanClassLoader(ClassLoader loader) {<a name="line.81"></a>
+<FONT color="green">082</FONT>        this.loader = loader;<a name="line.82"></a>
+<FONT color="green">083</FONT>      }<a name="line.83"></a>
+<FONT color="green">084</FONT>    <a name="line.84"></a>
+<FONT color="green">085</FONT>      public void setBeanFactory(BeanFactory factory) throws BeansException {<a name="line.85"></a>
+<FONT color="green">086</FONT>        this.factory = factory;<a name="line.86"></a>
+<FONT color="green">087</FONT>      }<a name="line.87"></a>
+<FONT color="green">088</FONT>    <a name="line.88"></a>
+<FONT color="green">089</FONT>      public void afterPropertiesSet() throws Exception {<a name="line.89"></a>
+<FONT color="green">090</FONT>    <a name="line.90"></a>
+<FONT color="green">091</FONT>        // Initialise the registerable drivers<a name="line.91"></a>
+<FONT color="green">092</FONT>        try {<a name="line.92"></a>
+<FONT color="green">093</FONT>          drivers.put("classpath", new ClassPathMountFactory(loader));<a name="line.93"></a>
+<FONT color="green">094</FONT>          drivers.put("file", new FileMountFactory(Utils.getCurrentDirectory()));<a name="line.94"></a>
+<FONT color="green">095</FONT>        }<a name="line.95"></a>
+<FONT color="green">096</FONT>        catch (Exception e) {<a name="line.96"></a>
+<FONT color="green">097</FONT>          log.log(Level.SEVERE, "Coult not initialize classpath driver", e);<a name="line.97"></a>
+<FONT color="green">098</FONT>          return;<a name="line.98"></a>
+<FONT color="green">099</FONT>        }<a name="line.99"></a>
+<FONT color="green">100</FONT>    <a name="line.100"></a>
+<FONT color="green">101</FONT>        // List beans<a name="line.101"></a>
+<FONT color="green">102</FONT>        Map&lt;String,Object&gt; attributes = new HashMap&lt;String, Object&gt;();<a name="line.102"></a>
+<FONT color="green">103</FONT>        attributes.put("factory", factory);<a name="line.103"></a>
+<FONT color="green">104</FONT>        if (factory instanceof ListableBeanFactory) {<a name="line.104"></a>
+<FONT color="green">105</FONT>          ListableBeanFactory listable = (ListableBeanFactory)factory;<a name="line.105"></a>
+<FONT color="green">106</FONT>          attributes.put("beans", new SpringMap(listable));<a name="line.106"></a>
+<FONT color="green">107</FONT>        }<a name="line.107"></a>
+<FONT color="green">108</FONT>    <a name="line.108"></a>
+<FONT color="green">109</FONT>        //<a name="line.109"></a>
+<FONT color="green">110</FONT>        PluginDiscovery discovery = new SpringPluginDiscovery(loader, factory);<a name="line.110"></a>
+<FONT color="green">111</FONT>    <a name="line.111"></a>
+<FONT color="green">112</FONT>        //<a name="line.112"></a>
+<FONT color="green">113</FONT>        start(Collections.unmodifiableMap(attributes), discovery, loader);<a name="line.113"></a>
+<FONT color="green">114</FONT>      }<a name="line.114"></a>
+<FONT color="green">115</FONT>    <a name="line.115"></a>
+<FONT color="green">116</FONT>      @Override<a name="line.116"></a>
+<FONT color="green">117</FONT>      protected Map&lt;String, FSMountFactory&lt;?&gt;&gt; getMountFactories() {<a name="line.117"></a>
+<FONT color="green">118</FONT>        return drivers;<a name="line.118"></a>
+<FONT color="green">119</FONT>      }<a name="line.119"></a>
+<FONT color="green">120</FONT>    <a name="line.120"></a>
+<FONT color="green">121</FONT>      @Override<a name="line.121"></a>
+<FONT color="green">122</FONT>      protected String resolveConfMountPointConfig() {<a name="line.122"></a>
+<FONT color="green">123</FONT>        return confMountPointConfig != null ? confMountPointConfig : getDefaultConfMountPointConfig();<a name="line.123"></a>
+<FONT color="green">124</FONT>      }<a name="line.124"></a>
+<FONT color="green">125</FONT>    <a name="line.125"></a>
+<FONT color="green">126</FONT>      @Override<a name="line.126"></a>
+<FONT color="green">127</FONT>      protected String resolveCmdMountPointConfig() {<a name="line.127"></a>
+<FONT color="green">128</FONT>        return cmdMountPointConfig != null ? cmdMountPointConfig : getDefaultCmdMountPointConfig();<a name="line.128"></a>
+<FONT color="green">129</FONT>      }<a name="line.129"></a>
+<FONT color="green">130</FONT>    <a name="line.130"></a>
+<FONT color="green">131</FONT>      protected String getDefaultCmdMountPointConfig() {<a name="line.131"></a>
+<FONT color="green">132</FONT>        return "classpath:/crash/commands/";<a name="line.132"></a>
+<FONT color="green">133</FONT>      }<a name="line.133"></a>
+<FONT color="green">134</FONT>    <a name="line.134"></a>
+<FONT color="green">135</FONT>      protected String getDefaultConfMountPointConfig() {<a name="line.135"></a>
+<FONT color="green">136</FONT>        return "classpath:/crash/";<a name="line.136"></a>
+<FONT color="green">137</FONT>      }<a name="line.137"></a>
+<FONT color="green">138</FONT>    <a name="line.138"></a>
+<FONT color="green">139</FONT>      public void destroy() throws Exception {<a name="line.139"></a>
+<FONT color="green">140</FONT>        stop();<a name="line.140"></a>
+<FONT color="green">141</FONT>      }<a name="line.141"></a>
+<FONT color="green">142</FONT>    }<a name="line.142"></a>
 
 
 
@@ -208,7 +203,6 @@
 
 
 
-</pre>
-</div>
-</body>
-</html>
+</PRE>
+</BODY>
+</HTML>
