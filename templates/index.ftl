@@ -115,9 +115,9 @@
               <div class="col-md-3">
                 <div class="panel">
                   <div class="panel-body">
-                    <a class="thumbnail" href="http://www.exoplatform.com"><img class="img-responsive" src="../images/logo/exo-platform.png" /></a>
+                    <a class="thumbnail" href="https://www.exoplatform.com"><img class="img-responsive" src="../images/logo/exo-platform.png" alt="Social intranet Platform" /></a>
                     <h4>eXo Platform</h4>
-                    <p>Provides a remote shell for eXo Plaform with a JCR console</p>
+                    <p>Provides a remote shell for eXo Platform with a JCR console</p>
                   </div>
                 </div>  
               </div>
